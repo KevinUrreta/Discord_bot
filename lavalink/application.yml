@@ -30,9 +30,9 @@ plugins:
     allowDirectPlaylistIds: true
 
     clients:
-      - WEB
-      - TV
-      - MWEB
+    - WEB
+    - MWEB
+    - TV
 
 logging:
   level:
