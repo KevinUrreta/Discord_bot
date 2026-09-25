@@ -1,0 +1,16 @@
+# No subir el token al contenedor
+.env
+
+# Cachés de Python innecesarios
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Carpetas de Docker que no deben copiarse
+/docker
+
+# Archivos temporales del sistema
+*.swp
+*.swo
+.DS_Store

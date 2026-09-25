@@ -1,0 +1,74 @@
+services:
+
+
+
+  # -----------------------
+  # Bot de Discord
+  # -----------------------
+  bot:
+    build:
+      context: ..
+      dockerfile: docker/dockerfile
+    container_name: discord_bot
+    restart: unless-stopped
+    env_file:
+      - ../.env
+    volumes:
+      - ../logs:/app/logs
+    depends_on:
+      lavalink:
+        condition: service_started
+      postgres:
+        condition: service_healthy
+    command: python main.py
+
+
+
+  # -----------------------
+  # Lavalink (servidor de audio)
+  # -----------------------
+  lavalink:
+    image: ghcr.io/lavalink-devs/lavalink:4
+    container_name: lavalink
+    restart: unless-stopped
+
+    env_file:
+      - ../.env
+
+    environment:
+      - SERVER_PORT=2333
+
+    ports:
+      - "2333:2333"
+
+    volumes:
+      - ../lavalink/application.yml:/opt/Lavalink/application.yml
+      - ../lavalink/plugins:/opt/Lavalink/plugins
+      - ../logs:/opt/Lavalink/logs
+
+  # -----------------------
+  # Base de datos PostgreSQL
+  # -----------------------
+  postgres:
+    image: postgres:16
+    container_name: postgres
+    env_file:
+      - ../.env
+    volumes:
+      - ../postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    restart: unless-stopped
+    command:
+      - postgres
+      - -c
+      - logging_collector=on
+      - -c
+      - log_directory=/var/log/postgresql
+      - -c
+      - log_filename=postgres.log
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
+      interval: 5s
+      timeout: 5s
+      retries: 5

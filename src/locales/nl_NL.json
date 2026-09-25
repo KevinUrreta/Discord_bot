@@ -1,0 +1,15 @@
+{
+    "voice_not_connected": "Je bent niet verbonden met een spraakkanaal.",
+    "no_song_found": "Er is geen nummer gevonden.",
+    "not_connected": "De bot is niet verbonden met een spraakkanaal.",
+    "now_playing": "Nu aan het afspelen: {title}",
+    "volume_changed": "Volume gewijzigd naar {volume}%",
+    "bot_connected": "Bot verbonden als {bot}",
+    "connecting_lavalink": "Verbinden met Lavalink...",
+    "message_detected": "Bericht gedetecteerd in de chat -> [{author}]: {message}",
+    "command_executed": "Opdracht uitgevoerd: '{command}' door {author} in #{channel}",
+    "command_error": "Fout bij opdracht '{command}': {error}",
+    "joining_voice": "Proberen het spraakkanaal te betreden: {channel}",
+    "joined_voice": "Succesvol verbonden met: {channel}",
+    "disconnecting": "De bot wordt losgekoppeld van het spraakkanaal."
+}

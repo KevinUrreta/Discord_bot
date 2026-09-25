@@ -1,0 +1,15 @@
+{
+    "voice_not_connected": "ボイスチャンネルに接続していません。",
+    "no_song_found": "曲が見つかりませんでした。",
+    "not_connected": "Botはボイスチャンネルに接続していません。",
+    "now_playing": "再生中: {title}",
+    "volume_changed": "音量を{volume}%に変更しました",
+    "bot_connected": "{bot}としてBotが接続しました",
+    "connecting_lavalink": "Lavalinkに接続しています...",
+    "message_detected": "チャットでメッセージを検出 -> [{author}]: {message}",
+    "command_executed": "'{command}' を {author} が #{channel} で実行しました",
+    "command_error": "コマンド '{command}' でエラーが発生しました: {error}",
+    "joining_voice": "ボイスチャンネル {channel} への接続を試みています",
+    "joined_voice": "{channel} に正常に接続しました",
+    "disconnecting": "ボイスチャンネルからBotを切断しています。"
+}

@@ -1,0 +1,15 @@
+{
+    "voice_not_connected": "Vous n'êtes connecté à aucun canal vocal.",
+    "no_song_found": "Aucune chanson n'a été trouvée.",
+    "not_connected": "Le bot n'est connecté à aucun canal vocal.",
+    "now_playing": "Lecture en cours : {title}",
+    "volume_changed": "Volume réglé à {volume} %",
+    "bot_connected": "Bot connecté en tant que {bot}",
+    "connecting_lavalink": "Connexion à Lavalink...",
+    "message_detected": "Message détecté dans le chat -> [{author}] : {message}",
+    "command_executed": "Commande exécutée : '{command}' par {author} dans #{channel}",
+    "command_error": "Erreur dans la commande '{command}' : {error}",
+    "joining_voice": "Tentative de rejoindre le canal vocal : {channel}",
+    "joined_voice": "Connecté avec succès à : {channel}",
+    "disconnecting": "Déconnexion du bot du canal vocal."
+}

@@ -1,0 +1,6 @@
+python-dotenv
+discord
+PyNaCl
+wavelink
+SQLAlchemy[asyncio]
+asyncpg
