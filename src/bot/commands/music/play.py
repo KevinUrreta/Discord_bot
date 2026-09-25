@@ -33,7 +33,7 @@ class Play(commands.Cog):
 
             tracks = await wavelink.Playable.search(
                 query,
-                source=wavelink.TrackSource.YouTube,
+                source="ytsearch",
             )
 
             if not tracks:
