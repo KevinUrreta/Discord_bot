@@ -1,7 +1,6 @@
 from discord.ext import commands
 
 from src.locales.i18n import translate
-from src.core.logging import logger
 
 
 class Leave(commands.Cog):

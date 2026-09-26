@@ -32,10 +32,10 @@ plugins:
     allowDirectPlaylistIds: true
 
     clients:
-      # - WEB
+      - WEB
       - MWEB
-      # - WEBEMBEDDED
-      # - TV
+      - WEBEMBEDDED
+      - TV
 
   lavasrc:
     sources:

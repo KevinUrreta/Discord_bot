@@ -3,7 +3,6 @@ from discord.ext import commands
 import wavelink
 
 from src.locales.i18n import translate
-from src.core.logging import logger
 
 
 class Queue(commands.Cog):

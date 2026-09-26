@@ -7,7 +7,7 @@ from discord.ext import commands
 async def load_cogs(bot, lavalink_password):
     base_path = Path(__file__).parent.parent
 
-    print(f"BASE PATH: {base_path}")
+    # print(f"BASE PATH: {base_path}")
 
     for file in base_path.rglob("*.py"):
         if file.name == "__init__.py":
@@ -16,7 +16,7 @@ async def load_cogs(bot, lavalink_password):
         if file.name == "loader.py":
             continue
 
-        print(f"ARCHIVO ENCONTRADO: {file}")
+        # print(f"ARCHIVO ENCONTRADO: {file}")
 
         module_path = ".".join(
             file.relative_to(base_path.parent)
@@ -24,7 +24,7 @@ async def load_cogs(bot, lavalink_password):
             .parts
         )
 
-        print(f"MODULO: {module_path}")
+        # print(f"MODULO: {module_path}")
 
         module = importlib.import_module(module_path)
 
@@ -32,10 +32,10 @@ async def load_cogs(bot, lavalink_password):
             if not isinstance(attribute, type):
                 continue
 
-            print(
-                f"CLASE: {attribute.__name__} "
-                f"| COG: {issubclass(attribute, commands.Cog)}"
-            )
+            # print(
+            #     f"CLASE: {attribute.__name__} "
+            #     f"| COG: {issubclass(attribute, commands.Cog)}"
+            # )
 
             if not issubclass(attribute, commands.Cog):
                 continue
@@ -52,4 +52,4 @@ async def load_cogs(bot, lavalink_password):
                 cog = attribute(bot)
 
             await bot.add_cog(cog)
-            print(f"COG CARGADO: {attribute.__name__}")
+            # print(f"COG CARGADO: {attribute.__name__}")
