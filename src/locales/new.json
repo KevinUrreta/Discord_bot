@@ -1,0 +1,64 @@
+{
+    "commands": {
+        "moderation": {
+            "cls": {
+                "success": "..."
+            }
+        },
+        "music": {
+            "play": {
+                "now_playing": "Reproduciendo ahora: {title}",
+                "added_to_queue": "Añadido a la cola: {title}",
+                "playlist_added_to_queue": "Playlist añadida a la cola: {title} ({count} canciones).",
+                "no_song_found": "No se ha encontrado ninguna canción.",
+                "voice_not_connected": "No estás conectado a un canal de voz."
+            },
+            "pause": {
+                "success": "Reproducción pausada.",
+                "error": "No hay ninguna canción reproduciéndose."
+            },
+            "resume": {
+                "success": "Reproducción reanudada.",
+                "error": "No hay ninguna canción pausada."
+            },
+            "skip": {
+                "success": "Canción saltada.",
+                "error": "No hay ninguna canción reproduciéndose."
+            },
+            "stop": {
+                "success": "Reproducción detenida.",
+                "error": "No hay ninguna canción reproduciéndose."
+            },
+            "leave": {
+                "success": "El bot ha salido del canal de voz.",
+                "error": "El bot no está conectado a un canal de voz."
+            },
+            "volume": {
+                "success": "Volumen cambiado a {volume}%.",
+                "error": "El bot no está conectado a un canal de voz."
+            },
+            "queue": {
+                "empty": "La cola está vacía.",
+                "list": "Cola de reproducción:\n{queue}"
+            }
+        }
+    },
+    "events": {
+        "bot": {
+            "connected": "Bot conectado como {bot}",
+            "connecting_lavalink": "Conectando con Lavalink..."
+        },
+        "message": {
+            "detected": "Mensaje detectado en el chat -> [{author}]: {message}"
+        },
+        "command": {
+            "executed": "Comando ejecutado: '{command}' por {author} en #{channel}",
+            "error": "Error en el comando '{command}': {error}"
+        },
+        "voice": {
+            "joining": "Intentando unirse al canal de voz: {channel}",
+            "joined": "Conectado correctamente a: {channel}",
+            "disconnecting": "Desconectando el bot del canal de voz."
+        }
+    }
+}

@@ -28,9 +28,6 @@ class Play(commands.Cog):
             else:
                 player: wavelink.Player = ctx.voice_client
 
-            if player.playing:
-                await player.stop()
-
             tracks = await wavelink.Playable.search(
                 query,
                 source="ytsearch",
@@ -44,7 +41,36 @@ class Play(commands.Cog):
                     )
                 )
 
-            track = tracks[0]
+            if isinstance(tracks, wavelink.Playlist):
+                for track in tracks.tracks:
+                    await player.queue.put_wait(track)
+
+                if player.playing:
+                    return await ctx.send(
+                        translate(
+                            ctx.guild,
+                            "playlist_added_to_queue",
+                            title=tracks.name,
+                            count=len(tracks.tracks),
+                        )
+                    )
+
+                track = player.queue.get()
+            else:
+                track = tracks[0]
+
+                await player.queue.put_wait(track)
+
+                if player.playing:
+                    return await ctx.send(
+                        translate(
+                            ctx.guild,
+                            "added_to_queue",
+                            title=track.title,
+                        )
+                    )
+
+                track = player.queue.get()
 
             await player.play(track)
 

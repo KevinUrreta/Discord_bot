@@ -1,4 +1,4 @@
-```
+``` tree -I "venv|__pycache__|postgres_data"
 Proyecto/
 │
 ├── config/
