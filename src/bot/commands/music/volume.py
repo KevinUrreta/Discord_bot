@@ -6,7 +6,7 @@ from src.core.logging import logger
 class Volume(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
-    
+
     @commands.command()
     async def volume(self, ctx, volume: int):
         if ctx.voice_client is None:

@@ -9,7 +9,7 @@ from src.core.logging import logger
 class Join(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
-    
+
     @commands.command()
     async def join(self, ctx, *, channel: discord.VoiceChannel):
         logger.info(

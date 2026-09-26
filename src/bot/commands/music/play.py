@@ -9,7 +9,7 @@ from src.core.logging import logger
 class Play(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
-    
+
     @commands.command(name="play", aliases=["p"])
     async def play(self, ctx, *, query):
         async with ctx.typing():
