@@ -1,5 +1,4 @@
 from discord.ext import commands
-from typing import cast
 import wavelink
 import asyncio
 import yt_dlp
@@ -14,6 +13,7 @@ def get_original_title(url):
     info = ydl.extract_info(url, download=False)
 
     return info.get("title", "Título desconocido")
+
 
 class Play(commands.Cog):
     def __init__(self, bot):
@@ -50,37 +50,59 @@ class Play(commands.Cog):
                     )
                 )
 
-            if isinstance(tracks, wavelink.Playlist):
-                for track in tracks.tracks:
+            is_playlist = "list=" in query
+
+            if isinstance(tracks, wavelink.Playlist) or is_playlist:
+                if isinstance(tracks, wavelink.Playlist):
+                    playlist_tracks = tracks.tracks
+                    playlist_title = tracks.name
+                else:
+                    playlist_tracks = tracks
+                    playlist_title = (
+                        playlist_tracks[0].title
+                        if playlist_tracks
+                        else "Lista"
+                    )
+
+                for track in playlist_tracks:
                     await player.queue.put_wait(track)
 
-                if player.playing:
-                    return await ctx.send(
-                        translate(
-                            ctx.guild,
-                            "playlist_added_to_queue",
-                            title=tracks.name,
-                            count=len(tracks.tracks),
-                        )
+                if not player.playing:
+                    track = player.queue.get()
+                    await player.play(track)
+
+                return await ctx.send(
+                    translate(
+                        ctx.guild,
+                        "commands.music.play.playlist_added_to_queue",
+                        title=playlist_title,
+                        count=len(playlist_tracks),
                     )
+                )
 
-                track = player.queue.get()
-            else:
-                track = tracks[0]
-                logger.info(f"TÍTULO RECIBIDO: {track.title}")
+            track = tracks[0]
 
-                await player.queue.put_wait(track)
+            logger.info(
+                f"TÍTULO RECIBIDO: {track.title}"
+            )
 
-                if player.playing:
-                    return await ctx.send(
-                        translate(
-                            ctx.guild,
-                            "commands.music.play.added_to_queue",
-                            title=track.title,
-                        )
+            await player.queue.put_wait(track)
+
+            if player.playing:
+                original_title = await asyncio.to_thread(
+                    get_original_title,
+                    track.uri,
+                )
+
+                return await ctx.send(
+                    translate(
+                        ctx.guild,
+                        "commands.music.play.added_to_queue",
+                        title=original_title,
                     )
+                )
 
-                track = player.queue.get()
+            track = player.queue.get()
 
             await player.play(track)
 
