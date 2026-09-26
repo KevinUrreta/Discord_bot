@@ -16,7 +16,7 @@ class On_wavelink_track_end(commands.Cog):
 
         player = payload.player
 
-        if player.queue.is_empty:
+        if player.queue.is_empty and player.queue.mode == wavelink.QueueMode.normal:
             return
 
         track = player.queue.get()
