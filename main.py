@@ -20,14 +20,14 @@ LAVALINK_PASSWORD = str(os.getenv("LAVALINK_PASSWORD"))
 
 
 class App(commands.Bot):
-    def __init__(self):
-        super().__init__(command_prefix="!", intents=discord.Intents.all())
+    def __init__(self) -> None:
+        super().__init__(command_prefix="<", intents=discord.Intents.all())
 
     async def setup_hook(self):
         await load_cogs(self, lavalink_password=LAVALINK_PASSWORD)
 
 
-async def main():
+async def main() -> None:
     database = Database(); guild_repository = GuildRepository(database)
 
     try:

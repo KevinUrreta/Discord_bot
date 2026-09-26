@@ -17,7 +17,7 @@ class On_message(commands.Cog):
         logger.info(
             translate(
                 message.guild,
-                "message_detected",
+                "events.message.on_message.message_detected",
                 author=message.author.name,
                 message=message.content,
             )

@@ -7,7 +7,8 @@ LOCALES_PATH = Path(__file__).parent.parent / "locales"
 
 def get_locale(guild) -> str:
     if guild is None:
-        return "en_US"
+        return "es_ES"
+        # return "en_US"
 
     locale = str(guild.preferred_locale)
 

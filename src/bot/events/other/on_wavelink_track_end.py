@@ -7,10 +7,7 @@ class On_wavelink_track_end(commands.Cog):
         self.bot = bot
 
     @commands.Cog.listener()
-    async def on_wavelink_track_end(
-        self,
-        payload: wavelink.TrackEndEventPayload,
-    ):
+    async def on_wavelink_track_end(self, payload: wavelink.TrackEndEventPayload):
         if payload.player is None:
             return
 

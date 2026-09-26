@@ -13,7 +13,7 @@ class On_command_error(commands.Cog):
         logger.error(
             translate(
                 ctx.guild,
-                "command_error",
+                "events.other.on_command_error.command_error",
                 command=ctx.command,
                 error=error,
             ),

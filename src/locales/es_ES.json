@@ -29,11 +29,12 @@
                 "added_to_queue": "{title}, agregada a la cola",
                 "no_song_found": "No se ha encontrado ninguna canción.",
                 "now_playing": "Reproduciendo ahora: {title}",
+                "playlist_added_to_queue": "Lista agregada a la cola: {title} ({count} canciones).",
                 "voice_not_connected": "No estás conectado a un canal de voz."
             },
             "queue": {
                 "queue_empty": "La cola está vacía.",
-                "queue_list": "🎵 Cola actual:\n{queue}"
+                "queue_list": "Cola actual:\n{queue}"
             },
             "remove": {
                 "invalid_queue_position": "La posición indicada no es válida.",
@@ -63,16 +64,24 @@
         }
     },
     "events": {
-        "bot": {
-            "bot_connected": "Bot conectado como {bot}",
-            "connecting_lavalink": "Conectando con Lavalink..."
-        },
-        "command": {
-            "command_error": "Error en el comando '{command}': {error}",
-            "command_executed": "Comando ejecutado: '{command}' por {author} en #{channel}"
-        },
+        "guild": {},
+        "member": {},
         "message": {
-            "message_detected": "Mensaje detectado en el chat -> [{author}]: {message}"
+            "on_message": {
+                "message_detected": "Mensaje detectado en el chat -> [{author}]: {message}"
+            }
+        },
+        "other": {
+            "on_command": {
+                "command_executed": "Comando ejecutado: '{command}' por {author} en #{channel}"
+            },
+            "on_command_error": {
+                "command_error": "Error en el comando '{command}': {error}"
+            },
+            "on_ready": {
+                "bot_connected": "Bot conectado como {bot}",
+                "connecting_lavalink": "Conectando con Lavalink..."
+            }
         }
     },
     "common": {

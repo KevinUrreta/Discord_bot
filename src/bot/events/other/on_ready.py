@@ -17,7 +17,7 @@ class On_ready(commands.Cog):
         logger.info(
             translate(
                 None,
-                "bot_connected",
+                "events.other.on_ready.bot_connected",
                 bot=self.bot.user,
             )
         )
@@ -26,7 +26,7 @@ class On_ready(commands.Cog):
             logger.info(
                 translate(
                     None,
-                    "connecting_lavalink",
+                    "events.other.on_ready.connecting_lavalink",
                 )
             )
 

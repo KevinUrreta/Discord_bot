@@ -1,5 +1,6 @@
 python-dotenv
 discord
+yt-dlp
 PyNaCl
 wavelink
 SQLAlchemy[asyncio]

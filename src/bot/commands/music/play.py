@@ -1,10 +1,19 @@
 from discord.ext import commands
-
+from typing import cast
 import wavelink
+import asyncio
+import yt_dlp
 
 from src.locales.i18n import translate
 from src.core.logging import logger
 
+
+def get_original_title(url):
+    ydl = yt_dlp.YoutubeDL()
+
+    info = ydl.extract_info(url, download=False)
+
+    return info.get("title", "Título desconocido")
 
 class Play(commands.Cog):
     def __init__(self, bot):
@@ -18,7 +27,7 @@ class Play(commands.Cog):
                     return await ctx.send(
                         translate(
                             ctx.guild,
-                            "commands.music.play.now_playing",
+                            "commands.music.play.voice_not_connected",
                         )
                     )
 
@@ -58,6 +67,7 @@ class Play(commands.Cog):
                 track = player.queue.get()
             else:
                 track = tracks[0]
+                logger.info(f"TÍTULO RECIBIDO: {track.title}")
 
                 await player.queue.put_wait(track)
 
@@ -65,7 +75,7 @@ class Play(commands.Cog):
                     return await ctx.send(
                         translate(
                             ctx.guild,
-                            "added_to_queue",
+                            "commands.music.play.added_to_queue",
                             title=track.title,
                         )
                     )
@@ -74,10 +84,15 @@ class Play(commands.Cog):
 
             await player.play(track)
 
+        original_title = await asyncio.to_thread(
+            get_original_title,
+            track.uri,
+        )
+
         await ctx.send(
             translate(
                 ctx.guild,
                 "commands.music.play.now_playing",
-                title=track.title,
+                title=original_title,
             )
         )

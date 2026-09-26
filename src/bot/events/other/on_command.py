@@ -13,7 +13,7 @@ class On_command(commands.Cog):
         logger.info(
             translate(
                 ctx.guild,
-                "command_executed",
+                "events.other.on_command.command_executed",
                 command=ctx.command.name,
                 author=ctx.author,
                 channel=ctx.channel,
