@@ -16,7 +16,7 @@ class Clear(commands.Cog):
             return await ctx.send(
                 translate(
                     ctx.guild,
-                    "not_connected",
+                    "commands.music.clear.not_connected",
                 )
             )
 
@@ -26,7 +26,7 @@ class Clear(commands.Cog):
             return await ctx.send(
                 translate(
                     ctx.guild,
-                    "queue_empty",
+                    "commands.music.clear.queue_empty",
                 )
             )
 
@@ -35,6 +35,6 @@ class Clear(commands.Cog):
         await ctx.send(
             translate(
                 ctx.guild,
-                "queue_cleared",
+                "commands.music.clear.queue_cleared",
             )
         )

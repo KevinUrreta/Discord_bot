@@ -16,7 +16,7 @@ class Shuffle(commands.Cog):
             return await ctx.send(
                 translate(
                     ctx.guild,
-                    "not_connected",
+                    "commands.music.shuffle.not_connected",
                 )
             )
 
@@ -26,7 +26,7 @@ class Shuffle(commands.Cog):
             return await ctx.send(
                 translate(
                     ctx.guild,
-                    "queue_empty",
+                    "commands.music.shuffle.queue_empty",
                 )
             )
 
@@ -35,6 +35,6 @@ class Shuffle(commands.Cog):
         await ctx.send(
             translate(
                 ctx.guild,
-                "queue_shuffled",
+                "commands.music.shuffle.queue_shuffled",
             )
         )

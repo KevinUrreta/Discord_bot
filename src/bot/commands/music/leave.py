@@ -14,7 +14,7 @@ class Leave(commands.Cog):
             return await ctx.send(
                 translate(
                     ctx.guild,
-                    "not_connected",
+                    "commands.music.leave.not_connected",
                 )
             )
 
@@ -23,6 +23,6 @@ class Leave(commands.Cog):
         await ctx.send(
             translate(
                 ctx.guild,
-                "bot_disconnected",
+                "commands.music.leave.bot_disconnected",
             )
         )

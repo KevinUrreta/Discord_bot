@@ -16,7 +16,7 @@ class Stop(commands.Cog):
             return await ctx.send(
                 translate(
                     ctx.guild,
-                    "not_connected",
+                    "commands.music.stop.not_connected",
                 )
             )
 
@@ -28,6 +28,6 @@ class Stop(commands.Cog):
         await ctx.send(
             translate(
                 ctx.guild,
-                "playback_stopped",
+                "commands.music.stop.playback_stopped",
             )
         )

@@ -16,7 +16,7 @@ class Volume(commands.Cog):
             return await ctx.send(
                 translate(
                     ctx.guild,
-                    "not_connected",
+                    "commands.music.volume.not_connected",
                 )
             )
 
@@ -24,7 +24,7 @@ class Volume(commands.Cog):
             return await ctx.send(
                 translate(
                     ctx.guild,
-                    "invalid_volume",
+                    "commands.music.volume.invalid_volume",
                 )
             )
 
@@ -35,7 +35,7 @@ class Volume(commands.Cog):
         await ctx.send(
             translate(
                 ctx.guild,
-                "volume_changed",
+                "commands.music.volume.volume_changed",
                 volume=volume,
             )
         )

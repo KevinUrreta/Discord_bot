@@ -16,7 +16,7 @@ class Remove(commands.Cog):
             return await ctx.send(
                 translate(
                     ctx.guild,
-                    "not_connected",
+                    "commands.music.remove.not_connected",
                 )
             )
 
@@ -26,7 +26,7 @@ class Remove(commands.Cog):
             return await ctx.send(
                 translate(
                     ctx.guild,
-                    "queue_empty",
+                    "commands.music.remove.queue_empty",
                 )
             )
 
@@ -36,7 +36,7 @@ class Remove(commands.Cog):
             return await ctx.send(
                 translate(
                     ctx.guild,
-                    "invalid_queue_position",
+                    "commands.music.remove.invalid_queue_position",
                 )
             )
 
@@ -47,7 +47,7 @@ class Remove(commands.Cog):
         await ctx.send(
             translate(
                 ctx.guild,
-                "removed_from_queue",
+                "commands.music.remove.removed_from_queue",
                 title=track.title,
             )
         )

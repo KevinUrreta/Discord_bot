@@ -1,32 +1,81 @@
 {
-    "voice_not_connected": "No estás conectado a un canal de voz.",
-    "no_song_found": "No se ha encontrado ninguna canción.",
-    "not_connected": "El bot no está conectado a un canal de voz.",
-    "now_playing": "Reproduciendo ahora: {title}",
-    "volume_changed": "Volumen cambiado a {volume}%",
-    "bot_connected": "Bot conectado como {bot}",
-    "connecting_lavalink": "Conectando con Lavalink...",
-    "message_detected": "Mensaje detectado en el chat -> [{author}]: {message}",
-    "command_executed": "Comando ejecutado: '{command}' por {author} en #{channel}",
-    "command_error": "Error en el comando '{command}': {error}",
-    "joining_voice": "Intentando unirse al canal de voz: {channel}",
-    "joined_voice": "Conectado correctamente a: {channel}",
-    "disconnecting": "Desconectando el bot del canal de voz.",
-    "added_to_queue": "{title}, agregada a la cola",
-    "no_song_playing": "No hay ninguna canción reproduciéndose.",
-    "song_skipped": "Canción saltada.",
-    "queue_empty": "La cola está vacía.",
-    "queue_list": "🎵 Cola actual:\n{queue}",
-    "queue_cleared": "La cola ha sido vaciada.",
-    "invalid_queue_position": "La posición indicada no es válida.",
-    "removed_from_queue": "Eliminado de la cola: {title}",
-    "queue_shuffled": "La cola ha sido mezclada.",
-    "song_paused": "Canción pausada.",
-    "song_not_paused": "La canción no está pausada.",
-    "song_resumed": "Canción reanudada.",
-    "loop_enabled": "Repetición activada.",
-    "loop_disabled": "Repetición desactivada.",
-    "playback_stopped": "Reproducción detenida y cola vaciada.",
-    "bot_disconnected": "Bot desconectado del canal de voz.",
-    "invalid_volume": "El volumen debe estar entre 0 y 100."
+    "commands": {
+        "admin": {
+            "cls": "..."
+        },
+        "music": {
+            "clear": {
+                "queue_cleared": "La cola ha sido vaciada.",
+                "queue_empty": "La cola está vacía."
+            },
+            "join": {
+                "joined_voice": "Conectado correctamente a: {channel}",
+                "joining_voice": "Intentando unirse al canal de voz: {channel}"
+            },
+            "leave": {
+                "bot_disconnected": "Bot desconectado del canal de voz.",
+                "not_connected": "El bot no está conectado a un canal de voz."
+            },
+            "loop": {
+                "loop_disabled": "Repetición desactivada.",
+                "loop_enabled": "Repetición activada.",
+                "no_song_playing": "No hay ninguna canción reproduciéndose."
+            },
+            "pause": {
+                "no_song_playing": "No hay ninguna canción reproduciéndose.",
+                "song_paused": "Canción pausada."
+            },
+            "play": {
+                "added_to_queue": "{title}, agregada a la cola",
+                "no_song_found": "No se ha encontrado ninguna canción.",
+                "now_playing": "Reproduciendo ahora: {title}",
+                "voice_not_connected": "No estás conectado a un canal de voz."
+            },
+            "queue": {
+                "queue_empty": "La cola está vacía.",
+                "queue_list": "🎵 Cola actual:\n{queue}"
+            },
+            "remove": {
+                "invalid_queue_position": "La posición indicada no es válida.",
+                "queue_empty": "La cola está vacía.",
+                "removed_from_queue": "Eliminado de la cola: {title}"
+            },
+            "resume": {
+                "song_not_paused": "La canción no está pausada.",
+                "song_resumed": "Canción reanudada."
+            },
+            "shuffle": {
+                "queue_empty": "La cola está vacía.",
+                "queue_shuffled": "La cola ha sido mezclada."
+            },
+            "skip": {
+                "no_song_playing": "No hay ninguna canción reproduciéndose.",
+                "song_skipped": "Canción saltada."
+            },
+            "stop": {
+                "playback_stopped": "Reproducción detenida y cola vaciada."
+            },
+            "volume": {
+                "invalid_volume": "El volumen debe estar entre 0 y 100.",
+                "not_connected": "El bot no está conectado a un canal de voz.",
+                "volume_changed": "Volumen cambiado a {volume}%"
+            }
+        }
+    },
+    "events": {
+        "bot": {
+            "bot_connected": "Bot conectado como {bot}",
+            "connecting_lavalink": "Conectando con Lavalink..."
+        },
+        "command": {
+            "command_error": "Error en el comando '{command}': {error}",
+            "command_executed": "Comando ejecutado: '{command}' por {author} en #{channel}"
+        },
+        "message": {
+            "message_detected": "Mensaje detectado en el chat -> [{author}]: {message}"
+        }
+    },
+    "common": {
+        "not_connected": "El bot no está conectado a un canal de voz."
+    }
 }

@@ -16,7 +16,7 @@ class Queue(commands.Cog):
             return await ctx.send(
                 translate(
                     ctx.guild,
-                    "not_connected",
+                    "commands.music.queue.not_connected",
                 )
             )
 
@@ -26,7 +26,7 @@ class Queue(commands.Cog):
             return await ctx.send(
                 translate(
                     ctx.guild,
-                    "queue_empty",
+                    "commands.music.queue.queue_empty",
                 )
             )
 
@@ -40,7 +40,7 @@ class Queue(commands.Cog):
         await ctx.send(
             translate(
                 ctx.guild,
-                "queue_list",
+                "commands.music.queue.queue_list",
                 queue=message,
             )
         )

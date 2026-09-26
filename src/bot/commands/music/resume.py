@@ -16,7 +16,7 @@ class Resume(commands.Cog):
             return await ctx.send(
                 translate(
                     ctx.guild,
-                    "not_connected",
+                    "commands.music.resume.not_connected",
                 )
             )
 
@@ -26,7 +26,7 @@ class Resume(commands.Cog):
             return await ctx.send(
                 translate(
                     ctx.guild,
-                    "song_not_paused",
+                    "commands.music.resume.song_not_paused",
                 )
             )
 
@@ -35,6 +35,6 @@ class Resume(commands.Cog):
         await ctx.send(
             translate(
                 ctx.guild,
-                "song_resumed",
+                "commands.music.resume.song_resumed",
             )
         )

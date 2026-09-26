@@ -16,7 +16,7 @@ class Pause(commands.Cog):
             return await ctx.send(
                 translate(
                     ctx.guild,
-                    "not_connected",
+                    "commands.music.pause.not_connected",
                 )
             )
 
@@ -26,7 +26,7 @@ class Pause(commands.Cog):
             return await ctx.send(
                 translate(
                     ctx.guild,
-                    "no_song_playing",
+                    "commands.music.pause.no_song_playing",
                 )
             )
 
@@ -35,6 +35,6 @@ class Pause(commands.Cog):
         await ctx.send(
             translate(
                 ctx.guild,
-                "song_paused",
+                "commands.music.pause.song_paused",
             )
         )

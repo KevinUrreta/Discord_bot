@@ -40,6 +40,7 @@ def get_locale(guild) -> str:
 
     return "en_US"
 
+
 def get_translations(guild) -> dict:
     locale = get_locale(guild)
 
@@ -51,12 +52,22 @@ def get_translations(guild) -> dict:
         return json.load(file)
 
 
+def get_nested_translation(translations: dict, key: str):
+    for part in key.split("."):
+        translations = translations.get(part, {})
+
+    return translations
+
+
 def translate(guild, key: str, **kwargs) -> str:
     translations = get_translations(guild)
 
-    message = translations.get(
-        key,
+    message = get_nested_translation(
+        translations,
         key,
     )
+
+    if not isinstance(message, str):
+        return key
 
     return message.format(**kwargs)

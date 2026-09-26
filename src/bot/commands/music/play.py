@@ -18,7 +18,7 @@ class Play(commands.Cog):
                     return await ctx.send(
                         translate(
                             ctx.guild,
-                            "voice_not_connected",
+                            "commands.music.play.now_playing",
                         )
                     )
 
@@ -37,7 +37,7 @@ class Play(commands.Cog):
                 return await ctx.send(
                     translate(
                         ctx.guild,
-                        "no_song_found",
+                        "commands.music.play.no_song_found",
                     )
                 )
 
@@ -77,7 +77,7 @@ class Play(commands.Cog):
         await ctx.send(
             translate(
                 ctx.guild,
-                "now_playing",
+                "commands.music.play.now_playing",
                 title=track.title,
             )
         )

@@ -16,7 +16,7 @@ class Loop(commands.Cog):
             return await ctx.send(
                 translate(
                     ctx.guild,
-                    "not_connected",
+                    "commands.music.loop.not_connected",
                 )
             )
 
@@ -26,7 +26,7 @@ class Loop(commands.Cog):
             return await ctx.send(
                 translate(
                     ctx.guild,
-                    "no_song_playing",
+                    "commands.music.loop.no_song_playing",
                 )
             )
 
@@ -40,13 +40,13 @@ class Loop(commands.Cog):
             await ctx.send(
                 translate(
                     ctx.guild,
-                    "loop_enabled",
+                    "commands.music.loop.loop_enabled",
                 )
             )
         else:
             await ctx.send(
                 translate(
                     ctx.guild,
-                    "loop_disabled",
+                    "commands.music.loop.loop_disabled",
                 )
             )

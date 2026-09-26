@@ -15,7 +15,7 @@ class Join(commands.Cog):
         logger.info(
             translate(
                 ctx.guild,
-                "joining_voice",
+                "commands.music.join.joining_voice",
                 channel=channel.name,
             )
         )
@@ -28,7 +28,7 @@ class Join(commands.Cog):
         logger.info(
             translate(
                 ctx.guild,
-                "joined_voice",
+                "commands.music.join.joined_voice",
                 channel=channel.name,
             )
         )

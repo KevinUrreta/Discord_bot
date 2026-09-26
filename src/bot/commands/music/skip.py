@@ -16,7 +16,7 @@ class Skip(commands.Cog):
             return await ctx.send(
                 translate(
                     ctx.guild,
-                    "not_connected",
+                    "commands.music.skip.not_connected",
                 )
             )
 
@@ -26,7 +26,7 @@ class Skip(commands.Cog):
             return await ctx.send(
                 translate(
                     ctx.guild,
-                    "no_song_playing",
+                    "commands.music.skip.no_song_playing",
                 )
             )
 
@@ -35,6 +35,6 @@ class Skip(commands.Cog):
         await ctx.send(
             translate(
                 ctx.guild,
-                "song_skipped",
+                "commands.music.skip.song_skipped",
             )
         )
