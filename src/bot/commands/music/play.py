@@ -82,10 +82,6 @@ class Play(commands.Cog):
 
             track = tracks[0]
 
-            logger.info(
-                f"TÍTULO RECIBIDO: {track.title}"
-            )
-
             await player.queue.put_wait(track)
 
             if player.playing:
