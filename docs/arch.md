@@ -1,6 +1,6 @@
 ```
-# tree -I "venv|__pycache__|postgres_data"
-.
+# tree -I "venv|__pycache__|postgres_data"                                                                                                                                                
+.                                          
 |-- docker
 |   |-- docker-compose.yml
 |   `-- dockerfile
@@ -21,6 +21,9 @@
 |-- src
 |   |-- bot
 |   |   |-- commands
+|   |   |   |-- config
+|   |   |   |   |-- language.py
+|   |   |   |   `-- prefix.py
 |   |   |   |-- moderation
 |   |   |   |   `-- cls.py
 |   |   |   `-- music
@@ -38,51 +41,62 @@
 |   |   |       |-- skip.py
 |   |   |       |-- stop.py
 |   |   |       `-- volume.py
-|   |   `-- events
-|   |       |-- guild
-|   |       |   |-- on_guild_channel_create.py
-|   |       |   |-- on_guild_channel_delete.py
-|   |       |   |-- on_guild_channel_update.py
-|   |       |   |-- on_guild_emojis_update.py
-|   |       |   |-- on_guild_role_create.py
-|   |       |   |-- on_guild_role_delete.py
-|   |       |   |-- on_guild_role_update.py
-|   |       |   `-- on_guild_stickers_update.py
-|   |       |-- member
-|   |       |   |-- on_member_join.py
-|   |       |   |-- on_member_remove.py
-|   |       |   |-- on_member_update.py
-|   |       |   `-- on_user_update.py
-|   |       |-- message
-|   |       |   |-- on_message.py
-|   |       |   |-- on_message_delete.py
-|   |       |   |-- on_message_edit.py
-|   |       |   |-- on_raw_reaction_add.py
-|   |       |   |-- on_raw_reaction_remove.py
-|   |       |   |-- on_reaction_add.py
-|   |       |   |-- on_reaction_clear.py
-|   |       |   |-- on_reaction_remove.py
-|   |       |   `-- on_typing.py
-|   |       `-- other
-|   |           |-- on_command.py
-|   |           |-- on_command_error.py
-|   |           |-- on_connect.py
-|   |           |-- on_disconnect.py
-|   |           |-- on_ready.py
-|   |           |-- on_resumed.py
-|   |           |-- on_voice_state_update.py
-|   |           |-- on_wavelink_track_end.py
-|   |           `-- on_webhook_update.py
+|   |   |-- events
+|   |   |   |-- guild
+|   |   |   |   |-- on_guild_channel_create.py
+|   |   |   |   |-- on_guild_channel_delete.py
+|   |   |   |   |-- on_guild_channel_update.py
+|   |   |   |   |-- on_guild_emojis_update.py
+|   |   |   |   |-- on_guild_join.py
+|   |   |   |   |-- on_guild_remove.py
+|   |   |   |   |-- on_guild_role_create.py
+|   |   |   |   |-- on_guild_role_delete.py
+|   |   |   |   |-- on_guild_role_update.py
+|   |   |   |   `-- on_guild_stickers_update.py
+|   |   |   |-- member
+|   |   |   |   |-- on_member_join.py
+|   |   |   |   |-- on_member_remove.py
+|   |   |   |   |-- on_member_update.py
+|   |   |   |   `-- on_user_update.py
+|   |   |   |-- message
+|   |   |   |   |-- on_message.py
+|   |   |   |   |-- on_message_delete.py
+|   |   |   |   |-- on_message_edit.py
+|   |   |   |   |-- on_raw_reaction_add.py
+|   |   |   |   |-- on_raw_reaction_remove.py
+|   |   |   |   |-- on_reaction_add.py
+|   |   |   |   |-- on_reaction_clear.py
+|   |   |   |   |-- on_reaction_remove.py
+|   |   |   |   `-- on_typing.py
+|   |   |   `-- other
+|   |   |       |-- on_application_command_error.py
+|   |   |       |-- on_command.py
+|   |   |       |-- on_command_error.py
+|   |   |       |-- on_connect.py
+|   |   |       |-- on_disconnect.py
+|   |   |       |-- on_ready.py
+|   |   |       |-- on_resumed.py
+|   |   |       |-- on_voice_state_update.py
+|   |   |       |-- on_wavelink_track_end.py
+|   |   |       |-- on_wavelink_track_start.py
+|   |   |       `-- on_webhook_update.py
+|   |   `-- tasks
+|   |       `-- database_sync.py
 |   |-- core
 |   |   |-- loader.py
-|   |   `-- logging.py
+|   |   |-- logging.py
+|   |   `-- player.py
 |   |-- database
 |   |   |-- __init__.py
 |   |   |-- connection.py
 |   |   |-- models
-|   |   |   `-- guild.py
+|   |   |   |-- guild.py
+|   |   |   `-- member.py
 |   |   `-- repositories
-|   |       `-- guild.py
+|   |       |-- guild.py
+|   |       `-- member.py
+|   |-- helpers
+|   |   `-- checkers.py
 |   `-- locales
 |       |-- de_DE.json
 |       |-- en_US.json
@@ -91,7 +105,6 @@
 |       |-- i18n.py
 |       |-- it_IT.json
 |       |-- ja_JP.json
-|       |-- new.json
 |       |-- nl_NL.json
 |       |-- pl_PL.json
 |       `-- pt_PT.json
@@ -104,5 +117,5 @@
     |           `-- events.py
     `-- test_music.py
 
-26 directories, 77 files
+29 directories, 88 files
 ```
