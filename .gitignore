@@ -1,7 +1,7 @@
 # Entorno
 .env
 .env.*
-secrets/
+scripts/
 
 # Python
 __pycache__/

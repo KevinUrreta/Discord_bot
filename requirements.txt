@@ -5,3 +5,6 @@ PyNaCl
 wavelink
 SQLAlchemy[asyncio]
 asyncpg
+pytest
+pytest-asyncio
+aiosqlite
