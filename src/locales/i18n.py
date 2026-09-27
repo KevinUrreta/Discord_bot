@@ -4,42 +4,65 @@ from pathlib import Path
 
 LOCALES_PATH = Path(__file__).parent.parent / "locales"
 
+GUILD_LANGUAGES = {}
+
+SUPPORTED_LANGUAGES = {
+    "es": "Español",
+    "en": "English",
+    "fr": "Français",
+    "de": "Deutsch",
+    "it": "Italiano",
+    "pt": "Português",
+    "nl": "Nederlands",
+    "pl": "Polski",
+    "ja": "日本語",
+}
+
+def set_guild_languages(
+    guild_languages: dict,
+) -> None:
+    global GUILD_LANGUAGES
+
+    GUILD_LANGUAGES = guild_languages
+
 
 def get_locale(guild) -> str:
     if guild is None:
         return "es_ES"
-        # return "en_US"
 
-    locale = str(guild.preferred_locale)
+    language = GUILD_LANGUAGES.get(
+        guild.id,
+        "es",
+    )
 
-    if locale.startswith("es"):
+    if language == "es":
         return "es_ES"
 
-    if locale.startswith("en"):
+    if language == "en":
         return "en_US"
 
-    if locale.startswith("fr"):
+    if language == "fr":
         return "fr_FR"
 
-    if locale.startswith("de"):
+    if language == "de":
         return "de_DE"
 
-    if locale.startswith("it"):
+    if language == "it":
         return "it_IT"
 
-    if locale.startswith("pt"):
+    if language == "pt":
         return "pt_PT"
 
-    if locale.startswith("nl"):
+    if language == "nl":
         return "nl_NL"
 
-    if locale.startswith("pl"):
+    if language == "pl":
         return "pl_PL"
 
-    if locale.startswith("ja"):
+    if language == "ja":
         return "ja_JP"
 
-    return "en_US"
+    return "es_ES"
 
 
 def get_translations(guild) -> dict:
@@ -53,14 +76,24 @@ def get_translations(guild) -> dict:
         return json.load(file)
 
 
-def get_nested_translation(translations: dict, key: str):
+def get_nested_translation(
+    translations: dict,
+    key: str,
+):
     for part in key.split("."):
-        translations = translations.get(part, {})
+        translations = translations.get(
+            part,
+            {},
+        )
 
     return translations
 
 
-def translate(guild, key: str, **kwargs) -> str:
+def translate(
+    guild,
+    key: str,
+    **kwargs,
+) -> str:
     translations = get_translations(guild)
 
     message = get_nested_translation(

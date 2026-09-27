@@ -1,15 +1,109 @@
 {
-    "voice_not_connected": "Non sei connesso a un canale vocale.",
-    "no_song_found": "Non è stata trovata alcuna canzone.",
-    "not_connected": "Il bot non è connesso a un canale vocale.",
-    "now_playing": "Riproduzione in corso: {title}",
-    "volume_changed": "Volume modificato al {volume}%",
-    "bot_connected": "Bot connesso come {bot}",
-    "connecting_lavalink": "Connessione a Lavalink...",
-    "message_detected": "Messaggio rilevato nella chat -> [{author}]: {message}",
-    "command_executed": "Comando eseguito: '{command}' da {author} in #{channel}",
-    "command_error": "Errore nel comando '{command}': {error}",
-    "joining_voice": "Tentativo di entrare nel canale vocale: {channel}",
-    "joined_voice": "Connessione riuscita a: {channel}",
-    "disconnecting": "Disconnessione del bot dal canale vocale."
+    "commands": {
+        "admin": {
+            "cls": "..."
+        },
+        "config": {
+            "language": {
+                "current_language": "Lingua attuale: {language_name} ({language})",
+                "language_changed": "Lingua cambiata in {language_name} ({language}).",
+                "invalid_language": "Codice lingua non valido.",
+                "available_languages": "Lingue disponibili:\n{languages}"
+            },
+            "prefix": {
+                "current_prefix": "Il prefisso attuale è: {prefix}",
+                "prefix_changed": "Prefisso cambiato in: {prefix}"
+            }
+        },
+        "music": {
+            "clear": {
+                "not_connected": "Il bot non è connesso a un canale vocale.",
+                "queue_cleared": "La coda è stata svuotata.",
+                "queue_empty": "La coda è vuota."
+            },
+            "join": {
+                "joined_voice": "Connesso correttamente a: {channel}",
+                "joining_voice": "Tentativo di connessione al canale vocale: {channel}"
+            },
+            "leave": {
+                "bot_disconnected": "Bot disconnesso dal canale vocale.",
+                "not_connected": "Il bot non è connesso a un canale vocale."
+            },
+            "loop": {
+                "not_connected": "Il bot non è connesso a un canale vocale.",
+                "loop_disabled": "Ripetizione disattivata.",
+                "loop_enabled": "Ripetizione attivata.",
+                "no_song_playing": "Nessuna canzone in riproduzione."
+            },
+            "pause": {
+                "not_connected": "Il bot non è connesso a un canale vocale.",
+                "no_song_playing": "Nessuna canzone in riproduzione.",
+                "song_paused": "Canzone in pausa."
+            },
+            "play": {
+                "added_to_queue": "{title}, aggiunta alla coda",
+                "no_song_found": "Nessuna canzone trovata.",
+                "now_playing": "In riproduzione ora: {title}",
+                "playlist_added_to_queue": "Playlist aggiunta alla coda: {title} ({count} canzoni).",
+                "voice_not_connected": "Non sei connesso a un canale vocale."
+            },
+            "queue": {
+                "not_connected": "Il bot non è connesso a un canale vocale.",
+                "queue_empty": "La coda è vuota.",
+                "queue_list": "Coda attuale:\n{queue}"
+            },
+            "remove": {
+                "not_connected": "Il bot non è connesso a un canale vocale.",
+                "invalid_queue_position": "La posizione specificata non è valida.",
+                "queue_empty": "La coda è vuota.",
+                "removed_from_queue": "Rimosso dalla coda: {title}"
+            },
+            "resume": {
+                "not_connected": "Il bot non è connesso a un canale vocale.",
+                "song_not_paused": "La canzone non è in pausa.",
+                "song_resumed": "Canzone ripresa."
+            },
+            "shuffle": {
+                "not_connected": "Il bot non è connesso a un canale vocale.",
+                "queue_empty": "La coda è vuota.",
+                "queue_shuffled": "La coda è stata mescolata."
+            },
+            "skip": {
+                "not_connected": "Il bot non è connesso a un canale vocale.",
+                "no_song_playing": "Nessuna canzone in riproduzione.",
+                "song_skipped": "Canzone saltata."
+            },
+            "stop": {
+                "not_connected": "Il bot non è connesso a un canale vocale.",
+                "playback_stopped": "Riproduzione interrotta e coda svuotata."
+            },
+            "volume": {
+                "invalid_volume": "Il volume deve essere compreso tra 0 e 100.",
+                "not_connected": "Il bot non è connesso a un canale vocale.",
+                "volume_changed": "Volume cambiato al {volume}%"
+            }
+        }
+    },
+    "events": {
+        "guild": {},
+        "member": {},
+        "message": {
+            "on_message": {
+                "message_detected": "Messaggio rilevato nella chat -> [{author}]: {message}"
+            }
+        },
+        "other": {
+            "on_command": {
+                "command_executed": "Comando eseguito: '{command}' da {author} in #{channel}"
+            },
+            "on_command_error": {
+                "command_error": "Errore nel comando '{command}': {error}",
+                "missing_permissions": "Non hai i permessi sufficienti per eseguire questo comando."
+            },
+            "on_ready": {
+                "bot_connected": "Bot connesso come {bot}",
+                "connecting_lavalink": "Connessione a Lavalink in corso..."
+            }
+        }
+    }
 }

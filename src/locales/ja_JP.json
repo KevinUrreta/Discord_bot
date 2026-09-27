@@ -1,15 +1,109 @@
 {
-    "voice_not_connected": "ボイスチャンネルに接続していません。",
-    "no_song_found": "曲が見つかりませんでした。",
-    "not_connected": "Botはボイスチャンネルに接続していません。",
-    "now_playing": "再生中: {title}",
-    "volume_changed": "音量を{volume}%に変更しました",
-    "bot_connected": "{bot}としてBotが接続しました",
-    "connecting_lavalink": "Lavalinkに接続しています...",
-    "message_detected": "チャットでメッセージを検出 -> [{author}]: {message}",
-    "command_executed": "'{command}' を {author} が #{channel} で実行しました",
-    "command_error": "コマンド '{command}' でエラーが発生しました: {error}",
-    "joining_voice": "ボイスチャンネル {channel} への接続を試みています",
-    "joined_voice": "{channel} に正常に接続しました",
-    "disconnecting": "ボイスチャンネルからBotを切断しています。"
+    "commands": {
+        "admin": {
+            "cls": "..."
+        },
+        "config": {
+            "language": {
+                "current_language": "現在の言語: {language_name} ({language})",
+                "language_changed": "言語が {language_name} ({language}) に変更されました。",
+                "invalid_language": "無効な言語コードです。",
+                "available_languages": "利用可能な言語:\n{languages}"
+            },
+            "prefix": {
+                "current_prefix": "現在のプレフィックスは: {prefix}です",
+                "prefix_changed": "プレフィックスが: {prefix} に変更されました"
+            }
+        },
+        "music": {
+            "clear": {
+                "not_connected": "ボットはボイスチャンネルに接続されていません。",
+                "queue_cleared": "キューがクリアされました。",
+                "queue_empty": "キューは空です。"
+            },
+            "join": {
+                "joined_voice": "{channel} に正常に接続しました",
+                "joining_voice": "ボイスチャンネルへの参加を試みています: {channel}"
+            },
+            "leave": {
+                "bot_disconnected": "ボットはボイスチャンネルから切断されました。",
+                "not_connected": "ボットはボイスチャンネルに接続されていません。"
+            },
+            "loop": {
+                "not_connected": "ボットはボイスチャンネルに接続されていません。",
+                "loop_disabled": "ループが無効になりました。",
+                "loop_enabled": "ループが有効になりました。",
+                "no_song_playing": "再生中の曲はありません。"
+            },
+            "pause": {
+                "not_connected": "ボットはボイスチャンネルに接続されていません。",
+                "no_song_playing": "再生中の曲はありません。",
+                "song_paused": "曲が一時停止しました。"
+            },
+            "play": {
+                "added_to_queue": "{title} がキューに追加されました",
+                "no_song_found": "曲が見つかりませんでした。",
+                "now_playing": "再生中: {title}",
+                "playlist_added_to_queue": "プレイリストがキューに追加されました: {title} ({count} 曲)。",
+                "voice_not_connected": "ボイスチャンネルに接続されていません。"
+            },
+            "queue": {
+                "not_connected": "ボットはボイスチャンネルに接続されていません。",
+                "queue_empty": "キューは空です。",
+                "queue_list": "現在のキュー:\n{queue}"
+            },
+            "remove": {
+                "not_connected": "ボットはボイスチャンネルに接続されていません。",
+                "invalid_queue_position": "指定された位置は無効です。",
+                "queue_empty": "キューは空です。",
+                "removed_from_queue": "{title} がキューから削除されました"
+            },
+            "resume": {
+                "not_connected": "ボットはボイスチャンネルに接続されていません。",
+                "song_not_paused": "曲は一時停止されていません。",
+                "song_resumed": "曲が再開されました。"
+            },
+            "shuffle": {
+                "not_connected": "ボットはボイスチャンネルに接続されていません。",
+                "queue_empty": "キューは空です。",
+                "queue_shuffled": "キューがシャッフルされました。"
+            },
+            "skip": {
+                "not_connected": "ボットはボイスチャンネルに接続されていません。",
+                "no_song_playing": "再生中の曲はありません。",
+                "song_skipped": "曲がスキップされました。"
+            },
+            "stop": {
+                "not_connected": "ボットはボイスチャンネルに接続されていません。",
+                "playback_stopped": "再生が停止し、キューがクリアされました。"
+            },
+            "volume": {
+                "invalid_volume": "ボリュームは0から100の間でなければなりません。",
+                "not_connected": "ボットはボイスチャンネルに接続されていません。",
+                "volume_changed": "ボリュームが {volume}% に変更されました"
+            }
+        }
+    },
+    "events": {
+        "guild": {},
+        "member": {},
+        "message": {
+            "on_message": {
+                "message_detected": "チャットでメッセージを検出しました -> [{author}]: {message}"
+            }
+        },
+        "other": {
+            "on_command": {
+                "command_executed": "コマンドが実行されました: '{command}' by {author} in #{channel}"
+            },
+            "on_command_error": {
+                "command_error": "コマンド '{command}' でエラーが発生しました: {error}",
+                "missing_permissions": "このコマンドを実行するための十分な権限がありません。"
+            },
+            "on_ready": {
+                "bot_connected": "{bot} としてボットが接続しました",
+                "connecting_lavalink": "Lavalink に接続中..."
+            }
+        }
+    }
 }

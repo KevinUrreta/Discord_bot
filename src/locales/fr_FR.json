@@ -1,15 +1,109 @@
 {
-    "voice_not_connected": "Vous n'êtes connecté à aucun canal vocal.",
-    "no_song_found": "Aucune chanson n'a été trouvée.",
-    "not_connected": "Le bot n'est connecté à aucun canal vocal.",
-    "now_playing": "Lecture en cours : {title}",
-    "volume_changed": "Volume réglé à {volume} %",
-    "bot_connected": "Bot connecté en tant que {bot}",
-    "connecting_lavalink": "Connexion à Lavalink...",
-    "message_detected": "Message détecté dans le chat -> [{author}] : {message}",
-    "command_executed": "Commande exécutée : '{command}' par {author} dans #{channel}",
-    "command_error": "Erreur dans la commande '{command}' : {error}",
-    "joining_voice": "Tentative de rejoindre le canal vocal : {channel}",
-    "joined_voice": "Connecté avec succès à : {channel}",
-    "disconnecting": "Déconnexion du bot du canal vocal."
+    "commands": {
+        "admin": {
+            "cls": "..."
+        },
+        "config": {
+            "language": {
+                "current_language": "Langue actuelle : {language_name} ({language})",
+                "language_changed": "Langue changée en {language_name} ({language}).",
+                "invalid_language": "Code de langue invalide.",
+                "available_languages": "Langues disponibles :\n{languages}"
+            },
+            "prefix": {
+                "current_prefix": "Le préfixe actuel est : {prefix}",
+                "prefix_changed": "Préfixe changé en : {prefix}"
+            }
+        },
+        "music": {
+            "clear": {
+                "not_connected": "Le bot n'est pas connecté à un canal vocal.",
+                "queue_cleared": "La file d'attente a été vidée.",
+                "queue_empty": "La file d'attente est vide."
+            },
+            "join": {
+                "joined_voice": "Connecté avec succès à : {channel}",
+                "joining_voice": "Tentative de connexion au canal vocal : {channel}"
+            },
+            "leave": {
+                "bot_disconnected": "Bot déconnecté du canal vocal.",
+                "not_connected": "Le bot n'est pas connecté à un canal vocal."
+            },
+            "loop": {
+                "not_connected": "Le bot n'est pas connecté à un canal vocal.",
+                "loop_disabled": "Répétition désactivée.",
+                "loop_enabled": "Répétition activée.",
+                "no_song_playing": "Aucune chanson en cours de lecture."
+            },
+            "pause": {
+                "not_connected": "Le bot n'est pas connecté à un canal vocal.",
+                "no_song_playing": "Aucune chanson en cours de lecture.",
+                "song_paused": "Chanson mise en pause."
+            },
+            "play": {
+                "added_to_queue": "{title}, ajoutée à la file d'attente",
+                "no_song_found": "Aucune chanson trouvée.",
+                "now_playing": "Lecture en cours : {title}",
+                "playlist_added_to_queue": "Playlist ajoutée à la file d'attente : {title} ({count} chansons).",
+                "voice_not_connected": "Vous n'êtes pas connecté à un canal vocal."
+            },
+            "queue": {
+                "not_connected": "Le bot n'est pas connecté à un canal vocal.",
+                "queue_empty": "La file d'attente est vide.",
+                "queue_list": "File d'attente actuelle :\n{queue}"
+            },
+            "remove": {
+                "not_connected": "Le bot n'est pas connecté à un canal vocal.",
+                "invalid_queue_position": "La position spécifiée n'est pas valide.",
+                "queue_empty": "La file d'attente est vide.",
+                "removed_from_queue": "Supprimé de la file d'attente : {title}"
+            },
+            "resume": {
+                "not_connected": "Le bot n'est pas connecté à un canal vocal.",
+                "song_not_paused": "La chanson n'est pas en pause.",
+                "song_resumed": "Chanson reprise."
+            },
+            "shuffle": {
+                "not_connected": "Le bot n'est pas connecté à un canal vocal.",
+                "queue_empty": "La file d'attente est vide.",
+                "queue_shuffled": "La file d'attente a été mélangée."
+            },
+            "skip": {
+                "not_connected": "Le bot n'est pas connecté à un canal vocal.",
+                "no_song_playing": "Aucune chanson en cours de lecture.",
+                "song_skipped": "Chanson sautée."
+            },
+            "stop": {
+                "not_connected": "Le bot n'est pas connecté à un canal vocal.",
+                "playback_stopped": "Lecture arrêtée et file d'attente vidée."
+            },
+            "volume": {
+                "invalid_volume": "Le volume doit être compris entre 0 et 100.",
+                "not_connected": "Le bot n'est pas connecté à un canal vocal.",
+                "volume_changed": "Volume changé à {volume}%"
+            }
+        }
+    },
+    "events": {
+        "guild": {},
+        "member": {},
+        "message": {
+            "on_message": {
+                "message_detected": "Message détecté dans le chat -> [{author}] : {message}"
+            }
+        },
+        "other": {
+            "on_command": {
+                "command_executed": "Commande exécutée : '{command}' par {author} dans #{channel}"
+            },
+            "on_command_error": {
+                "command_error": "Erreur dans la commande '{command}' : {error}",
+                "missing_permissions": "Vous n'avez pas les permissions suffisantes pour exécuter cette commande."
+            },
+            "on_ready": {
+                "bot_connected": "Bot connecté en tant que {bot}",
+                "connecting_lavalink": "Connexion à Lavalink..."
+            }
+        }
+    }
 }

@@ -1,15 +1,109 @@
 {
-    "voice_not_connected": "You are not connected to a voice channel.",
-    "no_song_found": "No song was found.",
-    "not_connected": "The bot is not connected to a voice channel.",
-    "now_playing": "Now playing: {title}",
-    "volume_changed": "Changed volume to {volume}%",
-    "bot_connected": "Bot connected as {bot}",
-    "connecting_lavalink": "Connecting to Lavalink...",
-    "message_detected": "Message detected in chat -> [{author}]: {message}",
-    "command_executed": "Command executed: '{command}' by {author} in #{channel}",
-    "command_error": "Error in command '{command}': {error}",
-    "joining_voice": "Trying to join voice channel: {channel}",
-    "joined_voice": "Successfully connected to: {channel}",
-    "disconnecting": "Disconnecting the bot from the voice channel."
+    "commands": {
+        "admin": {
+            "cls": "..."
+        },
+        "config": {
+            "language": {
+                "current_language": "Current language: {language_name} ({language})",
+                "language_changed": "Language changed to {language_name} ({language}).",
+                "invalid_language": "Invalid language code.",
+                "available_languages": "Available languages:\n{languages}"
+            },
+            "prefix": {
+                "current_prefix": "The current prefix is: {prefix}",
+                "prefix_changed": "Prefix changed to: {prefix}"
+            }
+        },
+        "music": {
+            "clear": {
+                "not_connected": "The bot is not connected to a voice channel.",
+                "queue_cleared": "The queue has been cleared.",
+                "queue_empty": "The queue is empty."
+            },
+            "join": {
+                "joined_voice": "Successfully connected to: {channel}",
+                "joining_voice": "Trying to join the voice channel: {channel}"
+            },
+            "leave": {
+                "bot_disconnected": "Bot disconnected from the voice channel.",
+                "not_connected": "The bot is not connected to a voice channel."
+            },
+            "loop": {
+                "not_connected": "The bot is not connected to a voice channel.",
+                "loop_disabled": "Loop disabled.",
+                "loop_enabled": "Loop enabled.",
+                "no_song_playing": "No song is currently playing."
+            },
+            "pause": {
+                "not_connected": "The bot is not connected to a voice channel.",
+                "no_song_playing": "No song is currently playing.",
+                "song_paused": "Song paused."
+            },
+            "play": {
+                "added_to_queue": "{title}, added to the queue",
+                "no_song_found": "No song was found.",
+                "now_playing": "Now playing: {title}",
+                "playlist_added_to_queue": "Playlist added to the queue: {title} ({count} songs).",
+                "voice_not_connected": "You are not connected to a voice channel."
+            },
+            "queue": {
+                "not_connected": "The bot is not connected to a voice channel.",
+                "queue_empty": "The queue is empty.",
+                "queue_list": "Current queue:\n{queue}"
+            },
+            "remove": {
+                "not_connected": "The bot is not connected to a voice channel.",
+                "invalid_queue_position": "The specified position is not valid.",
+                "queue_empty": "The queue is empty.",
+                "removed_from_queue": "Removed from the queue: {title}"
+            },
+            "resume": {
+                "not_connected": "The bot is not connected to a voice channel.",
+                "song_not_paused": "The song is not paused.",
+                "song_resumed": "Song resumed."
+            },
+            "shuffle": {
+                "not_connected": "The bot is not connected to a voice channel.",
+                "queue_empty": "The queue is empty.",
+                "queue_shuffled": "The queue has been shuffled."
+            },
+            "skip": {
+                "not_connected": "The bot is not connected to a voice channel.",
+                "no_song_playing": "No song is currently playing.",
+                "song_skipped": "Song skipped."
+            },
+            "stop": {
+                "not_connected": "The bot is not connected to a voice channel.",
+                "playback_stopped": "Playback stopped and queue cleared."
+            },
+            "volume": {
+                "invalid_volume": "Volume must be between 0 and 100.",
+                "not_connected": "The bot is not connected to a voice channel.",
+                "volume_changed": "Volume changed to {volume}%"
+            }
+        }
+    },
+    "events": {
+        "guild": {},
+        "member": {},
+        "message": {
+            "on_message": {
+                "message_detected": "Message detected in chat -> [{author}]: {message}"
+            }
+        },
+        "other": {
+            "on_command": {
+                "command_executed": "Command executed: '{command}' by {author} in #{channel}"
+            },
+            "on_command_error": {
+                "command_error": "Error in command '{command}': {error}",
+                "missing_permissions": "You do not have enough permissions to use this command."
+            },
+            "on_ready": {
+                "bot_connected": "Bot connected as {bot}",
+                "connecting_lavalink": "Connecting to Lavalink..."
+            }
+        }
+    }
 }

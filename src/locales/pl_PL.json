@@ -1,15 +1,109 @@
 {
-    "voice_not_connected": "Nie jesteś połączony z kanałem głosowym.",
-    "no_song_found": "Nie znaleziono żadnego utworu.",
-    "not_connected": "Bot nie jest połączony z kanałem głosowym.",
-    "now_playing": "Teraz odtwarzane: {title}",
-    "volume_changed": "Głośność zmieniona na {volume}%",
-    "bot_connected": "Bot połączony jako {bot}",
-    "connecting_lavalink": "Łączenie z Lavalink...",
-    "message_detected": "Wykryto wiadomość na czacie -> [{author}]: {message}",
-    "command_executed": "Wykonano polecenie: '{command}' przez {author} na #{channel}",
-    "command_error": "Błąd polecenia '{command}': {error}",
-    "joining_voice": "Próba dołączenia do kanału głosowego: {channel}",
-    "joined_voice": "Pomyślnie połączono z: {channel}",
-    "disconnecting": "Bot jest rozłączany z kanałem głosowym."
+    "commands": {
+        "admin": {
+            "cls": "..."
+        },
+        "config": {
+            "language": {
+                "current_language": "Aktualny język: {language_name} ({language})",
+                "language_changed": "Język zmieniony na {language_name} ({language}).",
+                "invalid_language": "Nieprawidłowy kod języka.",
+                "available_languages": "Dostępne języki:\n{languages}"
+            },
+            "prefix": {
+                "current_prefix": "Aktualny prefiks to: {prefix}",
+                "prefix_changed": "Prefiks zmieniony na: {prefix}"
+            }
+        },
+        "music": {
+            "clear": {
+                "not_connected": "Bot nie jest podłączony do kanału głosowego.",
+                "queue_cleared": "Kolejka została wyczyszczona.",
+                "queue_empty": "Kolejka jest pusta."
+            },
+            "join": {
+                "joined_voice": "Pomyślnie połączono z: {channel}",
+                "joining_voice": "Próba dołączenia do kanału głosowego: {channel}"
+            },
+            "leave": {
+                "bot_disconnected": "Bot rozłączony z kanału głosowego.",
+                "not_connected": "Bot nie jest podłączony do kanału głosowego."
+            },
+            "loop": {
+                "not_connected": "Bot nie jest podłączony do kanału głosowego.",
+                "loop_disabled": "Pętla wyłączona.",
+                "loop_enabled": "Pętla włączona.",
+                "no_song_playing": "Obecnie nie jest odtwarzana żadna piosenka."
+            },
+            "pause": {
+                "not_connected": "Bot nie jest podłączony do kanału głosowego.",
+                "no_song_playing": "Obecnie nie jest odtwarzana żadna piosenka.",
+                "song_paused": "Piosenka wstrzymana."
+            },
+            "play": {
+                "added_to_queue": "{title}, dodano do kolejki",
+                "no_song_found": "Nie znaleziono utworu.",
+                "now_playing": "Teraz odtwarzane: {title}",
+                "playlist_added_to_queue": "Lista odtwarzania dodana do kolejki: {title} ({count} utworów).",
+                "voice_not_connected": "Nie jesteś podłączony do kanału głosowego."
+            },
+            "queue": {
+                "not_connected": "Bot nie jest podłączony do kanału głosowego.",
+                "queue_empty": "Kolejka jest pusta.",
+                "queue_list": "Aktualna kolejka:\n{queue}"
+            },
+            "remove": {
+                "not_connected": "Bot nie jest podłączony do kanału głosowego.",
+                "invalid_queue_position": "Podana pozycja jest nieprawidłowa.",
+                "queue_empty": "Kolejka jest pusta.",
+                "removed_from_queue": "Usunięto z kolejki: {title}"
+            },
+            "resume": {
+                "not_connected": "Bot nie jest podłączony do kanału głosowego.",
+                "song_not_paused": "Piosenka nie jest wstrzymana.",
+                "song_resumed": "Piosenka wznowiona."
+            },
+            "shuffle": {
+                "not_connected": "Bot nie jest podłączony do kanału głosowego.",
+                "queue_empty": "Kolejka jest pusta.",
+                "queue_shuffled": "Kolejka została przetasowana."
+            },
+            "skip": {
+                "not_connected": "Bot nie jest podłączony do kanału głosowego.",
+                "no_song_playing": "Obecnie nie jest odtwarzana żadna piosenka.",
+                "song_skipped": "Piosenka pominięta."
+            },
+            "stop": {
+                "not_connected": "Bot nie jest podłączony do kanału głosowego.",
+                "playback_stopped": "Odtwarzanie zatrzymane, kolejka wyczyszczona."
+            },
+            "volume": {
+                "invalid_volume": "Głośność musi wynosić od 0 do 100.",
+                "not_connected": "Bot nie jest podłączony do kanału głosowego.",
+                "volume_changed": "Głośność zmieniona na {volume}%"
+            }
+        }
+    },
+    "events": {
+        "guild": {},
+        "member": {},
+        "message": {
+            "on_message": {
+                "message_detected": "Wykryto wiadomość na czacie -> [{author}]: {message}"
+            }
+        },
+        "other": {
+            "on_command": {
+                "command_executed": "Wykonano polecenie: '{command}' przez {author} w #{channel}"
+            },
+            "on_command_error": {
+                "command_error": "Błąd w poleceniu '{command}': {error}",
+                "missing_permissions": "Nie masz wystarczających uprawnień, aby użyć tego polecenia."
+            },
+            "on_ready": {
+                "bot_connected": "Bot połączony jako {bot}",
+                "connecting_lavalink": "Łączenie z Lavalink..."
+            }
+        }
+    }
 }
