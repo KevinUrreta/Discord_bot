@@ -15,6 +15,6 @@ class Guild(Base):
     volume = Column(Integer, default=100, nullable=False)
     created_at = Column(
         DateTime,
-        default=datetime.datetime.utcnow,
+        default=datetime.datetime.now(datetime.timezone.utc),
         nullable=False,
     )

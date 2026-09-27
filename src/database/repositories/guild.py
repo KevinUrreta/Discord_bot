@@ -1,3 +1,5 @@
+from typing import cast
+
 from sqlalchemy import select
 
 from src.database.connection import Database
@@ -9,8 +11,28 @@ class GuildRepository:
     def __init__(self, database: Database):
         self.database = database
 
-    async def create(self, guild_id: int, name: str) -> Guild:
+    async def create(
+        self,
+        guild_id: int,
+        name: str,
+    ) -> Guild:
         async with self.database.session_factory() as session:
+            guild = await self._get(
+                session,
+                guild_id,
+            )
+
+            if guild is not None:
+                current_name = cast(str, guild.name)
+
+                if current_name != name:
+                    setattr(guild, "name", name)
+
+                    await session.commit()
+                    await session.refresh(guild)
+
+                return guild
+
             guild = Guild(
                 id=guild_id,
                 name=name,
@@ -22,17 +44,26 @@ class GuildRepository:
 
             return guild
 
-    async def get(self, guild_id: int) -> Guild | None:
+    async def get(
+        self,
+        guild_id: int,
+    ) -> Guild | None:
         async with self.database.session_factory() as session:
-            result = await session.execute(
-                select(Guild).where(Guild.id == guild_id)
+            return await self._get(
+                session,
+                guild_id,
             )
 
-            return result.scalar_one_or_none()
-
-    async def update(self, guild_id: int, **values) -> Guild | None:
+    async def update(
+        self,
+        guild_id: int,
+        **values,
+    ) -> Guild | None:
         async with self.database.session_factory() as session:
-            guild = await self._get(session, guild_id)
+            guild = await self._get(
+                session,
+                guild_id,
+            )
 
             if guild is None:
                 return None
@@ -45,9 +76,15 @@ class GuildRepository:
 
             return guild
 
-    async def delete(self, guild_id: int) -> bool:
+    async def delete(
+        self,
+        guild_id: int,
+    ) -> bool:
         async with self.database.session_factory() as session:
-            guild = await self._get(session, guild_id)
+            guild = await self._get(
+                session,
+                guild_id,
+            )
 
             if guild is None:
                 return False
@@ -57,9 +94,15 @@ class GuildRepository:
 
             return True
 
-    async def _get(self, session, guild_id: int) -> Guild | None:
+    async def _get(
+        self,
+        session,
+        guild_id: int,
+    ) -> Guild | None:
         result = await session.execute(
-            select(Guild).where(Guild.id == guild_id)
+            select(Guild).where(
+                Guild.id == guild_id
+            )
         )
 
         return result.scalar_one_or_none()
