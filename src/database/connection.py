@@ -41,10 +41,6 @@ class Database:
             expire_on_commit=False,
         )
 
-    async def connect(self):
-        async with self.engine.connect():
-            pass
-
     async def create_tables(self):
         async with self.engine.begin() as connection:
             await connection.run_sync(

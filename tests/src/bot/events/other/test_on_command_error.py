@@ -12,7 +12,9 @@ async def test_on_command_error_missing_permissions():
     ctx = MagicMock()
     ctx.send = AsyncMock()
 
-    error = commands.MissingPermissions(["manage_messages"])
+    error = commands.MissingPermissions(
+        ["manage_messages"]
+    )
 
     cog = On_command_error(bot)
 

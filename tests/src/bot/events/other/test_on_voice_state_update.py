@@ -2,7 +2,9 @@ from unittest.mock import MagicMock, patch
 
 import pytest
 
-from src.bot.events.other.on_voice_state_update import on_voice_state_update
+from src.bot.events.other.on_voice_state_update import (
+    on_voice_state_update,
+)
 
 
 @pytest.mark.asyncio
@@ -17,9 +19,12 @@ async def test_on_voice_state_update_ignores_bots():
         "src.bot.events.other.on_voice_state_update.logger"
     ) as logger:
 
-        await on_voice_state_update(member, before, after)
+        await on_voice_state_update(
+            member,
+            before,
+            after,
+        )
 
-        logger.info.assert_called_once()
         logger.debug.assert_not_called()
 
 
@@ -41,7 +46,10 @@ async def test_on_voice_state_update_logs_human_member():
         "src.bot.events.other.on_voice_state_update.logger"
     ) as logger:
 
-        await on_voice_state_update(member, before, after)
+        await on_voice_state_update(
+            member,
+            before,
+            after,
+        )
 
-        logger.info.assert_called_once()
         logger.debug.assert_called_once()

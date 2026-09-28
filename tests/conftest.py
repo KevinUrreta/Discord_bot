@@ -11,7 +11,6 @@ async def database(tmp_path):
         f"sqlite+aiosqlite:///{database_path}"
     )
 
-    await database.connect()
     await database.create_tables()
 
     yield database

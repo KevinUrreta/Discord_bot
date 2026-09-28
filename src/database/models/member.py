@@ -22,6 +22,6 @@ class Member(Base):
     )
     created_at = Column(
         DateTime(timezone=True),
-        default=datetime.datetime.now(datetime.timezone.utc),
+        default=lambda: datetime.datetime.now(datetime.timezone.utc),
         nullable=False,
     )

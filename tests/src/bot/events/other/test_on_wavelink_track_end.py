@@ -3,7 +3,9 @@ from unittest.mock import AsyncMock, MagicMock
 import pytest
 import wavelink
 
-from src.bot.events.other.on_wavelink_track_end import On_wavelink_track_end
+from src.bot.events.other.on_wavelink_track_end import (
+    On_wavelink_track_end,
+)
 
 
 @pytest.mark.asyncio

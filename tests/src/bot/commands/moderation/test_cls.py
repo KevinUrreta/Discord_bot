@@ -14,6 +14,12 @@ async def test_cls_purges_requested_number_plus_command():
 
     cog = Cls(bot)
 
-    await cog.cls.callback(cog, ctx, limit=5)
+    await cog.cls.callback(
+        cog,
+        ctx,
+        limit=5,
+    )
 
-    ctx.channel.purge.assert_awaited_once_with(limit=6)
+    ctx.channel.purge.assert_awaited_once_with(
+        limit=6
+    )

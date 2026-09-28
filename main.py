@@ -10,6 +10,10 @@ from src.core.loader import load_cogs
 from src.database.connection import Database
 from src.database.repositories.guild import GuildRepository
 
+ #
+ # @KevinUrreta
+ #
+ #
 
 load_dotenv()
 
@@ -55,7 +59,6 @@ async def main() -> None:
     database = Database()
 
     try:
-        await database.connect()
         await database.create_tables()
 
         async with App(database) as bot:

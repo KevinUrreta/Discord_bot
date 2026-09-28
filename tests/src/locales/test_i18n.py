@@ -20,13 +20,13 @@ def test_get_locale_supported_languages():
         "ja": "ja_JP",
     }
 
-    i18n.set_guild_languages({})
-
     for language, locale in languages.items():
         guild = MagicMock()
         guild.id = 123
 
-        i18n.set_guild_languages({123: language})
+        i18n.set_guild_languages(
+            {123: language}
+        )
 
         assert i18n.get_locale(guild) == locale
 
@@ -35,7 +35,9 @@ def test_get_locale_unknown_language_falls_back_to_spanish():
     guild = MagicMock()
     guild.id = 123
 
-    i18n.set_guild_languages({123: "unknown"})
+    i18n.set_guild_languages(
+        {123: "unknown"}
+    )
 
     assert i18n.get_locale(guild) == "es_ES"
 
