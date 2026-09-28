@@ -2,6 +2,7 @@ from typing import cast
 
 from sqlalchemy import select
 
+from src.core.logging import database_logger
 from src.database.connection import Database
 from src.database.models.guild import Guild
 
@@ -31,6 +32,12 @@ class GuildRepository:
                     await session.commit()
                     await session.refresh(guild)
 
+                    database_logger.info(
+                        "Nombre del servidor actualizado: %s (%s).",
+                        name,
+                        guild_id,
+                    )
+
                 return guild
 
             guild = Guild(
@@ -41,6 +48,12 @@ class GuildRepository:
             session.add(guild)
             await session.commit()
             await session.refresh(guild)
+
+            database_logger.info(
+                "Servidor creado: %s (%s).",
+                name,
+                guild_id,
+            )
 
             return guild
 
@@ -66,6 +79,11 @@ class GuildRepository:
             )
 
             if guild is None:
+                database_logger.warning(
+                    "No se puede actualizar el servidor %s: "
+                    "no existe.",
+                    guild_id,
+                )
                 return None
 
             for key, value in values.items():
@@ -73,6 +91,12 @@ class GuildRepository:
 
             await session.commit()
             await session.refresh(guild)
+
+            database_logger.info(
+                "Servidor actualizado: %s. Campos modificados: %s.",
+                guild_id,
+                ", ".join(values.keys()),
+            )
 
             return guild
 
@@ -87,10 +111,20 @@ class GuildRepository:
             )
 
             if guild is None:
+                database_logger.warning(
+                    "No se puede eliminar el servidor %s: "
+                    "no existe.",
+                    guild_id,
+                )
                 return False
 
             await session.delete(guild)
             await session.commit()
+
+            database_logger.info(
+                "Servidor eliminado: %s.",
+                guild_id,
+            )
 
             return True
 

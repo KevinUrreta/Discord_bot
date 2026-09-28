@@ -1,5 +1,6 @@
 from sqlalchemy import select
 
+from src.core.logging import database_logger
 from src.database.connection import Database
 from src.database.models.member import Member
 
@@ -25,6 +26,11 @@ class MemberRepository:
             )
 
             if member is not None:
+                database_logger.info(
+                    "Miembro ya existente: %s en el servidor %s.",
+                    member_id,
+                    guild_id,
+                )
                 return member
 
             member = Member(
@@ -38,6 +44,12 @@ class MemberRepository:
             session.add(member)
             await session.commit()
             await session.refresh(member)
+
+            database_logger.info(
+                "Miembro creado: %s en el servidor %s.",
+                member_id,
+                guild_id,
+            )
 
             return member
 
@@ -67,6 +79,12 @@ class MemberRepository:
             )
 
             if member is None:
+                database_logger.warning(
+                    "No se puede actualizar el miembro %s: "
+                    "no existe en el servidor %s.",
+                    member_id,
+                    guild_id,
+                )
                 return None
 
             for key, value in values.items():
@@ -74,6 +92,14 @@ class MemberRepository:
 
             await session.commit()
             await session.refresh(member)
+
+            database_logger.info(
+                "Miembro actualizado: %s en el servidor %s. "
+                "Campos modificados: %s.",
+                member_id,
+                guild_id,
+                ", ".join(values.keys()),
+            )
 
             return member
 
@@ -90,10 +116,22 @@ class MemberRepository:
             )
 
             if member is None:
+                database_logger.warning(
+                    "No se puede eliminar el miembro %s: "
+                    "no existe en el servidor %s.",
+                    member_id,
+                    guild_id,
+                )
                 return False
 
             await session.delete(member)
             await session.commit()
+
+            database_logger.info(
+                "Miembro eliminado: %s del servidor %s.",
+                member_id,
+                guild_id,
+            )
 
             return True
 
@@ -114,6 +152,12 @@ class MemberRepository:
                 await session.delete(member)
 
             await session.commit()
+
+            database_logger.info(
+                "Miembros eliminados del servidor %s: %s.",
+                guild_id,
+                len(members),
+            )
 
             return len(members)
 

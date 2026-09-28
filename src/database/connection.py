@@ -7,6 +7,7 @@ from sqlalchemy.ext.asyncio import (
     create_async_engine,
 )
 
+from src.core.logging import database_logger
 from src.database import Base
 
 
@@ -21,6 +22,9 @@ class Database:
             password = os.getenv("POSTGRES_PASSWORD")
 
             if not all((database, user, password)):
+                database_logger.error(
+                    "Faltan variables de entorno de PostgreSQL."
+                )
                 raise RuntimeError(
                     "Faltan variables de entorno de PostgreSQL."
                 )
@@ -41,11 +45,31 @@ class Database:
             expire_on_commit=False,
         )
 
+        database_logger.info(
+            "Conexión con la base de datos inicializada."
+        )
+
     async def create_tables(self):
+        database_logger.info(
+            "Creando tablas de la base de datos."
+        )
+
         async with self.engine.begin() as connection:
             await connection.run_sync(
                 Base.metadata.create_all
             )
 
+        database_logger.info(
+            "Tablas de la base de datos creadas correctamente."
+        )
+
     async def close(self):
+        database_logger.info(
+            "Cerrando conexión con la base de datos."
+        )
+
         await self.engine.dispose()
+
+        database_logger.info(
+            "Conexión con la base de datos cerrada."
+        )
