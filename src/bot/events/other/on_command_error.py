@@ -1,7 +1,7 @@
 import discord
 from discord.ext import commands
 
-from src.core.logging import logger
+from src.core.logging import errors_logger
 from src.locales.i18n import translate
 
 
@@ -28,9 +28,11 @@ class On_command_error(commands.Cog):
 
             return
 
-        logger.error(
-            f"Error en el comando "
-            f"'{ctx.command}': {error}"
+        errors_logger.error(
+            "Error en el comando '%s': %s",
+            ctx.command,
+            error,
+            exc_info=error,
         )
 
         await ctx.send(

@@ -15,6 +15,24 @@ stream.setFormatter(formatter)
 
 
 # ─────────────────────────────
+# Errores
+# ─────────────────────────────
+
+errors_file_handler = logging.FileHandler(
+    "logs/errors.log",
+    encoding="utf-8",
+)
+errors_file_handler.setLevel(logging.ERROR)
+errors_file_handler.setFormatter(formatter)
+
+
+errors_logger = logging.getLogger("errors")
+errors_logger.setLevel(logging.ERROR)
+errors_logger.addHandler(errors_file_handler)
+errors_logger.addHandler(stream)
+
+
+# ─────────────────────────────
 # Bot
 # ─────────────────────────────
 
@@ -28,6 +46,7 @@ bot_file_handler.setFormatter(formatter)
 logger = logging.getLogger("music_bot")
 logger.setLevel(logging.INFO)
 logger.addHandler(bot_file_handler)
+logger.addHandler(errors_file_handler)
 logger.addHandler(stream)
 
 
@@ -45,6 +64,7 @@ wavelink_file_handler.setFormatter(formatter)
 wavelink_logger = logging.getLogger("wavelink")
 wavelink_logger.setLevel(logging.INFO)
 wavelink_logger.addHandler(wavelink_file_handler)
+wavelink_logger.addHandler(errors_file_handler)
 wavelink_logger.addHandler(stream)
 
 
@@ -62,6 +82,7 @@ discord_file_handler.setFormatter(formatter)
 discord_logger = logging.getLogger("discord")
 discord_logger.setLevel(logging.INFO)
 discord_logger.addHandler(discord_file_handler)
+discord_logger.addHandler(errors_file_handler)
 discord_logger.addHandler(stream)
 
 
@@ -79,22 +100,5 @@ database_file_handler.setFormatter(formatter)
 database_logger = logging.getLogger("database")
 database_logger.setLevel(logging.INFO)
 database_logger.addHandler(database_file_handler)
+database_logger.addHandler(errors_file_handler)
 database_logger.addHandler(stream)
-
-
-# ─────────────────────────────
-# Errores
-# ─────────────────────────────
-
-errors_file_handler = logging.FileHandler(
-    "logs/errors.log",
-    encoding="utf-8",
-)
-errors_file_handler.setLevel(logging.ERROR)
-errors_file_handler.setFormatter(formatter)
-
-
-errors_logger = logging.getLogger("errors")
-errors_logger.setLevel(logging.ERROR)
-errors_logger.addHandler(errors_file_handler)
-errors_logger.addHandler(stream)

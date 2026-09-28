@@ -7,7 +7,7 @@ from sqlalchemy.ext.asyncio import (
     create_async_engine,
 )
 
-from src.core.logging import database_logger
+from src.core.logging import database_logger, errors_logger
 from src.database import Base
 
 
@@ -54,10 +54,18 @@ class Database:
             "Creando tablas de la base de datos."
         )
 
-        async with self.engine.begin() as connection:
-            await connection.run_sync(
-                Base.metadata.create_all
+        try:
+            async with self.engine.begin() as connection:
+                await connection.run_sync(
+                    Base.metadata.create_all
+                )
+        except Exception as error:
+            errors_logger.error(
+                "Error al crear las tablas de la base de datos: %s",
+                error,
+                exc_info=error,
             )
+            raise
 
         database_logger.info(
             "Tablas de la base de datos creadas correctamente."

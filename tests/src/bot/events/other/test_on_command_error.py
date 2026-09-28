@@ -43,11 +43,11 @@ async def test_on_command_error_generic_error():
         "src.bot.events.other.on_command_error.translate",
         return_value="error",
     ) as translate, patch(
-        "src.bot.events.other.on_command_error.logger"
-    ) as logger:
+        "src.bot.events.other.on_command_error.errors_logger"
+    ) as errors_logger:
 
         await cog.on_command_error(ctx, error)
 
-        logger.error.assert_called_once()
+        errors_logger.error.assert_called_once()
         ctx.send.assert_awaited_once_with("error")
         translate.assert_called_once()
