@@ -7,13 +7,19 @@ class On_wavelink_track_end(commands.Cog):
         self.bot = bot
 
     @commands.Cog.listener()
-    async def on_wavelink_track_end(self, payload: wavelink.TrackEndEventPayload):
+    async def on_wavelink_track_end(
+        self,
+        payload: wavelink.TrackEndEventPayload,
+    ):
         if payload.player is None:
             return
 
         player = payload.player
 
-        if player.queue.is_empty and player.queue.mode == wavelink.QueueMode.normal:
+        if (
+            player.queue.is_empty
+            and player.queue.mode == wavelink.QueueMode.normal
+        ):
             return
 
         track = player.queue.get()

@@ -8,3 +8,4 @@ asyncpg
 pytest
 pytest-asyncio
 aiosqlite
+pytest-cov

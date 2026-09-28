@@ -13,7 +13,11 @@ class On_member_update(commands.Cog):
         )
 
     @commands.Cog.listener()
-    async def on_member_update(self, before: discord.Member, after: discord.Member,):
+    async def on_member_update(
+        self,
+        before: discord.Member,
+        after: discord.Member,
+    ):
         changes = {}
 
         if before.name != after.name:

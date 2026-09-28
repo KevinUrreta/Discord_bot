@@ -8,6 +8,28 @@ from src.bot.events.other.on_wavelink_track_start import (
 
 
 @pytest.mark.asyncio
+async def test_track_start_without_player_does_nothing():
+    bot = MagicMock()
+    bot.database = MagicMock()
+
+    payload = MagicMock()
+    payload.player = None
+
+    with patch(
+        "src.bot.events.other.on_wavelink_track_start.GuildRepository"
+    ), patch(
+        "src.bot.events.other.on_wavelink_track_start.restore_volume",
+        new_callable=AsyncMock,
+    ) as restore_volume:
+
+        cog = On_wavelink_track_start(bot)
+
+        await cog.on_wavelink_track_start(payload)
+
+        restore_volume.assert_not_awaited()
+
+
+@pytest.mark.asyncio
 async def test_track_start_restores_volume():
     bot = MagicMock()
     bot.database = MagicMock()
@@ -32,3 +54,24 @@ async def test_track_start_restores_volume():
             payload.player,
             repository,
         )
+
+@pytest.mark.asyncio
+async def test_track_start_without_player_does_nothing():
+    bot = MagicMock()
+    bot.database = MagicMock()
+
+    payload = MagicMock()
+    payload.player = None
+
+    with patch(
+        "src.bot.events.other.on_wavelink_track_start.GuildRepository"
+    ), patch(
+        "src.bot.events.other.on_wavelink_track_start.restore_volume",
+        new_callable=AsyncMock,
+    ) as restore_volume:
+
+        cog = On_wavelink_track_start(bot)
+
+        await cog.on_wavelink_track_start(payload)
+
+        restore_volume.assert_not_awaited()

@@ -1,4 +1,4 @@
-from unittest.mock import AsyncMock, MagicMock
+from unittest.mock import AsyncMock, MagicMock, patch
 
 import pytest
 
@@ -48,3 +48,48 @@ async def test_before_sync_database_waits_for_bot():
     await cog.before_sync_database()
 
     bot.wait_until_ready.assert_awaited_once()
+
+
+@pytest.mark.asyncio
+async def test_database_sync_init():
+    bot = MagicMock()
+    bot.database = MagicMock()
+    bot.guild_languages = {}
+
+    fake_loop = MagicMock()
+
+    with patch(
+        "src.bot.tasks.database_sync.GuildRepository"
+    ) as guild_repository, patch(
+        "src.bot.tasks.database_sync.set_guild_languages"
+    ) as set_languages, patch.object(
+        DatabaseSync,
+        "sync_database",
+        new=fake_loop,
+    ):
+        cog = DatabaseSync(bot)
+
+    guild_repository.assert_called_once_with(
+        bot.database
+    )
+
+    set_languages.assert_called_once_with(
+        bot.guild_languages
+    )
+
+    fake_loop.start.assert_called_once()
+
+    assert cog.bot is bot
+
+
+def test_database_sync_cog_unload():
+    bot = MagicMock()
+
+    cog = object.__new__(DatabaseSync)
+    cog.bot = bot
+
+    cog.sync_database = MagicMock()
+
+    cog.cog_unload()
+
+    cog.sync_database.cancel.assert_called_once()

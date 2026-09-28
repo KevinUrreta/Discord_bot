@@ -57,6 +57,24 @@ async def test_prefix_without_argument_shows_prefix():
 
 
 @pytest.mark.asyncio
+async def test_prefix_without_argument_when_guild_not_found():
+    bot = MagicMock()
+    bot.database = MagicMock()
+
+    cog = Prefix(bot)
+
+    cog.guild_repository.get = AsyncMock(
+        return_value=None
+    )
+
+    ctx = create_context()
+
+    await cog.prefix.callback(cog, ctx)
+
+    ctx.send.assert_not_awaited()
+
+
+@pytest.mark.asyncio
 async def test_prefix_updates_prefix():
     bot = MagicMock()
     bot.database = MagicMock()
@@ -83,3 +101,21 @@ async def test_prefix_updates_prefix():
     )
 
     ctx.send.assert_awaited_once_with("changed")
+
+
+@pytest.mark.asyncio
+async def test_prefix_update_when_guild_not_found():
+    bot = MagicMock()
+    bot.database = MagicMock()
+
+    cog = Prefix(bot)
+
+    cog.guild_repository.update = AsyncMock(
+        return_value=None
+    )
+
+    ctx = create_context()
+
+    await cog.prefix.callback(cog, ctx, "?")
+
+    ctx.send.assert_not_awaited()

@@ -83,3 +83,32 @@ async def test_volume_changes_volume():
     )
 
     ctx.send.assert_awaited_once()
+
+async def test_volume_changes_volume_when_database_update_fails():
+    bot = MagicMock()
+    bot.database = MagicMock()
+
+    cog = Volume(bot)
+
+    cog.guild_repository.update = AsyncMock(
+        return_value=None
+    )
+
+    player = MagicMock()
+    player.set_volume = AsyncMock()
+
+    ctx = MagicMock()
+    ctx.guild.id = 123456789
+    ctx.voice_client = player
+    ctx.send = AsyncMock()
+
+    await cog.volume.callback(cog, ctx, 75)
+
+    player.set_volume.assert_awaited_once_with(75)
+
+    cog.guild_repository.update.assert_awaited_once_with(
+        guild_id=123456789,
+        volume=75,
+    )
+
+    ctx.send.assert_awaited_once()

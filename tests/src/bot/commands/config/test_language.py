@@ -99,3 +99,30 @@ async def test_language_updates_language():
 
         assert bot.guild_languages[123] == "en"
         ctx.send.assert_awaited_once_with("changed")
+
+@pytest.mark.asyncio
+async def test_language_update_when_guild_not_found():
+    bot = MagicMock()
+    bot.database = MagicMock()
+    bot.guild_languages = {}
+
+    ctx = create_context()
+
+    cog = Language(bot)
+
+    cog.guild_repository.update = AsyncMock(
+        return_value=None
+    )
+
+    await cog.language.callback(
+        cog,
+        ctx,
+        "en",
+    )
+
+    cog.guild_repository.update.assert_awaited_once_with(
+        guild_id=123,
+        language="en",
+    )
+
+    ctx.send.assert_not_awaited()
