@@ -1,7 +1,20 @@
-# ./src/events/other/on_disconnect.py
+from discord.ext import commands
 
 from src.core.logging import logger
+from src.locales.i18n import translate
 
 
-async def on_disconnect():
-    logger.info('Desconectado de Discord')
+class Disconnect(commands.Cog):
+
+    def __init__(self, bot):
+        self.bot = bot
+
+    @commands.Cog.listener()
+    async def on_disconnect(self):
+        logger.info(
+            translate(
+                None,
+                "events.other.on_disconnect.discord_disconnected",
+
+            )
+        )

@@ -27,4 +27,8 @@ async def test_on_command_logs():
         await cog.on_command(ctx)
 
         translate.assert_called_once()
-        logger.info.assert_called_once_with("translated")
+        assert translate.call_args.args[0] is ctx.guild
+
+        logger.info.assert_called_once_with(
+            "translated"
+        )

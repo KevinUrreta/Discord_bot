@@ -1,7 +1,20 @@
-# ./src/events/guild/on_guild_stickers_update.py
+from discord.ext import commands
 
 from src.core.logging import logger
+from src.locales.i18n import translate
 
 
-async def on_guild_stickers_update(guild, before, after):
-    logger.info(f'Stickers actualizados en {guild}')
+class GuildStickersUpdate(commands.Cog):
+
+    def __init__(self, bot):
+        self.bot = bot
+
+    @commands.Cog.listener()
+    async def on_guild_stickers_update(self, guild, before, after):
+        logger.info(
+            translate(
+                guild,
+                "events.guild.on_guild_stickers_update.stickers_updated",
+                guild=guild,
+            )
+        )

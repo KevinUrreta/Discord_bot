@@ -2,54 +2,38 @@ from unittest.mock import MagicMock, patch
 
 import pytest
 
-from src.bot.events.other.on_voice_state_update import (
-    on_voice_state_update,
-)
+from src.bot.events.other.on_voice_state_update import VoiceStateUpdate
 
 
 @pytest.mark.asyncio
-async def test_on_voice_state_update_ignores_bots():
-    member = MagicMock()
-    member.bot = True
+async def test_on_voice_state_update_logs():
+    bot = MagicMock()
 
+
+    member = MagicMock()
     before = MagicMock()
     after = MagicMock()
 
-    with patch(
-        "src.bot.events.other.on_voice_state_update.logger"
-    ) as logger:
-
-        await on_voice_state_update(
-            member,
-            before,
-            after,
-        )
-
-        logger.debug.assert_not_called()
+    guild = MagicMock()
+    member.guild = guild
 
 
-@pytest.mark.asyncio
-async def test_on_voice_state_update_logs_human_member():
-    member = MagicMock()
-    member.bot = False
 
-    before = MagicMock()
-    after = MagicMock()
-
-    before.channel = MagicMock()
-    before.channel.name = "General"
-
-    after.channel = MagicMock()
-    after.channel.name = "Music"
+    cog = VoiceStateUpdate(bot)
 
     with patch(
-        "src.bot.events.other.on_voice_state_update.logger"
+        "src.bot.events.other.on_voice_state_update.translate",
+        return_value="translated",
+    ) as translate, patch(
+        "src.bot.events.other.on_voice_state_update.logger",
     ) as logger:
 
-        await on_voice_state_update(
-            member,
-            before,
-            after,
-        )
+        await cog.on_voice_state_update(member, before, after)
 
-        logger.debug.assert_called_once()
+        translate.assert_called_once()
+
+        assert translate.call_args.args[0] == member.guild
+
+        logger.info.assert_called_once_with(
+            "translated"
+        )

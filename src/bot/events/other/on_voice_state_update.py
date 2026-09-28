@@ -1,25 +1,20 @@
-# ./src/events/other/on_voice_state_update.py
+from discord.ext import commands
 
 from src.core.logging import logger
+from src.locales.i18n import translate
 
 
-async def on_voice_state_update(member, before, after):
-    """
-    Evento de Discord para cambios de estado de voz.
+class VoiceStateUpdate(commands.Cog):
 
-    La gestión real de la conexión de voz la realiza Wavelink.
-    No debemos manipular manualmente session_id, token ni endpoint.
-    """
-    logger.info(f'Estado de voz cambiado: {member}')
+    def __init__(self, bot):
+        self.bot = bot
 
-
-    # Ignorar cambios que no sean relevantes para Kizy.
-    if member.bot:
-        return
-
-    logger.debug(
-        "Cambio de voz: %s | %s -> %s",
-        member,
-        getattr(before.channel, "name", None),
-        getattr(after.channel, "name", None),
-    )
+    @commands.Cog.listener()
+    async def on_voice_state_update(self, member, before, after):
+        logger.info(
+            translate(
+                member.guild,
+                "events.other.on_voice_state_update.voice_state_updated",
+                member=member, before=before, after=after,
+            )
+        )

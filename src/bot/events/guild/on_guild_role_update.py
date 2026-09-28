@@ -1,7 +1,20 @@
-# ./src/events/guild/on_guild_role_update.py
+from discord.ext import commands
 
 from src.core.logging import logger
+from src.locales.i18n import translate
 
 
-async def on_guild_role_update(before, after):
-    logger.info(f'Rol actualizado: {before} → {after}')
+class GuildRoleUpdate(commands.Cog):
+
+    def __init__(self, bot):
+        self.bot = bot
+
+    @commands.Cog.listener()
+    async def on_guild_role_update(self, before, after):
+        logger.info(
+            translate(
+                after.guild,
+                "events.guild.on_guild_role_update.role_updated",
+                before=before, after=after,
+            )
+        )

@@ -85,14 +85,73 @@
         }
     },
     "events": {
-        "guild": {},
-        "member": {},
+        "guild": {
+            "on_guild_channel_create": {
+                "channel_created": "Canal creado: {channel}"
+            },
+            "on_guild_channel_delete": {
+                "channel_deleted": "Canal eliminado: {channel}"
+            },
+            "on_guild_channel_update": {
+                "channel_updated": "Canal actualizado: {before} -> {after}"
+            },
+            "on_guild_emojis_update": {
+                "emojis_updated": "Emojis actualizados en el servidor: {guild}"
+            },
+            "on_guild_join": {},
+            "on_guild_remove": {},
+            "on_guild_role_create": {
+                "role_created": "Rol creado: {role}"
+            },
+            "on_guild_role_delete": {
+                "role_deleted": "Rol eliminado: {role}"
+            },
+            "on_guild_role_update": {
+                "role_updated": "Rol actualizado: {before} -> {after}"
+            },
+            "on_guild_stickers_update": {
+                "stickers_updated": "Stickers actualizados en el servidor: {guild}"
+            }
+        },
+        "member": {
+            "on_member_join": {},
+            "on_member_remove": {},
+            "on_member_update": {},
+            "on_user_update": {}
+        },
         "message": {
             "on_message": {
                 "message_detected": "Mensaje detectado en el chat -> [{author}]: {message}"
+            },
+            "on_message_delete": {
+                "message_deleted": "Mensaje eliminado en #{channel} por {author}: {message}"
+            },
+            "on_message_edit": {
+                "message_edited": "Mensaje editado en #{channel} por {author}: {before} -> {after}"
+            },
+            "on_raw_reaction_add": {
+                "reaction_added": "Reacción añadida en el mensaje {message_id}: {emoji} por {user}"
+            },
+            "on_raw_reaction_remove": {
+                "reaction_removed": "Reacción eliminada en el mensaje {message_id}: {emoji} por {user}"
+            },
+            "on_reaction_add": {
+                "reaction_added": "Reacción añadida en #{channel}: {emoji} por {user}"
+            },
+            "on_reaction_clear": {
+                "reactions_cleared": "Reacciones eliminadas del mensaje {message}"
+            },
+            "on_reaction_remove": {
+                "reaction_removed": "Reacción eliminada en #{channel}: {emoji} por {user}"
+            },
+            "on_typing": {
+                "typing_detected": "{user} está escribiendo en #{channel}"
             }
         },
         "other": {
+            "on_application_command_error": {
+                "command_error": "Error en el comando de aplicación '{command}': {error}"
+            },
             "on_command": {
                 "command_executed": "Comando ejecutado: '{command}' por {author} en #{channel}"
             },
@@ -103,7 +162,24 @@
             "on_ready": {
                 "bot_connected": "Bot conectado como {bot}",
                 "connecting_lavalink": "Conectando con Lavalink..."
-            }
+            },
+            "on_connect": {
+                "discord_connected": "Conexión establecida con Discord."
+            },
+            "on_disconnect": {
+                "discord_disconnected": "Conexión con Discord perdida."
+            },
+            "on_resumed": {
+                "discord_resumed": "Sesión de Discord reanudada correctamente."
+            },
+            "on_voice_state_update": {
+                "voice_state_updated": "Estado de voz actualizado para {member}: {before} -> {after}"
+            },
+            "on_webhook_update": {
+                "webhook_updated": "Webhooks actualizados en #{channel}"
+            },
+            "on_wavelink_track_end": {},
+            "on_wavelink_track_start": {}
         }
     }
 }

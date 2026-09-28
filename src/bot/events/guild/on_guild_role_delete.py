@@ -1,6 +1,20 @@
-# ./src/events/guild/on_guild_role_delete.py
+from discord.ext import commands
 
 from src.core.logging import logger
+from src.locales.i18n import translate
 
-async def on_guild_role_delete(role):
-    logger.info(f'Rol eliminado: {role}')
+
+class GuildRoleDelete(commands.Cog):
+
+    def __init__(self, bot):
+        self.bot = bot
+
+    @commands.Cog.listener()
+    async def on_guild_role_delete(self, role):
+        logger.info(
+            translate(
+                role.guild,
+                "events.guild.on_guild_role_delete.role_deleted",
+                role=role,
+            )
+        )

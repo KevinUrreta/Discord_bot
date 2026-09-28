@@ -1,7 +1,20 @@
-# ./src/events/message/on_reaction_clear.py
+from discord.ext import commands
 
 from src.core.logging import logger
+from src.locales.i18n import translate
 
 
-async def on_reaction_clear(message, reactions):
-    logger.info(f'Todas las reacciones borradas en {message.id}')
+class ReactionClear(commands.Cog):
+
+    def __init__(self, bot):
+        self.bot = bot
+
+    @commands.Cog.listener()
+    async def on_reaction_clear(self, message, reactions):
+        logger.info(
+            translate(
+                message.guild,
+                "events.message.on_reaction_clear.reactions_cleared",
+                message=message,
+            )
+        )

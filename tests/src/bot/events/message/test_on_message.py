@@ -1,4 +1,4 @@
-from unittest.mock import AsyncMock, MagicMock, patch
+from unittest.mock import MagicMock, patch
 
 import pytest
 
@@ -46,4 +46,8 @@ async def test_on_message_logs_user_message():
         await cog.on_message(message)
 
         translate.assert_called_once()
-        logger.info.assert_called_once_with("translated")
+        assert translate.call_args.args[0] is message.guild
+
+        logger.info.assert_called_once_with(
+            "translated"
+        )

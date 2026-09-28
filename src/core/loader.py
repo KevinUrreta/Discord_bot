@@ -1,4 +1,5 @@
 import importlib
+import inspect
 from pathlib import Path
 
 from discord.ext import commands
@@ -48,13 +49,19 @@ async def load_cogs(bot, lavalink_password):
 
             if attribute is commands.Cog:
                 continue
+            if attribute.__module__ != module.__name__:
+                continue
 
-            try:
+            parameters = inspect.signature(
+                attribute
+            ).parameters
+
+            if "lavalink_password" in parameters:
                 cog = attribute(
                     bot,
                     lavalink_password,
                 )
-            except TypeError:
+            else:
                 cog = attribute(bot)
 
             await bot.add_cog(cog)

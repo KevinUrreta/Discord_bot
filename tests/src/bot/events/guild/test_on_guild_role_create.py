@@ -2,14 +2,36 @@ from unittest.mock import MagicMock, patch
 
 import pytest
 
-from src.bot.events.guild.on_guild_role_create import on_guild_role_create
+from src.bot.events.guild.on_guild_role_create import GuildRoleCreate
 
 
 @pytest.mark.asyncio
 async def test_on_guild_role_create_logs():
+    bot = MagicMock()
+
+
     role = MagicMock()
 
-    with patch("src.bot.events.guild.on_guild_role_create.logger") as logger:
-        await on_guild_role_create(role)
+    guild = MagicMock()
+    role.guild = guild
 
-    logger.info.assert_called_once()
+
+
+    cog = GuildRoleCreate(bot)
+
+    with patch(
+        "src.bot.events.guild.on_guild_role_create.translate",
+        return_value="translated",
+    ) as translate, patch(
+        "src.bot.events.guild.on_guild_role_create.logger",
+    ) as logger:
+
+        await cog.on_guild_role_create(role)
+
+        translate.assert_called_once()
+
+        assert translate.call_args.args[0] == role.guild
+
+        logger.info.assert_called_once_with(
+            "translated"
+        )
