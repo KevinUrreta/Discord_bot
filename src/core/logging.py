@@ -40,6 +40,7 @@ bot_file_handler = logging.FileHandler(
     "logs/bot.log",
     encoding="utf-8",
 )
+bot_file_handler.setLevel(logging.INFO)
 bot_file_handler.setFormatter(formatter)
 
 
@@ -58,6 +59,7 @@ wavelink_file_handler = logging.FileHandler(
     "logs/wavelink.log",
     encoding="utf-8",
 )
+wavelink_file_handler.setLevel(logging.INFO)
 wavelink_file_handler.setFormatter(formatter)
 
 
@@ -76,6 +78,7 @@ database_file_handler = logging.FileHandler(
     "logs/database.log",
     encoding="utf-8",
 )
+database_file_handler.setLevel(logging.INFO)
 database_file_handler.setFormatter(formatter)
 
 
@@ -84,3 +87,11 @@ database_logger.setLevel(logging.INFO)
 database_logger.addHandler(database_file_handler)
 database_logger.addHandler(errors_file_handler)
 database_logger.addHandler(stream)
+
+
+# ─────────────────────────────
+# Discord
+# ─────────────────────────────
+
+discord_logger = logging.getLogger("discord")
+discord_logger.setLevel(logging.INFO)
