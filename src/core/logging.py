@@ -88,10 +88,3 @@ database_logger.addHandler(database_file_handler)
 database_logger.addHandler(errors_file_handler)
 database_logger.addHandler(stream)
 
-
-# ─────────────────────────────
-# Discord
-# ─────────────────────────────
-
-discord_logger = logging.getLogger("discord")
-discord_logger.setLevel(logging.INFO)

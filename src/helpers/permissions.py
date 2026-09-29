@@ -2,7 +2,7 @@ import discord
 from discord.ext import commands
 
 
-def has_manage_guild():
+def has_manage_messages():
     async def predicate(
         ctx: commands.Context,
     ) -> bool:
