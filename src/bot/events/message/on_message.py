@@ -1,8 +1,8 @@
 import discord
 from discord.ext import commands
 
-from src.locales.i18n import translate
 from src.core.logging import logger
+from src.locales.i18n import translate
 
 
 class On_message(commands.Cog):
@@ -14,11 +14,20 @@ class On_message(commands.Cog):
         if message.author == self.bot.user:
             return
 
+        if message.guild is None:
+            return
+
         logger.info(
             translate(
                 message.guild,
                 "events.message.on_message.message_detected",
-                author=message.author.name,
+                server_name=message.guild.name,
+                channel_name=getattr(
+                    message.channel,
+                    "name",
+                    "DM",
+                ),
+                author_name=message.author.name,
                 message=message.content,
             )
         )

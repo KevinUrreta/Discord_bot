@@ -15,6 +15,10 @@ class MessageEdit(commands.Cog):
             translate(
                 after.guild,
                 "events.message.on_message_edit.message_edited",
-                channel=after.channel, author=after.author, before=before.content, after=after.content,
+                server_name=after.guild.name,
+                channel_name=after.channel.name,
+                author_name=after.author.name,
+                before=before.content,
+                after=after.content,
             )
         )

@@ -1,6 +1,9 @@
 import wavelink
 from discord.ext import commands
 
+from src.core.logging import wavelink_logger
+from src.locales.i18n import translate
+
 
 class On_wavelink_track_end(commands.Cog):
     def __init__(self, bot):
@@ -15,6 +18,23 @@ class On_wavelink_track_end(commands.Cog):
             return
 
         player = payload.player
+        track = player.current
+
+        if track is not None:
+            if player.channel is None:
+                return
+
+            guild = player.channel.guild
+
+            wavelink_logger.info(
+                translate(
+                    guild,
+                    "events.other.on_wavelink_track_end.track_ended",
+                    server_name=guild.name,
+                    server_id=guild.id,
+                    track_title=track.title,
+                )
+            )
 
         if (
             player.queue.is_empty
@@ -22,6 +42,6 @@ class On_wavelink_track_end(commands.Cog):
         ):
             return
 
-        track = player.queue.get()
+        next_track = player.queue.get()
 
-        await player.play(track)
+        await player.play(next_track)
