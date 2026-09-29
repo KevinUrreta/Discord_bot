@@ -1,4 +1,5 @@
 import json
+import os
 from pathlib import Path
 
 
@@ -18,6 +19,24 @@ SUPPORTED_LANGUAGES = {
     "ja": "日本語",
 }
 
+LOG_LANGUAGE = os.getenv(
+    "LOG_LANGUAGE",
+    "es",
+)
+
+LOCALE_FILES = {
+    "es": "es_ES.json",
+    "en": "en_US.json",
+    "fr": "fr_FR.json",
+    "de": "de_DE.json",
+    "it": "it_IT.json",
+    "pt": "pt_PT.json",
+    "nl": "nl_NL.json",
+    "pl": "pl_PL.json",
+    "ja": "ja_JP.json",
+}
+
+
 def set_guild_languages(
     guild_languages: dict,
 ) -> None:
@@ -26,50 +45,30 @@ def set_guild_languages(
     GUILD_LANGUAGES = guild_languages
 
 
-def get_locale(guild) -> str:
+def get_language(guild) -> str:
     if guild is None:
-        return "es_ES"
+        return LOG_LANGUAGE
 
-    language = GUILD_LANGUAGES.get(
+    return GUILD_LANGUAGES.get(
         guild.id,
         "es",
     )
 
-    if language == "es":
-        return "es_ES"
 
-    if language == "en":
-        return "en_US"
+def get_locale(guild) -> str:
+    language = get_language(guild)
 
-    if language == "fr":
-        return "fr_FR"
-
-    if language == "de":
-        return "de_DE"
-
-    if language == "it":
-        return "it_IT"
-
-    if language == "pt":
-        return "pt_PT"
-
-    if language == "nl":
-        return "nl_NL"
-
-    if language == "pl":
-        return "pl_PL"
-
-    if language == "ja":
-        return "ja_JP"
-
-    return "es_ES"
+    return LOCALE_FILES.get(
+        language,
+        "es_ES.json",
+    )
 
 
 def get_translations(guild) -> dict:
     locale = get_locale(guild)
 
     with open(
-        LOCALES_PATH / f"{locale}.json",
+        LOCALES_PATH / locale,
         "r",
         encoding="utf-8",
     ) as file:

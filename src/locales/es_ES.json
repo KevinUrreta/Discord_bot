@@ -3,183 +3,256 @@
         "admin": {
             "cls": "..."
         },
+
         "config": {
             "language": {
-                "current_language": "Idioma actual: {language_name} ({language})",
-                "language_changed": "Idioma cambiado a {language_name} ({language}).",
-                "invalid_language": "Código de idioma no válido.",
-                "available_languages": "Idiomas disponibles:\n{languages}"
+                "current_language": "El idioma actual es {language_name} ({language}).",
+                "language_changed": "El idioma se ha cambiado a {language_name} ({language}).",
+                "invalid_language": "El código de idioma no es válido.",
+                "available_languages": "Los idiomas disponibles son:\n{languages}"
             },
+
             "prefix": {
-                "current_prefix": "El prefijo actual es: {prefix}",
-                "prefix_changed": "Prefijo cambiado a: {prefix}"
+                "current_prefix": "El prefijo actual es {prefix}.",
+                "prefix_changed": "El prefijo se ha cambiado a {prefix}."
             }
         },
+
         "music": {
             "clear": {
                 "not_connected": "El bot no está conectado a un canal de voz.",
-                "queue_cleared": "La cola ha sido vaciada.",
+                "queue_cleared": "La cola se ha vaciado.",
                 "queue_empty": "La cola está vacía."
             },
+
             "join": {
-                "joined_voice": "Conectado correctamente a: {channel}",
-                "joining_voice": "Intentando unirse al canal de voz: {channel}"
+                "joined_voice": "Me he conectado al canal de voz {channel}.",
+                "joining_voice": "Intentando conectarme al canal de voz {channel}."
             },
+
             "leave": {
-                "bot_disconnected": "Bot desconectado del canal de voz.",
+                "bot_disconnected": "Me he desconectado del canal de voz.",
                 "not_connected": "El bot no está conectado a un canal de voz."
             },
+
             "loop": {
                 "not_connected": "El bot no está conectado a un canal de voz.",
-                "loop_disabled": "Repetición desactivada.",
-                "loop_enabled": "Repetición activada.",
+                "loop_disabled": "La repetición se ha desactivado.",
+                "loop_enabled": "La repetición se ha activado.",
                 "no_song_playing": "No hay ninguna canción reproduciéndose."
             },
+
             "pause": {
                 "not_connected": "El bot no está conectado a un canal de voz.",
                 "no_song_playing": "No hay ninguna canción reproduciéndose.",
-                "song_paused": "Canción pausada."
+                "song_paused": "La canción se ha pausado."
             },
+
             "play": {
-                "added_to_queue": "{title}, agregada a la cola",
+                "added_to_queue": "{title} se ha añadido a la cola.",
                 "no_song_found": "No se ha encontrado ninguna canción.",
-                "now_playing": "Reproduciendo ahora: {title}",
-                "playlist_added_to_queue": "Lista agregada a la cola: {title} ({count} canciones).",
+                "now_playing": "Ahora está sonando {title}.",
+                "playlist_added_to_queue": "La lista {title} se ha añadido a la cola con {count} canciones.",
                 "voice_not_connected": "No estás conectado a un canal de voz."
             },
+
             "queue": {
                 "not_connected": "El bot no está conectado a un canal de voz.",
                 "queue_empty": "La cola está vacía.",
-                "queue_list": "Cola actual:\n{queue}"
+                "queue_list": "Esta es la cola actual:\n{queue}"
             },
+
             "remove": {
                 "not_connected": "El bot no está conectado a un canal de voz.",
                 "invalid_queue_position": "La posición indicada no es válida.",
                 "queue_empty": "La cola está vacía.",
-                "removed_from_queue": "Eliminado de la cola: {title}"
+                "removed_from_queue": "{title} se ha eliminado de la cola."
             },
+
             "resume": {
                 "not_connected": "El bot no está conectado a un canal de voz.",
                 "song_not_paused": "La canción no está pausada.",
-                "song_resumed": "Canción reanudada."
+                "song_resumed": "La canción se ha reanudado."
             },
+
             "shuffle": {
                 "not_connected": "El bot no está conectado a un canal de voz.",
                 "queue_empty": "La cola está vacía.",
-                "queue_shuffled": "La cola ha sido mezclada."
+                "queue_shuffled": "La cola se ha mezclado."
             },
+
             "skip": {
                 "not_connected": "El bot no está conectado a un canal de voz.",
                 "no_song_playing": "No hay ninguna canción reproduciéndose.",
-                "song_skipped": "Canción saltada."
+                "song_skipped": "Se ha saltado la canción actual."
             },
+
             "stop": {
                 "not_connected": "El bot no está conectado a un canal de voz.",
-                "playback_stopped": "Reproducción detenida y cola vaciada."
+                "playback_stopped": "La reproducción se ha detenido y la cola se ha vaciado."
             },
+
             "volume": {
                 "invalid_volume": "El volumen debe estar entre 0 y 100.",
                 "not_connected": "El bot no está conectado a un canal de voz.",
-                "volume_changed": "Volumen cambiado a {volume}%"
+                "volume_changed": "El volumen se ha cambiado al {volume}%."
             }
         }
     },
+
     "events": {
         "guild": {
             "on_guild_channel_create": {
-                "channel_created": "Canal creado: {channel}"
+                "channel_created": "Se ha creado el canal {channel}."
             },
+
             "on_guild_channel_delete": {
-                "channel_deleted": "Canal eliminado: {channel}"
+                "channel_deleted": "Se ha eliminado el canal {channel}."
             },
+
             "on_guild_channel_update": {
-                "channel_updated": "Canal actualizado: {before} -> {after}"
+                "channel_updated": "El canal {before} se ha cambiado a {after}."
             },
+
             "on_guild_emojis_update": {
-                "emojis_updated": "Emojis actualizados en el servidor: {guild}"
+                "emojis_updated": "Se han actualizado los emojis del servidor {guild}."
             },
-            "on_guild_join": {},
-            "on_guild_remove": {},
+
+            "on_guild_join": {
+                "guild_joined": "El bot se ha unido al servidor {guild}."
+            },
+
+            "on_guild_remove": {
+                "guild_removed": "El bot ha salido del servidor {guild}."
+            },
+
             "on_guild_role_create": {
-                "role_created": "Rol creado: {role}"
+                "role_created": "Se ha creado el rol {role}."
             },
+
             "on_guild_role_delete": {
-                "role_deleted": "Rol eliminado: {role}"
+                "role_deleted": "Se ha eliminado el rol {role}."
             },
+
             "on_guild_role_update": {
-                "role_updated": "Rol actualizado: {before} -> {after}"
+                "role_updated": "El rol {before} se ha cambiado a {after}."
             },
+
             "on_guild_stickers_update": {
-                "stickers_updated": "Stickers actualizados en el servidor: {guild}"
+                "stickers_updated": "Se han actualizado los stickers del servidor {guild}."
             }
         },
+
         "member": {
             "on_member_join": {},
             "on_member_remove": {},
             "on_member_update": {},
             "on_user_update": {}
         },
+
         "message": {
             "on_message": {
-                "message_detected": "Mensaje detectado en el chat -> [{author}]: {message}"
+                "message_detected": "{author_name} ha enviado un mensaje en {channel_name} de {server_name}: {message}"
             },
             "on_message_delete": {
-                "message_deleted": "Mensaje eliminado en #{channel} por {author}: {message}"
+                "message_deleted": "{author} ha eliminado un mensaje en {channel} de {guild}. Mensaje: {message}"
             },
+
             "on_message_edit": {
-                "message_edited": "Mensaje editado en #{channel} por {author}: {before} -> {after}"
+                "message_edited": "{author} ha editado un mensaje en {channel} de {guild}. Antes: {before} Después: {after}"
             },
+
             "on_raw_reaction_add": {
-                "reaction_added": "Reacción añadida en el mensaje {message_id}: {emoji} por {user}"
+                "reaction_added": "{user} ha añadido la reacción {emoji} al mensaje {message_id}."
             },
+
             "on_raw_reaction_remove": {
-                "reaction_removed": "Reacción eliminada en el mensaje {message_id}: {emoji} por {user}"
+                "reaction_removed": "{user} ha eliminado la reacción {emoji} del mensaje {message_id}."
             },
+
             "on_reaction_add": {
-                "reaction_added": "Reacción añadida en #{channel}: {emoji} por {user}"
+                "reaction_added": "{user} ha añadido la reacción {emoji} en {channel}."
             },
+
             "on_reaction_clear": {
-                "reactions_cleared": "Reacciones eliminadas del mensaje {message}"
+                "reactions_cleared": "Se han eliminado las reacciones del mensaje {message}."
             },
+
             "on_reaction_remove": {
-                "reaction_removed": "Reacción eliminada en #{channel}: {emoji} por {user}"
+                "reaction_removed": "{user} ha eliminado la reacción {emoji} en {channel}."
             },
+
             "on_typing": {
-                "typing_detected": "{user} está escribiendo en #{channel}"
+                "typing_detected": "{user} está escribiendo en {channel}."
             }
         },
+
         "other": {
             "on_application_command_error": {
-                "command_error": "Error en el comando de aplicación '{command}': {error}"
+                "command_error": "Se ha producido un error en el comando de aplicación {command}: {error}"
             },
             "on_command": {
-                "command_executed": "Comando ejecutado: '{command}' por {author} en #{channel}"
+                "command_executed": "{author} ha ejecutado el comando {command} en {channel}."
             },
             "on_command_error": {
-                "command_error": "Error en el comando '{command}': {error}",
+                "command_error": "Se ha producido un error en el comando {command}: {error}",
                 "missing_permissions": "No tienes permisos suficientes para ejecutar este comando."
             },
             "on_ready": {
-                "bot_connected": "Bot conectado como {bot}",
-                "connecting_lavalink": "Conectando con Lavalink..."
+                "bot_connected": "El bot se ha conectado como {bot}.",
+                "connecting_lavalink": "Conexión con Lavalink exitosa."
             },
             "on_connect": {
-                "discord_connected": "Conexión establecida con Discord."
+                "discord_connected": "Se ha establecido la conexión con Discord."
             },
             "on_disconnect": {
-                "discord_disconnected": "Conexión con Discord perdida."
+                "discord_disconnected": "Se ha perdido la conexión con Discord."
             },
             "on_resumed": {
-                "discord_resumed": "Sesión de Discord reanudada correctamente."
+                "discord_resumed": "La sesión de Discord se ha reanudado correctamente."
             },
             "on_voice_state_update": {
-                "voice_state_updated": "Estado de voz actualizado para {member}: {before} -> {after}"
+                "voice_state_updated": "{member_name} ha realizado la acción {action} en {channel_name} de {server_name}."
             },
             "on_webhook_update": {
-                "webhook_updated": "Webhooks actualizados en #{channel}"
+                "webhook_updated": "Se han actualizado los webhooks de {channel}."
             },
-            "on_wavelink_track_end": {},
-            "on_wavelink_track_start": {}
+            "on_wavelink_track_start": {
+                "track_started": "Ha comenzado la reproducción de {track_title} en {server_name}."
+            },
+            "on_wavelink_track_end": {
+                "track_ended": "Ha terminado la reproducción de {track_title} en {server_name}."
+            }
+        }
+    },
+
+    "tasks": {
+        "database_sync": {
+            "sync_completed": "Sincronización de la base de datos completada.",
+            "sync_failed": "Ha ocurrido un error durante la sincronización de la base de datos."
+        }
+    },
+
+    "database": {
+        "connection": {
+            "started": "DATABASE | Conexión iniciada",
+            "closed": "DATABASE | Conexión cerrada"
+        },
+        "errors": {
+            "missing_environment": "Faltan variables de entorno de PostgreSQL.",
+            "create_tables": "Error al crear las tablas de la base de datos: {error}"
+        },
+        "insert": {
+            "guild": "INSERT | guild | [{id}] {name}{source}",
+            "member": "INSERT | member | [{id}] {name} | guild=[{guild_id}]{source}"
+        },
+        "update": {
+            "guild": "UPDATE | guild | [{id}] {name} | {changes}{source}",
+            "member": "UPDATE | member | [{id}] {name} | {changes} | guild=[{guild_id}]{source}"
+        },
+        "delete": {
+            "guild": "DELETE | guild | [{id}] {name}{source}",
+            "member": "DELETE | member | [{id}] {name} | guild=[{guild_id}]{source}"
         }
     }
 }

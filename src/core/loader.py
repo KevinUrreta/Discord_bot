@@ -1,74 +1,108 @@
 import importlib
 import inspect
+from collections import defaultdict
 from pathlib import Path
 
 from discord.ext import commands
 
 from src.core.logging import logger
+from src.locales.i18n import translate
 
 
 async def load_cogs(bot, lavalink_password):
     base_path = Path(__file__).parent.parent
 
-    logger.info(
-        "Iniciando carga de Cogs desde: %s",
-        base_path,
+    categories = defaultdict(
+        lambda: {
+            "total": 0,
+            "loaded": 0,
+            "failed": [],
+        }
     )
 
-    for file in base_path.rglob("*.py"):
-        if file.name == "__init__.py":
-            continue
+    for cog_type in ("commands", "events"):
+        cog_path = base_path / "bot" / cog_type
 
-        if file.name == "loader.py":
-            continue
-
-        logger.debug(
-            "Archivo encontrado: %s",
-            file,
-        )
-
-        module_path = ".".join(
-            file.relative_to(base_path.parent)
-            .with_suffix("")
-            .parts
-        )
-
-        logger.debug(
-            "Módulo encontrado: %s",
-            module_path,
-        )
-
-        module = importlib.import_module(module_path)
-
-        for attribute in vars(module).values():
-            if not isinstance(attribute, type):
+        for file in cog_path.rglob("*.py"):
+            if file.name == "__init__.py":
                 continue
 
-            if not issubclass(attribute, commands.Cog):
-                continue
+            category = file.parent.name
+            key = (cog_type, category)
 
-            if attribute is commands.Cog:
-                continue
-            if attribute.__module__ != module.__name__:
-                continue
+            categories[key]["total"] += 1
 
-            parameters = inspect.signature(
-                attribute
-            ).parameters
-
-            if "lavalink_password" in parameters:
-                cog = attribute(
-                    bot,
-                    lavalink_password,
-                )
-            else:
-                cog = attribute(bot)
-
-            await bot.add_cog(cog)
-
-            logger.info(
-                "Cog cargado: %s",
-                attribute.__name__,
+            module_path = ".".join(
+                file.relative_to(base_path.parent)
+                .with_suffix("")
+                .parts
             )
 
-    logger.info("Carga de Cogs completada.")
+            try:
+                module = importlib.import_module(module_path)
+
+                for attribute in vars(module).values():
+                    if not isinstance(attribute, type):
+                        continue
+
+                    if not issubclass(attribute, commands.Cog):
+                        continue
+
+                    if attribute is commands.Cog:
+                        continue
+
+                    if attribute.__module__ != module.__name__:
+                        continue
+
+                    parameters = inspect.signature(
+                        attribute
+                    ).parameters
+
+                    if "lavalink_password" in parameters:
+                        cog = attribute(
+                            bot,
+                            lavalink_password,
+                        )
+                    else:
+                        cog = attribute(bot)
+
+                    await bot.add_cog(cog)
+
+                    categories[key]["loaded"] += 1
+
+            except Exception as error:
+                categories[key]["failed"].append(
+                    (file.name, error)
+                )
+
+    for (cog_type, category), data in categories.items():
+        label = translate(
+            None,
+            f"core.loader.{cog_type}",
+        )
+
+        if data["failed"]:
+            for filename, error in data["failed"]:
+                logger.error(
+                    translate(
+                        None,
+                        "core.loader.load_error",
+                        label=label,
+                        category=category,
+                        filename=filename,
+                        error_type=type(error).__name__,
+                        error=error,
+                    )
+                )
+
+            continue
+
+        logger.info(
+            translate(
+                None,
+                "core.loader.loaded",
+                label=label,
+                category=category,
+                loaded=data["loaded"],
+            )
+        )

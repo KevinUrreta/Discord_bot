@@ -1,109 +1,375 @@
 {
     "commands": {
         "admin": {
-            "cls": "..."
-        },
-        "config": {
-            "language": {
-                "current_language": "Current language: {language_name} ({language})",
-                "language_changed": "Language changed to {language_name} ({language}).",
-                "invalid_language": "Invalid language code.",
-                "available_languages": "Available languages:\n{languages}"
-            },
-            "prefix": {
-                "current_prefix": "The current prefix is: {prefix}",
-                "prefix_changed": "Prefix changed to: {prefix}"
+            "cls": {
+                "success": "La consola se ha limpiado.",
+                "error": "No se ha podido limpiar la consola.",
+                "exception": "Ha ocurrido un error al limpiar la consola."
             }
         },
+
+        "config": {
+            "language": {
+                "current_language": "El idioma actual es {language_name} ({language}).",
+                "language_changed": "El idioma se ha cambiado a {language_name} ({language}).",
+                "invalid_language": "El código de idioma no es válido.",
+                "available_languages": "Los idiomas disponibles son:\n{languages}",
+                "change_failed": "No se ha podido cambiar el idioma.",
+                "exception": "Ha ocurrido un error al cambiar el idioma."
+            },
+
+            "prefix": {
+                "current_prefix": "El prefijo actual es {prefix}.",
+                "prefix_changed": "El prefijo se ha cambiado a {prefix}.",
+                "invalid_prefix": "El prefijo indicado no es válido.",
+                "change_failed": "No se ha podido cambiar el prefijo.",
+                "exception": "Ha ocurrido un error al cambiar el prefijo."
+            }
+        },
+
         "music": {
             "clear": {
-                "not_connected": "The bot is not connected to a voice channel.",
-                "queue_cleared": "The queue has been cleared.",
-                "queue_empty": "The queue is empty."
+                "not_connected": "El bot no está conectado a un canal de voz.",
+                "queue_cleared": "La cola se ha vaciado.",
+                "queue_empty": "La cola está vacía.",
+                "error": "No se ha podido vaciar la cola.",
+                "exception": "Ha ocurrido un error al vaciar la cola."
             },
+
             "join": {
-                "joined_voice": "Successfully connected to: {channel}",
-                "joining_voice": "Trying to join the voice channel: {channel}"
+                "not_connected": "No estás conectado a un canal de voz.",
+                "already_connected": "El bot ya está conectado a un canal de voz.",
+                "joined_voice": "Me he conectado al canal de voz {channel}.",
+                "joining_voice": "Intentando conectarme al canal de voz {channel}.",
+                "connection_failed": "No se ha podido conectar al canal de voz.",
+                "exception": "Ha ocurrido un error al conectarme al canal de voz."
             },
+
             "leave": {
-                "bot_disconnected": "Bot disconnected from the voice channel.",
-                "not_connected": "The bot is not connected to a voice channel."
+                "bot_disconnected": "Me he desconectado del canal de voz.",
+                "not_connected": "El bot no está conectado a un canal de voz.",
+                "error": "No se ha podido desconectar del canal de voz.",
+                "exception": "Ha ocurrido un error al desconectarme del canal de voz."
             },
+
             "loop": {
-                "not_connected": "The bot is not connected to a voice channel.",
-                "loop_disabled": "Loop disabled.",
-                "loop_enabled": "Loop enabled.",
-                "no_song_playing": "No song is currently playing."
+                "not_connected": "El bot no está conectado a un canal de voz.",
+                "loop_disabled": "La repetición se ha desactivado.",
+                "loop_enabled": "La repetición se ha activado.",
+                "no_song_playing": "No hay ninguna canción reproduciéndose.",
+                "error": "No se ha podido cambiar el modo de repetición.",
+                "exception": "Ha ocurrido un error al cambiar el modo de repetición."
             },
+
             "pause": {
-                "not_connected": "The bot is not connected to a voice channel.",
-                "no_song_playing": "No song is currently playing.",
-                "song_paused": "Song paused."
+                "not_connected": "El bot no está conectado a un canal de voz.",
+                "no_song_playing": "No hay ninguna canción reproduciéndose.",
+                "song_paused": "La canción se ha pausado.",
+                "error": "No se ha podido pausar la reproducción.",
+                "exception": "Ha ocurrido un error al pausar la reproducción."
             },
+
             "play": {
-                "added_to_queue": "{title}, added to the queue",
-                "no_song_found": "No song was found.",
-                "now_playing": "Now playing: {title}",
-                "playlist_added_to_queue": "Playlist added to the queue: {title} ({count} songs).",
-                "voice_not_connected": "You are not connected to a voice channel."
+                "added_to_queue": "{title} se ha añadido a la cola.",
+                "no_song_found": "No se ha encontrado ninguna canción.",
+                "now_playing": "Ahora está sonando {title}.",
+                "playlist_added_to_queue": "La lista {title} se ha añadido a la cola con {count} canciones.",
+                "voice_not_connected": "No estás conectado a un canal de voz.",
+                "already_playing": "Ya hay una canción reproduciéndose.",
+                "invalid_query": "La búsqueda indicada no es válida.",
+                "loading": "Buscando {query}.",
+                "loading_playlist": "Cargando la lista {title}.",
+                "search_failed": "No se ha podido realizar la búsqueda.",
+                "play_failed": "No se ha podido reproducir la canción.",
+                "playlist_failed": "No se ha podido cargar la lista de reproducción.",
+                "exception": "Ha ocurrido un error al reproducir la música."
             },
+
             "queue": {
-                "not_connected": "The bot is not connected to a voice channel.",
-                "queue_empty": "The queue is empty.",
-                "queue_list": "Current queue:\n{queue}"
+                "not_connected": "El bot no está conectado a un canal de voz.",
+                "queue_empty": "La cola está vacía.",
+                "queue_list": "Esta es la cola actual:\n{queue}",
+                "error": "No se ha podido obtener la cola.",
+                "exception": "Ha ocurrido un error al obtener la cola."
             },
+
             "remove": {
-                "not_connected": "The bot is not connected to a voice channel.",
-                "invalid_queue_position": "The specified position is not valid.",
-                "queue_empty": "The queue is empty.",
-                "removed_from_queue": "Removed from the queue: {title}"
+                "not_connected": "El bot no está conectado a un canal de voz.",
+                "invalid_queue_position": "La posición indicada no es válida.",
+                "queue_empty": "La cola está vacía.",
+                "removed_from_queue": "{title} se ha eliminado de la cola.",
+                "error": "No se ha podido eliminar la canción de la cola.",
+                "exception": "Ha ocurrido un error al eliminar la canción de la cola."
             },
+
             "resume": {
-                "not_connected": "The bot is not connected to a voice channel.",
-                "song_not_paused": "The song is not paused.",
-                "song_resumed": "Song resumed."
+                "not_connected": "El bot no está conectado a un canal de voz.",
+                "song_not_paused": "La canción no está pausada.",
+                "song_resumed": "La canción se ha reanudado.",
+                "error": "No se ha podido reanudar la reproducción.",
+                "exception": "Ha ocurrido un error al reanudar la reproducción."
             },
+
             "shuffle": {
-                "not_connected": "The bot is not connected to a voice channel.",
-                "queue_empty": "The queue is empty.",
-                "queue_shuffled": "The queue has been shuffled."
+                "not_connected": "El bot no está conectado a un canal de voz.",
+                "queue_empty": "La cola está vacía.",
+                "queue_shuffled": "La cola se ha mezclado.",
+                "error": "No se ha podido mezclar la cola.",
+                "exception": "Ha ocurrido un error al mezclar la cola."
             },
+
             "skip": {
-                "not_connected": "The bot is not connected to a voice channel.",
-                "no_song_playing": "No song is currently playing.",
-                "song_skipped": "Song skipped."
+                "not_connected": "El bot no está conectado a un canal de voz.",
+                "no_song_playing": "No hay ninguna canción reproduciéndose.",
+                "song_skipped": "Se ha saltado la canción actual.",
+                "error": "No se ha podido saltar la canción.",
+                "exception": "Ha ocurrido un error al saltar la canción."
             },
+
             "stop": {
-                "not_connected": "The bot is not connected to a voice channel.",
-                "playback_stopped": "Playback stopped and queue cleared."
+                "not_connected": "El bot no está conectado a un canal de voz.",
+                "playback_stopped": "La reproducción se ha detenido y la cola se ha vaciado.",
+                "error": "No se ha podido detener la reproducción.",
+                "exception": "Ha ocurrido un error al detener la reproducción."
             },
+
             "volume": {
-                "invalid_volume": "Volume must be between 0 and 100.",
-                "not_connected": "The bot is not connected to a voice channel.",
-                "volume_changed": "Volume changed to {volume}%"
+                "invalid_volume": "El volumen debe estar entre 0 y 100.",
+                "not_connected": "El bot no está conectado a un canal de voz.",
+                "volume_changed": "El volumen se ha cambiado al {volume}%.",
+                "error": "No se ha podido cambiar el volumen.",
+                "exception": "Ha ocurrido un error al cambiar el volumen."
             }
         }
     },
+
     "events": {
-        "guild": {},
-        "member": {},
-        "message": {
-            "on_message": {
-                "message_detected": "Message detected in chat -> [{author}]: {message}"
+        "command_error": {
+            "command_error": "Se ha producido un error al ejecutar el comando {command}: {error}",
+            "missing_permissions": "No tienes permisos suficientes para ejecutar este comando.",
+            "missing_required_argument": "Falta un argumento obligatorio.",
+            "bad_argument": "Uno de los argumentos indicados no es válido.",
+            "command_not_found": "El comando indicado no existe.",
+            "check_failed": "No se cumplen los requisitos necesarios para ejecutar este comando.",
+            "cooldown": "Debes esperar {retry_after} segundos antes de volver a utilizar este comando.",
+            "disabled": "Este comando está desactivado.",
+            "unknown_error": "Se ha producido un error inesperado al ejecutar el comando."
+        },
+
+        "application_command_error": {
+            "command_error": "Se ha producido un error en el comando de aplicación {command}: {error}",
+            "unknown_error": "Se ha producido un error inesperado al ejecutar el comando de aplicación."
+        }
+    },
+
+    "tasks": {
+        "database_sync": {
+            "sync_completed": "Sincronización de la base de datos completada.",
+            "sync_failed": "Ha ocurrido un error durante la sincronización de la base de datos."
+        }
+    },
+
+    "database": {
+        "connection": {
+            "started": "DATABASE | Conexión iniciada",
+            "closed": "DATABASE | Conexión cerrada"
+        },
+
+        "errors": {
+            "missing_environment": "Faltan variables de entorno de PostgreSQL.",
+            "create_tables": "Error al crear las tablas de la base de datos: {error}",
+            "connection_failed": "No se ha podido establecer la conexión con la base de datos: {error}",
+            "transaction_failed": "Ha ocurrido un error durante la transacción: {error}"
+        },
+
+        "insert": {
+            "guild": "INSERT | guild | [{id}] {name}{source}",
+            "member": "INSERT | member | [{id}] {name} | guild=[{guild_id}]{source}"
+        },
+
+        "update": {
+            "guild": "UPDATE | guild | [{id}] {name} | {changes}{source}",
+            "member": "UPDATE | member | [{id}] {name} | {changes} | guild=[{guild_id}]{source}"
+        },
+
+        "delete": {
+            "guild": "DELETE | guild | [{id}] {name}{source}",
+            "member": "DELETE | member | [{id}] {name} | guild=[{guild_id}]{source}"
+        }
+    },
+
+    "logs": {
+        "loader": {
+            "commands": "Commands",
+            "events": "Events",
+            "loaded": "{label} | {category} | loaded successfully ({loaded})",
+            "load_error": "{label} | {category} | Error loading {filename} | {error_type}: {error}"
+        },
+
+        "bot": {
+            "started": "BOT | Bot starting",
+            "stopped": "BOT | Bot stopped",
+            "connected": "BOT | Connected as {bot}",
+            "disconnected": "BOT | Disconnected from Discord",
+            "resumed": "BOT | Discord session resumed",
+            "shutdown": "BOT | Bot shutdown completed",
+            "startup_failed": "BOT | Bot startup failed | {error}",
+            "shutdown_failed": "BOT | Bot shutdown failed | {error}"
+        },
+
+        "discord": {
+            "connected": "DISCORD | Connection established",
+            "disconnected": "DISCORD | Connection lost",
+            "resumed": "DISCORD | Session resumed",
+            "latency": "DISCORD | Current latency: {latency}ms"
+        },
+
+        "commands": {
+            "executed": "COMMAND | {author} executed {command} in {channel} | guild=[{guild_id}]",
+            "started": "COMMAND | {author} started {command} | guild=[{guild_id}] | channel=[{channel_id}]",
+            "completed": "COMMAND | {command} completed successfully | guild=[{guild_id}] | user=[{user_id}]",
+            "failed": "COMMAND | {command} failed | guild=[{guild_id}] | user=[{user_id}] | error={error}",
+            "unknown": "COMMAND | Unknown command: {command} | guild=[{guild_id}] | user=[{user_id}]",
+            "missing_argument": "COMMAND | Missing argument | command={command} | guild=[{guild_id}] | user=[{user_id}]",
+            "invalid_argument": "COMMAND | Invalid argument | command={command} | guild=[{guild_id}] | user=[{user_id}]",
+            "missing_permissions": "COMMAND | Missing permissions | command={command} | guild=[{guild_id}] | user=[{user_id}]",
+            "cooldown": "COMMAND | Cooldown triggered | command={command} | guild=[{guild_id}] | user=[{user_id}] | retry_after={retry_after}",
+            "check_failed": "COMMAND | Check failed | command={command} | guild=[{guild_id}] | user=[{user_id}]",
+            "exception": "COMMAND | Exception in {command} | guild=[{guild_id}] | user=[{user_id}] | {error_type}: {error}"
+        },
+
+        "events": {
+            "guild_joined": "EVENT | Guild joined | guild=[{guild_id}] | name={guild_name}",
+            "guild_removed": "EVENT | Guild removed | guild=[{guild_id}] | name={guild_name}",
+            "channel_created": "EVENT | Channel created | channel=[{channel_id}] | name={channel_name} | guild=[{guild_id}]",
+            "channel_deleted": "EVENT | Channel deleted | channel=[{channel_id}] | name={channel_name} | guild=[{guild_id}]",
+            "channel_updated": "EVENT | Channel updated | channel=[{channel_id}] | before={before} | after={after} | guild=[{guild_id}]",
+            "role_created": "EVENT | Role created | role=[{role_id}] | name={role_name} | guild=[{guild_id}]",
+            "role_deleted": "EVENT | Role deleted | role=[{role_id}] | name={role_name} | guild=[{guild_id}]",
+            "role_updated": "EVENT | Role updated | role=[{role_id}] | before={before} | after={after} | guild=[{guild_id}]",
+            "emojis_updated": "EVENT | Emojis updated | guild=[{guild_id}] | name={guild_name}",
+            "stickers_updated": "EVENT | Stickers updated | guild=[{guild_id}] | name={guild_name}",
+            "webhook_updated": "EVENT | Webhooks updated | channel=[{channel_id}] | guild=[{guild_id}]",
+            "member_joined": "EVENT | Member joined | member=[{member_id}] | name={member_name} | guild=[{guild_id}]",
+            "member_removed": "EVENT | Member removed | member=[{member_id}] | name={member_name} | guild=[{guild_id}]",
+            "member_updated": "EVENT | Member updated | member=[{member_id}] | name={member_name} | guild=[{guild_id}]",
+            "user_updated": "EVENT | User updated | user=[{user_id}] | name={username}",
+            "voice_state_updated": "EVENT | Voice state updated | member=[{member_id}] | action={action} | channel={channel_name} | guild=[{guild_id}]",
+            "typing_detected": "EVENT | Typing detected | user=[{user_id}] | channel=[{channel_id}] | guild=[{guild_id}]",
+            "message_detected": "EVENT | Message detected | user=[{user_id}] | channel=[{channel_id}] | guild=[{guild_id}] | message={message}",
+            "message_deleted": "EVENT | Message deleted | user=[{user_id}] | channel=[{channel_id}] | guild=[{guild_id}] | message={message}",
+            "message_edited": "EVENT | Message edited | user=[{user_id}] | channel=[{channel_id}] | guild=[{guild_id}] | before={before} | after={after}",
+            "reaction_added": "EVENT | Reaction added | user=[{user_id}] | message=[{message_id}] | emoji={emoji} | channel=[{channel_id}] | guild=[{guild_id}]",
+            "reaction_removed": "EVENT | Reaction removed | user=[{user_id}] | message=[{message_id}] | emoji={emoji} | channel=[{channel_id}] | guild=[{guild_id}]",
+            "reactions_cleared": "EVENT | Reactions cleared | message=[{message_id}] | channel=[{channel_id}] | guild=[{guild_id}]"
+        },
+
+        "music": {
+            "join": {
+                "joining_voice": "MUSIC | Connecting to voice channel | channel=[{channel_id}] | name={channel_name} | guild=[{guild_id}]",
+                "joined_voice": "MUSIC | Connected to voice channel | channel=[{channel_id}] | name={channel_name} | guild=[{guild_id}]",
+                "connection_failed": "MUSIC | Voice connection failed | channel=[{channel_id}] | guild=[{guild_id}] | {error}"
+            },
+
+            "leave": {
+                "leaving_voice": "MUSIC | Disconnecting from voice channel | guild=[{guild_id}] | channel=[{channel_id}]",
+                "left_voice": "MUSIC | Disconnected from voice channel | guild=[{guild_id}] | channel=[{channel_id}]",
+                "disconnect_failed": "MUSIC | Voice disconnection failed | guild=[{guild_id}] | {error}"
+            },
+
+            "play": {
+                "search_started": "MUSIC | Search started | query={query} | guild=[{guild_id}] | user=[{user_id}]",
+                "search_completed": "MUSIC | Search completed | query={query} | results={count} | guild=[{guild_id}]",
+                "search_failed": "MUSIC | Search failed | query={query} | guild=[{guild_id}] | {error}",
+                "track_queued": "MUSIC | Track queued | track=[{track_id}] | title={title} | guild=[{guild_id}] | position={position}",
+                "track_started": "MUSIC | Track started | track=[{track_id}] | title={title} | guild=[{guild_id}]",
+                "track_finished": "MUSIC | Track finished | track=[{track_id}] | title={title} | guild=[{guild_id}]",
+                "playlist_queued": "MUSIC | Playlist queued | playlist=[{playlist_id}] | title={title} | tracks={count} | guild=[{guild_id}]",
+                "playback_failed": "MUSIC | Playback failed | guild=[{guild_id}] | track={track_title} | {error}"
+            },
+
+            "queue": {
+                "cleared": "MUSIC | Queue cleared | guild=[{guild_id}] | user=[{user_id}]",
+                "viewed": "MUSIC | Queue viewed | guild=[{guild_id}] | user=[{user_id}] | tracks={count}",
+                "track_removed": "MUSIC | Track removed | track=[{track_id}] | title={title} | guild=[{guild_id}] | user=[{user_id}]",
+                "track_skipped": "MUSIC | Track skipped | track=[{track_id}] | title={title} | guild=[{guild_id}] | user=[{user_id}]",
+                "shuffled": "MUSIC | Queue shuffled | guild=[{guild_id}] | user=[{user_id}]"
+            },
+
+            "pause": {
+                "paused": "MUSIC | Playback paused | guild=[{guild_id}] | track={track_title} | user=[{user_id}]",
+                "failed": "MUSIC | Pause failed | guild=[{guild_id}] | {error}"
+            },
+
+            "resume": {
+                "resumed": "MUSIC | Playback resumed | guild=[{guild_id}] | track={track_title} | user=[{user_id}]",
+                "failed": "MUSIC | Resume failed | guild=[{guild_id}] | {error}"
+            },
+
+            "stop": {
+                "stopped": "MUSIC | Playback stopped | guild=[{guild_id}] | user=[{user_id}]",
+                "failed": "MUSIC | Stop failed | guild=[{guild_id}] | {error}"
+            },
+
+            "skip": {
+                "skipped": "MUSIC | Track skipped | guild=[{guild_id}] | track={track_title} | user=[{user_id}]",
+                "failed": "MUSIC | Skip failed | guild=[{guild_id}] | {error}"
+            },
+
+            "volume": {
+                "changed": "MUSIC | Volume changed | guild=[{guild_id}] | {old_volume} → {new_volume} | user=[{user_id}]",
+                "invalid": "MUSIC | Invalid volume | guild=[{guild_id}] | value={volume} | user=[{user_id}]",
+                "failed": "MUSIC | Volume change failed | guild=[{guild_id}] | {error}"
+            },
+
+            "loop": {
+                "enabled": "MUSIC | Loop enabled | guild=[{guild_id}] | user=[{user_id}]",
+                "disabled": "MUSIC | Loop disabled | guild=[{guild_id}] | user=[{user_id}]",
+                "failed": "MUSIC | Loop change failed | guild=[{guild_id}] | {error}"
             }
         },
-        "other": {
-            "on_command": {
-                "command_executed": "Command executed: '{command}' by {author} in #{channel}"
-            },
-            "on_command_error": {
-                "command_error": "Error in command '{command}': {error}",
-                "missing_permissions": "You do not have enough permissions to use this command."
-            },
-            "on_ready": {
-                "bot_connected": "Bot connected as {bot}",
-                "connecting_lavalink": "Connecting to Lavalink..."
-            }
+
+        "wavelink": {
+            "connecting": "WAVELINK | Connecting to Lavalink | host={host} | port={port}",
+            "connected": "WAVELINK | Connected to Lavalink | node={node}",
+            "disconnected": "WAVELINK | Disconnected from Lavalink | node={node}",
+            "connection_failed": "WAVELINK | Lavalink connection failed | node={node} | {error}",
+            "node_ready": "WAVELINK | Lavalink node ready | node={node}",
+            "node_closed": "WAVELINK | Lavalink node closed | node={node}",
+            "track_started": "WAVELINK | Track started | track={track_title} | guild=[{guild_id}]",
+            "track_ended": "WAVELINK | Track ended | track={track_title} | guild=[{guild_id}]",
+            "track_exception": "WAVELINK | Track exception | track={track_title} | guild=[{guild_id}] | {error}",
+            "track_stuck": "WAVELINK | Track stuck | track={track_title} | guild=[{guild_id}] | threshold={threshold}ms",
+            "player_created": "WAVELINK | Player created | guild=[{guild_id}]",
+            "player_destroyed": "WAVELINK | Player destroyed | guild=[{guild_id}]",
+            "player_updated": "WAVELINK | Player updated | guild=[{guild_id}] | state={state}"
+        },
+
+        "database": {
+            "sync_started": "DATABASE | Synchronization started | guild=[{guild_id}]",
+            "sync_completed": "DATABASE | Synchronization completed | guild=[{guild_id}]",
+            "sync_failed": "DATABASE | Synchronization failed | guild=[{guild_id}] | {error}",
+            "transaction_started": "DATABASE | Transaction started | operation={operation}",
+            "transaction_completed": "DATABASE | Transaction completed | operation={operation}",
+            "transaction_failed": "DATABASE | Transaction failed | operation={operation} | {error}",
+            "guild_created": "DATABASE | Guild created | guild=[{guild_id}] | name={name}",
+            "guild_updated": "DATABASE | Guild updated | guild=[{guild_id}] | name={name} | changes={changes}",
+            "guild_deleted": "DATABASE | Guild deleted | guild=[{guild_id}] | name={name}",
+            "member_created": "DATABASE | Member created | member=[{member_id}] | name={name} | guild=[{guild_id}]",
+            "member_updated": "DATABASE | Member updated | member=[{member_id}] | name={name} | guild=[{guild_id}] | changes={changes}",
+            "member_deleted": "DATABASE | Member deleted | member=[{member_id}] | name={name} | guild=[{guild_id}]"
+        },
+
+        "errors": {
+            "unexpected": "ERROR | Unexpected error | type={error_type} | {error}",
+            "command": "ERROR | Command error | command={command} | guild=[{guild_id}] | user=[{user_id}] | {error_type}: {error}",
+            "application_command": "ERROR | Application command error | command={command} | guild=[{guild_id}] | user=[{user_id}] | {error_type}: {error}",
+            "event": "ERROR | Event error | event={event} | guild=[{guild_id}] | {error_type}: {error}",
+            "database": "ERROR | Database error | operation={operation} | {error_type}: {error}",
+            "wavelink": "ERROR | Wavelink error | event={event} | guild=[{guild_id}] | {error_type}: {error}",
+            "music": "ERROR | Music error | operation={operation} | guild=[{guild_id}] | user=[{user_id}] | {error_type}: {error}",
+            "startup": "ERROR | Startup error | {error_type}: {error}",
+            "shutdown": "ERROR | Shutdown error | {error_type}: {error}"
         }
     }
 }

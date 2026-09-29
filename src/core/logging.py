@@ -33,7 +33,7 @@ errors_logger.addHandler(stream)
 
 
 # ─────────────────────────────
-# Bot
+# Bot + Discord
 # ─────────────────────────────
 
 bot_file_handler = logging.FileHandler(
@@ -43,7 +43,7 @@ bot_file_handler = logging.FileHandler(
 bot_file_handler.setFormatter(formatter)
 
 
-logger = logging.getLogger("music_bot")
+logger = logging.getLogger("discord")
 logger.setLevel(logging.INFO)
 logger.addHandler(bot_file_handler)
 logger.addHandler(errors_file_handler)
@@ -66,24 +66,6 @@ wavelink_logger.setLevel(logging.INFO)
 wavelink_logger.addHandler(wavelink_file_handler)
 wavelink_logger.addHandler(errors_file_handler)
 wavelink_logger.addHandler(stream)
-
-
-# ─────────────────────────────
-# Discord
-# ─────────────────────────────
-
-discord_file_handler = logging.FileHandler(
-    "logs/discord.log",
-    encoding="utf-8",
-)
-discord_file_handler.setFormatter(formatter)
-
-
-discord_logger = logging.getLogger("discord")
-discord_logger.setLevel(logging.INFO)
-discord_logger.addHandler(discord_file_handler)
-discord_logger.addHandler(errors_file_handler)
-discord_logger.addHandler(stream)
 
 
 # ─────────────────────────────
