@@ -23,7 +23,7 @@ class Skip(commands.Cog):
 
         player: wavelink.Player = ctx.voice_client
 
-        if not player.playing:
+        if player.current is None:
             return await ctx.send(
                 embed=create_embed(
                     ctx.guild,

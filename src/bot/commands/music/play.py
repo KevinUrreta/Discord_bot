@@ -1,46 +1,15 @@
 import asyncio
 
 import wavelink
-import yt_dlp
 from discord.ext import commands
 
-from src.core.music_state import get_music_state
+from src.core.player_state import get_music_state
 from src.helpers.embeds import create_embed
-
-
-def get_original_info(url):
-    ydl = yt_dlp.YoutubeDL(
-        {
-            "quiet": True,
-            "no_warnings": True,
-        }
-    )
-
-    info = ydl.extract_info(url, download=False)
-
-    return {
-        "title": info.get("title", "Título desconocido"),
-        "views": info.get("view_count", 0),
-    }
-
-
-def format_duration(milliseconds):
-    total_seconds = int(milliseconds / 1000)
-    minutes, seconds = divmod(total_seconds, 60)
-    return f"{minutes}:{seconds:02d}"
-
-
-def get_thumbnail(track):
-    if track.artwork:
-        return track.artwork
-
-    if track.identifier:
-        return (
-            f"https://img.youtube.com/vi/"
-            f"{track.identifier}/hqdefault.jpg"
-        )
-
-    return None
+from src.helpers.music_utils import (
+    format_duration,
+    get_original_info,
+    get_thumbnail,
+)
 
 
 class Play(commands.Cog):
@@ -60,21 +29,11 @@ class Play(commands.Cog):
                     )
                 )
 
-            player = await ctx.author.voice.channel.connect(
-                cls=wavelink.Player
-            )
+            player = await ctx.author.voice.channel.connect(cls=wavelink.Player)
         else:
             player: wavelink.Player = ctx.voice_client
 
-        state = get_music_state(player)
-        state.text_channel = ctx.channel
-        state.requester = ctx.author.display_name
-        state.footer_icon = ctx.author.display_avatar.url
-
-        tracks = await wavelink.Playable.search(
-            query,
-            source="ytsearch",
-        )
+        tracks = await wavelink.Playable.search(query, source="ytsearch")
 
         if not tracks:
             return await ctx.send(
@@ -85,6 +44,11 @@ class Play(commands.Cog):
                     footer_icon=ctx.author.display_avatar.url,
                 )
             )
+
+        state = get_music_state(player)
+        state.text_channel = ctx.channel
+        state.requester = ctx.author.display_name
+        state.footer_icon = ctx.author.display_avatar.url
 
         is_playlist = "list=" in query
 
@@ -119,15 +83,10 @@ class Play(commands.Cog):
             )
 
         track = tracks[0]
-
         await player.queue.put_wait(track)
+        info = await asyncio.to_thread(get_original_info, track.uri)
 
         if player.playing:
-            info = await asyncio.to_thread(
-                get_original_info,
-                track.uri,
-            )
-
             return await ctx.send(
                 embed=create_embed(
                     ctx.guild,
@@ -141,13 +100,7 @@ class Play(commands.Cog):
             )
 
         track = player.queue.get()
-
         await player.play(track)
-
-        info = await asyncio.to_thread(
-            get_original_info,
-            track.uri,
-        )
 
         await ctx.send(
             embed=create_embed(

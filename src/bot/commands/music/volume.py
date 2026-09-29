@@ -34,13 +34,9 @@ class Volume(commands.Cog):
             )
 
         player: wavelink.Player = ctx.voice_client
-
         await player.set_volume(volume)
 
-        await self.guild_repository.update(
-            guild_id=ctx.guild.id,
-            volume=volume,
-        )
+        await self.guild_repository.update(guild_id=ctx.guild.id, volume=volume)
 
         await ctx.send(
             embed=create_embed(

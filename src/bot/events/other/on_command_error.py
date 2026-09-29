@@ -29,9 +29,12 @@ class On_command_error(commands.Cog):
             return
 
         errors_logger.error(
-            "Error en el comando '%s': %s",
-            ctx.command,
-            error,
+            translate(
+                None,
+                "events.other.on_command_error.logged_error",
+                command=ctx.command,
+                error=error,
+            ),
             exc_info=error,
         )
 

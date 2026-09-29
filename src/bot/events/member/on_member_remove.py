@@ -3,6 +3,7 @@ from discord.ext import commands
 
 from src.core.logging import logger
 from src.database.repositories.member import MemberRepository
+from src.locales.i18n import translate
 
 
 class On_member_remove(commands.Cog):
@@ -21,13 +22,23 @@ class On_member_remove(commands.Cog):
 
         if deleted:
             logger.info(
-                f"Miembro eliminado: {member.name} "
-                f"({member.id}) de {member.guild.name} "
-                f"({member.guild.id})"
+                translate(
+                    None,
+                    "events.member.on_member_remove.member_deleted",
+                    name=member.name,
+                    id=member.id,
+                    guild_name=member.guild.name,
+                    guild_id=member.guild.id,
+                )
             )
         else:
             logger.info(
-                f"Miembro no encontrado en la BD: "
-                f"{member.name} ({member.id}) en "
-                f"{member.guild.name} ({member.guild.id})"
+                translate(
+                    None,
+                    "events.member.on_member_remove.member_not_found",
+                    name=member.name,
+                    id=member.id,
+                    guild_name=member.guild.name,
+                    guild_id=member.guild.id,
+                )
             )

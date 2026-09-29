@@ -464,10 +464,12 @@
         "emojis_updated": "Se han actualizado los emojis del servidor {guild}."
       },
       "on_guild_join": {
-        "guild_joined": "El bot se ha unido al servidor {guild}."
+        "guild_added": "Servidor añadido: {guild_name} ({guild_id})"
       },
       "on_guild_remove": {
-        "guild_removed": "El bot ha salido del servidor {guild}."
+          "members_deleted": "Miembros eliminados: {deleted_members} de {guild_name} ({guild_id})",
+          "guild_deleted": "Servidor eliminado: {guild_name} ({guild_id})",
+          "guild_not_found": "Servidor no encontrado en la BD: {guild_name} ({guild_id})"
       },
       "on_guild_role_create": {
         "role_created": "Se ha creado el rol {role}."
@@ -484,10 +486,21 @@
     },
 
     "member": {
-      "on_member_join": {},
-      "on_member_remove": {},
-      "on_member_update": {},
-      "on_user_update": {}
+      "on_member_join": {
+          "member_added": "Miembro añadido: {name} ({id}) en {guild_name} ({guild_id})"
+      },
+      "on_member_remove": {
+          "member_deleted": "Miembro eliminado: {name} ({id}) de {guild_name} ({guild_id})",
+          "member_not_found": "Miembro no encontrado en la BD: {name} ({id}) en {guild_name} ({guild_id})"
+      },
+      "on_member_update": {
+          "member_updated": "Miembro actualizado: {name} ({id}) en {guild_name} ({guild_id})"
+      },
+      "on_user_update": {
+          "username_updated": "Usuario actualizado: {before_name} ({id}) -> {after_name} ({id})",
+          "global_name_updated": "Nombre global actualizado: {before_name} ({id}) -> {after_name} ({id})",
+          "avatar_updated": "Avatar actualizado: {name} ({id})"
+      }
     },
 
     "message": {
@@ -529,7 +542,8 @@
       },
       "on_command_error": {
         "command_error": "Se ha producido un error en el comando {command}: {error}",
-        "missing_permissions": "No tienes permisos suficientes para ejecutar este comando."
+        "missing_permissions": "No tienes permisos suficientes para ejecutar este comando.",
+        "logged_error": "Error en el comando '{command}': {error}"
       },
       "on_ready": {
         "bot_connected": "El bot se ha conectado como {bot}.",
@@ -545,7 +559,12 @@
         "discord_resumed": "La sesión de Discord se ha reanudado correctamente."
       },
       "on_voice_state_update": {
-        "voice_state_updated": "{member_name} ha realizado la acción {action} en {channel_name} de {server_name}."
+        "voice_state_updated": "{member_name} ha realizado la acción {action} en {channel_name} de {server_name}.",
+        "join": "ENTRAR",
+        "leave": "SALIR",
+        "move": "MOVER",
+        "update": "ACTUALIZAR",
+        "none": "Ninguno"
       },
       "on_webhook_update": {
         "webhook_updated": "Se han actualizado los webhooks de {channel}."

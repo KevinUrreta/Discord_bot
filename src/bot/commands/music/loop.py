@@ -35,7 +35,7 @@ class Loop(commands.Cog):
 
         player.queue.mode = (
             wavelink.QueueMode.loop
-            if player.queue.mode != wavelink.QueueMode.loop
+            if player.queue.mode != wavelink.QueueMode.loop 
             else wavelink.QueueMode.normal
         )
 

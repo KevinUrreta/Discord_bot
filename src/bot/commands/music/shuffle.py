@@ -23,7 +23,7 @@ class Shuffle(commands.Cog):
 
         player: wavelink.Player = ctx.voice_client
 
-        if player.queue.is_empty:
+        if player.queue.count < 2:
             return await ctx.send(
                 embed=create_embed(
                     ctx.guild,

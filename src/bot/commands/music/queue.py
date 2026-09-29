@@ -1,26 +1,10 @@
 import asyncio
 
 import wavelink
-import yt_dlp
 from discord.ext import commands
 
 from src.helpers.embeds import create_embed
-
-
-def get_original_title(url):
-    ydl = yt_dlp.YoutubeDL(
-        {
-            "quiet": True,
-            "no_warnings": True,
-        }
-    )
-
-    info = ydl.extract_info(url, download=False)
-
-    return info.get(
-        "title",
-        "Título desconocido",
-    )
+from src.helpers.music_utils import get_original_info
 
 
 class Queue(commands.Cog):
@@ -53,22 +37,17 @@ class Queue(commands.Cog):
 
         tracks = list(player.queue)
 
-        titles = await asyncio.gather(
+        infos = await asyncio.gather(
             *(
-                asyncio.to_thread(
-                    get_original_title,
-                    track.uri,
-                )
+                asyncio.to_thread(get_original_info, track.uri)
                 for track in tracks
             )
         )
 
+        titles = [info["title"] for info in infos]
         message = "\n".join(
             f"{index}. {title}"
-            for index, title in enumerate(
-                titles,
-                start=1,
-            )
+            for index, title in enumerate(titles, start=1)
         )
 
         await ctx.send(

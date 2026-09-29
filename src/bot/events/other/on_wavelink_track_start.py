@@ -5,8 +5,8 @@ import yt_dlp
 from discord.ext import commands
 
 from src.core.logging import wavelink_logger
-from src.core.music_state import get_music_state
-from src.core.player import restore_volume
+from src.core.player_state import get_music_state
+from src.core.player_utils import restore_volume
 from src.database.repositories.guild import GuildRepository
 from src.helpers.embeds import create_embed
 from src.locales.i18n import translate

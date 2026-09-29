@@ -2,7 +2,7 @@ import wavelink
 from discord.ext import commands
 
 from src.core.logging import wavelink_logger
-from src.core.music_state import get_music_state
+from src.core.player_state import get_music_state
 from src.locales.i18n import translate
 
 

@@ -46,7 +46,6 @@ class Remove(commands.Cog):
             )
 
         track = tracks[position - 1]
-
         player.queue.remove(track)
 
         await ctx.send(

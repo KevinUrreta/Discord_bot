@@ -2,6 +2,7 @@ import discord
 from discord.ext import commands
 
 from src.core.logging import logger
+from src.locales.i18n import translate
 
 
 class On_user_update(commands.Cog):
@@ -9,22 +10,39 @@ class On_user_update(commands.Cog):
         self.bot = bot
 
     @commands.Cog.listener()
-    async def on_user_update(self, before: discord.User, after: discord.User,):
+    async def on_user_update(
+        self,
+        before: discord.User,
+        after: discord.User,
+    ):
         if before.name != after.name:
             logger.info(
-                f"Usuario actualizado: {before.name} "
-                f"({after.id}) -> {after.name} ({after.id})"
+                translate(
+                    None,
+                    "events.member.on_user_update.username_updated",
+                    before_name=before.name,
+                    id=after.id,
+                    after_name=after.name,
+                )
             )
 
         if before.global_name != after.global_name:
             logger.info(
-                f"Nombre global actualizado: "
-                f"{before.global_name} ({after.id}) -> "
-                f"{after.global_name} ({after.id})"
+                translate(
+                    None,
+                    "events.member.on_user_update.global_name_updated",
+                    before_name=before.global_name,
+                    id=after.id,
+                    after_name=after.global_name,
+                )
             )
 
         if before.avatar != after.avatar:
             logger.info(
-                f"Avatar actualizado: "
-                f"{after.name} ({after.id})"
+                translate(
+                    None,
+                    "events.member.on_user_update.avatar_updated",
+                    name=after.name,
+                    id=after.id,
+                )
             )

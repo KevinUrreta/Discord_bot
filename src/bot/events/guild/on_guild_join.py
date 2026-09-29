@@ -4,6 +4,7 @@ from discord.ext import commands
 from src.core.logging import logger
 from src.database.repositories.guild import GuildRepository
 from src.database.repositories.member import MemberRepository
+from src.locales.i18n import translate
 
 
 class On_guild_join(commands.Cog):
@@ -24,14 +25,21 @@ class On_guild_join(commands.Cog):
             guild_id=guild.id,
             name=guild.name,
         )
+
         for member in guild.members:
             await self.member_repository.create(
-            member_id=member.id,
-            guild_id=guild.id,
-            name=member.name,
-            display_name=member.display_name,
-            joined_at=member.joined_at,
+                member_id=member.id,
+                guild_id=guild.id,
+                name=member.name,
+                display_name=member.display_name,
+                joined_at=member.joined_at,
+            )
+
+        logger.info(
+            translate(
+                None,
+                "events.guild.on_guild_join.guild_added",
+                guild_name=guild.name,
+                guild_id=guild.id,
+            )
         )
-
-
-        logger.info(f"Servidor añadido: {guild.name} ({guild.id})")

@@ -7,3 +7,8 @@ class Base(DeclarativeBase):
 
 from src.database.models.guild import Guild
 from src.database.models.member import Member
+
+__all__ = [
+    "Guild",
+    "Member"
+]

@@ -10,30 +10,53 @@ class VoiceStateUpdate(commands.Cog):
         self.bot = bot
 
     @commands.Cog.listener()
-    async def on_voice_state_update(self, member, before, after):
+    async def on_voice_state_update(
+        self,
+        member,
+        before,
+        after,
+    ):
         guild = member.guild
 
         before_channel = before.channel
         after_channel = after.channel
 
         if before_channel is None and after_channel is not None:
-            action = "JOIN"
+            action = translate(
+                None,
+                "events.other.on_voice_state_update.join",
+            )
             channel = after_channel
 
         elif before_channel is not None and after_channel is None:
-            action = "LEAVE"
+            action = translate(
+                None,
+                "events.other.on_voice_state_update.leave",
+            )
             channel = before_channel
 
         elif before_channel != after_channel:
-            action = "MOVE"
+            action = translate(
+                None,
+                "events.other.on_voice_state_update.move",
+            )
             channel = after_channel
 
         else:
-            action = "UPDATE"
+            action = translate(
+                None,
+                "events.other.on_voice_state_update.update",
+            )
             channel = after_channel
 
-        channel_name = channel.name if channel else "Ninguno"
-        channel_id = channel.id if channel else "N/A"
+        channel_name = (
+            channel.name
+            if channel
+            else translate(
+                None,
+                "events.other.on_voice_state_update.none",
+            )
+        )
 
         logger.info(
             translate(

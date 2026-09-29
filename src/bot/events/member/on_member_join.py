@@ -3,6 +3,7 @@ from discord.ext import commands
 
 from src.core.logging import logger
 from src.database.repositories.member import MemberRepository
+from src.locales.i18n import translate
 
 
 class On_member_join(commands.Cog):
@@ -23,7 +24,12 @@ class On_member_join(commands.Cog):
         )
 
         logger.info(
-            f"Miembro añadido: {member.name} "
-            f"({member.id}) en {member.guild.name} "
-            f"({member.guild.id})"
+            translate(
+                None,
+                "events.member.on_member_join.member_added",
+                name=member.name,
+                id=member.id,
+                guild_name=member.guild.name,
+                guild_id=member.guild.id,
+            )
         )

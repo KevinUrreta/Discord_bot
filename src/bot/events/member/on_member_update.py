@@ -3,6 +3,7 @@ from discord.ext import commands
 
 from src.core.logging import logger
 from src.database.repositories.member import MemberRepository
+from src.locales.i18n import translate
 
 
 class On_member_update(commands.Cog):
@@ -36,7 +37,12 @@ class On_member_update(commands.Cog):
         )
 
         logger.info(
-            f"Miembro actualizado: {after.name} "
-            f"({after.id}) en {after.guild.name} "
-            f"({after.guild.id})"
+            translate(
+                None,
+                "events.member.on_member_update.member_updated",
+                name=after.name,
+                id=after.id,
+                guild_name=after.guild.name,
+                guild_id=after.guild.id,
+            )
         )

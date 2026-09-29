@@ -13,12 +13,7 @@ class Join(commands.Cog):
             if not ctx.author.voice:
                 return
 
-            await ctx.author.voice.channel.connect(
-                cls=wavelink.Player
-            )
-            return
+            return await ctx.author.voice.channel.connect(cls=wavelink.Player)
 
         if ctx.voice_client.channel != ctx.author.voice.channel:
-            await ctx.voice_client.move_to(
-                ctx.author.voice.channel
-            )
+            await ctx.voice_client.move_to(ctx.author.voice.channel)
