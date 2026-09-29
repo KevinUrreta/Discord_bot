@@ -1,8 +1,7 @@
 from discord.ext import commands
-
 import wavelink
 
-from src.locales.i18n import translate
+from src.helpers.embeds import create_embed
 
 
 class Resume(commands.Cog):
@@ -13,9 +12,11 @@ class Resume(commands.Cog):
     async def resume(self, ctx):
         if ctx.voice_client is None:
             return await ctx.send(
-                translate(
+                embed=create_embed(
                     ctx.guild,
-                    "commands.music.resume.not_connected",
+                    "music.resume.not_connected",
+                    user=ctx.author.display_name,
+                    footer_icon=ctx.author.display_avatar.url,
                 )
             )
 
@@ -23,17 +24,21 @@ class Resume(commands.Cog):
 
         if not player.paused:
             return await ctx.send(
-                translate(
+                embed=create_embed(
                     ctx.guild,
-                    "commands.music.resume.song_not_paused",
+                    "music.resume.no_song_playing",
+                    user=ctx.author.display_name,
+                    footer_icon=ctx.author.display_avatar.url,
                 )
             )
 
         await player.pause(False)
 
         await ctx.send(
-            translate(
+            embed=create_embed(
                 ctx.guild,
-                "commands.music.resume.song_resumed",
+                "music.resume.resumed",
+                user=ctx.author.display_name,
+                footer_icon=ctx.author.display_avatar.url,
             )
         )

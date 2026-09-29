@@ -2,7 +2,7 @@ from discord.ext import commands
 
 import wavelink
 
-from src.locales.i18n import translate
+from src.helpers.embeds import create_embed
 
 
 class Clear(commands.Cog):
@@ -13,9 +13,11 @@ class Clear(commands.Cog):
     async def clear(self, ctx):
         if ctx.voice_client is None:
             return await ctx.send(
-                translate(
+                embed=create_embed(
                     ctx.guild,
-                    "commands.music.clear.not_connected",
+                    "music.clear.not_connected",
+                    user=ctx.author.display_name,
+                    footer_icon=ctx.author.display_avatar.url,
                 )
             )
 
@@ -23,17 +25,21 @@ class Clear(commands.Cog):
 
         if player.queue.is_empty:
             return await ctx.send(
-                translate(
+                embed=create_embed(
                     ctx.guild,
-                    "commands.music.clear.queue_empty",
+                    "music.clear.queue_empty",
+                    user=ctx.author.display_name,
+                    footer_icon=ctx.author.display_avatar.url,
                 )
             )
 
         player.queue.clear()
 
         await ctx.send(
-            translate(
+            embed=create_embed(
                 ctx.guild,
-                "commands.music.clear.queue_cleared",
+                "music.clear.cleared",
+                user=ctx.author.display_name,
+                footer_icon=ctx.author.display_avatar.url,
             )
         )

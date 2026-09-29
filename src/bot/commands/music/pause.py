@@ -1,8 +1,7 @@
 from discord.ext import commands
-
 import wavelink
 
-from src.locales.i18n import translate
+from src.helpers.embeds import create_embed
 
 
 class Pause(commands.Cog):
@@ -13,9 +12,11 @@ class Pause(commands.Cog):
     async def pause(self, ctx):
         if ctx.voice_client is None:
             return await ctx.send(
-                translate(
+                embed=create_embed(
                     ctx.guild,
-                    "commands.music.pause.not_connected",
+                    "music.pause.not_connected",
+                    user=ctx.author.display_name,
+                    footer_icon=ctx.author.display_avatar.url,
                 )
             )
 
@@ -23,17 +24,21 @@ class Pause(commands.Cog):
 
         if not player.playing:
             return await ctx.send(
-                translate(
+                embed=create_embed(
                     ctx.guild,
-                    "commands.music.pause.no_song_playing",
+                    "music.pause.no_song_playing",
+                    user=ctx.author.display_name,
+                    footer_icon=ctx.author.display_avatar.url,
                 )
             )
 
         await player.pause(True)
 
         await ctx.send(
-            translate(
+            embed=create_embed(
                 ctx.guild,
-                "commands.music.pause.song_paused",
+                "music.pause.paused",
+                user=ctx.author.display_name,
+                footer_icon=ctx.author.display_avatar.url,
             )
         )

@@ -2,7 +2,7 @@ from discord.ext import commands
 
 import wavelink
 
-from src.locales.i18n import translate
+from src.helpers.embeds import create_embed
 
 
 class Stop(commands.Cog):
@@ -13,9 +13,11 @@ class Stop(commands.Cog):
     async def stop(self, ctx):
         if ctx.voice_client is None:
             return await ctx.send(
-                translate(
+                embed=create_embed(
                     ctx.guild,
-                    "commands.music.stop.not_connected",
+                    "music.stop.not_connected",
+                    user=ctx.author.display_name,
+                    footer_icon=ctx.author.display_avatar.url,
                 )
             )
 
@@ -25,8 +27,10 @@ class Stop(commands.Cog):
         await player.stop()
 
         await ctx.send(
-            translate(
+            embed=create_embed(
                 ctx.guild,
-                "commands.music.stop.playback_stopped",
+                "music.stop.stopped",
+                user=ctx.author.display_name,
+                footer_icon=ctx.author.display_avatar.url,
             )
         )

@@ -1,6 +1,6 @@
 from discord.ext import commands
 
-from src.locales.i18n import translate
+from src.helpers.embeds import create_embed
 
 
 class Leave(commands.Cog):
@@ -11,17 +11,21 @@ class Leave(commands.Cog):
     async def leave(self, ctx):
         if ctx.voice_client is None:
             return await ctx.send(
-                translate(
+                embed=create_embed(
                     ctx.guild,
-                    "commands.music.leave.not_connected",
+                    "music.leave.not_connected",
+                    user=ctx.author.display_name,
+                    footer_icon=ctx.author.display_avatar.url,
                 )
             )
 
         await ctx.voice_client.disconnect()
 
         await ctx.send(
-            translate(
+            embed=create_embed(
                 ctx.guild,
-                "commands.music.leave.bot_disconnected",
+                "music.leave.disconnected",
+                user=ctx.author.display_name,
+                footer_icon=ctx.author.display_avatar.url,
             )
         )

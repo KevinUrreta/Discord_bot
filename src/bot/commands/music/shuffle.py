@@ -2,7 +2,7 @@ from discord.ext import commands
 
 import wavelink
 
-from src.locales.i18n import translate
+from src.helpers.embeds import create_embed
 
 
 class Shuffle(commands.Cog):
@@ -13,9 +13,11 @@ class Shuffle(commands.Cog):
     async def shuffle(self, ctx):
         if ctx.voice_client is None:
             return await ctx.send(
-                translate(
+                embed=create_embed(
                     ctx.guild,
-                    "commands.music.shuffle.not_connected",
+                    "music.shuffle.not_connected",
+                    user=ctx.author.display_name,
+                    footer_icon=ctx.author.display_avatar.url,
                 )
             )
 
@@ -23,17 +25,21 @@ class Shuffle(commands.Cog):
 
         if player.queue.is_empty:
             return await ctx.send(
-                translate(
+                embed=create_embed(
                     ctx.guild,
-                    "commands.music.shuffle.queue_empty",
+                    "music.shuffle.not_enough_songs",
+                    user=ctx.author.display_name,
+                    footer_icon=ctx.author.display_avatar.url,
                 )
             )
 
         player.queue.shuffle()
 
         await ctx.send(
-            translate(
+            embed=create_embed(
                 ctx.guild,
-                "commands.music.shuffle.queue_shuffled",
+                "music.shuffle.shuffled",
+                user=ctx.author.display_name,
+                footer_icon=ctx.author.display_avatar.url,
             )
         )

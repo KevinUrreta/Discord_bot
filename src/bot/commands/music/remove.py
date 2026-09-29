@@ -2,7 +2,7 @@ from discord.ext import commands
 
 import wavelink
 
-from src.locales.i18n import translate
+from src.helpers.embeds import create_embed
 
 
 class Remove(commands.Cog):
@@ -13,9 +13,11 @@ class Remove(commands.Cog):
     async def remove(self, ctx, position: int):
         if ctx.voice_client is None:
             return await ctx.send(
-                translate(
+                embed=create_embed(
                     ctx.guild,
-                    "commands.music.remove.not_connected",
+                    "music.remove.not_connected",
+                    user=ctx.author.display_name,
+                    footer_icon=ctx.author.display_avatar.url,
                 )
             )
 
@@ -23,9 +25,11 @@ class Remove(commands.Cog):
 
         if player.queue.is_empty:
             return await ctx.send(
-                translate(
+                embed=create_embed(
                     ctx.guild,
-                    "commands.music.remove.queue_empty",
+                    "music.remove.queue_empty",
+                    user=ctx.author.display_name,
+                    footer_icon=ctx.author.display_avatar.url,
                 )
             )
 
@@ -33,9 +37,11 @@ class Remove(commands.Cog):
 
         if position < 1 or position > len(tracks):
             return await ctx.send(
-                translate(
+                embed=create_embed(
                     ctx.guild,
-                    "commands.music.remove.invalid_queue_position",
+                    "music.remove.invalid_position",
+                    user=ctx.author.display_name,
+                    footer_icon=ctx.author.display_avatar.url,
                 )
             )
 
@@ -44,9 +50,11 @@ class Remove(commands.Cog):
         player.queue.remove(track)
 
         await ctx.send(
-            translate(
+            embed=create_embed(
                 ctx.guild,
-                "commands.music.remove.removed_from_queue",
+                "music.remove.removed",
                 title=track.title,
+                user=ctx.author.display_name,
+                footer_icon=ctx.author.display_avatar.url,
             )
         )

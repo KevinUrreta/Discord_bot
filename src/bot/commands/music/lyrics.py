@@ -1,11 +1,19 @@
 from discord.ext import commands
 
-from src.locales.i18n import translate
+from src.helpers.embeds import create_embed
+
 
 class Lyrics(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-    @commands.command()
-    async def lyrics(self, ctx):
-        ...
+    @commands.command(name="lyrics")
+    async def lyrics(self, ctx, *, query=None):
+        await ctx.send(
+            embed=create_embed(
+                ctx.guild,
+                "music.lyrics.not_available",
+                user=ctx.author.display_name,
+                footer_icon=ctx.author.display_avatar.url,
+            )
+        )

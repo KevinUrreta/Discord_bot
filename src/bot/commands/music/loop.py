@@ -2,7 +2,7 @@ from discord.ext import commands
 
 import wavelink
 
-from src.locales.i18n import translate
+from src.helpers.embeds import create_embed
 
 
 class Loop(commands.Cog):
@@ -13,9 +13,11 @@ class Loop(commands.Cog):
     async def loop(self, ctx):
         if ctx.voice_client is None:
             return await ctx.send(
-                translate(
+                embed=create_embed(
                     ctx.guild,
-                    "commands.music.loop.not_connected",
+                    "music.loop.not_connected",
+                    user=ctx.author.display_name,
+                    footer_icon=ctx.author.display_avatar.url,
                 )
             )
 
@@ -23,9 +25,11 @@ class Loop(commands.Cog):
 
         if not player.current:
             return await ctx.send(
-                translate(
+                embed=create_embed(
                     ctx.guild,
-                    "commands.music.loop.no_song_playing",
+                    "music.loop.no_song_playing",
+                    user=ctx.author.display_name,
+                    footer_icon=ctx.author.display_avatar.url,
                 )
             )
 
@@ -37,15 +41,19 @@ class Loop(commands.Cog):
 
         if player.queue.mode == wavelink.QueueMode.loop:
             await ctx.send(
-                translate(
+                embed=create_embed(
                     ctx.guild,
-                    "commands.music.loop.loop_enabled",
+                    "music.loop.enabled",
+                    user=ctx.author.display_name,
+                    footer_icon=ctx.author.display_avatar.url,
                 )
             )
         else:
             await ctx.send(
-                translate(
+                embed=create_embed(
                     ctx.guild,
-                    "commands.music.loop.loop_disabled",
+                    "music.loop.disabled",
+                    user=ctx.author.display_name,
+                    footer_icon=ctx.author.display_avatar.url,
                 )
             )
