@@ -6,12 +6,18 @@ import wavelink
 from src.locales.i18n import translate
 from src.core.logging import logger
 
+
 class Join(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
     @commands.command()
-    async def join(self, ctx, *, channel: discord.VoiceChannel):
+    async def join(self, ctx):
+        if ctx.author.voice is None:
+            return
+
+        channel = ctx.author.voice.channel
+
         logger.info(
             translate(
                 ctx.guild,
@@ -21,7 +27,8 @@ class Join(commands.Cog):
         )
 
         if ctx.voice_client is not None:
-            return await ctx.voice_client.move_to(channel)
+            await ctx.voice_client.move_to(channel)
+            return
 
         await channel.connect(cls=wavelink.Player)
 

@@ -37,11 +37,6 @@ class Volume(commands.Cog):
 
         await player.set_volume(volume)
 
-        logger.info(
-            f"Guardando volumen en BD: "
-            f"guild_id={ctx.guild.id}, volume={volume}"
-        )
-
         guild = await self.guild_repository.update(
             guild_id=ctx.guild.id,
             volume=volume,
@@ -51,11 +46,6 @@ class Volume(commands.Cog):
             logger.error(
                 f"No se pudo actualizar el volumen en BD: "
                 f"guild_id={ctx.guild.id}"
-            )
-        else:
-            logger.info(
-                f"Volumen guardado correctamente en BD: "
-                f"guild_id={guild.id}, volume={guild.volume}"
             )
 
         await ctx.send(
