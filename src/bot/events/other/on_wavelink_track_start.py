@@ -1,10 +1,50 @@
+import asyncio
+
 import wavelink
+import yt_dlp
 from discord.ext import commands
 
 from src.core.logging import wavelink_logger
+from src.core.music_state import get_music_state
 from src.core.player import restore_volume
 from src.database.repositories.guild import GuildRepository
+from src.helpers.embeds import create_embed
 from src.locales.i18n import translate
+
+
+def get_original_info(url):
+    ydl = yt_dlp.YoutubeDL(
+        {
+            "quiet": True,
+            "no_warnings": True,
+        }
+    )
+
+    info = ydl.extract_info(url, download=False)
+
+    return {
+        "title": info.get("title", "Título desconocido"),
+        "views": info.get("view_count", 0),
+    }
+
+
+def format_duration(milliseconds):
+    total_seconds = int(milliseconds / 1000)
+    minutes, seconds = divmod(total_seconds, 60)
+    return f"{minutes}:{seconds:02d}"
+
+
+def get_thumbnail(track):
+    if track.artwork:
+        return track.artwork
+
+    if track.identifier:
+        return (
+            f"https://img.youtube.com/vi/"
+            f"{track.identifier}/hqdefault.jpg"
+        )
+
+    return None
 
 
 class On_wavelink_track_start(commands.Cog):
@@ -26,20 +66,50 @@ class On_wavelink_track_start(commands.Cog):
         player = payload.player
         track = player.current
 
-        if track is not None and player.channel is not None:
-            guild = player.channel.guild
+        if track is None or player.channel is None:
+            return
 
-            wavelink_logger.info(
-                translate(
-                    guild,
-                    "events.other.on_wavelink_track_start.track_started",
-                    server_name=guild.name,
-                    server_id=guild.id,
-                    track_title=track.title,
-                )
-            )
+        guild = player.channel.guild
+        state = get_music_state(player)
+
+        # wavelink_logger.info(
+        #     translate(
+        #         guild,
+        #         "events.other.on_wavelink_track_start.track_started",
+        #         server_name=guild.name,
+        #         server_id=guild.id,
+        #         track_title=track.title,
+        #     )
+        # )
 
         await restore_volume(
             player,
             self.guild_repository,
+        )
+
+        if not state.show_now_playing:
+            return
+
+        state.show_now_playing = False
+
+        if state.text_channel is None:
+            return
+
+        info = await asyncio.to_thread(
+            get_original_info,
+            track.uri,
+        )
+
+        await state.text_channel.send(
+            embed=create_embed(
+                guild,
+                "music.now_playing",
+                title=info["title"],
+                duration=format_duration(track.length),
+                views=info["views"],
+                queue=player.queue.count,
+                user=state.requester or "Desconocido",
+                thumbnail=get_thumbnail(track),
+                footer_icon=state.footer_icon,
+            )
         )

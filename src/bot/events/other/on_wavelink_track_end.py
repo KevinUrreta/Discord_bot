@@ -2,6 +2,7 @@ import wavelink
 from discord.ext import commands
 
 from src.core.logging import wavelink_logger
+from src.core.music_state import get_music_state
 from src.locales.i18n import translate
 
 
@@ -26,15 +27,15 @@ class On_wavelink_track_end(commands.Cog):
 
             guild = player.channel.guild
 
-            wavelink_logger.info(
-                translate(
-                    guild,
-                    "events.other.on_wavelink_track_end.track_ended",
-                    server_name=guild.name,
-                    server_id=guild.id,
-                    track_title=track.title,
-                )
-            )
+            # wavelink_logger.info(
+            #     translate(
+            #         guild,
+            #         "events.other.on_wavelink_track_end.track_ended",
+            #         server_name=guild.name,
+            #         server_id=guild.id,
+            #         track_title=track.title,
+            #     )
+            # )
 
         if (
             player.queue.is_empty
@@ -43,5 +44,8 @@ class On_wavelink_track_end(commands.Cog):
             return
 
         next_track = player.queue.get()
+
+        state = get_music_state(player)
+        state.show_now_playing = True
 
         await player.play(next_track)
