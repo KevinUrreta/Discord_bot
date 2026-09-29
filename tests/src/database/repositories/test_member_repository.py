@@ -171,9 +171,8 @@ async def test_create_existing_member(database):
     assert existing_member is not None
     assert existing_member.id == member.id
     assert existing_member.guild_id == member.guild_id
-    assert existing_member.name == "Kevin"
-    assert existing_member.display_name == "Kevin"
-
+    assert existing_member.name == "Otro nombre"
+    assert existing_member.display_name == "Otro nombre"
 
 async def test_delete_by_guild(database):
     repository = MemberRepository(database)

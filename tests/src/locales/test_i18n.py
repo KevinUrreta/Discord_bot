@@ -4,20 +4,20 @@ from src.locales import i18n
 
 
 def test_get_locale_without_guild():
-    assert i18n.get_locale(None) == "es_ES"
+    assert i18n.get_locale(None) == "es_ES.json"
 
 
 def test_get_locale_supported_languages():
     languages = {
-        "es": "es_ES",
-        "en": "en_US",
-        "fr": "fr_FR",
-        "de": "de_DE",
-        "it": "it_IT",
-        "pt": "pt_PT",
-        "nl": "nl_NL",
-        "pl": "pl_PL",
-        "ja": "ja_JP",
+        "es": "es_ES.json",
+        "en": "en_US.json",
+        "fr": "fr_FR.json",
+        "de": "de_DE.json",
+        "it": "it_IT.json",
+        "pt": "pt_PT.json",
+        "nl": "nl_NL.json",
+        "pl": "pl_PL.json",
+        "ja": "ja_JP.json",
     }
 
     for language, locale in languages.items():
@@ -39,7 +39,7 @@ def test_get_locale_unknown_language_falls_back_to_spanish():
         {123: "unknown"}
     )
 
-    assert i18n.get_locale(guild) == "es_ES"
+    assert i18n.get_locale(guild) == "es_ES.json"
 
 
 def test_get_nested_translation():

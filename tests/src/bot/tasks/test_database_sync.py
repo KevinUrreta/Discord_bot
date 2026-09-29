@@ -32,6 +32,7 @@ async def test_sync_database_updates_guild_languages():
     cog.guild_repository.create.assert_awaited_once_with(
         guild_id=123,
         name="Test Guild",
+        source="sync_database",
     )
 
     assert bot.guild_languages[123] == "en"
