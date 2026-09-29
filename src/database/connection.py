@@ -9,6 +9,7 @@ from sqlalchemy.ext.asyncio import (
 
 from src.core.logging import database_logger, errors_logger
 from src.database import Base
+from src.locales.i18n import translate
 
 
 class Database:
@@ -22,11 +23,18 @@ class Database:
             password = os.getenv("POSTGRES_PASSWORD")
 
             if not all((database, user, password)):
-                database_logger.error(
-                    "Faltan variables de entorno de PostgreSQL."
+                errors_logger.error(
+                    translate(
+                        None,
+                        "database.errors.missing_environment",
+                    )
                 )
+
                 raise RuntimeError(
-                    "Faltan variables de entorno de PostgreSQL."
+                    translate(
+                        None,
+                        "database.errors.missing_environment",
+                    )
                 )
 
             database_url = (
@@ -46,14 +54,13 @@ class Database:
         )
 
         database_logger.info(
-            "Conexión con la base de datos inicializada."
+            translate(
+                None,
+                "database.connection.started",
+            )
         )
 
     async def create_tables(self):
-        database_logger.info(
-            "Creando tablas de la base de datos."
-        )
-
         try:
             async with self.engine.begin() as connection:
                 await connection.run_sync(
@@ -61,23 +68,21 @@ class Database:
                 )
         except Exception as error:
             errors_logger.error(
-                "Error al crear las tablas de la base de datos: %s",
-                error,
+                translate(
+                    None,
+                    "database.errors.create_tables",
+                    error=error,
+                ),
                 exc_info=error,
             )
             raise
 
-        database_logger.info(
-            "Tablas de la base de datos creadas correctamente."
-        )
-
     async def close(self):
-        database_logger.info(
-            "Cerrando conexión con la base de datos."
-        )
-
         await self.engine.dispose()
 
         database_logger.info(
-            "Conexión con la base de datos cerrada."
+            translate(
+                None,
+                "database.connection.closed",
+            )
         )

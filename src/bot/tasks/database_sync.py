@@ -1,8 +1,8 @@
 from discord.ext import commands, tasks
 
-from src.core.logging import database_logger
-from src.locales.i18n import set_guild_languages
 from src.database.repositories.guild import GuildRepository
+from src.database.repositories.member import MemberRepository
+from src.locales.i18n import set_guild_languages
 
 
 class DatabaseSync(commands.Cog):
@@ -10,6 +10,10 @@ class DatabaseSync(commands.Cog):
         self.bot = bot
 
         self.guild_repository = GuildRepository(
+            self.bot.database
+        )
+
+        self.member_repository = MemberRepository(
             self.bot.database
         )
 
@@ -24,31 +28,26 @@ class DatabaseSync(commands.Cog):
 
     @tasks.loop(minutes=10)
     async def sync_database(self):
-        database_logger.info(
-            "Iniciando sincronización de %s servidores.",
-            len(self.bot.guilds),
-        )
-
         for guild in self.bot.guilds:
             guild_data = await self.guild_repository.create(
                 guild_id=guild.id,
                 name=guild.name,
+                source="sync_database",
             )
 
             self.bot.guild_languages[guild.id] = (
                 guild_data.language
             )
 
-            database_logger.info(
-                "Servidor sincronizado: %s (%s).",
-                guild.name,
-                guild.id,
-            )
-
-        database_logger.info(
-            "Sincronización completada: %s servidores.",
-            len(self.bot.guilds),
-        )
+            for member in guild.members:
+                await self.member_repository.create(
+                    member_id=member.id,
+                    guild_id=guild.id,
+                    name=member.name,
+                    display_name=member.display_name,
+                    joined_at=member.joined_at,
+                    source="sync_database",
+                )
 
     @sync_database.before_loop
     async def before_sync_database(self):

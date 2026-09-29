@@ -1,8 +1,11 @@
+from typing import cast
+
 from sqlalchemy import select
 
 from src.core.logging import database_logger
 from src.database.connection import Database
 from src.database.models.member import Member
+from src.locales.i18n import translate
 
 
 class MemberRepository:
@@ -17,6 +20,7 @@ class MemberRepository:
         name: str,
         display_name: str,
         joined_at=None,
+        source: str | None = None,
     ) -> Member:
         async with self.database.session_factory() as session:
             member = await self._get(
@@ -26,11 +30,63 @@ class MemberRepository:
             )
 
             if member is not None:
-                database_logger.info(
-                    "Miembro ya existente: %s en el servidor %s.",
-                    member_id,
-                    guild_id,
+                current_name = cast(str, member.name)
+                current_display_name = cast(
+                    str,
+                    member.display_name,
                 )
+                current_joined_at = member.joined_at
+
+                changes = []
+
+                if current_name != name:
+                    changes.append(
+                        f"name: {current_name} → {name}"
+                    )
+                    setattr(member, "name", name)
+
+                if current_display_name != display_name:
+                    changes.append(
+                        f"display_name: "
+                        f"{current_display_name} → "
+                        f"{display_name}"
+                    )
+                    setattr(
+                        member,
+                        "display_name",
+                        display_name,
+                    )
+
+                if current_joined_at != joined_at:
+                    changes.append(
+                        f"joined_at: "
+                        f"{current_joined_at} → "
+                        f"{joined_at}"
+                    )
+                    setattr(
+                        member,
+                        "joined_at",
+                        joined_at,
+                    )
+
+                if not changes:
+                    return member
+
+                await session.commit()
+                await session.refresh(member)
+
+                database_logger.info(
+                    translate(
+                        None,
+                        "database.update.member",
+                        id=member_id,
+                        name=current_name,
+                        changes=", ".join(changes),
+                        guild_id=guild_id,
+                        source=f" | {source}" if source else "",
+                    )
+                )
+
                 return member
 
             member = Member(
@@ -46,9 +102,14 @@ class MemberRepository:
             await session.refresh(member)
 
             database_logger.info(
-                "Miembro creado: %s en el servidor %s.",
-                member_id,
-                guild_id,
+                translate(
+                    None,
+                    "database.insert.member",
+                    id=member_id,
+                    name=name,
+                    guild_id=guild_id,
+                    source=f" | {source}" if source else "",
+                )
             )
 
             return member
@@ -69,6 +130,7 @@ class MemberRepository:
         self,
         member_id: int,
         guild_id: int,
+        source: str | None = None,
         **values,
     ) -> Member | None:
         async with self.database.session_factory() as session:
@@ -79,26 +141,36 @@ class MemberRepository:
             )
 
             if member is None:
-                database_logger.warning(
-                    "No se puede actualizar el miembro %s: "
-                    "no existe en el servidor %s.",
-                    member_id,
-                    guild_id,
-                )
                 return None
 
+            member_name = cast(str, member.name)
+            changes = []
+
             for key, value in values.items():
-                setattr(member, key, value)
+                current_value = getattr(member, key)
+
+                if current_value != value:
+                    changes.append(
+                        f"{key}: {current_value} → {value}"
+                    )
+                    setattr(member, key, value)
+
+            if not changes:
+                return member
 
             await session.commit()
             await session.refresh(member)
 
             database_logger.info(
-                "Miembro actualizado: %s en el servidor %s. "
-                "Campos modificados: %s.",
-                member_id,
-                guild_id,
-                ", ".join(values.keys()),
+                translate(
+                    None,
+                    "database.update.member",
+                    id=member_id,
+                    name=member_name,
+                    changes=", ".join(changes),
+                    guild_id=guild_id,
+                    source=f" | {source}" if source else "",
+                )
             )
 
             return member
@@ -107,6 +179,7 @@ class MemberRepository:
         self,
         member_id: int,
         guild_id: int,
+        source: str | None = None,
     ) -> bool:
         async with self.database.session_factory() as session:
             member = await self._get(
@@ -116,21 +189,22 @@ class MemberRepository:
             )
 
             if member is None:
-                database_logger.warning(
-                    "No se puede eliminar el miembro %s: "
-                    "no existe en el servidor %s.",
-                    member_id,
-                    guild_id,
-                )
                 return False
+
+            member_name = cast(str, member.name)
 
             await session.delete(member)
             await session.commit()
 
             database_logger.info(
-                "Miembro eliminado: %s del servidor %s.",
-                member_id,
-                guild_id,
+                translate(
+                    None,
+                    "database.delete.member",
+                    id=member_id,
+                    name=member_name,
+                    guild_id=guild_id,
+                    source=f" | {source}" if source else "",
+                )
             )
 
             return True
@@ -138,6 +212,7 @@ class MemberRepository:
     async def delete_by_guild(
         self,
         guild_id: int,
+        source: str | None = None,
     ) -> int:
         async with self.database.session_factory() as session:
             result = await session.execute(
@@ -151,13 +226,24 @@ class MemberRepository:
             for member in members:
                 await session.delete(member)
 
+            if not members:
+                return 0
+
             await session.commit()
 
-            database_logger.info(
-                "Miembros eliminados del servidor %s: %s.",
-                guild_id,
-                len(members),
-            )
+            for member in members:
+                member_name = cast(str, member.name)
+
+                database_logger.info(
+                    translate(
+                        None,
+                        "database.delete.member",
+                        id=member.id,
+                        name=member_name,
+                        guild_id=guild_id,
+                        source=f" | {source}" if source else "",
+                    )
+                )
 
             return len(members)
 
