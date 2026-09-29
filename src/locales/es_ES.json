@@ -154,6 +154,7 @@
             "on_message": {
                 "message_detected": "{author_name} ha enviado un mensaje en {channel_name} de {server_name}: {message}"
             },
+
             "on_message_delete": {
                 "message_deleted": "{author} ha eliminado un mensaje en {channel} de {guild}. Mensaje: {message}"
             },
@@ -167,7 +168,7 @@
             },
 
             "on_raw_reaction_remove": {
-                "reaction_removed": "{user} ha eliminado la reacción {emoji} del mensaje {message_id}."
+                "reaction_removed": "{user} ha eliminado la reacción {emoji} al mensaje {message_id}."
             },
 
             "on_reaction_add": {
@@ -191,35 +192,45 @@
             "on_application_command_error": {
                 "command_error": "Se ha producido un error en el comando de aplicación {command}: {error}"
             },
+
             "on_command": {
                 "command_executed": "{author} ha ejecutado el comando {command} en {channel}."
             },
+
             "on_command_error": {
                 "command_error": "Se ha producido un error en el comando {command}: {error}",
                 "missing_permissions": "No tienes permisos suficientes para ejecutar este comando."
             },
+
             "on_ready": {
                 "bot_connected": "El bot se ha conectado como {bot}.",
                 "connecting_lavalink": "Conexión con Lavalink exitosa."
             },
+
             "on_connect": {
                 "discord_connected": "Se ha establecido la conexión con Discord."
             },
+
             "on_disconnect": {
                 "discord_disconnected": "Se ha perdido la conexión con Discord."
             },
+
             "on_resumed": {
                 "discord_resumed": "La sesión de Discord se ha reanudado correctamente."
             },
+
             "on_voice_state_update": {
                 "voice_state_updated": "{member_name} ha realizado la acción {action} en {channel_name} de {server_name}."
             },
+
             "on_webhook_update": {
                 "webhook_updated": "Se han actualizado los webhooks de {channel}."
             },
+
             "on_wavelink_track_start": {
                 "track_started": "Ha comenzado la reproducción de {track_title} en {server_name}."
             },
+
             "on_wavelink_track_end": {
                 "track_ended": "Ha terminado la reproducción de {track_title} en {server_name}."
             }
@@ -238,21 +249,34 @@
             "started": "DATABASE | Conexión iniciada",
             "closed": "DATABASE | Conexión cerrada"
         },
+
         "errors": {
             "missing_environment": "Faltan variables de entorno de PostgreSQL.",
             "create_tables": "Error al crear las tablas de la base de datos: {error}"
         },
+
         "insert": {
             "guild": "INSERT | guild | [{id}] {name}{source}",
             "member": "INSERT | member | [{id}] {name} | guild=[{guild_id}]{source}"
         },
+
         "update": {
             "guild": "UPDATE | guild | [{id}] {name} | {changes}{source}",
             "member": "UPDATE | member | [{id}] {name} | {changes} | guild=[{guild_id}]{source}"
         },
+
         "delete": {
             "guild": "DELETE | guild | [{id}] {name}{source}",
             "member": "DELETE | member | [{id}] {name} | guild=[{guild_id}]{source}"
+        }
+    },
+
+    "core": {
+        "loader": {
+            "commands": "Comandos",
+            "events": "Eventos",
+            "loaded": "{label} | {category} | cargados correctamente ({loaded})",
+            "load_error": "{label} | {category} | Error al cargar {filename} | {error_type}: {error}"
         }
     }
 }
