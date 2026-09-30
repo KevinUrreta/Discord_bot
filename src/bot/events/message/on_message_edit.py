@@ -11,10 +11,16 @@ class MessageEdit(commands.Cog):
 
     @commands.Cog.listener()
     async def on_message_edit(self, before, after):
+        # if after.author == self.bot.user:
+        #     return
+
+        if before.content == after.content:
+            return
+
         logger.info(
             translate(
-                after.guild,
-                "events.message.on_message_edit.message_edited",
+                None,
+                "bot.events.logs.message.on_message_edit.message_edited",
                 server_name=after.guild.name,
                 channel_name=after.channel.name,
                 author_name=after.author.name,

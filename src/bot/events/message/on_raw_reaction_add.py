@@ -14,7 +14,7 @@ class RawReactionAdd(commands.Cog):
         logger.info(
             translate(
                 self.bot.get_guild(payload.guild_id),
-                "events.message.on_raw_reaction_add.reaction_added",
+                "bot.events.logs.message.on_raw_reaction_add.reaction_added",
                 message_id=payload.message_id, emoji=payload.emoji, user=payload.user_id,
             )
         )

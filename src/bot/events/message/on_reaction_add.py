@@ -13,8 +13,8 @@ class ReactionAdd(commands.Cog):
     async def on_reaction_add(self, reaction, user):
         logger.info(
             translate(
-                reaction.message.guild,
-                "events.message.on_reaction_add.reaction_added",
+                None,
+                "bot.events.logs.message.on_reaction_add.reaction_added",
                 channel=reaction.message.channel, emoji=reaction.emoji, user=user,
             )
         )

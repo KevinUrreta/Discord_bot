@@ -17,17 +17,98 @@ class On_message(commands.Cog):
         if message.guild is None:
             return
 
+        channel_name = getattr(
+            message.channel,
+            "name",
+            "DM",
+        )
+
+        if message.embeds:
+            embed_messages = []
+
+            for embed in message.embeds:
+                embed_info = []
+
+                if embed.title:
+                    embed_info.append(
+                        f"Título: {embed.title}"
+                    )
+
+                if embed.description:
+                    embed_info.append(
+                        f"Descripción: {embed.description}"
+                    )
+
+                if embed.url:
+                    embed_info.append(
+                        f"URL: {embed.url}"
+                    )
+
+                if embed.type:
+                    embed_info.append(
+                        f"Tipo: {embed.type}"
+                    )
+
+                if embed.author.name:
+                    author_info = embed.author.name
+
+                    if embed.author.url:
+                        author_info += f" ({embed.author.url})"
+
+                    embed_info.append(
+                        f"Autor: {author_info}"
+                    )
+
+                for field in embed.fields:
+                    embed_info.append(
+                        f"Campo: {field.name} = {field.value}"
+                    )
+
+                if embed.footer.text:
+                    footer_info = embed.footer.text
+
+                    if embed.footer.icon_url:
+                        footer_info += (
+                            f" ({embed.footer.icon_url})"
+                        )
+
+                    embed_info.append(
+                        f"Pie: {footer_info}"
+                    )
+
+                if embed.thumbnail.url:
+                    embed_info.append(
+                        f"Thumbnail: {embed.thumbnail.url}"
+                    )
+
+                if embed.image.url:
+                    embed_info.append(
+                        f"Imagen: {embed.image.url}"
+                    )
+
+                if embed.timestamp:
+                    embed_info.append(
+                        f"Fecha: {embed.timestamp}"
+                    )
+
+                embed_messages.append(
+                    " | ".join(embed_info)
+                )
+
+            message_content = " || ".join(
+                embed_messages
+            )
+
+        else:
+            message_content = message.content
+
         logger.info(
             translate(
-                message.guild,
-                "events.message.on_message.message_detected",
+                None,
+                "bot.events.logs.message.on_message.message_detected",
                 server_name=message.guild.name,
-                channel_name=getattr(
-                    message.channel,
-                    "name",
-                    "DM",
-                ),
+                channel_name=channel_name,
                 author_name=message.author.name,
-                message=message.content,
+                message=message_content,
             )
         )

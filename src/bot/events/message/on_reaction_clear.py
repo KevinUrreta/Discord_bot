@@ -13,8 +13,8 @@ class ReactionClear(commands.Cog):
     async def on_reaction_clear(self, message, reactions):
         logger.info(
             translate(
-                message.guild,
-                "events.message.on_reaction_clear.reactions_cleared",
+                None,
+                "bot.events.logs.message.on_reaction_clear.reactions_cleared",
                 message=message,
             )
         )

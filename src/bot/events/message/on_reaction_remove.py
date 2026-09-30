@@ -13,8 +13,8 @@ class ReactionRemove(commands.Cog):
     async def on_reaction_remove(self, reaction, user):
         logger.info(
             translate(
-                reaction.message.guild,
-                "events.message.on_reaction_remove.reaction_removed",
+                None,
+                "bot.events.logs.message.on_reaction_remove.reaction_removed",
                 channel=reaction.message.channel, emoji=reaction.emoji, user=user,
             )
         )

@@ -13,8 +13,8 @@ class Typing(commands.Cog):
     async def on_typing(self, channel, user, when):
         logger.info(
             translate(
-                getattr(channel, "guild", None),
-                "events.message.on_typing.typing_detected",
+                None,
+                "bot.events.logs.message.on_typing.typing_detected",
                 user=user,
                 channel=channel,
             )

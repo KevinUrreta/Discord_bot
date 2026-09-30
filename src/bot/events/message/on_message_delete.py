@@ -13,8 +13,10 @@ class MessageDelete(commands.Cog):
     async def on_message_delete(self, message):
         logger.info(
             translate(
-                message.guild,
-                "events.message.on_message_delete.message_deleted",
-                channel=message.channel, author=message.author, message=message.content,
+                None,
+                "bot.events.logs.message.on_message_delete.message_deleted",
+                channel=message.channel,
+                author=message.author,
+                message=message.content,
             )
         )

@@ -14,7 +14,7 @@ class RawReactionRemove(commands.Cog):
         logger.info(
             translate(
                 self.bot.get_guild(payload.guild_id),
-                "events.message.on_raw_reaction_remove.reaction_removed",
+                "bot.events.logs.message.on_raw_reaction_remove.reaction_removed",
                 message_id=payload.message_id, emoji=payload.emoji, user=payload.user_id,
             )
         )
