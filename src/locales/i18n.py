@@ -103,4 +103,9 @@ def translate(
     if not isinstance(message, str):
         return key
 
+    kwargs.setdefault(
+        "guild",
+        guild,
+    )
+
     return message.format(**kwargs)

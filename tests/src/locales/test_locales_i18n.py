@@ -90,7 +90,7 @@ def test_get_nested_translation():
 
     result = i18n.get_nested_translation(
         translations,
-        "music.play.title",
+        "bot.commands.music.embeds.play.title",
     )
 
     assert result == "Play"
@@ -103,7 +103,7 @@ def test_get_nested_translation_missing_key():
 
     result = i18n.get_nested_translation(
         translations,
-        "music.play.title",
+        "bot.commands.music.embeds.play.title",
     )
 
     assert result == {}
@@ -112,7 +112,7 @@ def test_get_nested_translation_missing_key():
 def test_translate_existing_key():
     result = i18n.translate(
         None,
-        "music.play.voice_not_connected",
+        "bot.commands.music.embeds.play.voice_not_connected",
         user=TEST_NAME,
     )
 
