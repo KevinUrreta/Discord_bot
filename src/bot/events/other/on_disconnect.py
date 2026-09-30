@@ -14,7 +14,6 @@ class Disconnect(commands.Cog):
         logger.info(
             translate(
                 None,
-                "events.other.on_disconnect.discord_disconnected",
-
+                "events.other.on_disconnect.discord_disconnected"
             )
         )

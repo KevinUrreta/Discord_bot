@@ -10,12 +10,7 @@ class VoiceStateUpdate(commands.Cog):
         self.bot = bot
 
     @commands.Cog.listener()
-    async def on_voice_state_update(
-        self,
-        member,
-        before,
-        after,
-    ):
+    async def on_voice_state_update(self, member, before, after):
         guild = member.guild
 
         before_channel = before.channel

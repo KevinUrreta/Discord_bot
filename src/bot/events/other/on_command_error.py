@@ -17,7 +17,7 @@ class On_command_error(commands.Cog):
     ):
         if isinstance(
             error,
-            commands.MissingPermissions,
+            (commands.MissingPermissions, commands.CheckFailure),
         ):
             await ctx.send(
                 translate(

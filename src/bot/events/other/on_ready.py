@@ -2,8 +2,8 @@ import wavelink
 
 from discord.ext import commands
 
-from src.locales.i18n import translate
 from src.core.logging import logger
+from src.locales.i18n import translate
 
 
 class On_ready(commands.Cog):

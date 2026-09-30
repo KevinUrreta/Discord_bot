@@ -14,7 +14,6 @@ class Resumed(commands.Cog):
         logger.info(
             translate(
                 None,
-                "events.other.on_resumed.discord_resumed",
-
+                "events.other.on_resumed.discord_resumed"
             )
         )
