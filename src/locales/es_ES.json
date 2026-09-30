@@ -2,14 +2,14 @@
   "commands": {
     "config": {
       "prefix": {
-        "changed": "El prefijo ha sido cambiado a `{prefix}`.",
-        "invalid": "El prefijo no es válido.",
-        "too_long": "El prefijo no puede tener más de {max_length} caracteres."
+        "current_prefix": "El prefijo actual del servidor es `{prefix}`.",
+        "prefix_changed": "El prefijo ha sido cambiado a `{prefix}`."
       },
       "language": {
-        "changed": "El idioma del servidor ha sido cambiado a **{language}**.",
-        "invalid": "El idioma seleccionado no está disponible.",
-        "available": "Idiomas disponibles: {languages}"
+        "current_language": "El idioma actual del servidor es **{language_name}** (`{language}`).",
+        "invalid_language": "El idioma seleccionado no está disponible.",
+        "available_languages": "Idiomas disponibles:\n{languages}",
+        "language_changed": "El idioma del servidor ha sido cambiado a **{language_name}** (`{language}`)."
       }
     },
     "music": {
@@ -19,26 +19,23 @@
       }
     }
   },
-
   "embeds": {
     "music": {
       "play": {
         "missing_song": {
           "title": "Falta la canción",
-          "description": "No puedo reproducir música si no me dices qué canción quieres escuchar.",
+          "description": "No puedo reproducir música si no me dices qué canción quieres escuchar. Soy un bot, no un adivino. 🔮",
           "footer": {
             "text": "Pedido por: {user}"
           }
         },
-
         "spotify_not_supported": {
           "title": "Spotify no compatible",
-          "description": "Actualmente no puedo reproducir canciones directamente desde enlaces de Spotify.",
+          "description": "Los enlaces de Spotify se me atragantan. Dame otra fuente y te la pongo sin quejarme. 🙃",
           "footer": {
             "text": "Pedido por: {user}"
           }
         },
-
         "voice_not_connected": {
           "title": "No estás en un canal de voz",
           "description": "¿Dónde estás...? No te veo... 🥹🥺",
@@ -46,32 +43,28 @@
             "text": "Pedido por: {user}"
           }
         },
-
         "no_song_found": {
           "title": "Canción no encontrada",
-          "description": "No he podido encontrar ninguna canción con esa búsqueda.",
+          "description": "He buscado por todos lados y nada. ¿Seguro que esa canción existe o te la has inventado? 🤔",
           "footer": {
             "text": "Pedido por: {user}"
           }
         },
-
         "added_to_queue": {
           "title": "Canción añadida a la cola",
-          "description": "**{title}**\n\nEn cola: **{queue}**",
+          "description": "**{title}**\n\nEn cola: **{queue}**\n\nBuena elección, por cierto. 😏",
           "footer": {
             "text": "Pedido por: {user}"
           }
         },
-
         "playlist_added_to_queue": {
           "title": "Lista añadida a la cola",
-          "description": "**{title}**\n\nCanciones en cola: **{queue}**",
+          "description": "**{title}**\n\nCanciones en cola: **{queue}**\n\nMenuda playlist te has marcado. Vamos allá. 🔥",
           "footer": {
             "text": "Pedido por: {user}"
           }
         }
       },
-
       "now_playing": {
         "title": "Ahora suena",
         "fields": [
@@ -100,196 +93,173 @@
           "text": "Pedido por: {user}"
         }
       },
-
       "queue_empty_finished": {
         "title": "No hay más canciones en la cola",
-        "description": "Parece ser que la lista está vacía.\n\n¿Por qué no añades un par?",
+        "description": "Parece ser que la lista está vacía.\n\n¿Por qué no añades un par? Que esto no se va a llenar solo. 🎵",
         "footer": {
           "text": "Pedido por: {user}"
         }
       },
-
       "disconnected_from_voice": {
         "title": "He salido del canal de voz",
-        "description": "Me has desconectado. ¿En serio?",
+        "description": "Me has desconectado. ¿En serio? Y yo que estaba tan cómodo... 😤",
         "footer": {
           "text": "Pedido por: {user}"
         }
       },
-
       "pause": {
         "not_connected": {
           "title": "No estoy conectado",
-          "description": "No estoy conectado a ningún canal de voz.",
+          "description": "No estoy conectado a ningún canal de voz. Así que no, no puedo pausar nada. 🙃",
           "footer": {
             "text": "Pedido por: {user}"
           }
         },
-
         "no_song_playing": {
           "title": "No hay ninguna canción reproduciéndose",
-          "description": "No puedo pausar algo que no se está reproduciendo.",
+          "description": "No puedo pausar algo que no se está reproduciendo. Eso sería magia, y no llego a tanto. ✨",
           "footer": {
             "text": "Pedido por: {user}"
           }
         },
-
         "paused": {
           "title": "Reproducción pausada",
-          "description": "¡Me estaba gustando la canción!",
+          "description": "¡Me estaba gustando la canción! Pero bueno, tú mandas. ⏸️",
           "footer": {
             "text": "Pedido por: {user}"
           }
         }
       },
-
       "resume": {
         "not_connected": {
           "title": "No estoy conectado",
-          "description": "No estoy conectado a ningún canal de voz.",
+          "description": "No estoy conectado a ningún canal de voz. Invítame primero, ¿no? 🥺",
           "footer": {
             "text": "Pedido por: {user}"
           }
         },
-
         "no_song_playing": {
           "title": "No hay ninguna canción pausada",
-          "description": "No hay ninguna reproducción pausada que reanudar.",
+          "description": "No hay ninguna reproducción pausada que reanudar. ¿Te has confundido de bot? 🤨",
           "footer": {
             "text": "Pedido por: {user}"
           }
         },
-
         "resumed": {
           "title": "Reproducción reanudada",
-          "description": "¡Qué bien! Me gusta mucho tu música.",
+          "description": "¡Qué bien! Me gusta mucho tu música. Sigue así. 🎶",
           "footer": {
             "text": "Pedido por: {user}"
           }
         }
       },
-
       "remove": {
         "not_connected": {
           "title": "No estoy conectado",
-          "description": "No estoy conectado a ningún canal de voz.",
+          "description": "No estoy conectado a ningún canal de voz. ¿Qué quieres que retire exactamente? 🤔",
           "footer": {
             "text": "Pedido por: {user}"
           }
         },
-
         "queue_empty": {
           "title": "La cola está vacía",
-          "description": "No hay ninguna canción que retirar.",
+          "description": "No hay ninguna canción que retirar. La cola está más vacía que mi paciencia. 😮‍💨",
           "footer": {
             "text": "Pedido por: {user}"
           }
         },
-
         "invalid_position": {
           "title": "Número inválido",
-          "description": "El número de canción indicado no es válido.",
+          "description": "El número de canción indicado no es válido. ¿Has contado bien? 🔢",
           "footer": {
             "text": "Pedido por: {user}"
           }
         },
-
         "removed": {
           "title": "Canción retirada de la cola",
-          "description": "**{title}**\n\nEspero que no te hayas equivocado, y tampoco me eches la culpa.",
+          "description": "**{title}**\n\nEspero que no te hayas equivocado, y tampoco me eches la culpa. Yo solo obedezco. 😇",
           "footer": {
             "text": "Pedido por: {user}"
           }
         }
       },
-
       "leave": {
         "not_connected": {
           "title": "No estoy conectado",
-          "description": "No estoy conectado a ningún canal de voz.",
+          "description": "No estoy conectado a ningún canal de voz. No puedo irme de donde no estoy. 🚪",
           "footer": {
             "text": "Pedido por: {user}"
           }
         },
-
         "disconnected": {
           "title": "He salido del canal de voz",
-          "description": "Me has desconectado. ¿En serio?",
+          "description": "Me has desconectado. ¿En serio? Y yo tan feliz con la música... 😔",
           "footer": {
             "text": "Pedido por: {user}"
           }
         }
       },
-
       "queue": {
         "not_connected": {
           "title": "No estoy conectado",
-          "description": "No estoy conectado a ningún canal de voz.",
+          "description": "No estoy conectado a ningún canal de voz. Primero invítame, luego hablamos de colas. 🎧",
           "footer": {
             "text": "Pedido por: {user}"
           }
         },
-
         "empty": {
           "title": "La cola está vacía",
-          "description": "Parece ser que la lista está vacía.\n\n¿Por qué no añades un par?",
+          "description": "Parece ser que la lista está vacía.\n\n¿Por qué no añades un par? Que esto parece un desierto. 🏜️",
           "footer": {
             "text": "Pedido por: {user}"
           }
         },
-
         "list": {
           "title": "Tu lista de reproducción",
-          "description": "{queue}",
+          "description": "Esto es lo que tienes en la cola:\n\n{queue}\n\nNo está mal, pero acepto sugerencias. 😌",
           "footer": {
             "text": "Pedido por: {user}"
           }
         }
       },
-
       "shuffle": {
         "not_connected": {
           "title": "No estoy conectado",
-          "description": "No estoy conectado a ningún canal de voz.",
+          "description": "No estoy conectado a ningún canal de voz. Sin música no hay mezcla que valga. 🎲",
           "footer": {
             "text": "Pedido por: {user}"
           }
         },
-
         "not_enough_songs": {
           "title": "No puedo mezclar la lista",
-          "description": "Añade más de una canción para poder mezclar la lista.",
+          "description": "Añade más de una canción para poder mezclar la lista. Con una sola no hay mucho misterio. 🙄",
           "footer": {
             "text": "Pedido por: {user}"
           }
         },
-
         "shuffled": {
           "title": "Lista mezclada",
-          "description": "Siendo sincera, ya no sé qué canción sigue después de cuál.",
+          "description": "Siendo sincera, ya no sé qué canción sigue después de cuál. Que empiece la sorpresa. 🔀",
           "footer": {
             "text": "Pedido por: {user}"
           }
         }
       },
-
       "loop": {
         "not_connected": {
           "title": "No estoy conectado",
-          "description": "No estoy conectado a ningún canal de voz.",
+          "description": "No estoy conectado a ningún canal de voz. No puedo reproducir en bucle lo que no suena. 🔁",
           "footer": {
             "text": "Pedido por: {user}"
           }
         },
-
         "no_song_playing": {
           "title": "No hay ninguna canción reproduciéndose",
-          "description": "No puedo activar el bucle si no hay ninguna canción.",
+          "description": "No puedo activar el bucle si no hay ninguna canción. Pon algo primero, anda. 🎵",
           "footer": {
             "text": "Pedido por: {user}"
           }
         },
-
         "enabled": {
           "title": "Canción en bucle",
           "description": "¿Tu canción favorita? Estamos entrando en un bucleee. 😵‍💫",
@@ -297,149 +267,132 @@
             "text": "Pedido por: {user}"
           }
         },
-
         "disabled": {
           "title": "Bucle desactivado",
-          "description": "La canción ya no se repetirá.",
+          "description": "La canción ya no se repetirá. Se acabó el déjà vu. 🔂",
           "footer": {
             "text": "Pedido por: {user}"
           }
         }
       },
-
       "skip": {
         "not_connected": {
           "title": "No estoy conectado",
-          "description": "No estoy conectado a ningún canal de voz.",
+          "description": "No estoy conectado a ningún canal de voz. No puedo saltar nada desde el vacío. ⏭️",
           "footer": {
             "text": "Pedido por: {user}"
           }
         },
-
         "no_song_playing": {
           "title": "No hay ninguna canción reproduciéndose",
-          "description": "No puedo saltar una canción si no hay ninguna reproduciéndose.",
+          "description": "No puedo saltar una canción si no hay ninguna reproduciéndose. ¿Saltamos al vacío? 🕳️",
           "footer": {
             "text": "Pedido por: {user}"
           }
         },
-
         "skipped": {
           "title": "Canción saltada",
-          "description": "He pasado a la siguiente canción.",
+          "description": "He pasado a la siguiente canción. Espero que esta te guste más. 🤞",
           "footer": {
             "text": "Pedido por: {user}"
           }
         }
       },
-
       "stop": {
         "not_connected": {
           "title": "No estoy conectado",
-          "description": "No estoy conectado a ningún canal de voz.",
+          "description": "No estoy conectado a ningún canal de voz. No puedo parar lo que no empecé. 🛑",
           "footer": {
             "text": "Pedido por: {user}"
           }
         },
-
         "stopped": {
           "title": "Reproducción detenida",
-          "description": "¡Ohh noo! ¿Te has cansado de mí y quieres que me calle? :(",
+          "description": "¡Ohh noo! ¿Te has cansado de mí y quieres que me calle? :( Me voy a llorar a un rincón. 😭",
           "footer": {
             "text": "Pedido por: {user}"
           }
         }
       },
-
       "clear": {
         "not_connected": {
           "title": "No estoy conectado",
-          "description": "No estoy conectado a ningún canal de voz.",
+          "description": "No estoy conectado a ningún canal de voz. No hay cola que limpiar. 🧹",
           "footer": {
             "text": "Pedido por: {user}"
           }
         },
-
         "queue_empty": {
           "title": "La cola está vacía",
-          "description": "No hay canciones en la cola que eliminar.",
+          "description": "No hay canciones en la cola que eliminar. Ya está todo limpio. ✨",
           "footer": {
             "text": "Pedido por: {user}"
           }
         },
-
         "cleared": {
           "title": "Cola de reproducción eliminada",
-          "description": "Te he limpiado la mierda que has puesto, a ver si espabilas.",
+          "description": "Te he limpiado la mierda que has puesto, a ver si espabilas. 🧼😏",
           "footer": {
             "text": "Pedido por: {user}"
           }
         }
       },
-
       "volume": {
         "not_connected": {
           "title": "No estoy conectado",
-          "description": "No estoy conectado a ningún canal de voz.",
+          "description": "No estoy conectado a ningún canal de voz. Sin conexión no hay volumen que valga. 🔊",
           "footer": {
             "text": "Pedido por: {user}"
           }
         },
-
         "invalid_volume": {
           "title": "Volumen inválido",
-          "description": "El volumen debe estar entre **0 y 100**.",
+          "description": "El volumen debe estar entre **0 y 100**. Ni más ni menos, no me marees. 🎚️",
           "footer": {
             "text": "Pedido por: {user}"
           }
         },
-
         "too_high": {
           "title": "Volumen demasiado alto",
-          "description": "No quiero que te quedes sordo.",
+          "description": "No quiero que te quedes sordo. Bájale un poco, anda. 🫣",
           "footer": {
             "text": "Pedido por: {user}"
           }
         },
-
         "too_low": {
           "title": "Volumen demasiado bajo",
-          "description": "O quizá solo quieres hacerme callar.",
+          "description": "O quizá solo quieres hacerme callar. Pues casi que funciona. 🤫",
           "footer": {
             "text": "Pedido por: {user}"
           }
         },
-
         "changed": {
           "title": "Volumen actualizado",
-          "description": "He establecido el volumen al **{volume}%**.\n\n¡Disfruta!",
+          "description": "He establecido el volumen al **{volume}%**.\n\n¡Disfruta! 🎧",
           "footer": {
             "text": "Pedido por: {user}"
           }
         }
       },
-
       "lyrics": {
         "not_found": {
-          "title": "🎤 Letras no encontradas",
-          "description": "No pude encontrar las letras de la canción.\n\n¡Intenta de nuevo con un título diferente!",
+          "title": "Letras no encontradas",
+          "description": "No pude encontrar las letras de la canción.\n\n¡Intenta de nuevo con un título diferente! A lo mejor así suena la flauta. 🎤",
           "footer": {
             "text": "Pedido por: {user}"
           }
         },
-
         "not_available": {
-          "title": "🎤 Letras en construcción",
-          "description": "Esta función todavía está en construcción.",
+          "title": "Letras en construcción",
+          "description": "Esta función todavía está en construcción. Paciencia, que los milagros tardan. 🚧",
           "footer": {
             "text": "Pedido por: {user}"
           }
         }
       },
-
       "voice": {
         "not_connected": {
-          "title": "🔊 No estás en un canal de voz",
+          "title": "No estás en un canal de voz",
           "description": "¿Dónde estás...? No te veo... 🥹🥺",
           "footer": {
             "text": "Pedido por: {user}"
@@ -448,7 +401,6 @@
       }
     }
   },
-
   "events": {
     "guild": {
       "on_guild_channel_create": {
@@ -467,9 +419,9 @@
         "guild_added": "Servidor añadido: {guild_name} ({guild_id})"
       },
       "on_guild_remove": {
-          "members_deleted": "Miembros eliminados: {deleted_members} de {guild_name} ({guild_id})",
-          "guild_deleted": "Servidor eliminado: {guild_name} ({guild_id})",
-          "guild_not_found": "Servidor no encontrado en la BD: {guild_name} ({guild_id})"
+        "members_deleted": "Miembros eliminados: {deleted_members} de {guild_name} ({guild_id})",
+        "guild_deleted": "Servidor eliminado: {guild_name} ({guild_id})",
+        "guild_not_found": "Servidor no encontrado en la BD: {guild_name} ({guild_id})"
       },
       "on_guild_role_create": {
         "role_created": "Se ha creado el rol {role}."
@@ -484,25 +436,23 @@
         "stickers_updated": "Se han actualizado los stickers del servidor {guild}."
       }
     },
-
     "member": {
       "on_member_join": {
-          "member_added": "Miembro añadido: {name} ({id}) en {guild_name} ({guild_id})"
+        "member_added": "Miembro añadido: {name} ({id}) en {guild_name} ({guild_id})"
       },
       "on_member_remove": {
-          "member_deleted": "Miembro eliminado: {name} ({id}) de {guild_name} ({guild_id})",
-          "member_not_found": "Miembro no encontrado en la BD: {name} ({id}) en {guild_name} ({guild_id})"
+        "member_deleted": "Miembro eliminado: {name} ({id}) de {guild_name} ({guild_id})",
+        "member_not_found": "Miembro no encontrado en la BD: {name} ({id}) en {guild_name} ({guild_id})"
       },
       "on_member_update": {
-          "member_updated": "Miembro actualizado: {name} ({id}) en {guild_name} ({guild_id})"
+        "member_updated": "Miembro actualizado: {name} ({id}) en {guild_name} ({guild_id})"
       },
       "on_user_update": {
-          "username_updated": "Usuario actualizado: {before_name} ({id}) -> {after_name} ({id})",
-          "global_name_updated": "Nombre global actualizado: {before_name} ({id}) -> {after_name} ({id})",
-          "avatar_updated": "Avatar actualizado: {name} ({id})"
+        "username_updated": "Usuario actualizado: {before_name} ({id}) -> {after_name} ({id})",
+        "global_name_updated": "Nombre global actualizado: {before_name} ({id}) -> {after_name} ({id})",
+        "avatar_updated": "Avatar actualizado: {name} ({id})"
       }
     },
-
     "message": {
       "on_message": {
         "message_detected": "{author_name} ha enviado un mensaje en {channel_name} de {server_name}: {message}"
@@ -532,7 +482,6 @@
         "typing_detected": "{user} está escribiendo en {channel}."
       }
     },
-
     "other": {
       "on_application_command_error": {
         "command_error": "Se ha producido un error en el comando de aplicación {command}: {error}"
@@ -577,14 +526,12 @@
       }
     }
   },
-
   "tasks": {
     "database_sync": {
       "sync_completed": "Sincronización de la base de datos completada.",
       "sync_failed": "Ha ocurrido un error durante la sincronización de la base de datos."
     }
   },
-
   "database": {
     "connection": {
       "started": "DATABASE | Conexión iniciada",
@@ -607,7 +554,6 @@
       "member": "DELETE | member | [{id}] {name} | guild=[{guild_id}]{source}"
     }
   },
-
   "core": {
     "loader": {
       "commands": "Comandos",
