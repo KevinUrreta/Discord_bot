@@ -13,8 +13,8 @@ class WebhookUpdate(commands.Cog):
     async def on_webhooks_update(self, channel):
         logger.info(
             translate(
-                channel.guild,
-                "events.other.on_webhook_update.webhook_updated",
+                None,
+                "bot.events.logs.other.on_webhook_update.webhook_updated",
                 channel=channel,
             )
         )

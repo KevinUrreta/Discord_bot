@@ -30,7 +30,7 @@ class On_wavelink_track_end(commands.Cog):
             # wavelink_logger.info(
             #     translate(
             #         guild,
-            #         "events.other.on_wavelink_track_end.track_ended",
+            #         "bot.events.logs.other.on_wavelink_track_end.track_ended",
             #         server_name=guild.name,
             #         server_id=guild.id,
             #         track_title=track.title,

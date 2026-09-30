@@ -45,7 +45,7 @@ class On_wavelink_track_start(commands.Cog):
         # wavelink_logger.info(
         #     translate(
         #         guild,
-        #         "events.other.on_wavelink_track_start.track_started",
+        #         "bot.events.logs.other.on_wavelink_track_start.track_started",
         #         server_name=guild.name,
         #         server_id=guild.id,
         #         track_title=track.title,
@@ -73,7 +73,7 @@ class On_wavelink_track_start(commands.Cog):
         await state.text_channel.send(
             embed=create_embed(
                 guild,
-                "music.now_playing",
+                "bot.commands.music.embeds.now_playing",
                 title=info["title"],
                 duration=format_duration(track.length),
                 views=info["views"],

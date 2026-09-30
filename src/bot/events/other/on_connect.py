@@ -14,6 +14,6 @@ class Connect(commands.Cog):
         logger.info(
             translate(
                 None,
-                "events.other.on_connect.discord_connected"
+                "bot.events.logs.other.on_connect.discord_connected"
             )
         )

@@ -12,8 +12,8 @@ class On_command(commands.Cog):
     async def on_command(self, ctx):
         logger.info(
             translate(
-                ctx.guild,
-                "events.other.on_command.command_executed",
+                None,
+                "bot.events.logs.other.on_command.command_executed",
                 command=ctx.command.name,
                 author=ctx.author,
                 channel=ctx.channel,

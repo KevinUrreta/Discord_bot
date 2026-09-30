@@ -1,7 +1,7 @@
-import discord
 from discord.ext import commands
 
 from src.core.logging import errors_logger
+from src.helpers.embeds import create_embed
 from src.locales.i18n import translate
 
 
@@ -17,12 +17,15 @@ class On_command_error(commands.Cog):
     ):
         if isinstance(
             error,
-            (commands.MissingPermissions, commands.CheckFailure),
+            (
+                commands.MissingPermissions,
+                commands.CheckFailure,
+            ),
         ):
             await ctx.send(
-                translate(
+                embed=create_embed(
                     ctx.guild,
-                    "events.other.on_command_error.missing_permissions",
+                    "bot.events.embeds.other.missing_permissions",
                 )
             )
 
@@ -31,18 +34,17 @@ class On_command_error(commands.Cog):
         errors_logger.error(
             translate(
                 None,
-                "events.other.on_command_error.logged_error",
-                command=ctx.command,
+                "bot.events.logs.other.on_command_error.logged_error",
+                command=ctx.invoked_with,
                 error=error,
             ),
             exc_info=error,
         )
 
         await ctx.send(
-            translate(
+            embed=create_embed(
                 ctx.guild,
-                "events.other.on_command_error.command_error",
-                command=ctx.command,
-                error=error,
+                "bot.events.embeds.other.command_error",
+                command=ctx.invoked_with,
             )
         )

@@ -13,8 +13,8 @@ class ApplicationCommandError(commands.Cog):
     async def on_app_command_error(self, interaction, error):
         logger.info(
             translate(
-                interaction.guild,
-                "events.other.on_application_command_error.command_error",
+                None,
+                "bot.events.logs.other.on_application_command_error.command_error",
                 command=interaction.command, error=error,
             )
         )
