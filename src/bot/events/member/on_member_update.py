@@ -39,7 +39,7 @@ class On_member_update(commands.Cog):
         logger.info(
             translate(
                 None,
-                "events.member.on_member_update.member_updated",
+                "bot.events.logs.member.on_member_update.member_updated",
                 name=after.name,
                 id=after.id,
                 guild_name=after.guild.name,

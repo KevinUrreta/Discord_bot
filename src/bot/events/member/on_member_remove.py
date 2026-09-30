@@ -24,7 +24,7 @@ class On_member_remove(commands.Cog):
             logger.info(
                 translate(
                     None,
-                    "events.member.on_member_remove.member_deleted",
+                    "bot.events.logs.member.on_member_remove.member_deleted",
                     name=member.name,
                     id=member.id,
                     guild_name=member.guild.name,
@@ -35,7 +35,7 @@ class On_member_remove(commands.Cog):
             logger.info(
                 translate(
                     None,
-                    "events.member.on_member_remove.member_not_found",
+                    "bot.events.logs.member.on_member_remove.member_not_found",
                     name=member.name,
                     id=member.id,
                     guild_name=member.guild.name,

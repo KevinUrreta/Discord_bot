@@ -26,7 +26,7 @@ class On_member_join(commands.Cog):
         logger.info(
             translate(
                 None,
-                "events.member.on_member_join.member_added",
+                "bot.events.logs.member.on_member_join.member_added",
                 name=member.name,
                 id=member.id,
                 guild_name=member.guild.name,
