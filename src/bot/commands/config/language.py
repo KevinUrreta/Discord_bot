@@ -1,8 +1,11 @@
 from discord.ext import commands
 
+from src.core.logging import logger
 from src.database.repositories.guild import GuildRepository
+from src.helpers.embeds import create_embed
 from src.helpers.permissions import has_manage_guild
 from src.locales.i18n import (
+    GUILD_LANGUAGES,
     SUPPORTED_LANGUAGES,
     translate,
 )
@@ -29,11 +32,9 @@ class Language(commands.Cog):
         guild_id = ctx.guild.id
 
         if language is None:
-            current_language = (
-                self.bot.guild_languages.get(
-                    guild_id,
-                    "es",
-                )
+            current_language = GUILD_LANGUAGES.get(
+                guild_id,
+                "es",
             )
 
             language_name = SUPPORTED_LANGUAGES.get(
@@ -42,9 +43,9 @@ class Language(commands.Cog):
             )
 
             return await ctx.send(
-                translate(
+                embed=create_embed(
                     ctx.guild,
-                    "commands.config.language.current_language",
+                    "bot.commands.config.embeds.language.current_language",
                     language_name=language_name,
                     language=current_language,
                 )
@@ -59,19 +60,24 @@ class Language(commands.Cog):
             )
 
             await ctx.send(
-                translate(
+                embed=create_embed(
                     ctx.guild,
-                    "commands.config.language.invalid_language",
+                    "bot.commands.config.embeds.language.invalid_language",
                 )
             )
 
             return await ctx.send(
-                translate(
+                embed=create_embed(
                     ctx.guild,
-                    "commands.config.language.available_languages",
+                    "bot.commands.config.embeds.language.available_languages",
                     languages=available_languages,
                 )
             )
+
+        old_language = GUILD_LANGUAGES.get(
+            guild_id,
+            "es",
+        )
 
         guild = await self.guild_repository.update(
             guild_id=guild_id,
@@ -81,13 +87,24 @@ class Language(commands.Cog):
         if guild is None:
             return
 
-        self.bot.guild_languages[guild_id] = language
+        GUILD_LANGUAGES[guild_id] = language
 
         await ctx.send(
-            translate(
+            embed=create_embed(
                 ctx.guild,
-                "commands.config.language.language_changed",
+                "bot.commands.config.embeds.language.language_changed",
                 language_name=SUPPORTED_LANGUAGES[language],
                 language=language,
+            )
+        )
+
+        logger.info(
+            translate(
+                None,
+                "bot.commands.config.logs.language.changed",
+                old_language=old_language,
+                language=language,
+                user=ctx.author.display_name,
+                guild_id=guild_id,
             )
         )

@@ -1,8 +1,8 @@
 from discord.ext import commands
 
+from src.helpers.embeds import create_embed
 from src.helpers.permissions import has_manage_guild
 from src.database.repositories.guild import GuildRepository
-from src.locales.i18n import translate
 
 
 class Prefix(commands.Cog):
@@ -34,9 +34,9 @@ class Prefix(commands.Cog):
                 return
 
             await ctx.send(
-                translate(
+                embed=create_embed(
                     ctx.guild,
-                    "commands.config.prefix.current_prefix",
+                    "bot.commands.config.embeds.prefix.current_prefix",
                     prefix=guild.prefix,
                 )
             )
@@ -52,9 +52,9 @@ class Prefix(commands.Cog):
             return
 
         await ctx.send(
-            translate(
+            embed=create_embed(
                 ctx.guild,
-                "commands.config.prefix.prefix_changed",
+                "bot.commands.config.embeds.prefix.prefix_changed",
                 prefix=prefix,
             )
         )
