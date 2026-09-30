@@ -15,7 +15,7 @@ class Clear(commands.Cog):
             return await ctx.send(
                 embed=create_embed(
                     ctx.guild,
-                    "music.clear.not_connected",
+                    "bot.commands.music.embeds.clear.not_connected",
                     user=ctx.author.display_name,
                     footer_icon=ctx.author.display_avatar.url,
                 )
@@ -27,7 +27,7 @@ class Clear(commands.Cog):
             return await ctx.send(
                 embed=create_embed(
                     ctx.guild,
-                    "music.clear.queue_empty",
+                    "bot.commands.music.embeds.clear.queue_empty",
                     user=ctx.author.display_name,
                     footer_icon=ctx.author.display_avatar.url,
                 )
@@ -38,7 +38,7 @@ class Clear(commands.Cog):
         await ctx.send(
             embed=create_embed(
                 ctx.guild,
-                "music.clear.cleared",
+                "bot.commands.music.embeds.clear.cleared",
                 user=ctx.author.display_name,
                 footer_icon=ctx.author.display_avatar.url,
             )

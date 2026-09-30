@@ -17,7 +17,7 @@ class Volume(commands.Cog):
             return await ctx.send(
                 embed=create_embed(
                     ctx.guild,
-                    "music.volume.not_connected",
+                    "bot.commands.music.embedss.volume.not_connected",
                     user=ctx.author.display_name,
                     footer_icon=ctx.author.display_avatar.url,
                 )
@@ -27,7 +27,7 @@ class Volume(commands.Cog):
             return await ctx.send(
                 embed=create_embed(
                     ctx.guild,
-                    "music.volume.invalid_volume",
+                    "bot.commands.music.embeds.volume.invalid_volume",
                     user=ctx.author.display_name,
                     footer_icon=ctx.author.display_avatar.url,
                 )
@@ -41,7 +41,7 @@ class Volume(commands.Cog):
         await ctx.send(
             embed=create_embed(
                 ctx.guild,
-                "music.volume.changed",
+                "bot.commands.music.embeds.volume.changed",
                 volume=volume,
                 user=ctx.author.display_name,
                 footer_icon=ctx.author.display_avatar.url,

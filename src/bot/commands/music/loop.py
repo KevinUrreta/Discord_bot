@@ -15,7 +15,7 @@ class Loop(commands.Cog):
             return await ctx.send(
                 embed=create_embed(
                     ctx.guild,
-                    "music.loop.not_connected",
+                    "bot.commands.music.embeds.loop.not_connected",
                     user=ctx.author.display_name,
                     footer_icon=ctx.author.display_avatar.url,
                 )
@@ -27,7 +27,7 @@ class Loop(commands.Cog):
             return await ctx.send(
                 embed=create_embed(
                     ctx.guild,
-                    "music.loop.no_song_playing",
+                    "bot.commands.music.embeds.loop.no_song_playing",
                     user=ctx.author.display_name,
                     footer_icon=ctx.author.display_avatar.url,
                 )
@@ -43,7 +43,7 @@ class Loop(commands.Cog):
             await ctx.send(
                 embed=create_embed(
                     ctx.guild,
-                    "music.loop.enabled",
+                    "bot.commands.music.embeds.loop.enabled",
                     user=ctx.author.display_name,
                     footer_icon=ctx.author.display_avatar.url,
                 )
@@ -52,7 +52,7 @@ class Loop(commands.Cog):
             await ctx.send(
                 embed=create_embed(
                     ctx.guild,
-                    "music.loop.disabled",
+                    "bot.commands.music.embeds.loop.disabled",
                     user=ctx.author.display_name,
                     footer_icon=ctx.author.display_avatar.url,
                 )

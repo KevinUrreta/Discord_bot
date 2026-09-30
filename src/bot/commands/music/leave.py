@@ -13,7 +13,7 @@ class Leave(commands.Cog):
             return await ctx.send(
                 embed=create_embed(
                     ctx.guild,
-                    "music.leave.not_connected",
+                    "bot.commands.music.embeds.leave.not_connected",
                     user=ctx.author.display_name,
                     footer_icon=ctx.author.display_avatar.url,
                 )
@@ -24,7 +24,7 @@ class Leave(commands.Cog):
         await ctx.send(
             embed=create_embed(
                 ctx.guild,
-                "music.leave.disconnected",
+                "bot.commands.music.embeds.leave.disconnected",
                 user=ctx.author.display_name,
                 footer_icon=ctx.author.display_avatar.url,
             )

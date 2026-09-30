@@ -15,7 +15,7 @@ class Stop(commands.Cog):
             return await ctx.send(
                 embed=create_embed(
                     ctx.guild,
-                    "music.stop.not_connected",
+                    "bot.commands.music.embeds.stop.not_connected",
                     user=ctx.author.display_name,
                     footer_icon=ctx.author.display_avatar.url,
                 )
@@ -29,7 +29,7 @@ class Stop(commands.Cog):
         await ctx.send(
             embed=create_embed(
                 ctx.guild,
-                "music.stop.stopped",
+                "bot.commands.music.embeds.stop.stopped",
                 user=ctx.author.display_name,
                 footer_icon=ctx.author.display_avatar.url,
             )

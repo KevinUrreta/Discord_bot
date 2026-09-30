@@ -15,7 +15,7 @@ class Shuffle(commands.Cog):
             return await ctx.send(
                 embed=create_embed(
                     ctx.guild,
-                    "music.shuffle.not_connected",
+                    "bot.commands.music.embeds.shuffle.not_connected",
                     user=ctx.author.display_name,
                     footer_icon=ctx.author.display_avatar.url,
                 )
@@ -27,7 +27,7 @@ class Shuffle(commands.Cog):
             return await ctx.send(
                 embed=create_embed(
                     ctx.guild,
-                    "music.shuffle.not_enough_songs",
+                    "bot.commands.music.embeds.shuffle.not_enough_songs",
                     user=ctx.author.display_name,
                     footer_icon=ctx.author.display_avatar.url,
                 )
@@ -38,7 +38,7 @@ class Shuffle(commands.Cog):
         await ctx.send(
             embed=create_embed(
                 ctx.guild,
-                "music.shuffle.shuffled",
+                "bot.commands.music.embeds.shuffle.shuffled",
                 user=ctx.author.display_name,
                 footer_icon=ctx.author.display_avatar.url,
             )

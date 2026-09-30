@@ -17,7 +17,7 @@ class Queue(commands.Cog):
             return await ctx.send(
                 embed=create_embed(
                     ctx.guild,
-                    "music.queue.not_connected",
+                    "bot.commands.music.embeds.queue.not_connected",
                     user=ctx.author.display_name,
                     footer_icon=ctx.author.display_avatar.url,
                 )
@@ -29,7 +29,7 @@ class Queue(commands.Cog):
             return await ctx.send(
                 embed=create_embed(
                     ctx.guild,
-                    "music.queue.empty",
+                    "bot.commands.music.embeds.queue.empty",
                     user=ctx.author.display_name,
                     footer_icon=ctx.author.display_avatar.url,
                 )
@@ -53,7 +53,7 @@ class Queue(commands.Cog):
         await ctx.send(
             embed=create_embed(
                 ctx.guild,
-                "music.queue.list",
+                "bot.commands.music.embeds.queue.list",
                 queue=message,
                 user=ctx.author.display_name,
                 footer_icon=ctx.author.display_avatar.url,

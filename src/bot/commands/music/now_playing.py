@@ -21,7 +21,7 @@ class Nowplaying(commands.Cog):
             return await ctx.send(
                 embed=create_embed(
                     ctx.guild,
-                    "music.now_playing_not_connected",
+                    "bot.commands.music.embeds.now_playing_not_connected",
                     user=ctx.author.display_name,
                     footer_icon=ctx.author.display_avatar.url,
                 )
@@ -34,7 +34,7 @@ class Nowplaying(commands.Cog):
             return await ctx.send(
                 embed=create_embed(
                     ctx.guild,
-                    "music.now_playing_empty",
+                    "bot.commands.music.embeds.now_playing_empty",
                     user=ctx.author.display_name,
                     footer_icon=ctx.author.display_avatar.url,
                 )
@@ -45,7 +45,7 @@ class Nowplaying(commands.Cog):
         return await ctx.send(
             embed=create_embed(
                 ctx.guild,
-                "music.now_playing",
+                "bot.commands.music.embeds.now_playing",
                 title=info["title"],
                 duration=format_duration(track.length),
                 views=info["views"],

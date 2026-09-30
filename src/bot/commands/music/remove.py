@@ -15,7 +15,7 @@ class Remove(commands.Cog):
             return await ctx.send(
                 embed=create_embed(
                     ctx.guild,
-                    "music.remove.not_connected",
+                    "bot.commands.music.embeds.remove.not_connected",
                     user=ctx.author.display_name,
                     footer_icon=ctx.author.display_avatar.url,
                 )
@@ -27,7 +27,7 @@ class Remove(commands.Cog):
             return await ctx.send(
                 embed=create_embed(
                     ctx.guild,
-                    "music.remove.queue_empty",
+                    "bot.commands.music.embeds.remove.queue_empty",
                     user=ctx.author.display_name,
                     footer_icon=ctx.author.display_avatar.url,
                 )
@@ -39,7 +39,7 @@ class Remove(commands.Cog):
             return await ctx.send(
                 embed=create_embed(
                     ctx.guild,
-                    "music.remove.invalid_position",
+                    "bot.commands.music.embeds.remove.invalid_position",
                     user=ctx.author.display_name,
                     footer_icon=ctx.author.display_avatar.url,
                 )
@@ -51,7 +51,7 @@ class Remove(commands.Cog):
         await ctx.send(
             embed=create_embed(
                 ctx.guild,
-                "music.remove.removed",
+                "bot.commands.music.embeds.remove.removed",
                 title=track.title,
                 user=ctx.author.display_name,
                 footer_icon=ctx.author.display_avatar.url,

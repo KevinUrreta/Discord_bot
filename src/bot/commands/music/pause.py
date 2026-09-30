@@ -14,7 +14,7 @@ class Pause(commands.Cog):
             return await ctx.send(
                 embed=create_embed(
                     ctx.guild,
-                    "music.pause.not_connected",
+                    "bot.commands.music.embeds.pause.not_connected",
                     user=ctx.author.display_name,
                     footer_icon=ctx.author.display_avatar.url,
                 )
@@ -26,7 +26,7 @@ class Pause(commands.Cog):
             return await ctx.send(
                 embed=create_embed(
                     ctx.guild,
-                    "music.pause.no_song_playing",
+                    "bot.commands.music.embeds.pause.no_song_playing",
                     user=ctx.author.display_name,
                     footer_icon=ctx.author.display_avatar.url,
                 )
@@ -37,7 +37,7 @@ class Pause(commands.Cog):
         await ctx.send(
             embed=create_embed(
                 ctx.guild,
-                "music.pause.paused",
+                "bot.commands.music.embeds.pause.paused",
                 user=ctx.author.display_name,
                 footer_icon=ctx.author.display_avatar.url,
             )

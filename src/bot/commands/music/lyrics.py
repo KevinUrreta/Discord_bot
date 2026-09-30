@@ -12,7 +12,7 @@ class Lyrics(commands.Cog):
         await ctx.send(
             embed=create_embed(
                 ctx.guild,
-                "music.lyrics.not_available",
+                "bot.commands.music.embeds.lyrics.not_available",
                 user=ctx.author.display_name,
                 footer_icon=ctx.author.display_avatar.url,
             )

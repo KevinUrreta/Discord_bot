@@ -14,7 +14,7 @@ class Resume(commands.Cog):
             return await ctx.send(
                 embed=create_embed(
                     ctx.guild,
-                    "music.resume.not_connected",
+                    "bot.commands.music.embeds.resume.not_connected",
                     user=ctx.author.display_name,
                     footer_icon=ctx.author.display_avatar.url,
                 )
@@ -26,7 +26,7 @@ class Resume(commands.Cog):
             return await ctx.send(
                 embed=create_embed(
                     ctx.guild,
-                    "music.resume.no_song_playing",
+                    "bot.commands.music.embeds.resume.no_song_playing",
                     user=ctx.author.display_name,
                     footer_icon=ctx.author.display_avatar.url,
                 )
@@ -37,7 +37,7 @@ class Resume(commands.Cog):
         await ctx.send(
             embed=create_embed(
                 ctx.guild,
-                "music.resume.resumed",
+                "bot.commands.music.embeds.resume.resumed",
                 user=ctx.author.display_name,
                 footer_icon=ctx.author.display_avatar.url,
             )

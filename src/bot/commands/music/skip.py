@@ -15,7 +15,7 @@ class Skip(commands.Cog):
             return await ctx.send(
                 embed=create_embed(
                     ctx.guild,
-                    "music.skip.not_connected",
+                    "bot.commands.music.embeds.skip.not_connected",
                     user=ctx.author.display_name,
                     footer_icon=ctx.author.display_avatar.url,
                 )
@@ -27,7 +27,7 @@ class Skip(commands.Cog):
             return await ctx.send(
                 embed=create_embed(
                     ctx.guild,
-                    "music.skip.no_song_playing",
+                    "bot.commands.music.embeds.skip.no_song_playing",
                     user=ctx.author.display_name,
                     footer_icon=ctx.author.display_avatar.url,
                 )
@@ -38,7 +38,7 @@ class Skip(commands.Cog):
         await ctx.send(
             embed=create_embed(
                 ctx.guild,
-                "music.skip.skipped",
+                "bot.commands.music.embeds.skip.skipped",
                 user=ctx.author.display_name,
                 footer_icon=ctx.author.display_avatar.url,
             )

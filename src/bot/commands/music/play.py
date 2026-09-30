@@ -23,7 +23,7 @@ class Play(commands.Cog):
                 return await ctx.send(
                     embed=create_embed(
                         ctx.guild,
-                        "music.play.voice_not_connected",
+                        "bot.commands.music.embeds.play.voice_not_connected",
                         user=ctx.author.display_name,
                         footer_icon=ctx.author.display_avatar.url,
                     )
@@ -39,7 +39,7 @@ class Play(commands.Cog):
             return await ctx.send(
                 embed=create_embed(
                     ctx.guild,
-                    "music.play.no_song_found",
+                    "bot.commands.music.embeds.play.no_song_found",
                     user=ctx.author.display_name,
                     footer_icon=ctx.author.display_avatar.url,
                 )
@@ -74,7 +74,7 @@ class Play(commands.Cog):
             return await ctx.send(
                 embed=create_embed(
                     ctx.guild,
-                    "music.play.playlist_added_to_queue",
+                    "bot.commands.music.embeds.play.playlist_added_to_queue",
                     title=playlist_title,
                     queue=player.queue.count,
                     user=ctx.author.display_name,
@@ -90,7 +90,7 @@ class Play(commands.Cog):
             return await ctx.send(
                 embed=create_embed(
                     ctx.guild,
-                    "music.play.added_to_queue",
+                    "bot.commands.music.embeds.play.added_to_queue",
                     title=info["title"],
                     queue=player.queue.count,
                     user=ctx.author.display_name,
@@ -105,7 +105,7 @@ class Play(commands.Cog):
         await ctx.send(
             embed=create_embed(
                 ctx.guild,
-                "music.now_playing",
+                "bot.commands.music.embeds.now_playing",
                 title=info["title"],
                 duration=format_duration(track.length),
                 views=info["views"],
