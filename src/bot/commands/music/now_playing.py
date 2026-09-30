@@ -1,7 +1,6 @@
 import asyncio
 
 import wavelink
-import yt_dlp
 from discord.ext import commands
 
 from src.helpers.embeds import create_embed
