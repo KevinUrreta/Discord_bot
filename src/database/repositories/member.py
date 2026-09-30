@@ -41,14 +41,14 @@ class MemberRepository:
 
                 if current_name != name:
                     changes.append(
-                        f"name: {current_name} → {name}"
+                        f"name: {current_name} -> {name}"
                     )
                     setattr(member, "name", name)
 
                 if current_display_name != display_name:
                     changes.append(
                         f"display_name: "
-                        f"{current_display_name} → "
+                        f"{current_display_name} -> "
                         f"{display_name}"
                     )
                     setattr(
@@ -60,7 +60,7 @@ class MemberRepository:
                 if current_joined_at != joined_at:
                     changes.append(
                         f"joined_at: "
-                        f"{current_joined_at} → "
+                        f"{current_joined_at} -> "
                         f"{joined_at}"
                     )
                     setattr(
@@ -151,7 +151,7 @@ class MemberRepository:
 
                 if current_value != value:
                     changes.append(
-                        f"{key}: {current_value} → {value}"
+                        f"{key}: {current_value} -> {value}"
                     )
                     setattr(member, key, value)
 

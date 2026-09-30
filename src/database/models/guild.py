@@ -14,7 +14,7 @@ class Guild(Base):
     language = Column(String, default="es", nullable=False)
     volume = Column(Integer, default=100, nullable=False)
     created_at = Column(
-        DateTime,
+        DateTime(timezone=True),
         default=lambda: datetime.datetime.now(datetime.timezone.utc),
         nullable=False,
     )

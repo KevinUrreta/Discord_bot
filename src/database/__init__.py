@@ -10,5 +10,5 @@ from src.database.models.member import Member
 
 __all__ = [
     "Guild",
-    "Member"
+    "Member",
 ]

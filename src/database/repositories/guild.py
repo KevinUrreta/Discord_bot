@@ -40,7 +40,7 @@ class GuildRepository:
                             "database.update.guild",
                             id=guild_id,
                             name=current_name,
-                            changes=f"name: {current_name} → {name}",
+                            changes=f"name: {current_name} -> {name}",
                             source=f" | {source}" if source else "",
                         )
                     )
@@ -101,7 +101,7 @@ class GuildRepository:
 
                 if current_value != value:
                     changes.append(
-                        f"{key}: {current_value} → {value}"
+                        f"{key}: {current_value} -> {value}"
                     )
                     setattr(guild, key, value)
 
