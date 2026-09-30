@@ -1,7 +1,7 @@
 from discord.ext import commands
 
 from src.database.repositories.guild import GuildRepository
-from src.helpers.permissions import has_manage_messages
+from src.helpers.permissions import has_manage_guild
 from src.locales.i18n import (
     SUPPORTED_LANGUAGES,
     translate,
@@ -17,7 +17,7 @@ class Language(commands.Cog):
         )
 
     @commands.command(name="language")
-    @has_manage_messages()
+    @has_manage_guild()
     async def language(
         self,
         ctx,

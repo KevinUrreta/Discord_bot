@@ -3,9 +3,20 @@ from discord.ext import commands
 
 
 def has_manage_messages():
-    async def predicate(
-        ctx: commands.Context,
-    ) -> bool:
+    async def predicate(ctx: commands.Context) -> bool:
+        if ctx.guild is None:
+            return False
+
+        if not isinstance(ctx.author, discord.Member):
+            return False
+
+        return ctx.author.guild_permissions.manage_messages
+
+    return commands.check(predicate)
+
+
+def has_manage_guild():
+    async def predicate(ctx: commands.Context) -> bool:
         if ctx.guild is None:
             return False
 
