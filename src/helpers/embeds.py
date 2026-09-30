@@ -17,7 +17,7 @@ def create_embed(
 
     data = get_nested_translation(
         translations,
-        f"embeds.{key}",
+        key,
     )
 
     if not isinstance(data, dict):
