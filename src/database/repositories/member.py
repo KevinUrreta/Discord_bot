@@ -78,7 +78,7 @@ class MemberRepository:
                 database_logger.info(
                     translate(
                         None,
-                        "database.update.member",
+                        "database.logs.update.member",
                         id=member_id,
                         name=current_name,
                         changes=", ".join(changes),
@@ -104,7 +104,7 @@ class MemberRepository:
             database_logger.info(
                 translate(
                     None,
-                    "database.insert.member",
+                    "database.logs.insert.member",
                     id=member_id,
                     name=name,
                     guild_id=guild_id,
@@ -164,7 +164,7 @@ class MemberRepository:
             database_logger.info(
                 translate(
                     None,
-                    "database.update.member",
+                    "database.logs.update.member",
                     id=member_id,
                     name=member_name,
                     changes=", ".join(changes),
@@ -199,7 +199,7 @@ class MemberRepository:
             database_logger.info(
                 translate(
                     None,
-                    "database.delete.member",
+                    "database.logs.delete.member",
                     id=member_id,
                     name=member_name,
                     guild_id=guild_id,
@@ -237,7 +237,7 @@ class MemberRepository:
                 database_logger.info(
                     translate(
                         None,
-                        "database.delete.member",
+                        "database.logs.delete.member",
                         id=member.id,
                         name=member_name,
                         guild_id=guild_id,

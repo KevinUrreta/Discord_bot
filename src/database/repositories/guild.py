@@ -37,7 +37,7 @@ class GuildRepository:
                     database_logger.info(
                         translate(
                             None,
-                            "database.update.guild",
+                            "database.logs.update.guild",
                             id=guild_id,
                             name=current_name,
                             changes=f"name: {current_name} -> {name}",
@@ -59,7 +59,7 @@ class GuildRepository:
             database_logger.info(
                 translate(
                     None,
-                    "database.insert.guild",
+                    "database.logs.insert.guild",
                     id=guild_id,
                     name=name,
                     source=f" | {source}" if source else "",
@@ -114,7 +114,7 @@ class GuildRepository:
             database_logger.info(
                 translate(
                     None,
-                    "database.update.guild",
+                    "database.logs.update.guild",
                     id=guild_id,
                     name=guild_name,
                     changes=", ".join(changes),
@@ -146,7 +146,7 @@ class GuildRepository:
             database_logger.info(
                 translate(
                     None,
-                    "database.delete.guild",
+                    "database.logs.delete.guild",
                     id=guild_id,
                     name=guild_name,
                     source=f" | {source}" if source else "",

@@ -56,7 +56,7 @@ class Database:
         database_logger.info(
             translate(
                 None,
-                "database.connection.started",
+                "database.logs.connection.started",
             )
         )
 
@@ -70,7 +70,7 @@ class Database:
             errors_logger.error(
                 translate(
                     None,
-                    "database.errors.create_tables",
+                    "database.logs.errors.create_tables",
                     error=error,
                 ),
                 exc_info=error,
@@ -83,6 +83,6 @@ class Database:
         database_logger.info(
             translate(
                 None,
-                "database.connection.closed",
+                "database.logs.connection.closed",
             )
         )

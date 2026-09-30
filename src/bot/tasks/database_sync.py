@@ -2,7 +2,9 @@ from discord.ext import commands, tasks
 
 from src.database.repositories.guild import GuildRepository
 from src.database.repositories.member import MemberRepository
-from src.locales.i18n import set_guild_languages
+from src.core.logging import logger
+from src.locales.i18n import translate, set_guild_languages
+
 
 
 class DatabaseSync(commands.Cog):
@@ -28,6 +30,12 @@ class DatabaseSync(commands.Cog):
 
     @tasks.loop(minutes=10)
     async def sync_database(self):
+        logger.info(
+            translate(
+                None,
+                "bot.tasks.database_sync.started",
+            )
+        )
         for guild in self.bot.guilds:
             guild_data = await self.guild_repository.create(
                 guild_id=guild.id,
