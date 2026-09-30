@@ -78,7 +78,7 @@ async def load_cogs(bot, lavalink_password):
     for (cog_type, category), data in categories.items():
         label = translate(
             None,
-            f"core.loader.{cog_type}",
+            f"core.logs.loader.{cog_type}",
         )
 
         if data["failed"]:
@@ -86,7 +86,7 @@ async def load_cogs(bot, lavalink_password):
                 logger.error(
                     translate(
                         None,
-                        "core.loader.load_error",
+                        "core.logs.loader.load_error",
                         label=label,
                         category=category,
                         filename=filename,
@@ -100,7 +100,7 @@ async def load_cogs(bot, lavalink_password):
         logger.info(
             translate(
                 None,
-                "core.loader.loaded",
+                "core.logs.loader.loaded",
                 label=label,
                 category=category,
                 loaded=data["loaded"],
