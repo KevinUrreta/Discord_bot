@@ -13,8 +13,8 @@ class GuildChannelDelete(commands.Cog):
     async def on_guild_channel_delete(self, channel):
         logger.info(
             translate(
-                channel.guild,
-                "events.guild.on_guild_channel_delete.channel_deleted",
+                None,
+                "bot.events.logs.guild.on_guild_channel_delete.channel_deleted",
                 channel=channel,
             )
         )

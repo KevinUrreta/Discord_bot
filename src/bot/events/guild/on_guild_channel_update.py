@@ -13,8 +13,8 @@ class GuildChannelUpdate(commands.Cog):
     async def on_guild_channel_update(self, before, after):
         logger.info(
             translate(
-                after.guild,
-                "events.guild.on_guild_channel_update.channel_updated",
+                None,
+                "bot.events.logs.guild.on_guild_channel_update.channel_updated",
                 before=before, after=after,
             )
         )

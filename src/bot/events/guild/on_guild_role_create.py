@@ -13,8 +13,8 @@ class GuildRoleCreate(commands.Cog):
     async def on_guild_role_create(self, role):
         logger.info(
             translate(
-                role.guild,
-                "events.guild.on_guild_role_create.role_created",
+                None,
+                "bot.events.logs.guild.on_guild_role_create.role_created",
                 role=role,
             )
         )

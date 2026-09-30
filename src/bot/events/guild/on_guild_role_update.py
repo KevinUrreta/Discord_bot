@@ -13,8 +13,8 @@ class GuildRoleUpdate(commands.Cog):
     async def on_guild_role_update(self, before, after):
         logger.info(
             translate(
-                after.guild,
-                "events.guild.on_guild_role_update.role_updated",
+                None,
+                "bot.events.logs.guild.on_guild_role_update.role_updated",
                 before=before, after=after,
             )
         )

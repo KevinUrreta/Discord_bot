@@ -13,8 +13,8 @@ class GuildChannelCreate(commands.Cog):
     async def on_guild_channel_create(self, channel):
         logger.info(
             translate(
-                channel.guild,
-                "events.guild.on_guild_channel_create.channel_created",
+                None,
+                "bot.events.logs.guild.on_guild_channel_create.channel_created",
                 channel=channel,
             )
         )

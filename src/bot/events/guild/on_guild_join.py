@@ -38,7 +38,7 @@ class On_guild_join(commands.Cog):
         logger.info(
             translate(
                 None,
-                "events.guild.on_guild_join.guild_added",
+                "bot.events.logs.guild.on_guild_join.guild_added",
                 guild_name=guild.name,
                 guild_id=guild.id,
             )

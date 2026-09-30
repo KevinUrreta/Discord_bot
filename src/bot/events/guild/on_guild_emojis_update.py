@@ -13,8 +13,9 @@ class GuildEmojisUpdate(commands.Cog):
     async def on_guild_emojis_update(self, guild, before, after):
         logger.info(
             translate(
-                guild,
-                "events.guild.on_guild_emojis_update.emojis_updated",
-                guild=guild,
+                None,
+                "bot.events.logs.guild.on_guild_emojis_update.emojis_updated",
+                guild_name=guild.name,
+                guild_id=guild.id,
             )
         )
