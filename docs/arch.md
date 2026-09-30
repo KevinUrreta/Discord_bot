@@ -1,7 +1,7 @@
 ```
 (.venv) PS D:\Carpeta\Nueva carpeta> docker exec -it discord_bot sh
 # tree -I "venv|__pycache__|postgres_data"
-.
+.                                                    
 |-- docker
 |   |-- docker-compose.yml
 |   `-- dockerfile
@@ -128,76 +128,89 @@
         |-- bot
         |   |-- commands
         |   |   |-- config
-        |   |   |   |-- test_language.py
-        |   |   |   `-- test_prefix.py
+        |   |   |   |-- test_bot_commands_config_language.py
+        |   |   |   `-- test_bot_commands_config_prefix.py
         |   |   |-- moderation
-        |   |   |   `-- test_cls.py
+        |   |   |   `-- test_bot_commands_moderation_clear.py
         |   |   `-- music
-        |   |       |-- test_clear.py
-        |   |       |-- test_join.py
-        |   |       |-- test_leave.py
-        |   |       |-- test_loop.py
-        |   |       |-- test_pause.py
-        |   |       |-- test_play.py
-        |   |       |-- test_queue.py
-        |   |       |-- test_remove.py
-        |   |       |-- test_resume.py
-        |   |       |-- test_shuffle.py
-        |   |       |-- test_skip.py
-        |   |       |-- test_stop.py
-        |   |       `-- test_volume.py
+        |   |       |-- test_bot_commands_music_clear.py
+        |   |       |-- test_bot_commands_music_join.py
+        |   |       |-- test_bot_commands_music_leave.py
+        |   |       |-- test_bot_commands_music_loop.py
+        |   |       |-- test_bot_commands_music_lyrics.py
+        |   |       |-- test_bot_commands_music_now_playing.py
+        |   |       |-- test_bot_commands_music_pause.py
+        |   |       |-- test_bot_commands_music_play.py
+        |   |       |-- test_bot_commands_music_queue.py
+        |   |       |-- test_bot_commands_music_remove.py
+        |   |       |-- test_bot_commands_music_resume.py
+        |   |       |-- test_bot_commands_music_shuffle.py
+        |   |       |-- test_bot_commands_music_skip.py
+        |   |       |-- test_bot_commands_music_stop.py
+        |   |       `-- test_bot_commands_music_volume.py
         |   |-- events
         |   |   |-- guild
-        |   |   |   |-- test_on_guild_channel_create.py
-        |   |   |   |-- test_on_guild_channel_delete.py
-        |   |   |   |-- test_on_guild_channel_update.py
-        |   |   |   |-- test_on_guild_emojis_update.py
-        |   |   |   |-- test_on_guild_join.py
-        |   |   |   |-- test_on_guild_remove.py
-        |   |   |   |-- test_on_guild_role_create.py
-        |   |   |   |-- test_on_guild_role_delete.py
-        |   |   |   |-- test_on_guild_role_update.py
-        |   |   |   `-- test_on_guild_stickers_update.py
+        |   |   |   |-- test_bot_events_guild_on_guild_channel_create.py
+        |   |   |   |-- test_bot_events_guild_on_guild_channel_delete.py
+        |   |   |   |-- test_bot_events_guild_on_guild_channel_update.py
+        |   |   |   |-- test_bot_events_guild_on_guild_emojis_update.py
+        |   |   |   |-- test_bot_events_guild_on_guild_join.py
+        |   |   |   |-- test_bot_events_guild_on_guild_remove.py
+        |   |   |   |-- test_bot_events_guild_on_guild_role_create.py
+        |   |   |   |-- test_bot_events_guild_on_guild_role_delete.py
+        |   |   |   |-- test_bot_events_guild_on_guild_role_update.py
+        |   |   |   `-- test_bot_events_guild_on_guild_stickers_update.py
         |   |   |-- member
-        |   |   |   |-- test_on_member_join.py
-        |   |   |   |-- test_on_member_remove.py
-        |   |   |   |-- test_on_member_update.py
-        |   |   |   `-- test_on_user_update.py
+        |   |   |   |-- test_bot_events_member_on_member_join.py
+        |   |   |   |-- test_bot_events_member_on_member_remove.py
+        |   |   |   |-- test_bot_events_member_on_member_update.py
+        |   |   |   `-- test_bot_events_member_on_user_update.py
         |   |   |-- message
-        |   |   |   |-- test_on_message.py
-        |   |   |   |-- test_on_message_delete.py
-        |   |   |   |-- test_on_message_edit.py
-        |   |   |   |-- test_on_raw_reaction_add.py
-        |   |   |   |-- test_on_raw_reaction_remove.py
-        |   |   |   |-- test_on_reaction_add.py
-        |   |   |   |-- test_on_reaction_clear.py
-        |   |   |   |-- test_on_reaction_remove.py
-        |   |   |   `-- test_on_typing.py
+        |   |   |   |-- test_bot_events_message_on_message.py
+        |   |   |   |-- test_bot_events_message_on_message_delete.py
+        |   |   |   |-- test_bot_events_message_on_message_edit.py
+        |   |   |   |-- test_bot_events_message_on_raw_reaction_add.py
+        |   |   |   |-- test_bot_events_message_on_raw_reaction_remove.py
+        |   |   |   |-- test_bot_events_message_on_reaction_add.py
+        |   |   |   |-- test_bot_events_message_on_reaction_clear.py
+        |   |   |   |-- test_bot_events_message_on_reaction_remove.py
+        |   |   |   `-- test_bot_events_message_on_typing.py
         |   |   `-- other
-        |   |       |-- test_on_application_command_error.py
-        |   |       |-- test_on_command.py
-        |   |       |-- test_on_command_error.py
-        |   |       |-- test_on_connect.py
-        |   |       |-- test_on_disconnect.py
-        |   |       |-- test_on_ready.py
-        |   |       |-- test_on_resumed.py
-        |   |       |-- test_on_voice_state_update.py
-        |   |       |-- test_on_wavelink_track_end.py
-        |   |       |-- test_on_wavelink_track_start.py
-        |   |       `-- test_on_webhook_update.py
+        |   |       |-- test_bot_events_other_on_application_command_error.py
+        |   |       |-- test_bot_events_other_on_command.py
+        |   |       |-- test_bot_events_other_on_command_error.py
+        |   |       |-- test_bot_events_other_on_connect.py
+        |   |       |-- test_bot_events_other_on_disconnect.py
+        |   |       |-- test_bot_events_other_on_ready.py
+        |   |       |-- test_bot_events_other_on_resumed.py
+        |   |       |-- test_bot_events_other_on_voice_state_update.py
+        |   |       |-- test_bot_events_other_on_wavelink_track_end.py
+        |   |       |-- test_bot_events_other_on_wavelink_track_start.py
+        |   |       `-- test_bot_events_other_on_webhook_update.py
         |   `-- tasks
-        |       `-- test_database_sync.py
+        |       `-- test_bot_tasks_database_sync.py
         |-- core
-        |   `-- test_player.py
+        |   |-- test_core_init.py
+        |   |-- test_core_loader.py
+        |   |-- test_core_logging.py
+        |   |-- test_core_player_state.py
+        |   `-- test_core_player_utils.py
         |-- database
+        |   |-- models
+        |   |   |-- test_database_models_guild.py
+        |   |   `-- test_database_models_member.py
         |   |-- repositories
-        |   |   |-- test_guild_repository.py
-        |   |   `-- test_member_repository.py
-        |   `-- test_connection.py
+        |   |   |-- test_database_repositories_guild.py
+        |   |   `-- test_database_repositories_member.py
+        |   |-- test_database_connection.py
+        |   `-- test_database_init.py
         |-- helpers
-        |   `-- test_checkers.py
+        |   |-- test_helpers_embeds.py
+        |   |-- test_helpers_init.py
+        |   |-- test_helpers_music_utils.py
+        |   `-- test_helpers_permissions.py
         `-- locales
-            `-- test_i18n.py
+            `-- test_locales_i18n.py
 
-44 directories, 159 files
+44 directories, 167 files
 ```
