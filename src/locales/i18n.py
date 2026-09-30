@@ -12,11 +12,10 @@ SUPPORTED_LANGUAGES = {
     "en": "English",
     "fr": "Français",
     "de": "Deutsch",
-    "it": "Italiano",
-    "pt": "Português",
-    "nl": "Nederlands",
-    "pl": "Polski",
+    "ru": "Русский",
     "ja": "日本語",
+    "zh": "中文",
+    "pt": "Português",
 }
 
 LOG_LANGUAGE = os.getenv(
@@ -29,11 +28,10 @@ LOCALE_FILES = {
     "en": "en_US.json",
     "fr": "fr_FR.json",
     "de": "de_DE.json",
-    "it": "it_IT.json",
-    "pt": "pt_PT.json",
-    "nl": "nl_NL.json",
-    "pl": "pl_PL.json",
+    "ru": "ru_RU.json",
     "ja": "ja_JP.json",
+    "zh": "zh_CN.json",
+    "pt": "pt_PT.json",
 }
 
 
