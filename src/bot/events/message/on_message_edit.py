@@ -5,12 +5,26 @@ from src.locales.i18n import translate
 
 
 class MessageEdit(commands.Cog):
-
+    """
+    Gestiona los mensajes editados.
+    """
     def __init__(self, bot):
+        """
+        Inicializa el evento.
+
+        :param bot: Instancia principal del bot de Discord.
+        """
         self.bot = bot
 
     @commands.Cog.listener()
     async def on_message_edit(self, before, after):
+        """
+        Registra los mensajes editados.
+
+        :param before: Estado antes.
+        :param after: Estado después.
+        :return: None
+        """
         # if after.author == self.bot.user:
         #     return
 

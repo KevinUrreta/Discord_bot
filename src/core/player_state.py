@@ -19,6 +19,12 @@ _states: WeakKeyDictionary[wavelink.Player, MusicState] = (
 
 
 def get_music_state(player: wavelink.Player) -> MusicState:
+    """
+    Obtiene el estado de música asociado a un reproductor.
+
+    :param player: Reproductor de Wavelink cuyo estado se desea obtener.
+    :return: Estado de música asociado al reproductor.
+    """
     state = _states.get(player)
 
     if state is None:

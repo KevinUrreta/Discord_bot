@@ -25,21 +25,16 @@ services:
       dockerfile: Dockerfile
     container_name: lavalink
     restart: unless-stopped
-
     env_file:
       - ../.env
-
     environment:
       - SERVER_PORT=2333
-
     ports:
       - "2333:2333"
-
     volumes:
       - ../lavalink/application.yml:/opt/Lavalink/application.yml
       - ../lavalink/plugins:/opt/Lavalink/plugins
       - ../logs:/opt/Lavalink/logs
-
     healthcheck:
       test: [ "CMD", "python3.11", "-c", "import socket; socket.create_connection(('localhost', 2333), 2).close()" ]
       interval: 5s
@@ -67,7 +62,7 @@ services:
       - -c
       - log_filename=postgres.log
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
+      test: [ "CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}" ]
       interval: 5s
       timeout: 5s
       retries: 5

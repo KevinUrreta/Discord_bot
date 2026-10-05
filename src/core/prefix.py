@@ -1,4 +1,11 @@
 async def get_prefix(bot, message: discord.Message) -> str:
+    """
+    Obtiene el prefijo de comandos configurado para un servidor.
+
+    :param bot: Instancia de bot del server.
+    :param message: Mensaje cuyo server quiere consultar.
+    :return: Prefijo de comandos configurado para un server.
+    """
     if message.guild is None:
         return "!"
 

@@ -6,15 +6,26 @@ from src.locales.i18n import translate
 
 
 class On_user_update(commands.Cog):
+    """
+    Gestiona las modificaciones de un usuario.
+    """
     def __init__(self, bot):
+        """
+        Inicializa el evento.
+
+        :param bot: Instancia principal del bot de Discord.
+        """
         self.bot = bot
 
     @commands.Cog.listener()
-    async def on_user_update(
-        self,
-        before: discord.User,
-        after: discord.User,
-    ):
+    async def on_user_update(self, before: discord.User, after: discord.User):
+        """
+        Modifica los valores que hayan cambiado de un usuario en la base de datos.
+
+        :param before: Estado después.
+        :param after: Estado antes.
+        :return: None
+        """
         if before.name != after.name:
             logger.info(
                 translate(

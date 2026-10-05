@@ -7,12 +7,25 @@ from src.locales.i18n import translate
 
 
 class On_ready(commands.Cog):
+    """
+    Gestiona cuando el bot esta preparado.
+    """
     def __init__(self, bot, lavalink_password):
+        """
+        Inicializa el evento.
+
+        :param bot: Instancia principal del bot de Discord.
+        """
         self.bot = bot
         self.lavalink_password = lavalink_password
 
     @commands.Cog.listener()
     async def on_ready(self):
+        """
+        Cuando el bot esta preparado, hace la conexión con Lavalink.
+
+        :return: None
+        """
         logger.info(
             translate(
                 None,

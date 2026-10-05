@@ -6,22 +6,32 @@ from src.locales.i18n import translate
 
 
 class On_message(commands.Cog):
+    """
+    Gestiona el evento al recibir un mensaje.
+    """
     def __init__(self, bot):
+        """
+        Inicializa el evento.
+
+        :param bot: Instancia principal del bot de Discord.
+        """
         self.bot = bot
 
     @commands.Cog.listener()
     async def on_message(self, message: discord.Message):
+        """
+        Procesa y registra los mensajes recibidos en los servers.
+
+        :param message:
+        :return:
+        """
         if message.author == self.bot.user:
             return
 
         if message.guild is None:
             return
 
-        channel_name = getattr(
-            message.channel,
-            "name",
-            "DM",
-        )
+        channel_name = getattr(message.channel, "name", "DM")
 
         if message.embeds:
             embed_messages = []

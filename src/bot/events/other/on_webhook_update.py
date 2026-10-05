@@ -5,12 +5,26 @@ from src.locales.i18n import translate
 
 
 class WebhookUpdate(commands.Cog):
+    """
+    Gestiona las actualizaciones de webhooks.
+    """
 
     def __init__(self, bot):
+        """
+        Inicializa el evento.
+
+        :param bot: Instancia principal del bot de Discord.
+        """
         self.bot = bot
 
     @commands.Cog.listener()
     async def on_webhooks_update(self, channel):
+        """
+        Registra la actualización de los webhooks.
+
+        :param channel: Canal
+        :return: None
+        """
         logger.info(
             translate(
                 None,

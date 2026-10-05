@@ -9,21 +9,29 @@ from src.locales.i18n import translate
 
 
 class GuildRepository:
+    """
+    Gestiona las operaciones relacionadas con los servers almacenados en la base de datos.
+    Permite CRUD, create, read, update, delete servers.
+    """
 
     def __init__(self, database: Database):
+        """
+        Inicializa el repositorio de servers.
+        :param database: Instancia encargada de gestionar la conexión y las sesiones de la base de datos.
+        """
         self.database = database
 
-    async def create(
-        self,
-        guild_id: int,
-        name: str,
-        source: str | None = None,
-    ) -> Guild:
+    async def create(self, guild_id: int, name: str, source: str | None = None) -> Guild:
+        """
+        Crea un servidor o actualiza su nombre si ya existe.
+
+        :param guild_id: ID del server.
+        :param name: Nombre del servidor.
+        :param source: Origen de la operación.
+        :return: Instancia del servidor creado o existente.
+        """
         async with self.database.session_factory() as session:
-            guild = await self._get(
-                session,
-                guild_id,
-            )
+            guild = await self._get(session, guild_id)
 
             if guild is not None:
                 current_name = cast(str, guild.name)
@@ -47,10 +55,7 @@ class GuildRepository:
 
                 return guild
 
-            guild = Guild(
-                id=guild_id,
-                name=name,
-            )
+            guild = Guild(id=guild_id, name=name)
 
             session.add(guild)
             await session.commit()
@@ -68,27 +73,26 @@ class GuildRepository:
 
             return guild
 
-    async def get(
-        self,
-        guild_id: int,
-    ) -> Guild | None:
+    async def get(self, guild_id: int) -> Guild | None:
+        """
+        Busca un server por su ID.
+        :param guild_id: ID del servidor.
+        :return: Server encontrado o None.
+        """
         async with self.database.session_factory() as session:
-            return await self._get(
-                session,
-                guild_id,
-            )
+            return await self._get(session, guild_id)
 
-    async def update(
-        self,
-        guild_id: int,
-        source: str | None = None,
-        **values,
-    ) -> Guild | None:
+    async def update(self, guild_id: int, source: str | None = None, **values) -> Guild | None:
+        """
+        Actualiza los campos indicados de un server existente.
+
+        :param guild_id: ID del server.
+        :param source: Origen de la operacion.
+        :param values: Campos que se desean actualizar.
+        :return: El server actualizado, el server sin cambios o None.
+        """
         async with self.database.session_factory() as session:
-            guild = await self._get(
-                session,
-                guild_id,
-            )
+            guild = await self._get(session, guild_id)
 
             if guild is None:
                 return None
@@ -100,9 +104,7 @@ class GuildRepository:
                 current_value = getattr(guild, key)
 
                 if current_value != value:
-                    changes.append(
-                        f"{key}: {current_value} -> {value}"
-                    )
+                    changes.append(f"{key}: {current_value} -> {value}")
                     setattr(guild, key, value)
 
             if not changes:
@@ -124,16 +126,16 @@ class GuildRepository:
 
             return guild
 
-    async def delete(
-        self,
-        guild_id: int,
-        source: str | None = None,
-    ) -> bool:
+    async def delete(self, guild_id: int, source: str | None = None) -> bool:
+        """
+        Elimina un servidor de la base de datos.
+
+        :param guild_id: ID del server.
+        :param source: Origen de la operacion.
+        :return: True o False.
+        """
         async with self.database.session_factory() as session:
-            guild = await self._get(
-                session,
-                guild_id,
-            )
+            guild = await self._get(session, guild_id)
 
             if guild is None:
                 return False
@@ -155,15 +157,16 @@ class GuildRepository:
 
             return True
 
-    async def _get(
-        self,
-        session,
-        guild_id: int,
-    ) -> Guild | None:
+    async def _get(self, session, guild_id: int) -> Guild | None:
+        """
+        Busca un servidor utilizando una sesión existente.
+
+        :param session: Sesión activa de SQLAlchemy.
+        :param guild_id: ID del server.
+        :return: Server encontrado o None.
+        """
         result = await session.execute(
-            select(Guild).where(
-                Guild.id == guild_id
-            )
+            select(Guild).where(Guild.id == guild_id)
         )
 
         return result.scalar_one_or_none()

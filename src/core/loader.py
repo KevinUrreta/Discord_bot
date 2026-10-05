@@ -10,14 +10,17 @@ from src.locales.i18n import translate
 
 
 async def load_cogs(bot, lavalink_password):
+    """
+    Recorre, busca y carga automáticamente los comandos, eventos y tareas del bot.
+
+    :param bot: Instancia del Bot.
+    :param lavalink_password: Contraseña para conectar lavalink.
+    :return: None
+    """
     base_path = Path(__file__).parent.parent
 
     categories = defaultdict(
-        lambda: {
-            "total": 0,
-            "loaded": 0,
-            "failed": [],
-        }
+        lambda: {"total": 0, "loaded": 0, "failed": []}
     )
 
     for cog_type in ("commands", "events", "tasks"):
@@ -33,9 +36,7 @@ async def load_cogs(bot, lavalink_password):
             categories[key]["total"] += 1
 
             module_path = ".".join(
-                file.relative_to(base_path.parent)
-                .with_suffix("")
-                .parts
+                file.relative_to(base_path.parent).with_suffix("").parts
             )
 
             try:
@@ -54,15 +55,10 @@ async def load_cogs(bot, lavalink_password):
                     if attribute.__module__ != module.__name__:
                         continue
 
-                    parameters = inspect.signature(
-                        attribute
-                    ).parameters
+                    parameters = inspect.signature(attribute).parameters
 
                     if "lavalink_password" in parameters:
-                        cog = attribute(
-                            bot,
-                            lavalink_password,
-                        )
+                        cog = attribute(bot, lavalink_password)
                     else:
                         cog = attribute(bot)
 
@@ -71,15 +67,10 @@ async def load_cogs(bot, lavalink_password):
                     categories[key]["loaded"] += 1
 
             except Exception as error:
-                categories[key]["failed"].append(
-                    (file.name, error)
-                )
+                categories[key]["failed"].append((file.name, error))
 
     for (cog_type, category), data in categories.items():
-        label = translate(
-            None,
-            f"core.logs.loader.{cog_type}",
-        )
+        label = translate(None, f"core.logs.loader.{cog_type}")
 
         if data["failed"]:
             for filename, error in data["failed"]:

@@ -2,6 +2,12 @@ import yt_dlp
 
 
 def get_original_info(url):
+    """
+    Obtiene la información multimedia desde una URL
+
+    :param url: URL del recurso del que se quiere obtener informacion.
+    :return: Diccionario con el título y visualizaciones.
+    """
     ydl = yt_dlp.YoutubeDL(
         {
             "quiet": True,
@@ -18,6 +24,12 @@ def get_original_info(url):
 
 
 def format_duration(milliseconds):
+    """
+    Convierte una duración expresada en milisegundos a minutos y segundos.
+
+    :param milliseconds: Duración del recurso en milisegundos
+    :return: Duración formateada como minutos y segundos
+    """
     total_seconds = int(milliseconds / 1000)
     minutes, seconds = divmod(total_seconds, 60)
 
@@ -25,6 +37,12 @@ def format_duration(milliseconds):
 
 
 def get_thumbnail(track):
+    """
+    Obtiene el thumbnail de un track.
+
+    :param track: Track que se quiere obtener.
+    :return: URL o None del thumbnail.
+    """
     if track.artwork:
         return track.artwork
 

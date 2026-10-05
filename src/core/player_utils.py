@@ -5,10 +5,14 @@ import wavelink
 from src.database.repositories.guild import GuildRepository
 
 
-async def restore_volume(
-    player: wavelink.Player,
-    guild_repository: GuildRepository,
-) -> None:
+async def restore_volume(player: wavelink.Player, guild_repository: GuildRepository) -> None:
+    """
+    Restaura el volumen almacenado para el servidor del reproductor
+
+    :param player: Reproductor de Wavelink cuyo volumen se desea restaurar.
+    :param guild_repository: Server para consultar la configuración de volumen del server.
+    :return:
+    """
     guild = player.guild
 
     if guild is None:

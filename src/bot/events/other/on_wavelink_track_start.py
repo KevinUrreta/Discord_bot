@@ -18,18 +18,26 @@ from src.helpers.music_utils import (
 
 
 class On_wavelink_track_start(commands.Cog):
+    """
+    Gestiona el inicio de una reproducción.
+    """
     def __init__(self, bot):
-        self.bot = bot
+        """
+        Inicializa el evento.
 
-        self.guild_repository = GuildRepository(
-            self.bot.database
-        )
+        :param bot: Instancia principal del bot de Discord.
+        """
+        self.bot = bot
+        self.guild_repository = GuildRepository(self.bot.database)
 
     @commands.Cog.listener()
-    async def on_wavelink_track_start(
-        self,
-        payload: wavelink.TrackStartEventPayload,
-    ):
+    async def on_wavelink_track_start(self, payload: wavelink.TrackStartEventPayload):
+        """
+        Comprueba si el usuario está presente en el canal de audio y reproduce.
+
+        :param payload: Datos
+        :return: None
+        """
         if payload.player is None:
             return
 

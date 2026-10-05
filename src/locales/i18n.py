@@ -20,7 +20,7 @@ SUPPORTED_LANGUAGES = {
 
 LOG_LANGUAGE = os.getenv(
     "LOG_LANGUAGE",
-    "es",
+    "en",
 )
 
 LOCALE_FILES = {
@@ -36,11 +36,23 @@ LOCALE_FILES = {
 
 
 def set_guild_languages(guild_languages: dict) -> None:
+    """
+    Actualiza los idiomas configurados para los servidores.
+
+    :param guild_languages: Diccionario con los idiomas de cada server.
+    :return: None
+    """
     global GUILD_LANGUAGES
     GUILD_LANGUAGES = guild_languages
 
 
 def get_language(guild) -> str:
+    """
+    Obtiene el idioma configurado de un server.
+
+    :param guild: Server del que se quiere obtener idioma.
+    :return: Código del idioma.
+    """
     if guild is None:
         return LOG_LANGUAGE
 
@@ -48,12 +60,24 @@ def get_language(guild) -> str:
 
 
 def get_locale(guild) -> str:
+    """
+    Obtiene el ``.json`` correspondiente de un server.
+
+    :param guild: Server del que se quiere obtener ``json``.
+    :return: Nombre del ``json``.
+    """
     language = get_language(guild)
 
     return LOCALE_FILES.get(language, "en_US.json")
 
 
 def get_translations(guild) -> dict:
+    """
+    Carga las traducciones correspondientes a un servidor.
+
+    :param guild: Server del que se quiere obtener traducción.
+    :return: Diccionario de traducciones.
+    """
     locale = get_locale(guild)
 
     with open(LOCALES_PATH / locale, "r", encoding="utf-8") as file:
@@ -61,6 +85,17 @@ def get_translations(guild) -> dict:
 
 
 def get_nested_translation(translations: dict, key: str):
+    """
+    Obtiene una traducción utilizando una clave jerárquica.
+    Las claves se separan mediante puntos para poder acceder a
+    diferentes niveles dentro del diccionario de traducciones.
+    Por ejemplo, la clave::
+        bot.commands.music.embeds.volume.invalid_volume
+
+    :param translations: Diccionario de traducciones.
+    :param key: Clave jerárquica de traducción.
+    :return: Traducción encontrada o vacía.
+    """
     for part in key.split("."):
         translations = translations.get(part, {})
 
@@ -68,6 +103,14 @@ def get_nested_translation(translations: dict, key: str):
 
 
 def translate(guild, key: str, **kwargs) -> str:
+    """
+    Obtiene y devuelve una traducción.
+
+    :param guild: Server asociado a la traducción
+    :param key: Clave jerárquica de traducción
+    :param kwargs:
+    :return: Texto traducido.
+    """
     translations = get_translations(guild)
 
     message = get_nested_translation(translations, key)

@@ -7,11 +7,25 @@ from src.locales.i18n import translate
 
 
 class On_command_error(commands.Cog):
+    """
+    Gestiona cuando hay un error al usar un comando.
+    """
     def __init__(self, bot):
+        """
+        Inicializa el evento.
+
+        :param bot: Instancia principal del bot de Discord.
+        """
         self.bot = bot
 
     @commands.Cog.listener()
     async def on_command_error(self, ctx: commands.Context, error: commands.CommandError):
+        """
+        Registra cuando hay un error al usar un comando.
+        :param ctx: Contexto.
+        :param error: Error.
+        :return: None
+        """
         if isinstance(error, VoiceChannelRequired):
             await ctx.send(
                 embed=create_embed(

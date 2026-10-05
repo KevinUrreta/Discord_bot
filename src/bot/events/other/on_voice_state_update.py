@@ -5,12 +5,27 @@ from src.locales.i18n import translate
 
 
 class VoiceStateUpdate(commands.Cog):
-
+    """
+    Gestiona el estado de audio de los usuarios.
+    """
     def __init__(self, bot):
+        """
+        Inicializa el evento.
+
+        :param bot: Instancia principal del bot de Discord.
+        """
         self.bot = bot
 
     @commands.Cog.listener()
     async def on_voice_state_update(self, member, before, after):
+        """
+        Registra los estados de audio de los usuarios.
+
+        :param member: Miembro
+        :param before: Estado antes.
+        :param after: Estado después.
+        :return: None
+        """
         guild = member.guild
 
         before_channel = before.channel

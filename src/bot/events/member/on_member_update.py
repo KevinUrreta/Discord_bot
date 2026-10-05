@@ -7,18 +7,26 @@ from src.locales.i18n import translate
 
 
 class On_member_update(commands.Cog):
+    """
+    Gestiona la modificación de un miembro de un server.
+    """
     def __init__(self, bot):
+        """
+        Inicializa el evento.
+
+        :param bot: Instancia principal del bot de Discord.
+        """
         self.bot = bot
-        self.member_repository = MemberRepository(
-            self.bot.database
-        )
+        self.member_repository = MemberRepository(self.bot.database)
 
     @commands.Cog.listener()
-    async def on_member_update(
-        self,
-        before: discord.Member,
-        after: discord.Member,
-    ):
+    async def on_member_update(self, before: discord.Member, after: discord.Member):
+        """
+        Actualiza los valores nuevos de un miembro de un server.
+        :param before: Estado antes.
+        :param after: Estado después.
+        :return: None
+        """
         changes = {}
 
         if before.name != after.name:
@@ -30,11 +38,7 @@ class On_member_update(commands.Cog):
         if not changes:
             return
 
-        await self.member_repository.update(
-            member_id=after.id,
-            guild_id=after.guild.id,
-            **changes,
-        )
+        await self.member_repository.update(member_id=after.id, guild_id=after.guild.id, **changes)
 
         logger.info(
             translate(

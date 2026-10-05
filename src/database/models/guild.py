@@ -6,6 +6,11 @@ from src.database import Base
 
 
 class Guild(Base):
+    """
+    Representa un servidor de Discord almacenado en la base de datos.
+
+    Guarda la información de configuración asociada al servidor.
+    """
     __tablename__ = "guilds"
 
     id = Column(BigInteger, primary_key=True)

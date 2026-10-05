@@ -11,14 +11,25 @@ IDLE_DISCONNECT_DELAY = 60
 
 
 class On_wavelink_track_end(commands.Cog):
+    """
+    Gestiona cuando una reproducción acaba.
+    """
     def __init__(self, bot):
+        """
+        Inicializa el evento.
+
+        :param bot: Instancia principal del bot de Discord.
+        """
         self.bot = bot
 
     @commands.Cog.listener()
-    async def on_wavelink_track_end(
-        self,
-        payload: wavelink.TrackEndEventPayload,
-    ):
+    async def on_wavelink_track_end(self, payload: wavelink.TrackEndEventPayload):
+        """
+        Comprueba si el usuario sigue conectado, y reproduce la siguiente en cola.
+
+        :param payload: Datos
+        :return: None
+        """
         if payload.player is None:
             return
 
