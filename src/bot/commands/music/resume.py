@@ -7,6 +7,9 @@ from src.helpers.permissions import has_voice_channel
 
 
 class Resume(commands.Cog):
+    """
+    Gestiona el comando para continuar con la reproducción.
+    """
     def __init__(self, bot, lavalink_password):
         """
         Inicializa el evento.
@@ -18,35 +21,35 @@ class Resume(commands.Cog):
     @has_voice_channel()
     @commands.command(name="resume")
     async def resume(self, ctx):
+        """
+        Continúa la reproducción pausada anteriormente.
+
+        :param ctx: Contexto del comando.
+        :return: None
+        """
         if ctx.voice_client is None:
-            return await ctx.send(
-                embed=create_embed(
+            return await ctx.send(embed=create_embed(
                     ctx.guild,
                     "bot.commands.music.embeds.resume.not_connected",
                     user=ctx.author.display_name,
                     footer_icon=ctx.author.display_avatar.url,
-                )
-            )
+                ))
 
         player: wavelink.Player = ctx.voice_client
 
         if not player.paused:
-            return await ctx.send(
-                embed=create_embed(
+            return await ctx.send(embed=create_embed(
                     ctx.guild,
                     "bot.commands.music.embeds.resume.no_song_playing",
                     user=ctx.author.display_name,
                     footer_icon=ctx.author.display_avatar.url,
-                )
-            )
+                ))
 
         await player.pause(False)
 
-        await ctx.send(
-            embed=create_embed(
+        await ctx.send(embed=create_embed(
                 ctx.guild,
                 "bot.commands.music.embeds.resume.resumed",
                 user=ctx.author.display_name,
                 footer_icon=ctx.author.display_avatar.url,
-            )
-        )
+            ))

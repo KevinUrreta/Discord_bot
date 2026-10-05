@@ -4,6 +4,9 @@ from src.helpers.embeds import create_embed
 
 
 class Leave(commands.Cog):
+    """
+    Gestiona el comando para abandonar el canal de audio.
+    """
     def __init__(self, bot, lavalink_password):
         """
         Inicializa el evento.
@@ -14,6 +17,12 @@ class Leave(commands.Cog):
 
     @commands.command(name="leave", aliases=["disconnect"])
     async def leave(self, ctx):
+        """
+        Abandona el canal de audio.
+
+        :param ctx: Contexto del comando.
+        :return: None
+        """
         if ctx.voice_client is None:
             return await ctx.send(
                 embed=create_embed(

@@ -11,7 +11,10 @@ from src.locales.i18n import (
 
 
 class Language(commands.Cog):
-    def __init__(self, bot, lavalink_password):
+    """
+    Gestiona el comando para consultar o cambiar el idioma del server.
+    """
+    def __init__(self, bot):
         """
         Inicializa el evento.
 
@@ -19,41 +22,34 @@ class Language(commands.Cog):
         """
         self.bot = bot
 
-        self.guild_repository = GuildRepository(
-            self.bot.database
-        )
+        self.guild_repository = GuildRepository(self.bot.database)
 
     @commands.command(name="language")
     @has_manage_guild()
-    async def language(
-        self,
-        ctx,
-        language: str | None = None,
-    ):
+    async def language(self, ctx, language: str | None = None):
+        """
+        Consulta o cambia el idioma configurado para el servidor.
+
+        :param ctx: Contexto del comando
+        :param language: Código de idioma al que se quiere cambiar.
+        :return: None
+        """
         if ctx.guild is None:
             return
 
         guild_id = ctx.guild.id
 
         if language is None:
-            current_language = self.bot.guild_languages.get(
-                guild_id,
-                "es",
-            )
+            current_language = self.bot.guild_languages.get(guild_id, "es")
 
-            language_name = SUPPORTED_LANGUAGES.get(
-                current_language,
-                current_language,
-            )
+            language_name = SUPPORTED_LANGUAGES.get(current_language, current_language)
 
-            return await ctx.send(
-                embed=create_embed(
+            return await ctx.send(embed=create_embed(
                     ctx.guild,
                     "bot.commands.config.embeds.language.current_language",
                     language_name=language_name,
                     language=current_language,
-                )
-            )
+                ))
 
         language = language.lower()
 
@@ -63,52 +59,37 @@ class Language(commands.Cog):
                 for code, name in SUPPORTED_LANGUAGES.items()
             )
 
-            await ctx.send(
-                embed=create_embed(
+            await ctx.send(embed=create_embed(
                     ctx.guild,
                     "bot.commands.config.embeds.language.invalid_language",
-                )
-            )
+                ))
 
-            return await ctx.send(
-                embed=create_embed(
+            return await ctx.send(embed=create_embed(
                     ctx.guild,
                     "bot.commands.config.embeds.language.available_languages",
                     languages=available_languages,
-                )
-            )
+                ))
 
-        old_language = self.bot.guild_languages.get(
-            guild_id,
-            "es",
-        )
-
-        guild = await self.guild_repository.update(
-            guild_id=guild_id,
-            language=language,
-        )
+        old_language = self.bot.guild_languages.get(guild_id, "en")
+        guild = await self.guild_repository.update(guild_id=guild_id, language=language)
 
         if guild is None:
             return
 
         self.bot.guild_languages[guild_id] = language
 
-        await ctx.send(
-            embed=create_embed(
+        await ctx.send(embed=create_embed(
                 ctx.guild,
                 "bot.commands.config.embeds.language.language_changed",
                 language_name=SUPPORTED_LANGUAGES[language],
                 language=language,
-            )
-        )
+            ))
 
-        logger.info(
-            translate(
+        logger.info(translate(
                 None,
                 "bot.commands.config.logs.language.changed",
                 old_language=old_language,
                 language=language,
                 user=ctx.author.display_name,
                 guild_id=guild_id,
-            )
-        )
+            ))
