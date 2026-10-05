@@ -2,41 +2,40 @@
 
 Bot multifunción para Discord desarrollado como proyecto de **Desarrollo de Aplicaciones Multiplataforma (DAM)**.
 
-Actualmente el proyecto está centrado principalmente en la reproducción y gestión de música mediante **Discord.py + Wavelink + Lavalink**, con persistencia de datos mediante **PostgreSQL** e internacionalización de mensajes.
-
----
+El proyecto está centrado principalmente en la reproducción y gestión de música mediante **discord.py, Wavelink y Lavalink**, con persistencia de datos mediante **PostgreSQL**, internacionalización de mensajes y un sistema de eventos y logs.
 
 ## Características
 
-* 🎵 Reproducción de música en canales de voz.
-* 🔎 Búsqueda y reproducción de canciones.
-* 📋 Gestión de cola de reproducción.
-* ⏯️ Controles de reproducción.
-* 🔊 Control de volumen.
-* 🔁 Repetición de canciones o cola.
-* 🔀 Aleatorización de la cola.
-* 🎤 Consulta de letras.
-* 🎶 Información de la canción actual.
-* 🛡️ Comandos de moderación.
-* ⚙️ Configuración del servidor.
-* 🌐 Sistema de internacionalización (i18n).
-* 💾 Persistencia mediante PostgreSQL.
-* 🔌 Lavalink para el procesamiento de audio.
-* 📝 Sistema de logs.
-* 🧪 Tests automatizados con pytest.
-* 🐳 Entorno preparado para ejecutarse mediante Docker.
+* Reproducción de música en canales de voz.
+* Búsqueda y reproducción de canciones.
+* Gestión de la cola de reproducción.
+* Pausar y reanudar la reproducción.
+* Saltar canciones.
+* Control de volumen.
+* Repetición de canciones y cola.
+* Aleatorización de la cola.
+* Consulta de letras.
+* Información de la canción actual.
+* Comando de moderación.
+* Configuración del servidor.
+* Sistema de internacionalización (i18n).
+* Persistencia mediante PostgreSQL.
+* Procesamiento de audio mediante Lavalink.
+* Sistema de logs.
+* Entorno preparado para ejecutarse mediante Docker.
+* Estructura de pruebas automatizadas mediante pytest.
 
 ---
 
 # 1. Requisitos
 
-Antes de instalar el proyecto necesitas tener instalados:
+Antes de instalar el proyecto necesitas:
 
 * Git
 * Docker
 * Docker Compose
 * Una cuenta de Discord
-* Un bot de Discord creado en el Developer Portal
+* Una aplicación/bot creado en el Discord Developer Portal
 
 No es necesario instalar Python ni PostgreSQL en el sistema anfitrión si se utiliza el entorno Docker proporcionado por el proyecto.
 
@@ -47,7 +46,7 @@ No es necesario instalar Python ni PostgreSQL en el sistema anfitrión si se uti
 Clona el repositorio:
 
 ```bash
-git clone <URL_DEL_REPOSITORIO>
+git clone https://github.com/KevinUrreta/Discord_bot.git
 ```
 
 Entra en la carpeta:
@@ -56,33 +55,25 @@ Entra en la carpeta:
 cd Discord_bot
 ```
 
-Si el proyecto se encuentra en otra ubicación, utiliza la ruta correspondiente.
-
 ---
 
 # 3. Configuración del bot de Discord
 
 Crea una aplicación desde el **Discord Developer Portal** y añade un bot.
 
-Necesitarás obtener:
+Necesitarás obtener el token del bot y configurar los permisos necesarios para que pueda:
 
-* Token del bot.
-* Client ID / Application ID.
-* Los permisos necesarios para que el bot pueda conectarse a servidores y canales de voz.
+* Conectarse a servidores.
+* Leer y enviar mensajes.
+* Conectarse a canales de voz.
+* Hablar en canales de voz.
+* Utilizar las funciones necesarias para la reproducción de música.
 
 ## Intents
 
-En la configuración del bot deben habilitarse los intents que utilice la aplicación.
+El bot utiliza los intents necesarios para gestionar los eventos de Discord.
 
-Como mínimo, comprueba los intents relacionados con:
-
-* Guilds
-* Guild Members
-* Guild Messages
-* Message Content
-* Guild Voice States
-
-El `Message Content Intent` debe estar habilitado si el bot utiliza comandos mediante prefijo.
+El **Message Content Intent** debe estar habilitado porque el bot utiliza comandos mediante prefijo.
 
 ---
 
@@ -115,19 +106,21 @@ LAVALINK_PORT=2333
 LAVALINK_PASSWORD=TU_PASSWORD
 ```
 
-> Los nombres exactos de las variables deben coincidir con los utilizados por `docker-compose.yml`, `main.py` y el código de configuración del proyecto.
+Los valores deben coincidir con la configuración utilizada por el proyecto.
 
 ### Importante
 
 No publiques nunca el archivo `.env` en Git.
 
-Comprueba que `.env` está incluido en `.gitignore`.
+El token de Discord y las contraseñas deben mantenerse fuera del repositorio.
+
+Comprueba que `.env` esté incluido en `.gitignore`.
 
 ---
 
-# 5. Estructura principal
+# 5. Estructura del proyecto
 
-La aplicación está organizada de la siguiente forma:
+La estructura principal del proyecto es:
 
 ```text
 .
@@ -153,6 +146,7 @@ La aplicación está organizada de la siguiente forma:
 │   └── wavelink.log
 │
 ├── scripts/
+│   ├── docs.py
 │   ├── generate_events.py
 │   ├── generate_music_tests.py
 │   └── generate_tests.py
@@ -174,7 +168,7 @@ La aplicación está organizada de la siguiente forma:
 └── requirements.txt
 ```
 
-La documentación completa de la arquitectura se encuentra en:
+La documentación de la arquitectura se encuentra en:
 
 ```text
 docs/arch.md
@@ -182,7 +176,66 @@ docs/arch.md
 
 ---
 
-# 6. Levantar el entorno con Docker
+# 6. Arquitectura
+
+El código está dividido en diferentes módulos según su responsabilidad.
+
+```text
+src/
+├── bot/
+│   ├── commands/
+│   ├── events/
+│   └── tasks/
+│
+├── core/
+├── database/
+│   ├── models/
+│   └── repositories/
+│
+├── helpers/
+│
+└── locales/
+```
+
+### `bot`
+
+Contiene la lógica relacionada directamente con Discord:
+
+* `commands/`: comandos del bot.
+* `events/`: eventos de Discord y Wavelink.
+* `tasks/`: tareas periódicas.
+
+### `core`
+
+Contiene componentes principales del funcionamiento del bot, como:
+
+* Carga dinámica de módulos.
+* Sistema de logs.
+* Gestión del prefijo.
+* Estado del reproductor.
+* Utilidades relacionadas con el reproductor.
+
+### `database`
+
+Contiene la conexión con PostgreSQL, los modelos y los repositorios utilizados para acceder a los datos.
+
+### `helpers`
+
+Contiene funciones auxiliares reutilizables.
+
+### `locales`
+
+Contiene el sistema de internacionalización y los archivos de traducción.
+
+La documentación completa de la arquitectura está disponible en:
+
+```text
+docs/arch.md
+```
+
+---
+
+# 7. Ejecutar el proyecto con Docker
 
 El proyecto está preparado para ejecutarse mediante Docker Compose.
 
@@ -192,19 +245,27 @@ Desde la raíz del proyecto:
 docker compose -f docker/docker-compose.yml up -d --build
 ```
 
-Esto construirá las imágenes necesarias y arrancará los servicios definidos en `docker-compose.yml`.
+Esto construirá la imagen del bot y arrancará los servicios definidos en `docker-compose.yml`.
 
-Para comprobar los contenedores:
+Para comprobar el estado:
 
 ```bash
 docker compose -f docker/docker-compose.yml ps
 ```
 
+Los servicios principales son:
+
+* `bot`
+* `lavalink`
+* `postgres`
+
+El contenedor del bot se denomina `discord_bot`.
+
 ---
 
-# 7. Comprobar los logs
+# 8. Comprobar los logs
 
-Para consultar los logs de Docker:
+Para consultar los logs de todos los servicios:
 
 ```bash
 docker compose -f docker/docker-compose.yml logs -f
@@ -213,7 +274,7 @@ docker compose -f docker/docker-compose.yml logs -f
 Para consultar únicamente el bot:
 
 ```bash
-docker compose -f docker/docker-compose.yml logs -f discord_bot
+docker compose -f docker/docker-compose.yml logs -f bot
 ```
 
 Para consultar Lavalink:
@@ -222,35 +283,22 @@ Para consultar Lavalink:
 docker compose -f docker/docker-compose.yml logs -f lavalink
 ```
 
----
-
-# 8. Acceder al contenedor del bot
-
-Para entrar en el contenedor:
+Para consultar PostgreSQL:
 
 ```bash
-docker exec -it discord_bot sh
-```
-
-Una vez dentro puedes comprobar la estructura:
-
-```bash
-tree -I "venv|__pycache__|postgres_data"
-```
-
-También puedes comprobar que Python está disponible:
-
-```bash
-python --version
+docker compose -f docker/docker-compose.yml logs -f postgres
 ```
 
 ---
 
-# 9. Lavalink
+# 9. Lavalink y Wavelink
 
-El bot utiliza **Lavalink** como servidor de audio y **Wavelink** como cliente.
+El sistema de reproducción utiliza:
 
-La configuración principal de Lavalink se encuentra en:
+* **Lavalink** como servidor de audio.
+* **Wavelink** como cliente para comunicarse con Lavalink.
+
+La configuración de Lavalink se encuentra en:
 
 ```text
 lavalink/application.yml
@@ -269,43 +317,41 @@ lavasrc-plugin-4.8.3.jar
 youtube-plugin-1.18.2.jar
 ```
 
-El bot se conecta al servicio Lavalink mediante el nombre del servicio Docker:
+El bot se conecta al servicio mediante:
 
 ```text
 lavalink
 ```
 
-y el puerto:
+utilizando el puerto:
 
 ```text
 2333
 ```
 
-Por ello, desde el contenedor del bot **no se debe utilizar `localhost` para conectarse a Lavalink**.
+Desde el contenedor del bot no se debe utilizar `localhost` para conectarse a Lavalink, ya que `localhost` hace referencia al propio contenedor.
 
 ---
 
 # 10. PostgreSQL
 
-La aplicación utiliza PostgreSQL para almacenar información relacionada con los servidores y miembros.
+El proyecto utiliza PostgreSQL para almacenar información relacionada con los servidores y miembros.
 
-Dentro de Docker, el bot debe conectarse al servicio PostgreSQL utilizando el nombre del servicio definido en `docker-compose.yml`.
-
-La conexión no debe utilizar:
-
-```text
-localhost
-```
-
-desde el contenedor del bot.
-
-Utiliza el nombre del servicio Docker correspondiente, por ejemplo:
+Dentro de Docker, la conexión se realiza utilizando el nombre del servicio:
 
 ```text
 postgres
 ```
 
-Puedes comprobar los servicios activos mediante:
+y el puerto:
+
+```text
+5432
+```
+
+Desde el contenedor del bot tampoco debe utilizarse `localhost` para acceder a PostgreSQL.
+
+Puedes comprobar el estado de los servicios con:
 
 ```bash
 docker compose -f docker/docker-compose.yml ps
@@ -313,84 +359,160 @@ docker compose -f docker/docker-compose.yml ps
 
 ---
 
-# 11. Ejecutar la aplicación
+# 11. Arranque de la aplicación
 
-Una vez iniciados los contenedores:
-
-```bash
-docker compose -f docker/docker-compose.yml up -d
-```
-
-Comprueba los logs del bot:
+Una vez configurado el archivo `.env`, ejecuta:
 
 ```bash
-docker compose -f docker/docker-compose.yml logs -f discord_bot
+docker compose -f docker/docker-compose.yml up -d --build
 ```
 
-Si el bot se ha iniciado correctamente, debería conectarse a Discord y posteriormente establecer la conexión con Lavalink.
+Comprueba el estado:
+
+```bash
+docker compose -f docker/docker-compose.yml ps
+```
+
+Y consulta los logs del bot:
+
+```bash
+docker compose -f docker/docker-compose.yml logs -f bot
+```
+
+Durante el arranque, el bot debe:
+
+1. Conectarse a Discord.
+2. Conectarse a Lavalink.
+3. Iniciar la sincronización de la base de datos.
+4. Cargar los comandos, eventos y tareas.
 
 ---
 
 # 12. Comandos disponibles
 
+El bot utiliza comandos mediante **prefijo**.
+
+El prefijo predeterminado es:
+
+```text
+!
+```
+
 ## Configuración
 
 ```text
-/language
-/prefix
+!language
+!prefix
 ```
 
-Permiten configurar determinados aspectos del servidor.
+### `!language`
+
+Permite consultar o modificar el idioma del servidor.
+
+Ejemplo:
+
+```text
+!language es
+```
+
+### `!prefix`
+
+Permite consultar o modificar el prefijo del servidor.
+
+Ejemplo:
+
+```text
+!prefix <
+```
+
+---
 
 ## Moderación
 
 ```text
-/clear
+!clear
 ```
 
-Permite gestionar mensajes según los permisos correspondientes.
+Permite eliminar mensajes según los permisos correspondientes.
+
+---
 
 ## Música
 
 ```text
-/play
-/pause
-/resume
-/stop
-/skip
-/queue
-/remove
-/clear
-/join
-/leave
-/loop
-/shuffle
-/volume
-/now_playing
-/lyrics
+!join
+!play
+!pause
+!resume
+!stop
+!skip
+!queue
+!remove
+!clear
+!leave
+!loop
+!shuffle
+!volume
+!nowplaying
+!lyrics
 ```
 
-La disponibilidad de los comandos depende de la configuración del bot y de los permisos del usuario.
+### Ejemplos
+
+Reproducir una canción:
+
+```text
+!play nombre de la canción
+```
+
+Consultar la cola:
+
+```text
+!queue
+```
+
+Pausar:
+
+```text
+!pause
+```
+
+Reanudar:
+
+```text
+!resume
+```
+
+Cambiar el volumen:
+
+```text
+!volume 50
+```
+
+Consultar la canción actual:
+
+```text
+!nowplaying
+```
 
 ---
 
 # 13. Internacionalización
 
-El proyecto dispone de un sistema de internacionalización.
+El proyecto dispone de un sistema de internacionalización para adaptar los mensajes del bot a diferentes idiomas.
 
-Los idiomas disponibles actualmente son:
+Actualmente están disponibles:
 
-```text
-de_DE
-en_US
-es_ES
-fr_FR
-it_IT
-ja_JP
-nl_NL
-pl_PL
-pt_PT
-```
+| Código | Idioma    |
+| ------ | --------- |
+| `de`   | Deutsch   |
+| `en`   | English   |
+| `es`   | Español   |
+| `fr`   | Français  |
+| `ja`   | 日本語       |
+| `pt`   | Português |
+| `ru`   | Русский   |
+| `zh`   | 中文        |
 
 Los archivos de traducción se encuentran en:
 
@@ -398,32 +520,56 @@ Los archivos de traducción se encuentran en:
 src/locales/
 ```
 
-Por ejemplo:
+Actualmente:
 
 ```text
-src/locales/es_ES.json
-src/locales/en_US.json
+de_DE.json
+en_US.json
+es_ES.json
+fr_FR.json
+ja_JP.json
+pt_BR.json
+ru_RU.json
+zh_CN.json
 ```
 
-La lógica de traducción se encuentra en:
+La lógica de internacionalización se encuentra en:
 
 ```text
 src/locales/i18n.py
 ```
 
-Las traducciones se utilizan tanto para las respuestas del bot como para diferentes logs internos.
+Las traducciones se utilizan tanto en las respuestas del bot como en diferentes mensajes de logs.
 
 ---
 
-# 14. Logs
+# 14. Persistencia
 
-Los logs se almacenan en:
+El proyecto utiliza PostgreSQL para mantener información de los servidores y miembros.
+
+Entre los datos gestionados se encuentran configuraciones como:
+
+* Prefijo del servidor.
+* Idioma del servidor.
+* Información relacionada con los miembros.
+
+La sincronización de la base de datos se realiza mediante:
+
+```text
+src/bot/tasks/database_sync.py
+```
+
+---
+
+# 15. Logs
+
+Los logs generados por la aplicación se almacenan en:
 
 ```text
 logs/
 ```
 
-Actualmente existen diferentes archivos según el tipo de información:
+Actualmente se utilizan:
 
 ```text
 bot.log
@@ -433,21 +579,39 @@ lavalink.log
 wavelink.log
 ```
 
-Esto permite separar la información generada por las diferentes partes de la aplicación.
+Cada archivo permite separar diferentes tipos de información generada durante la ejecución del proyecto.
 
 ---
 
-# 15. Ejecutar los tests
+# 16. Tests
 
-El proyecto utiliza `pytest`.
+El proyecto dispone de una estructura de pruebas basada en **pytest**.
 
-Si ejecutas las pruebas dentro del entorno Python:
+Los tests se encuentran en:
+
+```text
+tests/
+```
+
+La estructura sigue la organización principal del código:
+
+```text
+tests/
+└── src/
+    ├── bot/
+    ├── core/
+    ├── database/
+    ├── helpers/
+    └── locales/
+```
+
+Para ejecutar las pruebas:
 
 ```bash
 pytest
 ```
 
-Para obtener información más detallada:
+Para obtener información detallada:
 
 ```bash
 pytest -v
@@ -459,7 +623,7 @@ Para ejecutar un archivo concreto:
 pytest tests/src/core/test_core_loader.py
 ```
 
-Para ejecutar una categoría concreta, por ejemplo los comandos de música:
+Para ejecutar únicamente las pruebas de los comandos de música:
 
 ```bash
 pytest tests/src/bot/commands/music/
@@ -467,31 +631,58 @@ pytest tests/src/bot/commands/music/
 
 ---
 
-# 16. Ejecutar tests dentro de Docker
+# 17. Acceder al contenedor del bot
 
-Si el entorno Python está dentro del contenedor del bot:
+Para acceder al contenedor:
 
 ```bash
 docker exec -it discord_bot sh
 ```
 
-y posteriormente:
+Una vez dentro se puede comprobar la versión de Python:
+
+```bash
+python --version
+```
+
+También se pueden ejecutar los tests:
 
 ```bash
 pytest
 ```
 
-Para salir del contenedor:
+Para salir:
 
 ```bash
 exit
 ```
 
-Estos scripts están destinados a facilitar la creación y actualización de la estructura de pruebas.
+---
+
+# 18. Scripts auxiliares
+
+La carpeta:
+
+```text
+scripts/
+```
+
+contiene diferentes scripts utilizados durante el desarrollo.
+
+Actualmente incluye:
+
+```text
+docs.py
+generate_events.py
+generate_music_tests.py
+generate_tests.py
+```
+
+Estos scripts facilitan tareas relacionadas con la documentación y la generación de estructuras de pruebas.
 
 ---
 
-# 17. Detener la aplicación
+# 19. Detener la aplicación
 
 Para detener los servicios:
 
@@ -499,15 +690,15 @@ Para detener los servicios:
 docker compose -f docker/docker-compose.yml down
 ```
 
-Esto detiene y elimina los contenedores, pero no necesariamente elimina los volúmenes de datos.
+Esto detiene y elimina los contenedores, pero mantiene los volúmenes persistentes según la configuración de Docker Compose.
 
 ---
 
-# 18. Detener y eliminar los datos
+# 20. Eliminar los datos persistentes
 
-**Precaución:** esta operación puede eliminar los datos persistentes de PostgreSQL dependiendo de la configuración de Docker Compose.
+**Precaución:** esta operación puede eliminar los datos persistentes de PostgreSQL.
 
-No utilices esta opción salvo que quieras reiniciar completamente el entorno.
+Utilízala únicamente si quieres reiniciar completamente el entorno:
 
 ```bash
 docker compose -f docker/docker-compose.yml down -v
@@ -515,9 +706,9 @@ docker compose -f docker/docker-compose.yml down -v
 
 ---
 
-# 19. Reconstruir completamente el entorno
+# 21. Reconstruir el entorno
 
-Si has realizado cambios en el código o en los Dockerfiles:
+Después de realizar cambios en el código o en los Dockerfiles:
 
 ```bash
 docker compose -f docker/docker-compose.yml down
@@ -537,17 +728,11 @@ docker compose -f docker/docker-compose.yml ps
 
 ---
 
-# 20. Desarrollo local sin Docker
+# 22. Desarrollo local
 
-El proyecto también contiene un entorno virtual de Python:
+El proyecto también puede ejecutarse mediante un entorno virtual de Python.
 
-```text
-.venv/
-```
-
-Para crear uno nuevo:
-
-### Windows
+Para crear uno nuevo en Windows:
 
 ```powershell
 python -m venv .venv
@@ -559,80 +744,79 @@ Activarlo:
 .\.venv\Scripts\Activate.ps1
 ```
 
-Instalar dependencias:
+Instalar las dependencias:
 
 ```powershell
 pip install -r requirements.txt
 ```
 
-Después se puede ejecutar:
+Después:
 
 ```powershell
 python main.py
 ```
 
-> Para el funcionamiento completo del proyecto siguen siendo necesarios los servicios externos utilizados por la aplicación, especialmente PostgreSQL y Lavalink.
+Para el funcionamiento completo del proyecto siguen siendo necesarios los servicios externos utilizados por la aplicación, especialmente PostgreSQL y Lavalink.
 
 ---
 
-# 21. Actualizar el proyecto
-
-Si el proyecto ya está clonado:
-
-```bash
-git pull
-```
-
-Después de actualizar dependencias:
-
-```bash
-docker compose -f docker/docker-compose.yml down
-docker compose -f docker/docker-compose.yml up -d --build
-```
-
----
-
-# 22. Solución de problemas
+# 23. Solución de problemas
 
 ## El bot no inicia
 
-Comprueba los logs:
-
-```bash
-docker compose -f docker/docker-compose.yml logs discord_bot
-```
-
-Comprueba también que las variables del `.env` sean correctas.
-
----
-
-## Lavalink no conecta
-
-Comprueba:
-
-```bash
-docker compose -f docker/docker-compose.yml logs lavalink
-```
-
-Y comprueba que el contenedor esté funcionando:
+Comprueba el estado de los servicios:
 
 ```bash
 docker compose -f docker/docker-compose.yml ps
 ```
 
-Desde el bot, Lavalink debe utilizar el nombre del servicio Docker y no `localhost`.
+Consulta los logs:
+
+```bash
+docker compose -f docker/docker-compose.yml logs bot
+```
+
+Comprueba también que las variables del archivo `.env` sean correctas.
+
+---
+
+## Lavalink no conecta
+
+Consulta sus logs:
+
+```bash
+docker compose -f docker/docker-compose.yml logs lavalink
+```
+
+Comprueba que el servicio esté activo:
+
+```bash
+docker compose -f docker/docker-compose.yml ps
+```
+
+Desde el bot, Lavalink debe utilizar:
+
+```text
+lavalink:2333
+```
+
+y no:
+
+```text
+localhost:2333
+```
 
 ---
 
 ## No se reproduce música
 
-Comprueba primero:
+Comprueba:
 
 1. Que Lavalink esté iniciado.
 2. Que Wavelink haya conectado correctamente.
 3. Que el bot esté conectado a un canal de voz.
 4. Que el bot tenga permisos para conectarse y hablar.
-5. Los archivos:
+5. Los siguientes logs:
 
 ```text
 logs/lavalink.log
@@ -644,19 +828,19 @@ logs/errors.log
 
 ## Error de conexión con PostgreSQL
 
-Comprueba:
+Comprueba el estado:
 
 ```bash
 docker compose -f docker/docker-compose.yml ps
 ```
 
-y los logs:
+Consulta los logs:
 
 ```bash
 docker compose -f docker/docker-compose.yml logs postgres
 ```
 
-Revisa también las variables:
+Y revisa las variables:
 
 ```env
 POSTGRES_DB=
@@ -668,57 +852,44 @@ POSTGRES_PORT=
 
 ---
 
-# 23. Flujo rápido de instalación
+# 24. Flujo rápido de instalación
 
-Para una instalación nueva:
+Para instalar el proyecto desde cero:
 
 ```bash
-git clone <URL_DEL_REPOSITORIO>
+git clone https://github.com/KevinUrreta/Discord_bot.git
 cd Discord_bot
 ```
 
-Crear `.env`:
+Crea y configura el archivo:
 
 ```text
 .env
 ```
 
-Configurar las variables necesarias.
-
-Después:
+Después ejecuta:
 
 ```bash
 docker compose -f docker/docker-compose.yml up -d --build
 ```
 
-Comprobar:
+Comprueba los servicios:
 
 ```bash
 docker compose -f docker/docker-compose.yml ps
 ```
 
-Ver logs:
+Consulta los logs del bot:
 
 ```bash
-docker compose -f docker/docker-compose.yml logs -f discord_bot
+docker compose -f docker/docker-compose.yml logs -f bot
 ```
 
-Ejecutar tests:
-
-```bash
-docker exec -it discord_bot sh
-pytest
-```
-
-Salir:
-
-```bash
-exit
-```
+Una vez iniciado, invita el bot a tu servidor de Discord y utiliza el prefijo configurado para ejecutar los comandos.
 
 ---
 
-# 24. Tecnologías utilizadas
+# 25. Tecnologías utilizadas
 
 * Python
 * discord.py
@@ -736,40 +907,23 @@ exit
 
 ---
 
-# 25. Estructura de desarrollo
+# 26. Documentación
 
-La aplicación separa diferentes responsabilidades:
-
-```text
-src/
-├── bot/
-│   ├── commands/
-│   ├── events/
-│   └── tasks/
-│
-├── core/
-│
-├── database/
-│   ├── models/
-│   └── repositories/
-│
-├── helpers/
-│
-└── locales/
-```
-
-Esta separación permite mantener independientes los comandos de Discord, eventos, lógica principal, acceso a datos, utilidades e internacionalización.
-
-Para consultar la arquitectura completa:
+La documentación técnica de la arquitectura del proyecto se encuentra en:
 
 ```text
 docs/arch.md
 ```
 
+Además, el código fuente contiene documentación mediante docstrings para facilitar su comprensión y mantenimiento.
+
 ---
 
-# 26. Licencia
+# 27. Licencia
 
+Este proyecto se distribuye bajo la licencia **MIT**.
+
+```text
 MIT License
 
 Copyright (c) 2024 KevinUrreta
@@ -791,3 +945,4 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+```
