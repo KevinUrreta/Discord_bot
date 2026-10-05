@@ -6,7 +6,6 @@ from src.core.logging import logger
 from src.locales.i18n import translate, set_guild_languages
 
 
-
 class DatabaseSync(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
@@ -19,10 +18,6 @@ class DatabaseSync(commands.Cog):
             self.bot.database
         )
 
-        set_guild_languages(
-            self.bot.guild_languages
-        )
-
         self.sync_database.start()
 
     def cog_unload(self):
@@ -33,9 +28,10 @@ class DatabaseSync(commands.Cog):
         logger.info(
             translate(
                 None,
-                "bot.tasks.database_sync.started",
+                "bot.tasks.logs.database_sync.started",
             )
         )
+
         for guild in self.bot.guilds:
             guild_data = await self.guild_repository.create(
                 guild_id=guild.id,
@@ -56,6 +52,10 @@ class DatabaseSync(commands.Cog):
                     joined_at=member.joined_at,
                     source="sync_database",
                 )
+
+        set_guild_languages(
+            self.bot.guild_languages
+        )
 
     @sync_database.before_loop
     async def before_sync_database(self):

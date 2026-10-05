@@ -1,10 +1,6 @@
 services:
 
 
-
-  # -----------------------
-  # Bot de Discord
-  # -----------------------
   bot:
     build:
       context: ..
@@ -23,10 +19,6 @@ services:
     command: python main.py
 
 
-
-  # -----------------------
-  # Lavalink (servidor de audio)
-  # -----------------------
   lavalink:
     build:
       context: ../lavalink
@@ -48,9 +40,14 @@ services:
       - ../lavalink/plugins:/opt/Lavalink/plugins
       - ../logs:/opt/Lavalink/logs
 
-  # -----------------------
-  # Base de datos PostgreSQL
-  # -----------------------
+    healthcheck:
+      test: [ "CMD", "python3.11", "-c", "import socket; socket.create_connection(('localhost', 2333), 2).close()" ]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+      start_period: 120s
+
+
   postgres:
     image: postgres:16
     container_name: postgres

@@ -1,3 +1,4 @@
+from datetime import timezone
 from typing import cast
 
 from sqlalchemy import select
@@ -14,13 +15,13 @@ class MemberRepository:
         self.database = database
 
     async def create(
-        self,
-        member_id: int,
-        guild_id: int,
-        name: str,
-        display_name: str,
-        joined_at=None,
-        source: str | None = None,
+            self,
+            member_id: int,
+            guild_id: int,
+            name: str,
+            display_name: str,
+            joined_at=None,
+            source: str | None = None,
     ) -> Member:
         async with self.database.session_factory() as session:
             member = await self._get(
@@ -36,6 +37,19 @@ class MemberRepository:
                     member.display_name,
                 )
                 current_joined_at = member.joined_at
+
+                if (
+                        current_joined_at is not None
+                        and current_joined_at.tzinfo is None
+                ):
+                    current_joined_at = current_joined_at.replace(
+                        tzinfo=timezone.utc
+                    )
+
+                if joined_at is not None and joined_at.tzinfo is None:
+                    joined_at = joined_at.replace(
+                        tzinfo=timezone.utc
+                    )
 
                 changes = []
 
@@ -113,7 +127,6 @@ class MemberRepository:
             )
 
             return member
-
     async def get(
         self,
         member_id: int,

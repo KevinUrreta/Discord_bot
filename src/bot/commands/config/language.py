@@ -5,7 +5,6 @@ from src.database.repositories.guild import GuildRepository
 from src.helpers.embeds import create_embed
 from src.helpers.permissions import has_manage_guild
 from src.locales.i18n import (
-    GUILD_LANGUAGES,
     SUPPORTED_LANGUAGES,
     translate,
 )
@@ -32,7 +31,7 @@ class Language(commands.Cog):
         guild_id = ctx.guild.id
 
         if language is None:
-            current_language = GUILD_LANGUAGES.get(
+            current_language = self.bot.guild_languages.get(
                 guild_id,
                 "es",
             )
@@ -74,7 +73,7 @@ class Language(commands.Cog):
                 )
             )
 
-        old_language = GUILD_LANGUAGES.get(
+        old_language = self.bot.guild_languages.get(
             guild_id,
             "es",
         )
@@ -87,7 +86,7 @@ class Language(commands.Cog):
         if guild is None:
             return
 
-        GUILD_LANGUAGES[guild_id] = language
+        self.bot.guild_languages[guild_id] = language
 
         await ctx.send(
             embed=create_embed(

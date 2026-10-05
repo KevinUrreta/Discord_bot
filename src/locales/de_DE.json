@@ -1,866 +1,882 @@
 {
-	"bot": {
-		"commands": {
-			"config": {
-				"logs": {
-					"language": {
-						"executed": "Der Befehl /language wurde von {user} auf dem Server [{guild_id}] ausgeführt.",
-						"changed": "Die Sprache des Servers [{guild_id}] wurde von {user} von {old_language} auf {language} geändert.",
-						"failed": "Der Befehl /language ist für {user} auf dem Server [{guild_id}] fehlgeschlagen: {error}."
-					},
-					"prefix": {
-						"executed": "Der Befehl /prefix wurde von {user} auf dem Server [{guild_id}] ausgeführt.",
-						"changed": "Das Präfix des Servers [{guild_id}] wurde von {user} von `{old_prefix}` auf `{prefix}` geändert.",
-						"failed": "Der Befehl /prefix ist für {user} auf dem Server [{guild_id}] fehlgeschlagen: {error}."
-					}
-				},
-				"embeds": {
-					"language": {
-						"current_language": {
-							"title": "Serversprache",
-							"description": "Die aktuelle Sprache des Servers ist **{language_name}** (`{language}`)."
-						},
-						"invalid_language": {
-							"title": "Sprache nicht verfügbar",
-							"description": "Die ausgewählte Sprache ist nicht verfügbar."
-						},
-						"available_languages": {
-							"title": "Verfügbare Sprachen",
-							"description": "{languages}"
-						},
-						"language_changed": {
-							"title": "Sprache geändert",
-							"description": "Die Sprache des Servers wurde auf **{language_name}** (`{language}`) geändert."
-						}
-					},
-					"prefix": {
-						"current_prefix": {
-							"title": "Aktuelles Präfix",
-							"description": "Das aktuelle Präfix des Servers ist `{prefix}`."
-						},
-						"prefix_changed": {
-							"title": "Präfix geändert",
-							"description": "Das Präfix wurde auf `{prefix}` geändert."
-						}
-					}
-				}
-			},
-			"moderation": {
-				"logs": {
-					"clear": {
-						"executed": "Der Befehl /clear wurde von {user} in {channel} auf dem Server {guild} ausgeführt.",
-						"completed": "{user} hat {amount} Nachrichten in {channel} auf dem Server {guild} gelöscht.",
-						"failed": "Der Befehl /clear ist für {user} in {channel} auf dem Server {guild} fehlgeschlagen: {error}."
-					}
-				},
-				"embeds": {
-					"clear": {
-						"cleared": {
-							"title": "Nachrichten gelöscht",
-							"description": "**{amount} Nachrichten** wurden erfolgreich gelöscht.",
-							"footer": {
-								"text": "Ausgeführt von: {user}"
-							}
-						},
-						"invalid_amount": {
-							"title": "Ungültige Anzahl",
-							"description": "Die Anzahl der Nachrichten muss zwischen **1 und {maximum}** liegen.",
-							"footer": {
-								"text": "Ausgeführt von: {user}"
-							}
-						}
-					}
-				}
-			},
-			"music": {
-				"logs": {
-					"join": {
-						"executed": "Der Befehl /join wurde von {user} auf {guild} ausgeführt.",
-						"joining_voice": "Es wird versucht, dem Sprachkanal {channel} auf {guild} beizutreten.",
-						"joined_voice": "Ich bin dem Sprachkanal {channel} auf {guild} beigetreten.",
-						"failed": "Der Befehl /join ist für {user} auf {guild} fehlgeschlagen: {error}."
-					},
-					"play": {
-						"executed": "Der Befehl /play wurde von {user} auf {guild} ausgeführt.",
-						"track_loaded": "Der Song {title} wurde für {user} auf {guild} geladen.",
-						"track_queued": "Der Song {title} wurde von {user} auf {guild} zur Warteschlange hinzugefügt.",
-						"playlist_queued": "Die Playlist {title} wurde von {user} auf {guild} zur Warteschlange hinzugefügt.",
-						"failed": "Der Befehl /play ist für {user} auf {guild} fehlgeschlagen: {error}."
-					},
-					"pause": {
-						"executed": "Der Befehl /pause wurde von {user} auf {guild} ausgeführt.",
-						"paused": "Die Wiedergabe wurde von {user} auf {guild} pausiert.",
-						"failed": "Der Befehl /pause ist für {user} auf {guild} fehlgeschlagen: {error}."
-					},
-					"resume": {
-						"executed": "Der Befehl /resume wurde von {user} auf {guild} ausgeführt.",
-						"resumed": "Die Wiedergabe wurde von {user} auf {guild} fortgesetzt.",
-						"failed": "Der Befehl /resume ist für {user} auf {guild} fehlgeschlagen: {error}."
-					},
-					"remove": {
-						"executed": "Der Befehl /remove wurde von {user} auf {guild} ausgeführt.",
-						"removed": "Der Song {title} an Position {position} wurde von {user} auf {guild} aus der Warteschlange entfernt.",
-						"failed": "Der Befehl /remove ist für {user} auf {guild} fehlgeschlagen: {error}."
-					},
-					"leave": {
-						"executed": "Der Befehl /leave wurde von {user} auf {guild} ausgeführt.",
-						"disconnected": "Der Bot hat den Sprachkanal {channel} auf Anfrage von {user} verlassen."
-					},
-					"queue": {
-						"executed": "Der Befehl /queue wurde von {user} auf {guild} ausgeführt.",
-						"displayed": "Die Wiedergabewarteschlange wurde von {user} auf {guild} angezeigt."
-					},
-					"shuffle": {
-						"executed": "Der Befehl /shuffle wurde von {user} auf {guild} ausgeführt.",
-						"shuffled": "Die Wiedergabewarteschlange wurde von {user} auf {guild} gemischt.",
-						"failed": "Der Befehl /shuffle ist für {user} auf {guild} fehlgeschlagen: {error}."
-					},
-					"loop": {
-						"executed": "Der Befehl /loop wurde von {user} auf {guild} ausgeführt.",
-						"enabled": "Die Wiederholung wurde von {user} auf {guild} aktiviert.",
-						"disabled": "Die Wiederholung wurde von {user} auf {guild} deaktiviert.",
-						"failed": "Der Befehl /loop ist für {user} auf {guild} fehlgeschlagen: {error}."
-					},
-					"skip": {
-						"executed": "Der Befehl /skip wurde von {user} auf {guild} ausgeführt.",
-						"skipped": "Der Song {title} wurde von {user} auf {guild} übersprungen.",
-						"failed": "Der Befehl /skip ist für {user} auf {guild} fehlgeschlagen: {error}."
-					},
-					"stop": {
-						"executed": "Der Befehl /stop wurde von {user} auf {guild} ausgeführt.",
-						"stopped": "Die Wiedergabe wurde von {user} auf {guild} angehalten.",
-						"failed": "Der Befehl /stop ist für {user} auf {guild} fehlgeschlagen: {error}."
-					},
-					"clear": {
-						"executed": "Der Befehl /clear wurde von {user} auf {guild} ausgeführt.",
-						"cleared": "Die Wiedergabewarteschlange wurde von {user} auf {guild} geleert.",
-						"failed": "Der Befehl /clear ist für {user} auf {guild} fehlgeschlagen: {error}."
-					},
-					"volume": {
-						"executed": "Der Befehl /volume wurde von {user} auf {guild} ausgeführt.",
-						"changed": "Die Lautstärke wurde von {user} auf {guild} von {old_volume}% auf {volume}% geändert.",
-						"failed": "Der Befehl /volume ist für {user} auf {guild} fehlgeschlagen: {error}."
-					},
-					"lyrics": {
-						"executed": "Der Befehl /lyrics wurde von {user} auf {guild} ausgeführt.",
-						"requested": "Der Text von {title} wurde von {user} auf {guild} angefordert.",
-						"not_found": "Für {title} wurde kein Songtext gefunden; die Anfrage kam von {user} auf {guild}.",
-						"failed": "Der Befehl /lyrics ist für {user} auf {guild} fehlgeschlagen: {error}."
-					}
-				},
-				"embeds": {
-					"play": {
-						"missing_song": {
-							"title": "Song fehlt",
-							"description": "Ich kann keine Musik abspielen, wenn du mir nicht sagst, welchen Song du hören möchtest. Ich bin ein Bot, kein Wahrsager. 🔮",
-							"footer": {
-								"text": "Angefordert von: {user}"
-							}
-						},
-						"spotify_not_supported": {
-							"title": "Spotify nicht unterstützt",
-							"description": "Mit Spotify-Links kann ich nichts anfangen. Gib mir eine andere Quelle, dann spiele ich sie ab, ohne mich zu beschweren. 🙃",
-							"footer": {
-								"text": "Angefordert von: {user}"
-							}
-						},
-						"voice_not_connected": {
-							"title": "Du bist in keinem Sprachkanal",
-							"description": "Wo bist du...? Ich kann dich nicht sehen... 🥹🥺",
-							"footer": {
-								"text": "Angefordert von: {user}"
-							}
-						},
-						"no_song_found": {
-							"title": "Song nicht gefunden",
-							"description": "Ich habe überall gesucht, aber nichts gefunden. Bist du sicher, dass es diesen Song gibt, oder hast du ihn dir ausgedacht? 🤔",
-							"footer": {
-								"text": "Angefordert von: {user}"
-							}
-						},
-						"added_to_queue": {
-							"title": "Song zur Warteschlange hinzugefügt",
-							"description": "**{title}**\n\nIn der Warteschlange: **{queue}**\n\nÜbrigens eine gute Wahl. 😏",
-							"footer": {
-								"text": "Angefordert von: {user}"
-							}
-						},
-						"playlist_added_to_queue": {
-							"title": "Playlist zur Warteschlange hinzugefügt",
-							"description": "**{title}**\n\nSongs in der Warteschlange: **{queue}**\n\nWas für eine Playlist du da zusammengestellt hast. Los geht's. 🔥",
-							"footer": {
-								"text": "Angefordert von: {user}"
-							}
-						}
-					},
-					"now_playing": {
-						"title": "Jetzt läuft",
-						"fields": [
-							{
-								"name": "Titel",
-								"value": "**{title}**",
-								"inline": false
-							},
-							{
-								"name": "Dauer",
-								"value": "{duration}",
-								"inline": true
-							},
-							{
-								"name": "Aufrufe",
-								"value": "{views}",
-								"inline": true
-							},
-							{
-								"name": "In der Warteschlange",
-								"value": "{queue}",
-								"inline": true
-							}
-						],
-						"footer": {
-							"text": "Angefordert von: {user}"
-						}
-					},
-					"queue_empty_finished": {
-						"title": "Keine weiteren Songs in der Warteschlange",
-						"description": "Sieht so aus, als wäre die Liste leer.\n\nWarum fügst du nicht ein paar Songs hinzu? Sie füllt sich schließlich nicht von allein. 🎵",
-						"footer": {
-							"text": "Angefordert von: {user}"
-						}
-					},
-					"disconnected_from_voice": {
-						"title": "Ich habe den Sprachkanal verlassen",
-						"description": "Du hast mich getrennt. Im Ernst? Dabei war es doch so gemütlich... 😤",
-						"footer": {
-							"text": "Angefordert von: {user}"
-						}
-					},
-					"pause": {
-						"not_connected": {
-							"title": "Ich bin nicht verbunden",
-							"description": "Ich bin mit keinem Sprachkanal verbunden. Also nein, ich kann nichts pausieren. 🙃",
-							"footer": {
-								"text": "Angefordert von: {user}"
-							}
-						},
-						"no_song_playing": {
-							"title": "Es wird kein Song abgespielt",
-							"description": "Ich kann nichts pausieren, das gerade nicht abgespielt wird. Das wäre Magie, und so weit bin ich noch nicht. ✨",
-							"footer": {
-								"text": "Angefordert von: {user}"
-							}
-						},
-						"paused": {
-							"title": "Wiedergabe pausiert",
-							"description": "Mir hat der Song gerade gefallen! Aber na gut, du hast das Sagen. ⏸️",
-							"footer": {
-								"text": "Angefordert von: {user}"
-							}
-						}
-					},
-					"resume": {
-						"not_connected": {
-							"title": "Ich bin nicht verbunden",
-							"description": "Ich bin mit keinem Sprachkanal verbunden. Lade mich doch erst ein, oder? 🥺",
-							"footer": {
-								"text": "Angefordert von: {user}"
-							}
-						},
-						"no_song_playing": {
-							"title": "Es ist kein Song pausiert",
-							"description": "Es gibt keine pausierte Wiedergabe, die fortgesetzt werden könnte. Hast du mich mit einem anderen Bot verwechselt? 🤨",
-							"footer": {
-								"text": "Angefordert von: {user}"
-							}
-						},
-						"resumed": {
-							"title": "Wiedergabe fortgesetzt",
-							"description": "Wie schön! Deine Musik gefällt mir sehr. Weiter so. 🎶",
-							"footer": {
-								"text": "Angefordert von: {user}"
-							}
-						}
-					},
-					"remove": {
-						"not_connected": {
-							"title": "Ich bin nicht verbunden",
-							"description": "Ich bin mit keinem Sprachkanal verbunden. Was genau soll ich denn entfernen? 🤔",
-							"footer": {
-								"text": "Angefordert von: {user}"
-							}
-						},
-						"queue_empty": {
-							"title": "Die Warteschlange ist leer",
-							"description": "Es gibt keinen Song zum Entfernen. Die Warteschlange ist leerer als meine Geduld. 😮‍💨",
-							"footer": {
-								"text": "Angefordert von: {user}"
-							}
-						},
-						"invalid_position": {
-							"title": "Ungültige Nummer",
-							"description": "Die angegebene Songnummer ist ungültig. Hast du richtig gezählt? 🔢",
-							"footer": {
-								"text": "Angefordert von: {user}"
-							}
-						},
-						"removed": {
-							"title": "Song aus der Warteschlange entfernt",
-							"description": "**{title}**\n\nIch hoffe, du hast dich nicht vertan, und gib mir auch nicht die Schuld. Ich gehorche nur. 😇",
-							"footer": {
-								"text": "Angefordert von: {user}"
-							}
-						}
-					},
-					"leave": {
-						"not_connected": {
-							"title": "Ich bin nicht verbunden",
-							"description": "Ich bin mit keinem Sprachkanal verbunden. Ich kann nicht weggehen, wenn ich gar nicht da bin. 🚪",
-							"footer": {
-								"text": "Angefordert von: {user}"
-							}
-						},
-						"disconnected": {
-							"title": "Ich habe den Sprachkanal verlassen",
-							"description": "Du hast mich getrennt. Im Ernst? Dabei habe ich die Musik so genossen... 😔",
-							"footer": {
-								"text": "Angefordert von: {user}"
-							}
-						}
-					},
-					"queue": {
-						"not_connected": {
-							"title": "Ich bin nicht verbunden",
-							"description": "Ich bin mit keinem Sprachkanal verbunden. Lade mich erst ein, dann reden wir über Warteschlangen. 🎧",
-							"footer": {
-								"text": "Angefordert von: {user}"
-							}
-						},
-						"empty": {
-							"title": "Die Warteschlange ist leer",
-							"description": "Sieht so aus, als wäre die Liste leer.\n\nWarum fügst du nicht ein paar Songs hinzu? Das hier sieht ja aus wie eine Wüste. 🏜️",
-							"footer": {
-								"text": "Angefordert von: {user}"
-							}
-						},
-						"list": {
-							"title": "Deine Playlist",
-							"description": "Das ist alles, was sich in deiner Warteschlange befindet:\n\n{queue}\n\nNicht schlecht, aber ich nehme gerne Vorschläge an. 😌",
-							"footer": {
-								"text": "Angefordert von: {user}"
-							}
-						}
-					},
-					"shuffle": {
-						"not_connected": {
-							"title": "Ich bin nicht verbunden",
-							"description": "Ich bin mit keinem Sprachkanal verbunden. Ohne Musik gibt es nichts zu mischen. 🎲",
-							"footer": {
-								"text": "Angefordert von: {user}"
-							}
-						},
-						"not_enough_songs": {
-							"title": "Ich kann die Liste nicht mischen",
-							"description": "Füge mehr als einen Song hinzu, damit ich die Liste mischen kann. Mit nur einem Song ist das kein großes Geheimnis. 🙄",
-							"footer": {
-								"text": "Angefordert von: {user}"
-							}
-						},
-						"shuffled": {
-							"title": "Liste gemischt",
-							"description": "Ehrlich gesagt weiß ich jetzt selbst nicht mehr, welcher Song auf welchen folgt. Das Überraschungsprogramm kann beginnen. 🔀",
-							"footer": {
-								"text": "Angefordert von: {user}"
-							}
-						}
-					},
-					"loop": {
-						"not_connected": {
-							"title": "Ich bin nicht verbunden",
-							"description": "Ich bin mit keinem Sprachkanal verbunden. Ich kann nichts in einer Schleife abspielen, was gar nicht läuft. 🔁",
-							"footer": {
-								"text": "Angefordert von: {user}"
-							}
-						},
-						"no_song_playing": {
-							"title": "Es wird kein Song abgespielt",
-							"description": "Ich kann die Wiederholung nicht aktivieren, wenn kein Song läuft. Spiel erst mal etwas ab. 🎵",
-							"footer": {
-								"text": "Angefordert von: {user}"
-							}
-						},
-						"enabled": {
-							"title": "Songwiederholung aktiviert",
-							"description": "Dein Lieblingssong? Wir drehen uns gerade in einer Endlosschleife. 😵‍💫",
-							"footer": {
-								"text": "Angefordert von: {user}"
-							}
-						},
-						"disabled": {
-							"title": "Wiederholung deaktiviert",
-							"description": "Der Song wird nicht mehr wiederholt. Das Déjà-vu hat ein Ende. 🔂",
-							"footer": {
-								"text": "Angefordert von: {user}"
-							}
-						}
-					},
-					"skip": {
-						"not_connected": {
-							"title": "Ich bin nicht verbunden",
-							"description": "Ich bin mit keinem Sprachkanal verbunden. Aus dem Nichts kann ich nichts überspringen. ⏭️",
-							"footer": {
-								"text": "Angefordert von: {user}"
-							}
-						},
-						"no_song_playing": {
-							"title": "Es wird kein Song abgespielt",
-							"description": "Ich kann keinen Song überspringen, wenn gerade keiner läuft. Sollen wir ins Leere springen? 🕳️",
-							"footer": {
-								"text": "Angefordert von: {user}"
-							}
-						},
-						"skipped": {
-							"title": "Song übersprungen",
-							"description": "Ich habe zum nächsten Song gewechselt. Ich hoffe, der gefällt dir besser. 🤞",
-							"footer": {
-								"text": "Angefordert von: {user}"
-							}
-						}
-					},
-					"stop": {
-						"not_connected": {
-							"title": "Ich bin nicht verbunden",
-							"description": "Ich bin mit keinem Sprachkanal verbunden. Ich kann nicht stoppen, was ich nicht angefangen habe. 🛑",
-							"footer": {
-								"text": "Angefordert von: {user}"
-							}
-						},
-						"stopped": {
-							"title": "Wiedergabe angehalten",
-							"description": "Ohh neeein! Hast du genug von mir und willst, dass ich den Mund halte? :( Ich geh mich in eine Ecke ausweinen. 😭",
-							"footer": {
-								"text": "Angefordert von: {user}"
-							}
-						}
-					},
-					"clear": {
-						"not_connected": {
-							"title": "Ich bin nicht verbunden",
-							"description": "Ich bin mit keinem Sprachkanal verbunden. Es gibt keine Warteschlange, die ich leeren könnte. 🧹",
-							"footer": {
-								"text": "Angefordert von: {user}"
-							}
-						},
-						"queue_empty": {
-							"title": "Die Warteschlange ist leer",
-							"description": "Es gibt keine Songs in der Warteschlange, die gelöscht werden könnten. Alles ist schon sauber. ✨",
-							"footer": {
-								"text": "Angefordert von: {user}"
-							}
-						},
-						"cleared": {
-							"title": "Wiedergabewarteschlange geleert",
-							"description": "Ich habe den Mist, den du reingepackt hast, weggeräumt. Vielleicht kommst du jetzt mal in die Gänge. 🧼😏",
-							"footer": {
-								"text": "Angefordert von: {user}"
-							}
-						}
-					},
-					"volume": {
-						"not_connected": {
-							"title": "Ich bin nicht verbunden",
-							"description": "Ich bin mit keinem Sprachkanal verbunden. Ohne Verbindung gibt es auch keine Lautstärke. 🔊",
-							"footer": {
-								"text": "Angefordert von: {user}"
-							}
-						},
-						"invalid_volume": {
-							"title": "Ungültige Lautstärke",
-							"description": "Die Lautstärke muss zwischen **0 und 100** liegen. Nicht mehr und nicht weniger, bring mich nicht durcheinander. 🎚️",
-							"footer": {
-								"text": "Angefordert von: {user}"
-							}
-						},
-						"too_high": {
-							"title": "Lautstärke zu hoch",
-							"description": "Ich will nicht, dass du taub wirst. Dreh sie ein bisschen runter. 🫣",
-							"footer": {
-								"text": "Angefordert von: {user}"
-							}
-						},
-						"too_low": {
-							"title": "Lautstärke zu niedrig",
-							"description": "Oder willst du mich einfach nur zum Schweigen bringen? Das klappt ja fast. 🤫",
-							"footer": {
-								"text": "Angefordert von: {user}"
-							}
-						},
-						"changed": {
-							"title": "Lautstärke aktualisiert",
-							"description": "Ich habe die Lautstärke auf **{volume}%** eingestellt.\n\nViel Spaß! 🎧",
-							"footer": {
-								"text": "Angefordert von: {user}"
-							}
-						}
-					},
-					"lyrics": {
-						"not_found": {
-							"title": "Songtext nicht gefunden",
-							"description": "Ich konnte den Songtext nicht finden.\n\nVersuche es noch einmal mit einem anderen Titel! Vielleicht klappt's ja dann. 🎤",
-							"footer": {
-								"text": "Angefordert von: {user}"
-							}
-						},
-						"not_available": {
-							"title": "Songtexte in Arbeit",
-							"description": "Diese Funktion ist noch in Arbeit. Geduld, Wunder brauchen ihre Zeit. 🚧",
-							"footer": {
-								"text": "Angefordert von: {user}"
-							}
-						}
-					},
-					"voice": {
-						"not_connected": {
-							"title": "Du bist in keinem Sprachkanal",
-							"description": "Wo bist du...? Ich kann dich nicht sehen... 🥹🥺",
-							"footer": {
-								"text": "Angefordert von: {user}"
-							}
-						}
-					}
-				}
-			}
-		},
-		"events": {
-			"logs": {
-				"guild": {
-					"on_guild_channel_create": {
-						"channel_created": "Der Kanal {channel} wurde erstellt."
-					},
-					"on_guild_channel_delete": {
-						"channel_deleted": "Der Kanal {channel} wurde gelöscht."
-					},
-					"on_guild_channel_update": {
-						"channel_updated": "Der Kanal {before} wurde in {after} geändert."
-					},
-					"on_guild_emojis_update": {
-						"emojis_updated": "Die Emojis des Servers {guild} wurden aktualisiert."
-					},
-					"on_guild_join": {
-						"guild_added": "Server hinzugefügt: {guild_name} ({guild_id})"
-					},
-					"on_guild_remove": {
-						"members_deleted": "Mitglieder gelöscht: {deleted_members} von {guild_name} ({guild_id})",
-						"guild_deleted": "Server gelöscht: {guild_name} ({guild_id})",
-						"guild_not_found": "Server nicht in der DB gefunden: {guild_name} ({guild_id})"
-					},
-					"on_guild_role_create": {
-						"role_created": "Die Rolle {role} wurde erstellt."
-					},
-					"on_guild_role_delete": {
-						"role_deleted": "Die Rolle {role} wurde gelöscht."
-					},
-					"on_guild_role_update": {
-						"role_updated": "Die Rolle {before} wurde in {after} geändert."
-					},
-					"on_guild_stickers_update": {
-						"stickers_updated": "Die Sticker des Servers {guild} wurden aktualisiert."
-					}
-				},
-				"member": {
-					"on_member_join": {
-						"member_added": "Mitglied hinzugefügt: {name} ({id}) auf {guild_name} ({guild_id})"
-					},
-					"on_member_remove": {
-						"member_deleted": "Mitglied entfernt: {name} ({id}) von {guild_name} ({guild_id})",
-						"member_not_found": "Mitglied nicht in der DB gefunden: {name} ({id}) auf {guild_name} ({guild_id})"
-					},
-					"on_member_update": {
-						"member_updated": "Mitglied aktualisiert: {name} ({id}) auf {guild_name} ({guild_id})"
-					},
-					"on_user_update": {
-						"username_updated": "Benutzer aktualisiert: {before_name} ({id}) -> {after_name} ({id})",
-						"global_name_updated": "Globaler Name aktualisiert: {before_name} ({id}) -> {after_name} ({id})",
-						"avatar_updated": "Avatar aktualisiert: {name} ({id})"
-					}
-				},
-				"message": {
-					"on_message": {
-						"message_detected": "{author_name} hat eine Nachricht in {channel_name} auf {server_name} gesendet: {message}"
-					},
-					"on_message_delete": {
-						"message_deleted": "{author} hat eine Nachricht in {channel} auf {guild} gelöscht. Nachricht: {message}"
-					},
-					"on_message_edit": {
-						"message_edited": "{author_name} hat eine Nachricht in {channel_name} auf {server_name} bearbeitet. Vorher: {before} Nachher: {after}"
-					},
-					"on_raw_reaction_add": {
-						"reaction_added": "{user} hat die Reaktion {emoji} zur Nachricht {message_id} hinzugefügt."
-					},
-					"on_raw_reaction_remove": {
-						"reaction_removed": "{user} hat die Reaktion {emoji} von der Nachricht {message_id} entfernt."
-					},
-					"on_reaction_add": {
-						"reaction_added": "{user} hat die Reaktion {emoji} in {channel} hinzugefügt."
-					},
-					"on_reaction_clear": {
-						"reactions_cleared": "Die Reaktionen der Nachricht {message} wurden entfernt."
-					},
-					"on_reaction_remove": {
-						"reaction_removed": "{user} hat die Reaktion {emoji} in {channel} entfernt."
-					},
-					"on_typing": {
-						"typing_detected": "{user} schreibt in {channel}."
-					}
-				},
-				"other": {
-					"on_application_command_error": {
-						"command_error": "Beim Anwendungbefehl {command} ist ein Fehler aufgetreten: {error}"
-					},
-					"on_command": {
-						"command_executed": "{author} hat den Befehl {command} in {channel} ausgeführt."
-					},
-					"on_command_error": {
-						"command_error": "Beim Befehl {command} ist ein Fehler aufgetreten: {error}",
-						"missing_permissions": "Du hast nicht genügend Berechtigungen, um diesen Befehl auszuführen.",
-						"logged_error": "Fehler beim Befehl '{command}': {error}"
-					},
-					"on_ready": {
-						"bot_connected": "Der Bot ist als {bot} verbunden.",
-						"connecting_lavalink": "Verbindung mit Lavalink erfolgreich."
-					},
-					"on_connect": {
-						"discord_connected": "Die Verbindung zu Discord wurde hergestellt."
-					},
-					"on_disconnect": {
-						"discord_disconnected": "Die Verbindung zu Discord wurde unterbrochen."
-					},
-					"on_resumed": {
-						"discord_resumed": "Die Discord-Sitzung wurde erfolgreich fortgesetzt."
-					},
-					"on_voice_state_update": {
-						"voice_state_updated": "{member_name} {action} in {channel_name} auf {server_name}.",
-						"voice_state_moved": "{member_name} wurde auf {server_name} von {before_channel_name} nach {after_channel_name} verschoben.",
-						"join": "ist beigetreten",
-						"leave": "hat verlassen",
-						"move": "wurde verschoben",
-						"mute_enabled": "wurde stummgeschaltet",
-						"mute_disabled": "wurde entstummt",
-						"deaf_enabled": "wurde taubgeschaltet",
-						"deaf_disabled": "wurde enttaubt",
-						"video_enabled": "hat die Kamera eingeschaltet",
-						"video_disabled": "hat die Kamera ausgeschaltet",
-						"stream_enabled": "teilt den Bildschirm",
-						"stream_disabled": "hat die Bildschirmfreigabe beendet",
-						"none": "Keine"
-					},
-					"on_webhook_update": {
-						"webhook_updated": "Die Webhooks von {channel} wurden aktualisiert."
-					},
-					"on_wavelink_track_start": {
-						"track_started": "Die Wiedergabe von {track_title} auf {server_name} hat begonnen."
-					},
-					"on_wavelink_track_end": {
-						"track_ended": "Die Wiedergabe von {track_title} auf {server_name} ist beendet."
-					}
-				}
-			},
-			"embeds": {
-				"guild": {
-					"channel_created": {
-						"title": "Kanal erstellt",
-						"description": "Der Kanal **{channel}** wurde erstellt."
-					},
-					"channel_deleted": {
-						"title": "Kanal gelöscht",
-						"description": "Der Kanal **{channel}** wurde gelöscht."
-					},
-					"channel_updated": {
-						"title": "Kanal aktualisiert",
-						"description": "Der Kanal **{before}** wurde in **{after}** geändert."
-					},
-					"emojis_updated": {
-						"title": "Emojis aktualisiert",
-						"description": "Die Emojis des Servers wurden aktualisiert."
-					},
-					"guild_added": {
-						"title": "Server hinzugefügt",
-						"description": "Der Bot wurde zum Server **{guild_name}** hinzugefügt."
-					},
-					"guild_removed": {
-						"title": "Server entfernt",
-						"description": "Der Bot hat den Server **{guild_name}** verlassen."
-					},
-					"role_created": {
-						"title": "Rolle erstellt",
-						"description": "Die Rolle **{role}** wurde erstellt."
-					},
-					"role_deleted": {
-						"title": "Rolle gelöscht",
-						"description": "Die Rolle **{role}** wurde gelöscht."
-					},
-					"role_updated": {
-						"title": "Rolle aktualisiert",
-						"description": "Die Rolle **{before}** wurde in **{after}** geändert."
-					},
-					"stickers_updated": {
-						"title": "Sticker aktualisiert",
-						"description": "Die Sticker des Servers wurden aktualisiert."
-					}
-				},
-				"member": {
-					"member_added": {
-						"title": "Mitglied hinzugefügt",
-						"description": "Das Mitglied **{name}** ist dem Server beigetreten."
-					},
-					"member_deleted": {
-						"title": "Mitglied entfernt",
-						"description": "Das Mitglied **{name}** hat den Server verlassen."
-					},
-					"member_updated": {
-						"title": "Mitglied aktualisiert",
-						"description": "Die Informationen zu **{name}** wurden aktualisiert."
-					},
-					"user_updated": {
-						"title": "Benutzer aktualisiert",
-						"description": "Die Informationen zum Benutzer **{name}** wurden aktualisiert."
-					}
-				},
-				"message": {
-					"message_deleted": {
-						"title": "Nachricht gelöscht",
-						"description": "Eine Nachricht von **{author}** in {channel} wurde gelöscht."
-					},
-					"message_edited": {
-						"title": "Nachricht bearbeitet",
-						"description": "Eine Nachricht von **{author}** in {channel} wurde bearbeitet."
-					},
-					"reaction_added": {
-						"title": "Reaktion hinzugefügt",
-						"description": "{user} hat die Reaktion {emoji} hinzugefügt."
-					},
-					"reaction_removed": {
-						"title": "Reaktion entfernt",
-						"description": "{user} hat die Reaktion {emoji} entfernt."
-					},
-					"reactions_cleared": {
-						"title": "Reaktionen entfernt",
-						"description": "Die Reaktionen der Nachricht wurden entfernt."
-					}
-				},
-				"other": {
-					"command_error": {
-						"title": "Befehl nicht gefunden",
-						"description": "Der Befehl **{command}** existiert nicht."
-					},
-					"missing_permissions": {
-						"title": "Unzureichende Berechtigungen",
-						"description": "Du hast nicht genügend Berechtigungen, um diesen Befehl auszuführen."
-					},
-					"track_started": {
-						"title": "Wiedergabe gestartet",
-						"description": "Die Wiedergabe von **{track_title}** hat begonnen."
-					},
-					"track_ended": {
-						"title": "Wiedergabe beendet",
-						"description": "Die Wiedergabe von **{track_title}** ist beendet."
-					}
-				}
-			}
-		},
-		"tasks": {
-			"logs": {
-				"database_sync": {
-					"started": "Die Datenbanksynchronisierung wurde gestartet.",
-					"sync_completed": "Datenbanksynchronisierung abgeschlossen.",
-					"sync_failed": "Bei der Datenbanksynchronisierung ist ein Fehler aufgetreten: {error}."
-				}
-			},
-			"embeds": {
-				"database_sync": {
-					"completed": {
-						"title": "Datenbank synchronisiert",
-						"description": "Die Datenbanksynchronisierung wurde erfolgreich abgeschlossen."
-					},
-					"failed": {
-						"title": "Synchronisierungsfehler",
-						"description": "Bei der Datenbanksynchronisierung ist ein Fehler aufgetreten."
-					}
-				}
-			}
-		}
-	},
-	"core": {
-		"logs": {
-			"loader": {
-				"commands": "Befehle",
-				"events": "Ereignisse",
-				"loaded": "{label} | {category} | erfolgreich geladen ({loaded})",
-				"load_error": "{label} | {category} | Fehler beim Laden von {filename} | {error_type}: {error}"
-			}
-		}
-	},
-	"database": {
-		"models": {
-			"guild": {
-				"created": "Der Servereintrag [{guild_id}] {guild_name} wurde erstellt.",
-				"updated": "Der Servereintrag [{guild_id}] {guild_name} wurde aktualisiert.",
-				"deleted": "Der Servereintrag [{guild_id}] {guild_name} wurde gelöscht."
-			},
-			"member": {
-				"created": "Der Mitgliedseintrag [{member_id}] {member_name} auf dem Server [{guild_id}] wurde erstellt.",
-				"updated": "Der Mitgliedseintrag [{member_id}] {member_name} auf dem Server [{guild_id}] wurde aktualisiert.",
-				"deleted": "Der Mitgliedseintrag [{member_id}] {member_name} auf dem Server [{guild_id}] wurde gelöscht."
-			}
-		},
-		"repositories": {
-			"guild": {
-				"created": "Repository guild: Eintrag erstellt [{id}] {name}{source}.",
-				"updated": "Repository guild: Eintrag aktualisiert [{id}] {name} | {changes}{source}.",
-				"deleted": "Repository guild: Eintrag gelöscht [{id}] {name}{source}.",
-				"not_found": "Repository guild: Server nicht gefunden [{id}].",
-				"error": "Repository guild: Fehler beim Ausführen des Vorgangs für [{id}]: {error}."
-			},
-			"member": {
-				"created": "Repository member: Eintrag erstellt [{id}] {name} | guild=[{guild_id}]{source}.",
-				"updated": "Repository member: Eintrag aktualisiert [{id}] {name} | {changes} | guild=[{guild_id}]{source}.",
-				"deleted": "Repository member: Eintrag gelöscht [{id}] {name} | guild=[{guild_id}]{source}.",
-				"not_found": "Repository member: Mitglied nicht gefunden [{id}] in guild=[{guild_id}].",
-				"error": "Repository member: Fehler beim Ausführen des Vorgangs für [{id}] in guild=[{guild_id}]: {error}."
-			}
-		},
-		"logs": {
-			"connection": {
-				"started": "DATABASE | Verbindung hergestellt",
-				"closed": "DATABASE | Verbindung geschlossen"
-			},
-			"errors": {
-				"missing_environment": "PostgreSQL-Umgebungsvariablen fehlen.",
-				"create_tables": "Fehler beim Erstellen der Datenbanktabellen: {error}"
-			},
-			"insert": {
-				"guild": "INSERT | guild | [{id}] {name}{source}",
-				"member": "INSERT | member | [{id}] {name} | guild=[{guild_id}]{source}"
-			},
-			"update": {
-				"guild": "UPDATE | guild | [{id}] {name} | {changes}{source}",
-				"member": "UPDATE | member | [{id}] {name} | {changes} | guild=[{guild_id}]{source}"
-			},
-			"delete": {
-				"guild": "DELETE | guild | [{id}] {name}{source}",
-				"member": "DELETE | member | [{id}] {name} | guild=[{guild_id}]{source}"
-			}
-		}
-	},
-	"helpers": {
-		"logs": {
-			"translation": {
-				"missing": "Die Übersetzung für den Schlüssel {key} wurde nicht gefunden.",
-				"invalid": "Die für {key} abgerufene Übersetzung hat ein ungültiges Format."
-			},
-			"embed": {
-				"created": "Ein Embed vom Typ {type} für den Schlüssel {key} wurde erstellt.",
-				"error": "Fehler beim Erstellen des Embeds für den Schlüssel {key}: {error}."
-			}
-		}
-	}
+    "bot": {
+        "commands": {
+            "config": {
+                "logs": {
+                    "language": {
+                        "executed": "Der Befehl /language wurde von {user} auf dem Server [{guild_id}] ausgeführt.",
+                        "changed": "Die Sprache des Servers [{guild_id}] wurde von {old_language} auf {language} von {user} geändert.",
+                        "failed": "Der Befehl /language ist für {user} auf dem Server [{guild_id}] fehlgeschlagen: {error}."
+                    },
+                    "prefix": {
+                        "executed": "Der Befehl /prefix wurde von {user} auf dem Server [{guild_id}] ausgeführt.",
+                        "changed": "Der Präfix des Servers [{guild_id}] wurde von `{old_prefix}` auf `{prefix}` von {user} geändert.",
+                        "failed": "Der Befehl /prefix ist für {user} auf dem Server [{guild_id}] fehlgeschlagen: {error}."
+                    }
+                },
+                "embeds": {
+                    "language": {
+                        "current_language": {
+                            "title": "Serversprache",
+                            "description": "Die aktuelle Sprache des Servers ist **{language_name}** (`{language}`)."
+                        },
+                        "invalid_language": {
+                            "title": "Sprache nicht verfügbar",
+                            "description": "Die ausgewählte Sprache ist nicht verfügbar."
+                        },
+                        "available_languages": {
+                            "title": "Verfügbare Sprachen",
+                            "description": "{languages}"
+                        },
+                        "language_changed": {
+                            "title": "Sprache geändert",
+                            "description": "Die Sprache des Servers wurde auf **{language_name}** (`{language}`) geändert."
+                        }
+                    },
+                    "prefix": {
+                        "current_prefix": {
+                            "title": "Aktueller Präfix",
+                            "description": "Der aktuelle Präfix des Servers ist `{prefix}`."
+                        },
+                        "prefix_changed": {
+                            "title": "Präfix geändert",
+                            "description": "Der Präfix wurde auf `{prefix}` geändert."
+                        }
+                    }
+                }
+            },
+            "moderation": {
+                "logs": {
+                    "clear": {
+                        "executed": "Der Befehl /clear wurde von {user} in {channel} auf dem Server {guild} ausgeführt.",
+                        "completed": "{amount} Nachrichten wurden von {user} in {channel} auf dem Server {guild} gelöscht.",
+                        "failed": "Der Befehl /clear ist für {user} in {channel} auf dem Server {guild} fehlgeschlagen: {error}."
+                    }
+                },
+                "embeds": {
+                    "clear": {
+                        "cleared": {
+                            "title": "Nachrichten gelöscht",
+                            "description": "**{amount} Nachrichten** wurden erfolgreich gelöscht.",
+                            "footer": {
+                                "text": "Ausgeführt von: {user}"
+                            }
+                        },
+                        "invalid_amount": {
+                            "title": "Ungültige Anzahl",
+                            "description": "Die Anzahl der Nachrichten muss zwischen **1 und {maximum}** liegen.",
+                            "footer": {
+                                "text": "Ausgeführt von: {user}"
+                            }
+                        }
+                    }
+                }
+            },
+            "music": {
+                "logs": {
+                    "join": {
+                        "executed": "Der Befehl /join wurde von {user} auf {guild} ausgeführt.",
+                        "joining_voice": "Versuche, dem Sprachkanal {channel} auf {guild} beizutreten.",
+                        "joined_voice": "Ich bin dem Sprachkanal {channel} auf {guild} beigetreten.",
+                        "failed": "Der Befehl /join ist für {user} auf {guild} fehlgeschlagen: {error}."
+                    },
+                    "play": {
+                        "executed": "Der Befehl /play wurde von {user} auf {guild} ausgeführt.",
+                        "track_loaded": "Der Song {title} wurde für {user} auf {guild} geladen.",
+                        "track_queued": "Der Song {title} wurde von {user} auf {guild} zur Warteschlange hinzugefügt.",
+                        "playlist_queued": "Die Playlist {title} wurde von {user} auf {guild} zur Warteschlange hinzugefügt.",
+                        "failed": "Der Befehl /play ist für {user} auf {guild} fehlgeschlagen: {error}."
+                    },
+                    "pause": {
+                        "executed": "Der Befehl /pause wurde von {user} auf {guild} ausgeführt.",
+                        "paused": "Die Wiedergabe wurde von {user} auf {guild} pausiert.",
+                        "failed": "Der Befehl /pause ist für {user} auf {guild} fehlgeschlagen: {error}."
+                    },
+                    "resume": {
+                        "executed": "Der Befehl /resume wurde von {user} auf {guild} ausgeführt.",
+                        "resumed": "Die Wiedergabe wurde von {user} auf {guild} fortgesetzt.",
+                        "failed": "Der Befehl /resume ist für {user} auf {guild} fehlgeschlagen: {error}."
+                    },
+                    "remove": {
+                        "executed": "Der Befehl /remove wurde von {user} auf {guild} ausgeführt.",
+                        "removed": "Der Song {title} an Position {position} wurde von {user} auf {guild} aus der Warteschlange entfernt.",
+                        "failed": "Der Befehl /remove ist für {user} auf {guild} fehlgeschlagen: {error}."
+                    },
+                    "leave": {
+                        "executed": "Der Befehl /leave wurde von {user} auf {guild} ausgeführt.",
+                        "disconnected": "Der Bot wurde auf Anfrage von {user} vom Sprachkanal {channel} getrennt."
+                    },
+                    "queue": {
+                        "executed": "Der Befehl /queue wurde von {user} auf {guild} ausgeführt.",
+                        "displayed": "Die Wiedergabewarteschlange wurde von {user} auf {guild} angezeigt."
+                    },
+                    "shuffle": {
+                        "executed": "Der Befehl /shuffle wurde von {user} auf {guild} ausgeführt.",
+                        "shuffled": "Die Wiedergabewarteschlange wurde von {user} auf {guild} gemischt.",
+                        "failed": "Der Befehl /shuffle ist für {user} auf {guild} fehlgeschlagen: {error}."
+                    },
+                    "loop": {
+                        "executed": "Der Befehl /loop wurde von {user} auf {guild} ausgeführt.",
+                        "enabled": "Die Wiederholung wurde von {user} auf {guild} aktiviert.",
+                        "disabled": "Die Wiederholung wurde von {user} auf {guild} deaktiviert.",
+                        "failed": "Der Befehl /loop ist für {user} auf {guild} fehlgeschlagen: {error}."
+                    },
+                    "skip": {
+                        "executed": "Der Befehl /skip wurde von {user} auf {guild} ausgeführt.",
+                        "skipped": "Der Song {title} wurde von {user} auf {guild} übersprungen.",
+                        "failed": "Der Befehl /skip ist für {user} auf {guild} fehlgeschlagen: {error}."
+                    },
+                    "stop": {
+                        "executed": "Der Befehl /stop wurde von {user} auf {guild} ausgeführt.",
+                        "stopped": "Die Wiedergabe wurde von {user} auf {guild} gestoppt.",
+                        "failed": "Der Befehl /stop ist für {user} auf {guild} fehlgeschlagen: {error}."
+                    },
+                    "clear": {
+                        "executed": "Der Befehl /clear wurde von {user} auf {guild} ausgeführt.",
+                        "cleared": "Die Wiedergabewarteschlange wurde von {user} auf {guild} geleert.",
+                        "failed": "Der Befehl /clear ist für {user} auf {guild} fehlgeschlagen: {error}."
+                    },
+                    "volume": {
+                        "executed": "Der Befehl /volume wurde von {user} auf {guild} ausgeführt.",
+                        "changed": "Die Lautstärke wurde von {old_volume}% auf {volume}% von {user} auf {guild} geändert.",
+                        "failed": "Der Befehl /volume ist für {user} auf {guild} fehlgeschlagen: {error}."
+                    },
+                    "lyrics": {
+                        "executed": "Der Befehl /lyrics wurde von {user} auf {guild} ausgeführt.",
+                        "requested": "Der Liedtext von {title} wurde von {user} auf {guild} angefordert.",
+                        "not_found": "Für {title} wurde kein Liedtext gefunden, angefordert von {user} auf {guild}.",
+                        "failed": "Der Befehl /lyrics ist für {user} auf {guild} fehlgeschlagen: {error}."
+                    }
+                },
+                "embeds": {
+                    "play": {
+                        "missing_song": {
+                            "title": "Song fehlt",
+                            "description": "Ich kann keine Musik abspielen, wenn du mir nicht sagst, welchen Song du hören möchtest. Ich bin ein Bot, kein Hellseher. 🔮",
+                            "footer": {
+                                "text": "Angefordert von: {user}"
+                            }
+                        },
+                        "spotify_not_supported": {
+                            "title": "Spotify nicht unterstützt",
+                            "description": "Spotify-Links liegen mir schwer im Magen. Gib mir eine andere Quelle und ich spiele sie ohne zu meckern ab. 🙃",
+                            "footer": {
+                                "text": "Angefordert von: {user}"
+                            }
+                        },
+                        "voice_not_connected": {
+                            "title": "Du bist nicht in einem Sprachkanal",
+                            "description": "Wo bist du...? Ich kann dich nicht sehen... 🥹🥺",
+                            "footer": {
+                                "text": "Angefordert von: {user}"
+                            }
+                        },
+                        "no_song_found": {
+                            "title": "Song nicht gefunden",
+                            "description": "Ich habe überall gesucht und nichts gefunden. Bist du sicher, dass dieser Song existiert, oder hast du ihn dir ausgedacht? 🤔",
+                            "footer": {
+                                "text": "Angefordert von: {user}"
+                            }
+                        },
+                        "added_to_queue": {
+                            "title": "Song zur Warteschlange hinzugefügt",
+                            "description": "**{title}**\n\nIn der Warteschlange: **{queue}**\n\nÜbrigens, gute Wahl. 😏",
+                            "footer": {
+                                "text": "Angefordert von: {user}"
+                            }
+                        },
+                        "playlist_added_to_queue": {
+                            "title": "Playlist zur Warteschlange hinzugefügt",
+                            "description": "**{title}**\n\nSongs in der Warteschlange: **{queue}**\n\nWas für eine Playlist du da zusammengestellt hast. Los geht's. 🔥",
+                            "footer": {
+                                "text": "Angefordert von: {user}"
+                            }
+                        }
+                    },
+                    "now_playing": {
+                        "title": "Jetzt läuft",
+                        "fields": [
+                            {
+                                "name": "Titel",
+                                "value": "**{title}**",
+                                "inline": false
+                            },
+                            {
+                                "name": "Dauer",
+                                "value": "{duration}",
+                                "inline": true
+                            },
+                            {
+                                "name": "Aufrufe",
+                                "value": "{views}",
+                                "inline": true
+                            },
+                            {
+                                "name": "In der Warteschlange",
+                                "value": "{queue}",
+                                "inline": true
+                            }
+                        ],
+                        "footer": {
+                            "text": "Angefordert von: {user}"
+                        }
+                    },
+                    "queue_empty_finished": {
+                        "title": "Keine weiteren Songs in der Warteschlange",
+                        "description": "Die Liste scheint leer zu sein.\n\nWarum fügst du nicht ein paar Songs hinzu? Sie füllt sich schließlich nicht von selbst. 🎵",
+                        "footer": {
+                            "text": "Angefordert von: {user}"
+                        }
+                    },
+                    "disconnected_from_voice": {
+                        "title": "Ich habe den Sprachkanal verlassen",
+                        "description": "Du hast mich getrennt. Echt jetzt? Und ich hatte es mir gerade so gemütlich gemacht... 😤",
+                        "footer": {
+                            "text": "Angefordert von: {user}"
+                        }
+                    },
+                    "pause": {
+                        "not_connected": {
+                            "title": "Ich bin nicht verbunden",
+                            "description": "Ich bin mit keinem Sprachkanal verbunden. Also nein, ich kann nichts pausieren. 🙃",
+                            "footer": {
+                                "text": "Angefordert von: {user}"
+                            }
+                        },
+                        "no_song_playing": {
+                            "title": "Es wird kein Song abgespielt",
+                            "description": "Ich kann nichts pausieren, das nicht abgespielt wird. Das wäre Magie, und so weit bin ich noch nicht. ✨",
+                            "footer": {
+                                "text": "Angefordert von: {user}"
+                            }
+                        },
+                        "paused": {
+                            "title": "Wiedergabe pausiert",
+                            "description": "Mir hat der Song gerade gefallen! Aber gut, du hast das Sagen. ⏸️",
+                            "footer": {
+                                "text": "Angefordert von: {user}"
+                            }
+                        }
+                    },
+                    "resume": {
+                        "not_connected": {
+                            "title": "Ich bin nicht verbunden",
+                            "description": "Ich bin mit keinem Sprachkanal verbunden. Lade mich zuerst ein, ja? 🥺",
+                            "footer": {
+                                "text": "Angefordert von: {user}"
+                            }
+                        },
+                        "no_song_playing": {
+                            "title": "Kein Song pausiert",
+                            "description": "Es gibt keine pausierte Wiedergabe, die fortgesetzt werden könnte. Hast du mich mit einem anderen Bot verwechselt? 🤨",
+                            "footer": {
+                                "text": "Angefordert von: {user}"
+                            }
+                        },
+                        "resumed": {
+                            "title": "Wiedergabe fortgesetzt",
+                            "description": "Wie schön! Deine Musik gefällt mir sehr. Weiter so. 🎶",
+                            "footer": {
+                                "text": "Angefordert von: {user}"
+                            }
+                        }
+                    },
+                    "remove": {
+                        "not_connected": {
+                            "title": "Ich bin nicht verbunden",
+                            "description": "Ich bin mit keinem Sprachkanal verbunden. Was genau soll ich entfernen? 🤔",
+                            "footer": {
+                                "text": "Angefordert von: {user}"
+                            }
+                        },
+                        "queue_empty": {
+                            "title": "Die Warteschlange ist leer",
+                            "description": "Es gibt keinen Song zum Entfernen. Die Warteschlange ist leerer als meine Geduld. 😮‍💨",
+                            "footer": {
+                                "text": "Angefordert von: {user}"
+                            }
+                        },
+                        "invalid_position": {
+                            "title": "Ungültige Nummer",
+                            "description": "Die angegebene Songnummer ist ungültig. Hast du richtig gezählt? 🔢",
+                            "footer": {
+                                "text": "Angefordert von: {user}"
+                            }
+                        },
+                        "removed": {
+                            "title": "Song aus der Warteschlange entfernt",
+                            "description": "**{title}**\n\nIch hoffe, du hast dich nicht vertan. Und gib mir auch nicht die Schuld. Ich gehorche nur. 😇",
+                            "footer": {
+                                "text": "Angefordert von: {user}"
+                            }
+                        }
+                    },
+                    "leave": {
+                        "not_connected": {
+                            "title": "Ich bin nicht verbunden",
+                            "description": "Ich bin mit keinem Sprachkanal verbunden. Ich kann nicht gehen, wo ich nicht bin. 🚪",
+                            "footer": {
+                                "text": "Angefordert von: {user}"
+                            }
+                        },
+                        "disconnected": {
+                            "title": "Ich habe den Sprachkanal verlassen",
+                            "description": "Du hast mich getrennt. Echt jetzt? Und ich war so glücklich mit der Musik... 😔",
+                            "footer": {
+                                "text": "Angefordert von: {user}"
+                            }
+                        }
+                    },
+                    "queue": {
+                        "not_connected": {
+                            "title": "Ich bin nicht verbunden",
+                            "description": "Ich bin mit keinem Sprachkanal verbunden. Lade mich zuerst ein, dann reden wir über Warteschlangen. 🎧",
+                            "footer": {
+                                "text": "Angefordert von: {user}"
+                            }
+                        },
+                        "empty": {
+                            "title": "Die Warteschlange ist leer",
+                            "description": "Die Liste scheint leer zu sein.\n\nWarum fügst du nicht ein paar Songs hinzu? Das sieht ja aus wie eine Wüste. 🏜️",
+                            "footer": {
+                                "text": "Angefordert von: {user}"
+                            }
+                        },
+                        "list": {
+                            "title": "Deine Wiedergabeliste",
+                            "description": "Das befindet sich derzeit in der Warteschlange:\n\n{queue}\n\nNicht schlecht, aber Vorschläge nehme ich gerne an. 😌",
+                            "footer": {
+                                "text": "Angefordert von: {user}"
+                            }
+                        }
+                    },
+                    "shuffle": {
+                        "not_connected": {
+                            "title": "Ich bin nicht verbunden",
+                            "description": "Ich bin mit keinem Sprachkanal verbunden. Ohne Musik gibt es nichts zu mischen. 🎲",
+                            "footer": {
+                                "text": "Angefordert von: {user}"
+                            }
+                        },
+                        "not_enough_songs": {
+                            "title": "Ich kann die Liste nicht mischen",
+                            "description": "Füge mehr als einen Song hinzu, damit ich die Liste mischen kann. Bei nur einem Song gibt es nicht viel zu rätseln. 🙄",
+                            "footer": {
+                                "text": "Angefordert von: {user}"
+                            }
+                        },
+                        "shuffled": {
+                            "title": "Liste gemischt",
+                            "description": "Ehrlich gesagt weiß ich jetzt selbst nicht mehr, welcher Song auf welchen folgt. Die Überraschung kann beginnen. 🔀",
+                            "footer": {
+                                "text": "Angefordert von: {user}"
+                            }
+                        }
+                    },
+                    "loop": {
+                        "not_connected": {
+                            "title": "Ich bin nicht verbunden",
+                            "description": "Ich bin mit keinem Sprachkanal verbunden. Ich kann nichts wiederholen, was nicht läuft. 🔁",
+                            "footer": {
+                                "text": "Angefordert von: {user}"
+                            }
+                        },
+                        "no_song_playing": {
+                            "title": "Es wird kein Song abgespielt",
+                            "description": "Ich kann die Wiederholung nicht aktivieren, wenn kein Song läuft. Spiel erst etwas ab, bitte. 🎵",
+                            "footer": {
+                                "text": "Angefordert von: {user}"
+                            }
+                        },
+                        "enabled": {
+                            "title": "Song in Dauerschleife",
+                            "description": "Dein Lieblingssong? Wir kommen in eine Endlosschleifeee. 😵‍💫",
+                            "footer": {
+                                "text": "Angefordert von: {user}"
+                            }
+                        },
+                        "disabled": {
+                            "title": "Wiederholung deaktiviert",
+                            "description": "Der Song wird nicht mehr wiederholt. Schluss mit dem Déjà-vu. 🔂",
+                            "footer": {
+                                "text": "Angefordert von: {user}"
+                            }
+                        }
+                    },
+                    "skip": {
+                        "not_connected": {
+                            "title": "Ich bin nicht verbunden",
+                            "description": "Ich bin mit keinem Sprachkanal verbunden. Ich kann nichts aus dem Nichts überspringen. ⏭️",
+                            "footer": {
+                                "text": "Angefordert von: {user}"
+                            }
+                        },
+                        "no_song_playing": {
+                            "title": "Es wird kein Song abgespielt",
+                            "description": "Ich kann keinen Song überspringen, wenn keiner abgespielt wird. Sollen wir ins Nichts springen? 🕳️",
+                            "footer": {
+                                "text": "Angefordert von: {user}"
+                            }
+                        },
+                        "skipped": {
+                            "title": "Song übersprungen",
+                            "description": "Ich habe zum nächsten Song gewechselt. Hoffentlich gefällt er dir besser. 🤞",
+                            "footer": {
+                                "text": "Angefordert von: {user}"
+                            }
+                        }
+                    },
+                    "stop": {
+                        "not_connected": {
+                            "title": "Ich bin nicht verbunden",
+                            "description": "Ich bin mit keinem Sprachkanal verbunden. Ich kann nichts stoppen, was ich nicht gestartet habe. 🛑",
+                            "footer": {
+                                "text": "Angefordert von: {user}"
+                            }
+                        },
+                        "stopped": {
+                            "title": "Wiedergabe gestoppt",
+                            "description": "Ohh neeein! Bist du meiner überdrüssig und willst, dass ich still bin? :( Ich gehe mich in einer Ecke ausweinen. 😭",
+                            "footer": {
+                                "text": "Angefordert von: {user}"
+                            }
+                        }
+                    },
+                    "clear": {
+                        "not_connected": {
+                            "title": "Ich bin nicht verbunden",
+                            "description": "Ich bin mit keinem Sprachkanal verbunden. Es gibt keine Warteschlange zu leeren. 🧹",
+                            "footer": {
+                                "text": "Angefordert von: {user}"
+                            }
+                        },
+                        "queue_empty": {
+                            "title": "Die Warteschlange ist leer",
+                            "description": "Es befinden sich keine Songs in der Warteschlange, die gelöscht werden könnten. Alles sauber. ✨",
+                            "footer": {
+                                "text": "Angefordert von: {user}"
+                            }
+                        },
+                        "cleared": {
+                            "title": "Wiedergabewarteschlange geleert",
+                            "description": "Ich habe den Mist weggeräumt, den du da reingepackt hast. Jetzt streng dich mal ein bisschen an. 🧼😏",
+                            "footer": {
+                                "text": "Angefordert von: {user}"
+                            }
+                        }
+                    },
+                    "volume": {
+                        "current": {
+                            "title": "Aktuelle Lautstärke",
+                            "description": "Die Lautstärke beträgt **{volume}%**. Ist das so in Ordnung? 🎧",
+                            "footer": {
+                                "text": "Angefordert von: {user}"
+                            }
+                        },
+                        "not_connected": {
+                            "title": "Ich bin nicht verbunden",
+                            "description": "Ich bin mit keinem Sprachkanal verbunden. Ohne Verbindung gibt es auch keine Lautstärke. 🔊",
+                            "footer": {
+                                "text": "Angefordert von: {user}"
+                            }
+                        },
+                        "invalid_volume": {
+                            "title": "Ungültige Lautstärke",
+                            "description": "Die Lautstärke muss zwischen **1 und 100** liegen. Nicht mehr und nicht weniger, mach mich nicht verrückt. 🎚️",
+                            "footer": {
+                                "text": "Angefordert von: {user}"
+                            }
+                        },
+                        "too_high": {
+                            "title": "Lautstärke zu hoch",
+                            "description": "Ich möchte nicht, dass du taub wirst. Dreh ein bisschen runter. 🫣",
+                            "footer": {
+                                "text": "Angefordert von: {user}"
+                            }
+                        },
+                        "too_low": {
+                            "title": "Lautstärke zu niedrig",
+                            "description": "Oder du willst mich einfach zum Schweigen bringen. Nun, fast geschafft. 🤫",
+                            "footer": {
+                                "text": "Angefordert von: {user}"
+                            }
+                        },
+                        "changed": {
+                            "title": "Lautstärke aktualisiert",
+                            "description": "Ich habe die Lautstärke auf **{volume}%** eingestellt.\n\nViel Spaß! 🎧",
+                            "footer": {
+                                "text": "Angefordert von: {user}"
+                            }
+                        }
+                    },
+                    "lyrics": {
+                        "not_found": {
+                            "title": "Liedtext nicht gefunden",
+                            "description": "Ich konnte den Liedtext nicht finden.\n\nVersuche es noch einmal mit einem anderen Titel! Vielleicht hast du diesmal mehr Glück. 🎤",
+                            "footer": {
+                                "text": "Angefordert von: {user}"
+                            }
+                        },
+                        "not_available": {
+                            "title": "Liedtexte in Arbeit",
+                            "description": "Diese Funktion befindet sich noch im Aufbau. Hab etwas Geduld, Wunder brauchen ihre Zeit. 🚧",
+                            "footer": {
+                                "text": "Angefordert von: {user}"
+                            }
+                        }
+                    },
+                    "voice": {
+                        "not_connected": {
+                            "title": "Du bist nicht in einem Sprachkanal",
+                            "description": "Wo bist du...? Ich kann dich nicht sehen... 🥹🥺",
+                            "footer": {
+                                "text": "Angefordert von: {user}"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "events": {
+            "logs": {
+                "guild": {
+                    "on_guild_channel_create": {
+                        "channel_created": "Der Kanal {channel} wurde erstellt."
+                    },
+                    "on_guild_channel_delete": {
+                        "channel_deleted": "Der Kanal {channel} wurde gelöscht."
+                    },
+                    "on_guild_channel_update": {
+                        "channel_updated": "Der Kanal {before} wurde in {after} geändert."
+                    },
+                    "on_guild_emojis_update": {
+                        "emojis_updated": "Die Emojis des Servers {guild} wurden aktualisiert."
+                    },
+                    "on_guild_join": {
+                        "guild_added": "Server hinzugefügt: {guild_name} ({guild_id})"
+                    },
+                    "on_guild_remove": {
+                        "members_deleted": "Mitglieder gelöscht: {deleted_members} von {guild_name} ({guild_id})",
+                        "guild_deleted": "Server gelöscht: {guild_name} ({guild_id})",
+                        "guild_not_found": "Server nicht in der Datenbank gefunden: {guild_name} ({guild_id})"
+                    },
+                    "on_guild_role_create": {
+                        "role_created": "Die Rolle {role} wurde erstellt."
+                    },
+                    "on_guild_role_delete": {
+                        "role_deleted": "Die Rolle {role} wurde gelöscht."
+                    },
+                    "on_guild_role_update": {
+                        "role_updated": "Die Rolle {before} wurde in {after} geändert."
+                    },
+                    "on_guild_stickers_update": {
+                        "stickers_updated": "Die Sticker des Servers {guild} wurden aktualisiert."
+                    }
+                },
+                "member": {
+                    "on_member_join": {
+                        "member_added": "Mitglied hinzugefügt: {name} ({id}) in {guild_name} ({guild_id})"
+                    },
+                    "on_member_remove": {
+                        "member_deleted": "Mitglied entfernt: {name} ({id}) von {guild_name} ({guild_id})",
+                        "member_not_found": "Mitglied nicht in der Datenbank gefunden: {name} ({id}) in {guild_name} ({guild_id})"
+                    },
+                    "on_member_update": {
+                        "member_updated": "Mitglied aktualisiert: {name} ({id}) in {guild_name} ({guild_id})"
+                    },
+                    "on_user_update": {
+                        "username_updated": "Benutzername aktualisiert: {before_name} ({id}) -> {after_name} ({id})",
+                        "global_name_updated": "Globaler Name aktualisiert: {before_name} ({id}) -> {after_name} ({id})",
+                        "avatar_updated": "Avatar aktualisiert: {name} ({id})"
+                    }
+                },
+                "message": {
+                    "on_message": {
+                        "message_detected": "{author_name} hat eine Nachricht in {channel_name} von {server_name} gesendet: {message}"
+                    },
+                    "on_message_delete": {
+                        "message_deleted": "{author} hat eine Nachricht in {channel} von {guild} gelöscht. Nachricht: {message}"
+                    },
+                    "on_message_edit": {
+                        "message_edited": "{author_name} hat eine Nachricht in {channel_name} von {server_name} bearbeitet. Vorher: {before} Nachher: {after}"
+                    },
+                    "on_raw_reaction_add": {
+                        "reaction_added": "{user} hat die Reaktion {emoji} zur Nachricht {message_id} hinzugefügt."
+                    },
+                    "on_raw_reaction_remove": {
+                        "reaction_removed": "{user} hat die Reaktion {emoji} von der Nachricht {message_id} entfernt."
+                    },
+                    "on_reaction_add": {
+                        "reaction_added": "{user} hat die Reaktion {emoji} in {channel} hinzugefügt."
+                    },
+                    "on_reaction_clear": {
+                        "reactions_cleared": "Die Reaktionen der Nachricht {message} wurden entfernt."
+                    },
+                    "on_reaction_remove": {
+                        "reaction_removed": "{user} hat die Reaktion {emoji} in {channel} entfernt."
+                    },
+                    "on_typing": {
+                        "typing_detected": "{user} schreibt in {channel}."
+                    }
+                },
+                "other": {
+                    "on_application_command_error": {
+                        "command_error": "Beim Anwendungsbefehl {command} ist ein Fehler aufgetreten: {error}"
+                    },
+                    "on_command": {
+                        "command_executed": "{author} hat den Befehl {command} in {channel} ausgeführt."
+                    },
+                    "on_command_error": {
+                        "command_error": "Beim Befehl {command} ist ein Fehler aufgetreten: {error}",
+                        "missing_permissions": "Du hast nicht genügend Berechtigungen, um diesen Befehl auszuführen.",
+                        "logged_error": "Fehler beim Befehl '{command}': {error}"
+                    },
+                    "on_ready": {
+                        "bot_connected": "Der Bot ist als {bot} verbunden.",
+                        "connecting_lavalink": "Verbindung mit Lavalink erfolgreich hergestellt."
+                    },
+                    "on_connect": {
+                        "discord_connected": "Die Verbindung mit Discord wurde hergestellt."
+                    },
+                    "on_disconnect": {
+                        "discord_disconnected": "Die Verbindung mit Discord wurde verloren."
+                    },
+                    "on_resumed": {
+                        "discord_resumed": "Die Discord-Sitzung wurde erfolgreich fortgesetzt."
+                    },
+                    "on_voice_state_update": {
+                        "voice_state_updated": "{member_name} {action} in {channel_name} von {server_name}.",
+                        "voice_state_moved": "{member_name} wurde von {before_channel_name} nach {after_channel_name} von {server_name} verschoben.",
+                        "join": "ist beigetreten",
+                        "leave": "hat verlassen",
+                        "move": "wurde verschoben",
+                        "mute_enabled": "wurde stummgeschaltet",
+                        "mute_disabled": "wurde nicht mehr stummgeschaltet",
+                        "deaf_enabled": "wurde taubgeschaltet",
+                        "deaf_disabled": "wurde nicht mehr taubgeschaltet",
+                        "video_enabled": "hat die Kamera aktiviert",
+                        "video_disabled": "hat die Kamera deaktiviert",
+                        "stream_enabled": "teilt den Bildschirm",
+                        "stream_disabled": "hat die Bildschirmfreigabe beendet",
+                        "none": "Keine"
+                    },
+                    "on_webhook_update": {
+                        "webhook_updated": "Die Webhooks von {channel} wurden aktualisiert."
+                    },
+                    "on_wavelink_track_start": {
+                        "track_started": "Die Wiedergabe von {track_title} auf {server_name} wurde gestartet."
+                    },
+                    "on_wavelink_track_end": {
+                        "track_ended": "Die Wiedergabe von {track_title} auf {server_name} wurde beendet."
+                    }
+                }
+            },
+            "embeds": {
+                "guild": {
+                    "channel_created": {
+                        "title": "Kanal erstellt",
+                        "description": "Der Kanal **{channel}** wurde erstellt."
+                    },
+                    "channel_deleted": {
+                        "title": "Kanal gelöscht",
+                        "description": "Der Kanal **{channel}** wurde gelöscht."
+                    },
+                    "channel_updated": {
+                        "title": "Kanal aktualisiert",
+                        "description": "Der Kanal **{before}** wurde in **{after}** geändert."
+                    },
+                    "emojis_updated": {
+                        "title": "Emojis aktualisiert",
+                        "description": "Die Emojis des Servers wurden aktualisiert."
+                    },
+                    "guild_added": {
+                        "title": "Server hinzugefügt",
+                        "description": "Der Bot wurde zum Server **{guild_name}** hinzugefügt."
+                    },
+                    "guild_removed": {
+                        "title": "Server entfernt",
+                        "description": "Der Bot hat den Server **{guild_name}** verlassen."
+                    },
+                    "role_created": {
+                        "title": "Rolle erstellt",
+                        "description": "Die Rolle **{role}** wurde erstellt."
+                    },
+                    "role_deleted": {
+                        "title": "Rolle gelöscht",
+                        "description": "Die Rolle **{role}** wurde gelöscht."
+                    },
+                    "role_updated": {
+                        "title": "Rolle aktualisiert",
+                        "description": "Die Rolle **{before}** wurde in **{after}** geändert."
+                    },
+                    "stickers_updated": {
+                        "title": "Sticker aktualisiert",
+                        "description": "Die Sticker des Servers wurden aktualisiert."
+                    }
+                },
+                "member": {
+                    "member_added": {
+                        "title": "Mitglied hinzugefügt",
+                        "description": "Das Mitglied **{name}** ist dem Server beigetreten."
+                    },
+                    "member_deleted": {
+                        "title": "Mitglied entfernt",
+                        "description": "Das Mitglied **{name}** hat den Server verlassen."
+                    },
+                    "member_updated": {
+                        "title": "Mitglied aktualisiert",
+                        "description": "Die Informationen von **{name}** wurden aktualisiert."
+                    },
+                    "user_updated": {
+                        "title": "Benutzer aktualisiert",
+                        "description": "Die Informationen des Benutzers **{name}** wurden aktualisiert."
+                    }
+                },
+                "message": {
+                    "message_deleted": {
+                        "title": "Nachricht gelöscht",
+                        "description": "Eine Nachricht von **{author}** in {channel} wurde gelöscht."
+                    },
+                    "message_edited": {
+                        "title": "Nachricht bearbeitet",
+                        "description": "Eine Nachricht von **{author}** in {channel} wurde bearbeitet."
+                    },
+                    "reaction_added": {
+                        "title": "Reaktion hinzugefügt",
+                        "description": "{user} hat die Reaktion {emoji} hinzugefügt."
+                    },
+                    "reaction_removed": {
+                        "title": "Reaktion entfernt",
+                        "description": "{user} hat die Reaktion {emoji} entfernt."
+                    },
+                    "reactions_cleared": {
+                        "title": "Reaktionen entfernt",
+                        "description": "Die Reaktionen der Nachricht wurden entfernt."
+                    }
+                },
+                "other": {
+                    "command_error": {
+                        "title": "Befehl nicht gefunden",
+                        "description": "Der Befehl **{command}** existiert nicht."
+                    },
+                    "missing_permissions": {
+                        "title": "Unzureichende Berechtigungen",
+                        "description": "Du hast nicht genügend Berechtigungen, um diesen Befehl auszuführen."
+                    },
+                    "track_started": {
+                        "title": "Wiedergabe gestartet",
+                        "description": "Die Wiedergabe von **{track_title}** wurde gestartet."
+                    },
+                    "track_ended": {
+                        "title": "Wiedergabe beendet",
+                        "description": "Die Wiedergabe von **{track_title}** wurde beendet."
+                    },
+                    "voice_channel_required": {
+                        "title": "Sprachkanal erforderlich",
+                        "description": "Du musst dich in einem Sprachkanal befinden, um diesen Befehl zu verwenden. Tritt einem Sprachkanal bei und versuche es erneut."
+                    },
+                    "idle_disconnect": {
+                        "title": "Wegen Inaktivität getrennt",
+                        "description": "Es befinden sich keine weiteren Songs in der Warteschlange. Ich habe den Sprachkanal wegen Inaktivität verlassen."
+                    }
+                }
+            }
+        },
+        "tasks": {
+            "logs": {
+                "database_sync": {
+                    "started": "Die Synchronisierung der Datenbank wurde gestartet.",
+                    "sync_completed": "Die Synchronisierung der Datenbank wurde abgeschlossen.",
+                    "sync_failed": "Während der Synchronisierung der Datenbank ist ein Fehler aufgetreten: {error}."
+                }
+            },
+            "embeds": {
+                "database_sync": {
+                    "completed": {
+                        "title": "Datenbank synchronisiert",
+                        "description": "Die Synchronisierung der Datenbank wurde erfolgreich abgeschlossen."
+                    },
+                    "failed": {
+                        "title": "Synchronisierungsfehler",
+                        "description": "Während der Synchronisierung der Datenbank ist ein Fehler aufgetreten."
+                    }
+                }
+            }
+        }
+    },
+    "core": {
+        "logs": {
+            "loader": {
+                "commands": "Befehle",
+                "events": "Ereignisse",
+                "tasks": "Aufgaben",
+                "loaded": "{label} | {category} | erfolgreich geladen ({loaded})",
+                "load_error": "{label} | {category} | Fehler beim Laden von {filename} | {error_type}: {error}"
+            }
+        }
+    },
+    "database": {
+        "models": {
+            "guild": {
+                "created": "Der Serverdatensatz [{guild_id}] {guild_name} wurde erstellt.",
+                "updated": "Der Serverdatensatz [{guild_id}] {guild_name} wurde aktualisiert.",
+                "deleted": "Der Serverdatensatz [{guild_id}] {guild_name} wurde gelöscht."
+            },
+            "member": {
+                "created": "Der Mitgliederdatensatz [{member_id}] {member_name} auf dem Server [{guild_id}] wurde erstellt.",
+                "updated": "Der Mitgliederdatensatz [{member_id}] {member_name} auf dem Server [{guild_id}] wurde aktualisiert.",
+                "deleted": "Der Mitgliederdatensatz [{member_id}] {member_name} auf dem Server [{guild_id}] wurde gelöscht."
+            }
+        },
+        "repositories": {
+            "guild": {
+                "created": "Guild-Repository: Datensatz erstellt [{id}] {name}{source}.",
+                "updated": "Guild-Repository: Datensatz aktualisiert [{id}] {name} | {changes}{source}.",
+                "deleted": "Guild-Repository: Datensatz gelöscht [{id}] {name}{source}.",
+                "not_found": "Guild-Repository: Server nicht gefunden [{id}].",
+                "error": "Guild-Repository: Fehler beim Ausführen des Vorgangs für [{id}]: {error}."
+            },
+            "member": {
+                "created": "Member-Repository: Datensatz erstellt [{id}] {name} | guild=[{guild_id}]{source}.",
+                "updated": "Member-Repository: Datensatz aktualisiert [{id}] {name} | {changes} | guild=[{guild_id}]{source}.",
+                "deleted": "Member-Repository: Datensatz gelöscht [{id}] {name} | guild=[{guild_id}]{source}.",
+                "not_found": "Member-Repository: Mitglied nicht gefunden [{id}] in guild=[{guild_id}].",
+                "error": "Member-Repository: Fehler beim Ausführen des Vorgangs für [{id}] in guild=[{guild_id}]: {error}."
+            }
+        },
+        "logs": {
+            "connection": {
+                "started": "DATABASE | Verbindung gestartet",
+                "closed": "DATABASE | Verbindung geschlossen"
+            },
+            "errors": {
+                "missing_environment": "PostgreSQL-Umgebungsvariablen fehlen.",
+                "create_tables": "Fehler beim Erstellen der Datenbanktabellen: {error}"
+            },
+            "insert": {
+                "guild": "INSERT | guild | [{id}] {name}{source}",
+                "member": "INSERT | member | [{id}] {name} | guild=[{guild_id}]{source}"
+            },
+            "update": {
+                "guild": "UPDATE | guild | [{id}] {name} | {changes}{source}",
+                "member": "UPDATE | member | [{id}] {name} | {changes} | guild=[{guild_id}]{source}"
+            },
+            "delete": {
+                "guild": "DELETE | guild | [{id}] {name}{source}",
+                "member": "DELETE | member | [{id}] {name} | guild=[{guild_id}]{source}"
+            }
+        }
+    },
+    "helpers": {
+        "logs": {
+            "translation": {
+                "missing": "Keine Übersetzung für den Schlüssel {key} gefunden.",
+                "invalid": "Die für {key} erhaltene Übersetzung hat ein ungültiges Format."
+            },
+            "embed": {
+                "created": "Ein Embed vom Typ {type} für den Schlüssel {key} wurde erstellt.",
+                "error": "Fehler beim Erstellen des Embeds für den Schlüssel {key}: {error}."
+            }
+        }
+    }
 }

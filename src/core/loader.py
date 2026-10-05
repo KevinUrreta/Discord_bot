@@ -20,7 +20,7 @@ async def load_cogs(bot, lavalink_password):
         }
     )
 
-    for cog_type in ("commands", "events"):
+    for cog_type in ("commands", "events", "tasks"):
         cog_path = base_path / "bot" / cog_type
 
         for file in cog_path.rglob("*.py"):

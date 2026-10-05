@@ -1,9 +1,13 @@
+import asyncio
+
 import wavelink
 from discord.ext import commands
 
-from src.core.logging import wavelink_logger
 from src.core.player_state import get_music_state
-from src.locales.i18n import translate
+from src.helpers.embeds import create_embed
+
+
+IDLE_DISCONNECT_DELAY = 60
 
 
 class On_wavelink_track_end(commands.Cog):
@@ -19,28 +23,31 @@ class On_wavelink_track_end(commands.Cog):
             return
 
         player = payload.player
-        track = player.current
 
-        if track is not None:
-            if player.channel is None:
-                return
-
-            guild = player.channel.guild
-
-            # wavelink_logger.info(
-            #     translate(
-            #         guild,
-            #         "bot.events.logs.other.on_wavelink_track_end.track_ended",
-            #         server_name=guild.name,
-            #         server_id=guild.id,
-            #         track_title=track.title,
-            #     )
-            # )
+        if player.channel is None:
+            return
 
         if (
             player.queue.is_empty
             and player.queue.mode == wavelink.QueueMode.normal
         ):
+            state = get_music_state(player)
+            text_channel = state.text_channel
+            guild = player.channel.guild
+
+            await asyncio.sleep(IDLE_DISCONNECT_DELAY)
+
+            if player.current is None and player.queue.is_empty:
+                await player.disconnect()
+
+                if text_channel is not None:
+                    await text_channel.send(
+                        embed=create_embed(
+                            guild,
+                            "bot.events.embeds.other.idle_disconnect",
+                        )
+                    )
+
             return
 
         next_track = player.queue.get()

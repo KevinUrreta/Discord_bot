@@ -8,27 +8,18 @@ from src.database.repositories.guild import GuildRepository
 class Prefix(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
-
-        self.guild_repository = GuildRepository(
-            self.bot.database
-        )
+        self.guild_repository = GuildRepository(self.bot.database)
 
     @commands.command(name="prefix")
     @has_manage_guild()
-    async def prefix(
-        self,
-        ctx,
-        prefix: str | None = None,
-    ):
+    async def prefix(self, ctx, prefix: str | None = None):
         if ctx.guild is None:
             return
 
         guild_id = ctx.guild.id
 
         if prefix is None:
-            guild = await self.guild_repository.get(
-                guild_id
-            )
+            guild = await self.guild_repository.get(guild_id)
 
             if guild is None:
                 return
@@ -41,6 +32,9 @@ class Prefix(commands.Cog):
                 )
             )
 
+            return
+
+        if len(prefix) != 1:
             return
 
         guild = await self.guild_repository.update(

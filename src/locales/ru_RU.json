@@ -1,866 +1,878 @@
 {
-	"bot": {
-		"commands": {
-			"config": {
-				"logs": {
-					"language": {
-						"executed": "Команда /language выполнена пользователем {user} на сервере [{guild_id}].",
-						"changed": "Язык сервера [{guild_id}] изменён с {old_language} на {language} пользователем {user}.",
-						"failed": "Не удалось выполнить команду /language для пользователя {user} на сервере [{guild_id}]: {error}."
-					},
-					"prefix": {
-						"executed": "Команда /prefix выполнена пользователем {user} на сервере [{guild_id}].",
-						"changed": "Префикс сервера [{guild_id}] изменён с `{old_prefix}` на `{prefix}` пользователем {user}.",
-						"failed": "Не удалось выполнить команду /prefix для пользователя {user} на сервере [{guild_id}]: {error}."
-					}
-				},
-				"embeds": {
-					"language": {
-						"current_language": {
-							"title": "Язык сервера",
-							"description": "Текущий язык сервера — **{language_name}** (`{language}`)."
-						},
-						"invalid_language": {
-							"title": "Язык недоступен",
-							"description": "Выбранный язык недоступен."
-						},
-						"available_languages": {
-							"title": "Доступные языки",
-							"description": "{languages}"
-						},
-						"language_changed": {
-							"title": "Язык изменён",
-							"description": "Язык сервера изменён на **{language_name}** (`{language}`)."
-						}
-					},
-					"prefix": {
-						"current_prefix": {
-							"title": "Текущий префикс",
-							"description": "Текущий префикс сервера — `{prefix}`."
-						},
-						"prefix_changed": {
-							"title": "Префикс изменён",
-							"description": "Префикс изменён на `{prefix}`."
-						}
-					}
-				}
-			},
-			"moderation": {
-				"logs": {
-					"clear": {
-						"executed": "Команда /clear выполнена пользователем {user} в канале {channel} на сервере {guild}.",
-						"completed": "Пользователь {user} удалил {amount} сообщений в канале {channel} на сервере {guild}.",
-						"failed": "Не удалось выполнить команду /clear для пользователя {user} в канале {channel} на сервере {guild}: {error}."
-					}
-				},
-				"embeds": {
-					"clear": {
-						"cleared": {
-							"title": "Сообщения удалены",
-							"description": "Успешно удалено **{amount} сообщений**.",
-							"footer": {
-								"text": "Выполнил: {user}"
-							}
-						},
-						"invalid_amount": {
-							"title": "Недопустимое количество",
-							"description": "Количество сообщений должно быть в диапазоне от **1 до {maximum}**.",
-							"footer": {
-								"text": "Выполнил: {user}"
-							}
-						}
-					}
-				}
-			},
-			"music": {
-				"logs": {
-					"join": {
-						"executed": "Команда /join выполнена пользователем {user} на сервере {guild}.",
-						"joining_voice": "Подключаюсь к голосовому каналу {channel} на сервере {guild}.",
-						"joined_voice": "Я подключился к голосовому каналу {channel} на сервере {guild}.",
-						"failed": "Не удалось выполнить команду /join для пользователя {user} на сервере {guild}: {error}."
-					},
-					"play": {
-						"executed": "Команда /play выполнена пользователем {user} на сервере {guild}.",
-						"track_loaded": "Трек {title} загружен для пользователя {user} на сервере {guild}.",
-						"track_queued": "Пользователь {user} добавил трек {title} в очередь на сервере {guild}.",
-						"playlist_queued": "Пользователь {user} добавил плейлист {title} в очередь на сервере {guild}.",
-						"failed": "Не удалось выполнить команду /play для пользователя {user} на сервере {guild}: {error}."
-					},
-					"pause": {
-						"executed": "Команда /pause выполнена пользователем {user} на сервере {guild}.",
-						"paused": "Пользователь {user} приостановил воспроизведение на сервере {guild}.",
-						"failed": "Не удалось выполнить команду /pause для пользователя {user} на сервере {guild}: {error}."
-					},
-					"resume": {
-						"executed": "Команда /resume выполнена пользователем {user} на сервере {guild}.",
-						"resumed": "Пользователь {user} возобновил воспроизведение на сервере {guild}.",
-						"failed": "Не удалось выполнить команду /resume для пользователя {user} на сервере {guild}: {error}."
-					},
-					"remove": {
-						"executed": "Команда /remove выполнена пользователем {user} на сервере {guild}.",
-						"removed": "Пользователь {user} удалил трек {title} с позиции {position} из очереди на сервере {guild}.",
-						"failed": "Не удалось выполнить команду /remove для пользователя {user} на сервере {guild}: {error}."
-					},
-					"leave": {
-						"executed": "Команда /leave выполнена пользователем {user} на сервере {guild}.",
-						"disconnected": "Бот отключился от голосового канала {channel} по запросу пользователя {user}."
-					},
-					"queue": {
-						"executed": "Команда /queue выполнена пользователем {user} на сервере {guild}.",
-						"displayed": "Пользователь {user} запросил очередь воспроизведения на сервере {guild}."
-					},
-					"shuffle": {
-						"executed": "Команда /shuffle выполнена пользователем {user} на сервере {guild}.",
-						"shuffled": "Пользователь {user} перемешал очередь воспроизведения на сервере {guild}.",
-						"failed": "Не удалось выполнить команду /shuffle для пользователя {user} на сервере {guild}: {error}."
-					},
-					"loop": {
-						"executed": "Команда /loop выполнена пользователем {user} на сервере {guild}.",
-						"enabled": "Пользователь {user} включил повтор на сервере {guild}.",
-						"disabled": "Пользователь {user} выключил повтор на сервере {guild}.",
-						"failed": "Не удалось выполнить команду /loop для пользователя {user} на сервере {guild}: {error}."
-					},
-					"skip": {
-						"executed": "Команда /skip выполнена пользователем {user} на сервере {guild}.",
-						"skipped": "Пользователь {user} пропустил трек {title} на сервере {guild}.",
-						"failed": "Не удалось выполнить команду /skip для пользователя {user} на сервере {guild}: {error}."
-					},
-					"stop": {
-						"executed": "Команда /stop выполнена пользователем {user} на сервере {guild}.",
-						"stopped": "Пользователь {user} остановил воспроизведение на сервере {guild}.",
-						"failed": "Не удалось выполнить команду /stop для пользователя {user} на сервере {guild}: {error}."
-					},
-					"clear": {
-						"executed": "Команда /clear выполнена пользователем {user} на сервере {guild}.",
-						"cleared": "Пользователь {user} очистил очередь воспроизведения на сервере {guild}.",
-						"failed": "Не удалось выполнить команду /clear для пользователя {user} на сервере {guild}: {error}."
-					},
-					"volume": {
-						"executed": "Команда /volume выполнена пользователем {user} на сервере {guild}.",
-						"changed": "Пользователь {user} изменил громкость с {old_volume}% на {volume}% на сервере {guild}.",
-						"failed": "Не удалось выполнить команду /volume для пользователя {user} на сервере {guild}: {error}."
-					},
-					"lyrics": {
-						"executed": "Команда /lyrics выполнена пользователем {user} на сервере {guild}.",
-						"requested": "Пользователь {user} запросил текст песни {title} на сервере {guild}.",
-						"not_found": "Текст песни {title}, запрошенный пользователем {user} на сервере {guild}, не найден.",
-						"failed": "Не удалось выполнить команду /lyrics для пользователя {user} на сервере {guild}: {error}."
-					}
-				},
-				"embeds": {
-					"play": {
-						"missing_song": {
-							"title": "Не указана песня",
-							"description": "Я не могу включить музыку, если ты не скажешь, какую песню хочешь послушать. Я бот, а не ясновидящая. 🔮",
-							"footer": {
-								"text": "Запросил: {user}"
-							}
-						},
-						"spotify_not_supported": {
-							"title": "Spotify не поддерживается",
-							"description": "Ссылки Spotify мне не по зубам. Укажи другой источник — включу без жалоб. 🙃",
-							"footer": {
-								"text": "Запросил: {user}"
-							}
-						},
-						"voice_not_connected": {
-							"title": "Ты не в голосовом канале",
-							"description": "Ты где...? Я тебя не вижу... 🥹🥺",
-							"footer": {
-								"text": "Запросил: {user}"
-							}
-						},
-						"no_song_found": {
-							"title": "Песня не найдена",
-							"description": "Я искала повсюду, но ничего не нашла. Ты уверен, что такая песня существует, а не придумал её? 🤔",
-							"footer": {
-								"text": "Запросил: {user}"
-							}
-						},
-						"added_to_queue": {
-							"title": "Песня добавлена в очередь",
-							"description": "**{title}**\n\nВ очереди: **{queue}**\n\nКстати, отличный выбор. 😏",
-							"footer": {
-								"text": "Запросил: {user}"
-							}
-						},
-						"playlist_added_to_queue": {
-							"title": "Плейлист добавлен в очередь",
-							"description": "**{title}**\n\nПесен в очереди: **{queue}**\n\nВот это плейлист ты подобрал. Поехали. 🔥",
-							"footer": {
-								"text": "Запросил: {user}"
-							}
-						}
-					},
-					"now_playing": {
-						"title": "Сейчас играет",
-						"fields": [
-							{
-								"name": "Название",
-								"value": "**{title}**",
-								"inline": false
-							},
-							{
-								"name": "Длительность",
-								"value": "{duration}",
-								"inline": true
-							},
-							{
-								"name": "Просмотры",
-								"value": "{views}",
-								"inline": true
-							},
-							{
-								"name": "В очереди",
-								"value": "{queue}",
-								"inline": true
-							}
-						],
-						"footer": {
-							"text": "Запросил: {user}"
-						}
-					},
-					"queue_empty_finished": {
-						"title": "В очереди больше нет песен",
-						"description": "Похоже, список пуст.\n\nМожет, добавишь пару песен? Он сам собой не заполнится. 🎵",
-						"footer": {
-							"text": "Запросил: {user}"
-						}
-					},
-					"disconnected_from_voice": {
-						"title": "Я вышла из голосового канала",
-						"description": "Ты меня отключил. Серьёзно? А мне было так уютно... 😤",
-						"footer": {
-							"text": "Запросил: {user}"
-						}
-					},
-					"pause": {
-						"not_connected": {
-							"title": "Я не подключена",
-							"description": "Я не подключена ни к одному голосовому каналу. Так что нет, ничего поставить на паузу я не могу. 🙃",
-							"footer": {
-								"text": "Запросил: {user}"
-							}
-						},
-						"no_song_playing": {
-							"title": "Сейчас ничего не играет",
-							"description": "Я не могу поставить на паузу то, что не играет. Это было бы магией, а я не настолько всемогуща. ✨",
-							"footer": {
-								"text": "Запросил: {user}"
-							}
-						},
-						"paused": {
-							"title": "Воспроизведение приостановлено",
-							"description": "Мне нравилась эта песня! Но ладно, тебе решать. ⏸️",
-							"footer": {
-								"text": "Запросил: {user}"
-							}
-						}
-					},
-					"resume": {
-						"not_connected": {
-							"title": "Я не подключена",
-							"description": "Я не подключена ни к одному голосовому каналу. Сначала пригласи меня, ладно? 🥺",
-							"footer": {
-								"text": "Запросил: {user}"
-							}
-						},
-						"no_song_playing": {
-							"title": "Нет песен на паузе",
-							"description": "Нет приостановленного воспроизведения, которое можно возобновить. Ты не того бота перепутал? 🤨",
-							"footer": {
-								"text": "Запросил: {user}"
-							}
-						},
-						"resumed": {
-							"title": "Воспроизведение возобновлено",
-							"description": "Как здорово! Мне очень нравится твоя музыка. Так держать. 🎶",
-							"footer": {
-								"text": "Запросил: {user}"
-							}
-						}
-					},
-					"remove": {
-						"not_connected": {
-							"title": "Я не подключена",
-							"description": "Я не подключена ни к одному голосовому каналу. Что именно мне удалить? 🤔",
-							"footer": {
-								"text": "Запросил: {user}"
-							}
-						},
-						"queue_empty": {
-							"title": "Очередь пуста",
-							"description": "Удалять нечего. Очередь пуста сильнее, чем моё терпение. 😮‍💨",
-							"footer": {
-								"text": "Запросил: {user}"
-							}
-						},
-						"invalid_position": {
-							"title": "Неверный номер",
-							"description": "Указан неверный номер песни. Ты точно правильно посчитал? 🔢",
-							"footer": {
-								"text": "Запросил: {user}"
-							}
-						},
-						"removed": {
-							"title": "Песня удалена из очереди",
-							"description": "**{title}**\n\nНадеюсь, ты не ошибся, и не вздумай сваливать вину на меня. Я просто выполняю команды. 😇",
-							"footer": {
-								"text": "Запросил: {user}"
-							}
-						}
-					},
-					"leave": {
-						"not_connected": {
-							"title": "Я не подключена",
-							"description": "Я не подключена ни к одному голосовому каналу. Нельзя уйти оттуда, где меня нет. 🚪",
-							"footer": {
-								"text": "Запросил: {user}"
-							}
-						},
-						"disconnected": {
-							"title": "Я вышла из голосового канала",
-							"description": "Ты меня отключил. Серьёзно? А я так радовалась музыке... 😔",
-							"footer": {
-								"text": "Запросил: {user}"
-							}
-						}
-					},
-					"queue": {
-						"not_connected": {
-							"title": "Я не подключена",
-							"description": "Я не подключена ни к одному голосовому каналу. Сначала пригласи меня, а потом поговорим об очередях. 🎧",
-							"footer": {
-								"text": "Запросил: {user}"
-							}
-						},
-						"empty": {
-							"title": "Очередь пуста",
-							"description": "Похоже, список пуст.\n\nМожет, добавишь пару песен? Тут прямо пустыня. 🏜️",
-							"footer": {
-								"text": "Запросил: {user}"
-							}
-						},
-						"list": {
-							"title": "Твой плейлист",
-							"description": "Вот что у тебя в очереди:\n\n{queue}\n\nНеплохо, но я не против предложений. 😌",
-							"footer": {
-								"text": "Запросил: {user}"
-							}
-						}
-					},
-					"shuffle": {
-						"not_connected": {
-							"title": "Я не подключена",
-							"description": "Я не подключена ни к одному голосовому каналу. Без музыки и перемешивать нечего. 🎲",
-							"footer": {
-								"text": "Запросил: {user}"
-							}
-						},
-						"not_enough_songs": {
-							"title": "Не могу перемешать список",
-							"description": "Добавь больше одной песни, чтобы перемешать список. С одной песней интриги не будет. 🙄",
-							"footer": {
-								"text": "Запросил: {user}"
-							}
-						},
-						"shuffled": {
-							"title": "Список перемешан",
-							"description": "Если честно, я уже не знаю, какая песня за какой идёт. Пусть начнётся сюрприз. 🔀",
-							"footer": {
-								"text": "Запросил: {user}"
-							}
-						}
-					},
-					"loop": {
-						"not_connected": {
-							"title": "Я не подключена",
-							"description": "Я не подключена ни к одному голосовому каналу. Не могу повторять то, что не играет. 🔁",
-							"footer": {
-								"text": "Запросил: {user}"
-							}
-						},
-						"no_song_playing": {
-							"title": "Сейчас ничего не играет",
-							"description": "Не могу включить повтор, если не играет ни одна песня. Для начала поставь что-нибудь. 🎵",
-							"footer": {
-								"text": "Запросил: {user}"
-							}
-						},
-						"enabled": {
-							"title": "Повтор песни",
-							"description": "Твоя любимая песня? Мы заходим в повторный круг-круууг. 😵‍💫",
-							"footer": {
-								"text": "Запросил: {user}"
-							}
-						},
-						"disabled": {
-							"title": "Повтор выключен",
-							"description": "Песня больше не будет повторяться. Дежавю окончено. 🔂",
-							"footer": {
-								"text": "Запросил: {user}"
-							}
-						}
-					},
-					"skip": {
-						"not_connected": {
-							"title": "Я не подключена",
-							"description": "Я не подключена ни к одному голосовому каналу. Не могу ничего пропустить в пустоте. ⏭️",
-							"footer": {
-								"text": "Запросил: {user}"
-							}
-						},
-						"no_song_playing": {
-							"title": "Сейчас ничего не играет",
-							"description": "Не могу пропустить песню, если ничего не играет. Перепрыгнем в пустоту? 🕳️",
-							"footer": {
-								"text": "Запросил: {user}"
-							}
-						},
-						"skipped": {
-							"title": "Песня пропущена",
-							"description": "Я перешла к следующей песне. Надеюсь, эта тебе понравится больше. 🤞",
-							"footer": {
-								"text": "Запросил: {user}"
-							}
-						}
-					},
-					"stop": {
-						"not_connected": {
-							"title": "Я не подключена",
-							"description": "Я не подключена ни к одному голосовому каналу. Не могу остановить то, чего не начинала. 🛑",
-							"footer": {
-								"text": "Запросил: {user}"
-							}
-						},
-						"stopped": {
-							"title": "Воспроизведение остановлено",
-							"description": "Ой, нет! Ты от меня устал и хочешь, чтобы я замолчала? :( Пойду поплачу в уголке. 😭",
-							"footer": {
-								"text": "Запросил: {user}"
-							}
-						}
-					},
-					"clear": {
-						"not_connected": {
-							"title": "Я не подключена",
-							"description": "Я не подключена ни к одному голосовому каналу. Нечего чистить. 🧹",
-							"footer": {
-								"text": "Запросил: {user}"
-							}
-						},
-						"queue_empty": {
-							"title": "Очередь пуста",
-							"description": "В очереди нет песен для удаления. Уже всё чисто. ✨",
-							"footer": {
-								"text": "Запросил: {user}"
-							}
-						},
-						"cleared": {
-							"title": "Очередь воспроизведения очищена",
-							"description": "Я убрала это дерьмо, которое ты поставил. Может, пора бы уже соображать. 🧼😏",
-							"footer": {
-								"text": "Запросил: {user}"
-							}
-						}
-					},
-					"volume": {
-						"not_connected": {
-							"title": "Я не подключена",
-							"description": "Я не подключена ни к одному голосовому каналу. Без подключения громкость не настроить. 🔊",
-							"footer": {
-								"text": "Запросил: {user}"
-							}
-						},
-						"invalid_volume": {
-							"title": "Недопустимая громкость",
-							"description": "Громкость должна быть в диапазоне **от 0 до 100**. Ни больше ни меньше, не запутывай меня. 🎚️",
-							"footer": {
-								"text": "Запросил: {user}"
-							}
-						},
-						"too_high": {
-							"title": "Слишком высокая громкость",
-							"description": "Не хочу, чтобы ты оглох. Сделай потише, ладно? 🫣",
-							"footer": {
-								"text": "Запросил: {user}"
-							}
-						},
-						"too_low": {
-							"title": "Слишком низкая громкость",
-							"description": "А может, ты просто хочешь меня заткнуть. Похоже, почти получилось. 🤫",
-							"footer": {
-								"text": "Запросил: {user}"
-							}
-						},
-						"changed": {
-							"title": "Громкость обновлена",
-							"description": "Я установила громкость на **{volume}%**.\n\nПриятного прослушивания! 🎧",
-							"footer": {
-								"text": "Запросил: {user}"
-							}
-						}
-					},
-					"lyrics": {
-						"not_found": {
-							"title": "Текст песни не найден",
-							"description": "Мне не удалось найти текст песни.\n\nПопробуй ещё раз с другим названием! Может, повезёт. 🎤",
-							"footer": {
-								"text": "Запросил: {user}"
-							}
-						},
-						"not_available": {
-							"title": "Текст песни в разработке",
-							"description": "Эта функция ещё в разработке. Потерпи, чудеса требуют времени. 🚧",
-							"footer": {
-								"text": "Запросил: {user}"
-							}
-						}
-					},
-					"voice": {
-						"not_connected": {
-							"title": "Ты не в голосовом канале",
-							"description": "Ты где...? Я тебя не вижу... 🥹🥺",
-							"footer": {
-								"text": "Запросил: {user}"
-							}
-						}
-					}
-				}
-			}
-		},
-		"events": {
-			"logs": {
-				"guild": {
-					"on_guild_channel_create": {
-						"channel_created": "Создан канал {channel}."
-					},
-					"on_guild_channel_delete": {
-						"channel_deleted": "Удалён канал {channel}."
-					},
-					"on_guild_channel_update": {
-						"channel_updated": "Канал {before} изменён на {after}."
-					},
-					"on_guild_emojis_update": {
-						"emojis_updated": "Эмодзи сервера {guild} обновлены."
-					},
-					"on_guild_join": {
-						"guild_added": "Добавлен сервер: {guild_name} ({guild_id})"
-					},
-					"on_guild_remove": {
-						"members_deleted": "Удалены участники: {deleted_members} с сервера {guild_name} ({guild_id})",
-						"guild_deleted": "Удалён сервер: {guild_name} ({guild_id})",
-						"guild_not_found": "Сервер не найден в БД: {guild_name} ({guild_id})"
-					},
-					"on_guild_role_create": {
-						"role_created": "Создана роль {role}."
-					},
-					"on_guild_role_delete": {
-						"role_deleted": "Удалена роль {role}."
-					},
-					"on_guild_role_update": {
-						"role_updated": "Роль {before} изменена на {after}."
-					},
-					"on_guild_stickers_update": {
-						"stickers_updated": "Стикеры сервера {guild} обновлены."
-					}
-				},
-				"member": {
-					"on_member_join": {
-						"member_added": "Добавлен участник: {name} ({id}) на сервере {guild_name} ({guild_id})"
-					},
-					"on_member_remove": {
-						"member_deleted": "Удалён участник: {name} ({id}) с сервера {guild_name} ({guild_id})",
-						"member_not_found": "Участник не найден в БД: {name} ({id}) на сервере {guild_name} ({guild_id})"
-					},
-					"on_member_update": {
-						"member_updated": "Обновлены данные участника: {name} ({id}) на сервере {guild_name} ({guild_id})"
-					},
-					"on_user_update": {
-						"username_updated": "Обновлено имя пользователя: {before_name} ({id}) -> {after_name} ({id})",
-						"global_name_updated": "Обновлено глобальное имя: {before_name} ({id}) -> {after_name} ({id})",
-						"avatar_updated": "Обновлён аватар: {name} ({id})"
-					}
-				},
-				"message": {
-					"on_message": {
-						"message_detected": "{author_name} отправил сообщение в канале {channel_name} на сервере {server_name}: {message}"
-					},
-					"on_message_delete": {
-						"message_deleted": "{author} удалил сообщение в канале {channel} на сервере {guild}. Сообщение: {message}"
-					},
-					"on_message_edit": {
-						"message_edited": "{author_name} отредактировал сообщение в канале {channel_name} на сервере {server_name}. До: {before} После: {after}"
-					},
-					"on_raw_reaction_add": {
-						"reaction_added": "{user} добавил реакцию {emoji} к сообщению {message_id}."
-					},
-					"on_raw_reaction_remove": {
-						"reaction_removed": "{user} удалил реакцию {emoji} с сообщения {message_id}."
-					},
-					"on_reaction_add": {
-						"reaction_added": "{user} добавил реакцию {emoji} в канале {channel}."
-					},
-					"on_reaction_clear": {
-						"reactions_cleared": "Реакции к сообщению {message} удалены."
-					},
-					"on_reaction_remove": {
-						"reaction_removed": "{user} удалил реакцию {emoji} в канале {channel}."
-					},
-					"on_typing": {
-						"typing_detected": "{user} печатает в канале {channel}."
-					}
-				},
-				"other": {
-					"on_application_command_error": {
-						"command_error": "Произошла ошибка команды приложения {command}: {error}"
-					},
-					"on_command": {
-						"command_executed": "{author} выполнил команду {command} в канале {channel}."
-					},
-					"on_command_error": {
-						"command_error": "Произошла ошибка при выполнении команды {command}: {error}",
-						"missing_permissions": "У тебя недостаточно прав для выполнения этой команды.",
-						"logged_error": "Ошибка команды '{command}': {error}"
-					},
-					"on_ready": {
-						"bot_connected": "Бот подключился как {bot}.",
-						"connecting_lavalink": "Подключение к Lavalink выполнено успешно."
-					},
-					"on_connect": {
-						"discord_connected": "Соединение с Discord установлено."
-					},
-					"on_disconnect": {
-						"discord_disconnected": "Соединение с Discord потеряно."
-					},
-					"on_resumed": {
-						"discord_resumed": "Сессия Discord успешно возобновлена."
-					},
-					"on_voice_state_update": {
-						"voice_state_updated": "{member_name} {action} в канале {channel_name} на сервере {server_name}.",
-						"voice_state_moved": "{member_name} переместился из канала {before_channel_name} в канал {after_channel_name} на сервере {server_name}.",
-						"join": "вошёл",
-						"leave": "вышел",
-						"move": "переместился",
-						"mute_enabled": "отключил микрофон",
-						"mute_disabled": "включил микрофон",
-						"deaf_enabled": "отключил звук",
-						"deaf_disabled": "включил звук",
-						"video_enabled": "включил камеру",
-						"video_disabled": "выключил камеру",
-						"stream_enabled": "демонстрирует экран",
-						"stream_disabled": "перестал демонстрировать экран",
-						"none": "Нет"
-					},
-					"on_webhook_update": {
-						"webhook_updated": "Вебхуки канала {channel} обновлены."
-					},
-					"on_wavelink_track_start": {
-						"track_started": "Началось воспроизведение {track_title} на сервере {server_name}."
-					},
-					"on_wavelink_track_end": {
-						"track_ended": "Воспроизведение {track_title} на сервере {server_name} завершено."
-					}
-				}
-			},
-			"embeds": {
-				"guild": {
-					"channel_created": {
-						"title": "Канал создан",
-						"description": "Создан канал **{channel}**."
-					},
-					"channel_deleted": {
-						"title": "Канал удалён",
-						"description": "Удалён канал **{channel}**."
-					},
-					"channel_updated": {
-						"title": "Канал обновлён",
-						"description": "Канал **{before}** изменён на **{after}**."
-					},
-					"emojis_updated": {
-						"title": "Эмодзи обновлены",
-						"description": "Эмодзи сервера обновлены."
-					},
-					"guild_added": {
-						"title": "Сервер добавлен",
-						"description": "Бот добавлен на сервер **{guild_name}**."
-					},
-					"guild_removed": {
-						"title": "Сервер удалён",
-						"description": "Бот покинул сервер **{guild_name}**."
-					},
-					"role_created": {
-						"title": "Роль создана",
-						"description": "Создана роль **{role}**."
-					},
-					"role_deleted": {
-						"title": "Роль удалена",
-						"description": "Удалена роль **{role}**."
-					},
-					"role_updated": {
-						"title": "Роль обновлена",
-						"description": "Роль **{before}** изменена на **{after}**."
-					},
-					"stickers_updated": {
-						"title": "Стикеры обновлены",
-						"description": "Стикеры сервера обновлены."
-					}
-				},
-				"member": {
-					"member_added": {
-						"title": "Участник добавлен",
-						"description": "Участник **{name}** присоединился к серверу."
-					},
-					"member_deleted": {
-						"title": "Участник удалён",
-						"description": "Участник **{name}** покинул сервер."
-					},
-					"member_updated": {
-						"title": "Данные участника обновлены",
-						"description": "Информация об участнике **{name}** обновлена."
-					},
-					"user_updated": {
-						"title": "Данные пользователя обновлены",
-						"description": "Информация о пользователе **{name}** обновлена."
-					}
-				},
-				"message": {
-					"message_deleted": {
-						"title": "Сообщение удалено",
-						"description": "Удалено сообщение пользователя **{author}** в канале {channel}."
-					},
-					"message_edited": {
-						"title": "Сообщение отредактировано",
-						"description": "Отредактировано сообщение пользователя **{author}** в канале {channel}."
-					},
-					"reaction_added": {
-						"title": "Реакция добавлена",
-						"description": "{user} добавил реакцию {emoji}."
-					},
-					"reaction_removed": {
-						"title": "Реакция удалена",
-						"description": "{user} удалил реакцию {emoji}."
-					},
-					"reactions_cleared": {
-						"title": "Реакции удалены",
-						"description": "Реакции к сообщению удалены."
-					}
-				},
-				"other": {
-					"command_error": {
-						"title": "Команда не найдена",
-						"description": "Команда **{command}** не существует."
-					},
-					"missing_permissions": {
-						"title": "Недостаточно прав",
-						"description": "У тебя недостаточно прав для выполнения этой команды."
-					},
-					"track_started": {
-						"title": "Воспроизведение началось",
-						"description": "Началось воспроизведение **{track_title}**."
-					},
-					"track_ended": {
-						"title": "Воспроизведение завершено",
-						"description": "Воспроизведение **{track_title}** завершено."
-					}
-				}
-			}
-		},
-		"tasks": {
-			"logs": {
-				"database_sync": {
-					"started": "Начата синхронизация базы данных.",
-					"sync_completed": "Синхронизация базы данных завершена.",
-					"sync_failed": "Во время синхронизации базы данных произошла ошибка: {error}."
-				}
-			},
-			"embeds": {
-				"database_sync": {
-					"completed": {
-						"title": "База данных синхронизирована",
-						"description": "Синхронизация базы данных успешно завершена."
-					},
-					"failed": {
-						"title": "Ошибка синхронизации",
-						"description": "Во время синхронизации базы данных произошла ошибка."
-					}
-				}
-			}
-		}
-	},
-	"core": {
-		"logs": {
-			"loader": {
-				"commands": "Команды",
-				"events": "События",
-				"loaded": "{label} | {category} | успешно загружено ({loaded})",
-				"load_error": "{label} | {category} | Ошибка загрузки {filename} | {error_type}: {error}"
-			}
-		}
-	},
-	"database": {
-		"models": {
-			"guild": {
-				"created": "Создана запись сервера [{guild_id}] {guild_name}.",
-				"updated": "Обновлена запись сервера [{guild_id}] {guild_name}.",
-				"deleted": "Удалена запись сервера [{guild_id}] {guild_name}."
-			},
-			"member": {
-				"created": "Создана запись участника [{member_id}] {member_name} на сервере [{guild_id}].",
-				"updated": "Обновлена запись участника [{member_id}] {member_name} на сервере [{guild_id}].",
-				"deleted": "Удалена запись участника [{member_id}] {member_name} с сервера [{guild_id}]."
-			}
-		},
-		"repositories": {
-			"guild": {
-				"created": "Репозиторий guild: запись создана [{id}] {name}{source}.",
-				"updated": "Репозиторий guild: запись обновлена [{id}] {name} | {changes}{source}.",
-				"deleted": "Репозиторий guild: запись удалена [{id}] {name}{source}.",
-				"not_found": "Репозиторий guild: сервер не найден [{id}].",
-				"error": "Репозиторий guild: ошибка выполнения операции для [{id}]: {error}."
-			},
-			"member": {
-				"created": "Репозиторий member: запись создана [{id}] {name} | guild=[{guild_id}]{source}.",
-				"updated": "Репозиторий member: запись обновлена [{id}] {name} | {changes} | guild=[{guild_id}]{source}.",
-				"deleted": "Репозиторий member: запись удалена [{id}] {name} | guild=[{guild_id}]{source}.",
-				"not_found": "Репозиторий member: участник не найден [{id}] в guild=[{guild_id}].",
-				"error": "Репозиторий member: ошибка выполнения операции для [{id}] в guild=[{guild_id}]: {error}."
-			}
-		},
-		"logs": {
-			"connection": {
-				"started": "DATABASE | Подключение установлено",
-				"closed": "DATABASE | Подключение закрыто"
-			},
-			"errors": {
-				"missing_environment": "Отсутствуют переменные окружения PostgreSQL.",
-				"create_tables": "Ошибка создания таблиц базы данных: {error}"
-			},
-			"insert": {
-				"guild": "INSERT | guild | [{id}] {name}{source}",
-				"member": "INSERT | member | [{id}] {name} | guild=[{guild_id}]{source}"
-			},
-			"update": {
-				"guild": "UPDATE | guild | [{id}] {name} | {changes}{source}",
-				"member": "UPDATE | member | [{id}] {name} | {changes} | guild=[{guild_id}]{source}"
-			},
-			"delete": {
-				"guild": "DELETE | guild | [{id}] {name}{source}",
-				"member": "DELETE | member | [{id}] {name} | guild=[{guild_id}]{source}"
-			}
-		}
-	},
-	"helpers": {
-		"logs": {
-			"translation": {
-				"missing": "Перевод для ключа {key} не найден.",
-				"invalid": "Полученный перевод для {key} имеет недопустимый формат."
-			},
-			"embed": {
-				"created": "Создан embed типа {type} для ключа {key}.",
-				"error": "Ошибка создания embed для ключа {key}: {error}."
-			}
-		}
-	}
+    "bot": {
+        "commands": {
+            "config": {
+                "logs": {
+                    "language": {
+                        "executed": "Команда /language была выполнена пользователем {user} на сервере [{guild_id}].",
+                        "changed": "Язык сервера [{guild_id}] был изменён с {old_language} на {language} пользователем {user}.",
+                        "failed": "Не удалось выполнить команду /language для пользователя {user} на сервере [{guild_id}]: {error}."
+                    },
+                    "prefix": {
+                        "executed": "Команда /prefix была выполнена пользователем {user} на сервере [{guild_id}].",
+                        "changed": "Префикс сервера [{guild_id}] был изменён с `{old_prefix}` на `{prefix}` пользователем {user}.",
+                        "failed": "Не удалось выполнить команду /prefix для пользователя {user} на сервере [{guild_id}]: {error}."
+                    }
+                },
+                "embeds": {
+                    "language": {
+                        "current_language": {
+                            "title": "Язык сервера",
+                            "description": "Текущий язык сервера: **{language_name}** (`{language}`)."
+                        },
+                        "invalid_language": {
+                            "title": "Язык недоступен",
+                            "description": "Выбранный язык недоступен."
+                        },
+                        "available_languages": {
+                            "title": "Доступные языки",
+                            "description": "{languages}"
+                        },
+                        "language_changed": {
+                            "title": "Язык изменён",
+                            "description": "Язык сервера изменён на **{language_name}** (`{language}`)."
+                        }
+                    },
+                    "prefix": {
+                        "current_prefix": {
+                            "title": "Текущий префикс",
+                            "description": "Текущий префикс сервера: `{prefix}`."
+                        },
+                        "prefix_changed": {
+                            "title": "Префикс изменён",
+                            "description": "Префикс был изменён на `{prefix}`."
+                        }
+                    }
+                }
+            },
+            "moderation": {
+                "logs": {
+                    "clear": {
+                        "executed": "Команда /clear была выполнена пользователем {user} в канале {channel} сервера {guild}.",
+                        "completed": "Пользователь {user} удалил {amount} сообщений в канале {channel} сервера {guild}.",
+                        "failed": "Не удалось выполнить команду /clear для пользователя {user} в канале {channel} сервера {guild}: {error}."
+                    }
+                },
+                "embeds": {
+                    "clear": {
+                        "cleared": {
+                            "title": "Сообщения удалены",
+                            "description": "Успешно удалено **{amount} сообщений**.",
+                            "footer": {
+                                "text": "Выполнил: {user}"
+                            }
+                        },
+                        "invalid_amount": {
+                            "title": "Недопустимое количество",
+                            "description": "Количество сообщений должно быть от **1 до {maximum}**.",
+                            "footer": {
+                                "text": "Выполнил: {user}"
+                            }
+                        }
+                    }
+                }
+            },
+            "music": {
+                "logs": {
+                    "join": {
+                        "executed": "Команда /join была выполнена пользователем {user} на сервере {guild}.",
+                        "joining_voice": "Попытка подключиться к голосовому каналу {channel} на сервере {guild}.",
+                        "joined_voice": "Я подключился к голосовому каналу {channel} на сервере {guild}.",
+                        "failed": "Не удалось выполнить команду /join для пользователя {user} на сервере {guild}: {error}."
+                    },
+                    "play": {
+                        "executed": "Команда /play была выполнена пользователем {user} на сервере {guild}.",
+                        "track_loaded": "Песня {title} была загружена для пользователя {user} на сервере {guild}.",
+                        "track_queued": "Песня {title} была добавлена в очередь пользователем {user} на сервере {guild}.",
+                        "playlist_queued": "Плейлист {title} был добавлен в очередь пользователем {user} на сервере {guild}.",
+                        "failed": "Не удалось выполнить команду /play для пользователя {user} на сервере {guild}: {error}."
+                    },
+                    "pause": {
+                        "executed": "Команда /pause была выполнена пользователем {user} на сервере {guild}.",
+                        "paused": "Воспроизведение было приостановлено пользователем {user} на сервере {guild}.",
+                        "failed": "Не удалось выполнить команду /pause для пользователя {user} на сервере {guild}: {error}."
+                    },
+                    "resume": {
+                        "executed": "Команда /resume была выполнена пользователем {user} на сервере {guild}.",
+                        "resumed": "Воспроизведение было возобновлено пользователем {user} на сервере {guild}.",
+                        "failed": "Не удалось выполнить команду /resume для пользователя {user} на сервере {guild}: {error}."
+                    },
+                    "remove": {
+                        "executed": "Команда /remove была выполнена пользователем {user} на сервере {guild}.",
+                        "removed": "Песня {title} с позиции {position} была удалена из очереди пользователем {user} на сервере {guild}.",
+                        "failed": "Не удалось выполнить команду /remove для пользователя {user} на сервере {guild}: {error}."
+                    },
+                    "leave": {
+                        "executed": "Команда /leave была выполнена пользователем {user} на сервере {guild}.",
+                        "disconnected": "Бот отключился от голосового канала {channel} по запросу пользователя {user}."
+                    },
+                    "queue": {
+                        "executed": "Команда /queue была выполнена пользователем {user} на сервере {guild}.",
+                        "displayed": "Очередь воспроизведения была просмотрена пользователем {user} на сервере {guild}."
+                    },
+                    "shuffle": {
+                        "executed": "Команда /shuffle была выполнена пользователем {user} на сервере {guild}.",
+                        "shuffled": "Очередь воспроизведения была перемешана пользователем {user} на сервере {guild}.",
+                        "failed": "Не удалось выполнить команду /shuffle для пользователя {user} на сервере {guild}: {error}."
+                    },
+                    "loop": {
+                        "executed": "Команда /loop была выполнена пользователем {user} на сервере {guild}.",
+                        "enabled": "Повтор был включён пользователем {user} на сервере {guild}.",
+                        "disabled": "Повтор был выключен пользователем {user} на сервере {guild}.",
+                        "failed": "Не удалось выполнить команду /loop для пользователя {user} на сервере {guild}: {error}."
+                    },
+                    "skip": {
+                        "executed": "Команда /skip была выполнена пользователем {user} на сервере {guild}.",
+                        "skipped": "Песня {title} была пропущена пользователем {user} на сервере {guild}.",
+                        "failed": "Не удалось выполнить команду /skip для пользователя {user} на сервере {guild}: {error}."
+                    },
+                    "stop": {
+                        "executed": "Команда /stop была выполнена пользователем {user} на сервере {guild}.",
+                        "stopped": "Воспроизведение было остановлено пользователем {user} на сервере {guild}.",
+                        "failed": "Не удалось выполнить команду /stop для пользователя {user} на сервере {guild}: {error}."
+                    },
+                    "clear": {
+                        "executed": "Команда /clear была выполнена пользователем {user} на сервере {guild}.",
+                        "cleared": "Очередь воспроизведения была очищена пользователем {user} на сервере {guild}.",
+                        "failed": "Не удалось выполнить команду /clear для пользователя {user} на сервере {guild}: {error}."
+                    },
+                    "volume": {
+                        "executed": "Команда /volume была выполнена пользователем {user} на сервере {guild}.",
+                        "changed": "Громкость была изменена с {old_volume}% на {volume}% пользователем {user} на сервере {guild}.",
+                        "failed": "Не удалось выполнить команду /volume для пользователя {user} на сервере {guild}: {error}."
+                    },
+                    "lyrics": {
+                        "executed": "Команда /lyrics была выполнена пользователем {user} на сервере {guild}.",
+                        "requested": "Текст песни {title} был запрошен пользователем {user} на сервере {guild}.",
+                        "not_found": "Текст песни {title}, запрошенный пользователем {user} на сервере {guild}, не найден.",
+                        "failed": "Не удалось выполнить команду /lyrics для пользователя {user} на сервере {guild}: {error}."
+                    }
+                },
+                "embeds": {
+                    "play": {
+                        "missing_song": {
+                            "title": "Не указана песня",
+                            "description": "Я не могу включить музыку, если ты не скажешь, какую песню хочешь послушать. Я бот, а не гадалка. 🔮",
+                            "footer": {
+                                "text": "Запросил: {user}"
+                            }
+                        },
+                        "spotify_not_supported": {
+                            "title": "Spotify не поддерживается",
+                            "description": "Ссылки Spotify мне не по зубам. Дай другой источник, и я включу её без жалоб. 🙃",
+                            "footer": {
+                                "text": "Запросил: {user}"
+                            }
+                        },
+                        "voice_not_connected": {
+                            "title": "Ты не находишься в голосовом канале",
+                            "description": "Где ты...? Я тебя не вижу... 🥹🥺",
+                            "footer": {
+                                "text": "Запросил: {user}"
+                            }
+                        },
+                        "no_song_found": {
+                            "title": "Песня не найдена",
+                            "description": "Я искал повсюду, но ничего не нашёл. Ты точно не придумал эту песню? 🤔",
+                            "footer": {
+                                "text": "Запросил: {user}"
+                            }
+                        },
+                        "added_to_queue": {
+                            "title": "Песня добавлена в очередь",
+                            "description": "**{title}**\n\nВ очереди: **{queue}**\n\nКстати, отличный выбор. 😏",
+                            "footer": {
+                                "text": "Запросил: {user}"
+                            }
+                        },
+                        "playlist_added_to_queue": {
+                            "title": "Плейлист добавлен в очередь",
+                            "description": "**{title}**\n\nПесен в очереди: **{queue}**\n\nВот это плейлист ты собрал. Поехали. 🔥",
+                            "footer": {
+                                "text": "Запросил: {user}"
+                            }
+                        }
+                    },
+                    "now_playing": {
+                        "title": "Сейчас играет",
+                        "fields": [
+                            {
+                                "name": "Название",
+                                "value": "**{title}**",
+                                "inline": false
+                            },
+                            {
+                                "name": "Длительность",
+                                "value": "{duration}",
+                                "inline": true
+                            },
+                            {
+                                "name": "Просмотры",
+                                "value": "{views}",
+                                "inline": true
+                            },
+                            {
+                                "name": "В очереди",
+                                "value": "{queue}",
+                                "inline": true
+                            }
+                        ],
+                        "footer": {
+                            "text": "Запросил: {user}"
+                        }
+                    },
+                    "queue_empty_finished": {
+                        "title": "В очереди больше нет песен",
+                        "description": "Похоже, список пуст.\n\nПочему бы тебе не добавить пару песен? Он сам себя не заполнит. 🎵",
+                        "footer": {
+                            "text": "Запросил: {user}"
+                        }
+                    },
+                    "disconnected_from_voice": {
+                        "title": "Я покинул голосовой канал",
+                        "description": "Ты меня отключил. Серьёзно? А я так удобно устроился... 😤",
+                        "footer": {
+                            "text": "Запросил: {user}"
+                        }
+                    },
+                    "pause": {
+                        "not_connected": {
+                            "title": "Я не подключён",
+                            "description": "Я не подключён ни к одному голосовому каналу. Так что нет, я ничего не могу поставить на паузу. 🙃",
+                            "footer": {
+                                "text": "Запросил: {user}"
+                            }
+                        },
+                        "no_song_playing": {
+                            "title": "Сейчас ничего не играет",
+                            "description": "Я не могу поставить на паузу то, что не воспроизводится. Это уже была бы магия, а до такого я не дорос. ✨",
+                            "footer": {
+                                "text": "Запросил: {user}"
+                            }
+                        },
+                        "paused": {
+                            "title": "Воспроизведение приостановлено",
+                            "description": "Мне нравилась эта песня! Но ладно, тебе решать. ⏸️",
+                            "footer": {
+                                "text": "Запросил: {user}"
+                            }
+                        }
+                    },
+                    "resume": {
+                        "not_connected": {
+                            "title": "Я не подключён",
+                            "description": "Я не подключён ни к одному голосовому каналу. Сначала пригласи меня, ладно? 🥺",
+                            "footer": {
+                                "text": "Запросил: {user}"
+                            }
+                        },
+                        "no_song_playing": {
+                            "title": "Нет приостановленной песни",
+                            "description": "Нет приостановленного воспроизведения, которое можно возобновить. Ты точно не перепутал бота? 🤨",
+                            "footer": {
+                                "text": "Запросил: {user}"
+                            }
+                        },
+                        "resumed": {
+                            "title": "Воспроизведение возобновлено",
+                            "description": "Как здорово! Мне очень нравится твоя музыка. Так держать. 🎶",
+                            "footer": {
+                                "text": "Запросил: {user}"
+                            }
+                        }
+                    },
+                    "remove": {
+                        "not_connected": {
+                            "title": "Я не подключён",
+                            "description": "Я не подключён ни к одному голосовому каналу. Что именно ты хочешь, чтобы я удалил? 🤔",
+                            "footer": {
+                                "text": "Запросил: {user}"
+                            }
+                        },
+                        "queue_empty": {
+                            "title": "Очередь пуста",
+                            "description": "Нет песни, которую можно удалить. Очередь пустее моего терпения. 😮‍💨",
+                            "footer": {
+                                "text": "Запросил: {user}"
+                            }
+                        },
+                        "invalid_position": {
+                            "title": "Недопустимый номер",
+                            "description": "Указанный номер песни недействителен. Ты точно правильно посчитал? 🔢",
+                            "footer": {
+                                "text": "Запросил: {user}"
+                            }
+                        },
+                        "removed": {
+                            "title": "Песня удалена из очереди",
+                            "description": "**{title}**\n\nНадеюсь, ты не ошибся, и не вини меня. Я всего лишь выполняю приказы. 😇",
+                            "footer": {
+                                "text": "Запросил: {user}"
+                            }
+                        }
+                    },
+                    "leave": {
+                        "not_connected": {
+                            "title": "Я не подключён",
+                            "description": "Я не подключён ни к одному голосовому каналу. Я не могу уйти оттуда, где меня нет. 🚪",
+                            "footer": {
+                                "text": "Запросил: {user}"
+                            }
+                        },
+                        "disconnected": {
+                            "title": "Я покинул голосовой канал",
+                            "description": "Ты меня отключил. Серьёзно? А я так радовался музыке... 😔",
+                            "footer": {
+                                "text": "Запросил: {user}"
+                            }
+                        }
+                    },
+                    "queue": {
+                        "not_connected": {
+                            "title": "Я не подключён",
+                            "description": "Я не подключён ни к одному голосовому каналу. Сначала пригласи меня, потом поговорим об очередях. 🎧",
+                            "footer": {
+                                "text": "Запросил: {user}"
+                            }
+                        },
+                        "empty": {
+                            "title": "Очередь пуста",
+                            "description": "Похоже, список пуст.\n\nПочему бы тебе не добавить пару песен? Здесь уже настоящий пустынный пейзаж. 🏜️",
+                            "footer": {
+                                "text": "Запросил: {user}"
+                            }
+                        },
+                        "list": {
+                            "title": "Твой плейлист",
+                            "description": "Вот что у тебя в очереди:\n\n{queue}\n\nНеплохо, но я принимаю предложения. 😌",
+                            "footer": {
+                                "text": "Запросил: {user}"
+                            }
+                        }
+                    },
+                    "shuffle": {
+                        "not_connected": {
+                            "title": "Я не подключён",
+                            "description": "Я не подключён ни к одному голосовому каналу. Без музыки нечего и перемешивать. 🎲",
+                            "footer": {
+                                "text": "Запросил: {user}"
+                            }
+                        },
+                        "not_enough_songs": {
+                            "title": "Я не могу перемешать список",
+                            "description": "Добавь больше одной песни, чтобы перемешать список. С одной песней особо не разгуляешься. 🙄",
+                            "footer": {
+                                "text": "Запросил: {user}"
+                            }
+                        },
+                        "shuffled": {
+                            "title": "Список перемешан",
+                            "description": "Если честно, я уже не знаю, какая песня идёт после какой. Пусть начнётся сюрприз. 🔀",
+                            "footer": {
+                                "text": "Запросил: {user}"
+                            }
+                        }
+                    },
+                    "loop": {
+                        "not_connected": {
+                            "title": "Я не подключён",
+                            "description": "Я не подключён ни к одному голосовому каналу. Я не могу зациклить то, что не играет. 🔁",
+                            "footer": {
+                                "text": "Запросил: {user}"
+                            }
+                        },
+                        "no_song_playing": {
+                            "title": "Сейчас ничего не играет",
+                            "description": "Я не могу включить повтор, если нет песни. Сначала что-нибудь включи. 🎵",
+                            "footer": {
+                                "text": "Запросил: {user}"
+                            }
+                        },
+                        "enabled": {
+                            "title": "Песня зациклена",
+                            "description": "Твоя любимая песня? Похоже, мы попали в бесконечный цикл. 😵‍💫",
+                            "footer": {
+                                "text": "Запросил: {user}"
+                            }
+                        },
+                        "disabled": {
+                            "title": "Повтор выключен",
+                            "description": "Песня больше не будет повторяться. Дежавю окончено. 🔂",
+                            "footer": {
+                                "text": "Запросил: {user}"
+                            }
+                        }
+                    },
+                    "skip": {
+                        "not_connected": {
+                            "title": "Я не подключён",
+                            "description": "Я не подключён ни к одному голосовому каналу. Я не могу ничего пропустить из пустоты. ⏭️",
+                            "footer": {
+                                "text": "Запросил: {user}"
+                            }
+                        },
+                        "no_song_playing": {
+                            "title": "Сейчас ничего не играет",
+                            "description": "Я не могу пропустить песню, если ничего не воспроизводится. Прыгнем в пустоту? 🕳️",
+                            "footer": {
+                                "text": "Запросил: {user}"
+                            }
+                        },
+                        "skipped": {
+                            "title": "Песня пропущена",
+                            "description": "Я перешёл к следующей песне. Надеюсь, эта тебе понравится больше. 🤞",
+                            "footer": {
+                                "text": "Запросил: {user}"
+                            }
+                        }
+                    },
+                    "stop": {
+                        "not_connected": {
+                            "title": "Я не подключён",
+                            "description": "Я не подключён ни к одному голосовому каналу. Я не могу остановить то, чего не начинал. 🛑",
+                            "footer": {
+                                "text": "Запросил: {user}"
+                            }
+                        },
+                        "stopped": {
+                            "title": "Воспроизведение остановлено",
+                            "description": "Охх, неееет! Ты устал от меня и хочешь, чтобы я замолчал? :( Пойду поплачу в уголке. 😭",
+                            "footer": {
+                                "text": "Запросил: {user}"
+                            }
+                        }
+                    },
+                    "clear": {
+                        "not_connected": {
+                            "title": "Я не подключён",
+                            "description": "Я не подключён ни к одному голосовому каналу. Нечего очищать. 🧹",
+                            "footer": {
+                                "text": "Запросил: {user}"
+                            }
+                        },
+                        "queue_empty": {
+                            "title": "Очередь пуста",
+                            "description": "В очереди нет песен для удаления. Всё уже чисто. ✨",
+                            "footer": {
+                                "text": "Запросил: {user}"
+                            }
+                        },
+                        "cleared": {
+                            "title": "Очередь воспроизведения очищена",
+                            "description": "Я убрал весь тот мусор, который ты туда накидал. Может, теперь будешь внимательнее. 🧼😏",
+                            "footer": {
+                                "text": "Запросил: {user}"
+                            }
+                        }
+                    },
+                    "volume": {
+                        "current": {
+                            "title": "Текущая громкость",
+                            "description": "Громкость установлена на **{volume}%**. Тебя всё устраивает? 🎧",
+                            "footer": {
+                                "text": "Запросил: {user}"
+                            }
+                        },
+                        "not_connected": {
+                            "title": "Я не подключён",
+                            "description": "Я не подключён ни к одному голосовому каналу. Без подключения нет и громкости. 🔊",
+                            "footer": {
+                                "text": "Запросил: {user}"
+                            }
+                        },
+                        "invalid_volume": {
+                            "title": "Недопустимая громкость",
+                            "description": "Громкость должна быть от **1 до 100**. Ни больше ни меньше, не морочь мне голову. 🎚️",
+                            "footer": {
+                                "text": "Запросил: {user}"
+                            }
+                        },
+                        "too_high": {
+                            "title": "Слишком высокая громкость",
+                            "description": "Я не хочу, чтобы ты оглох. Сделай потише. 🫣",
+                            "footer": {
+                                "text": "Запросил: {user}"
+                            }
+                        },
+                        "too_low": {
+                            "title": "Слишком низкая громкость",
+                            "description": "Или ты просто хочешь заставить меня замолчать. Похоже, почти получилось. 🤫",
+                            "footer": {
+                                "text": "Запросил: {user}"
+                            }
+                        },
+                        "changed": {
+                            "title": "Громкость обновлена",
+                            "description": "Я установил громкость на **{volume}%**.\n\nНаслаждайся! 🎧",
+                            "footer": {
+                                "text": "Запросил: {user}"
+                            }
+                        }
+                    },
+                    "lyrics": {
+                        "not_found": {
+                            "title": "Текст песни не найден",
+                            "description": "Мне не удалось найти текст этой песни.\n\nПопробуй ещё раз с другим названием! Вдруг повезёт. 🎤",
+                            "footer": {
+                                "text": "Запросил: {user}"
+                            }
+                        },
+                        "not_available": {
+                            "title": "Тексты песен в разработке",
+                            "description": "Эта функция всё ещё находится в разработке. Наберись терпения, чудеса требуют времени. 🚧",
+                            "footer": {
+                                "text": "Запросил: {user}"
+                            }
+                        }
+                    },
+                    "voice": {
+                        "not_connected": {
+                            "title": "Ты не находишься в голосовом канале",
+                            "description": "Где ты...? Я тебя не вижу... 🥹🥺",
+                            "footer": {
+                                "text": "Запросил: {user}"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "events": {
+            "logs": {
+                "guild": {
+                    "on_guild_channel_create": {
+                        "channel_created": "Создан канал {channel}."
+                    },
+                    "on_guild_channel_delete": {
+                        "channel_deleted": "Удалён канал {channel}."
+                    },
+                    "on_guild_channel_update": {
+                        "channel_updated": "Канал {before} изменён на {after}."
+                    },
+                    "on_guild_emojis_update": {
+                        "emojis_updated": "Эмодзи сервера {guild} обновлены."
+                    },
+                    "on_guild_join": {
+                        "guild_added": "Сервер добавлен: {guild_name} ({guild_id})"
+                    },
+                    "on_guild_remove": {
+                        "members_deleted": "Удалено участников: {deleted_members} с сервера {guild_name} ({guild_id})",
+                        "guild_deleted": "Сервер удалён: {guild_name} ({guild_id})",
+                        "guild_not_found": "Сервер не найден в БД: {guild_name} ({guild_id})"
+                    },
+                    "on_guild_role_create": {
+                        "role_created": "Создана роль {role}."
+                    },
+                    "on_guild_role_delete": {
+                        "role_deleted": "Удалена роль {role}."
+                    },
+                    "on_guild_role_update": {
+                        "role_updated": "Роль {before} изменена на {after}."
+                    },
+                    "on_guild_stickers_update": {
+                        "stickers_updated": "Стикеры сервера {guild} обновлены."
+                    }
+                },
+                "member": {
+                    "on_member_join": {
+                        "member_added": "Добавлен участник: {name} ({id}) на сервер {guild_name} ({guild_id})"
+                    },
+                    "on_member_remove": {
+                        "member_deleted": "Удалён участник: {name} ({id}) с сервера {guild_name} ({guild_id})",
+                        "member_not_found": "Участник не найден в БД: {name} ({id}) на сервере {guild_name} ({guild_id})"
+                    },
+                    "on_member_update": {
+                        "member_updated": "Обновлён участник: {name} ({id}) на сервере {guild_name} ({guild_id})"
+                    },
+                    "on_user_update": {
+                        "username_updated": "Имя пользователя обновлено: {before_name} ({id}) -> {after_name} ({id})",
+                        "global_name_updated": "Глобальное имя обновлено: {before_name} ({id}) -> {after_name} ({id})",
+                        "avatar_updated": "Аватар обновлён: {name} ({id})"
+                    }
+                },
+                "message": {
+                    "on_message": {
+                        "message_detected": "{author_name} отправил сообщение в {channel_name} на сервере {server_name}: {message}"
+                    },
+                    "on_message_delete": {
+                        "message_deleted": "{author} удалил сообщение в {channel} на сервере {guild}. Сообщение: {message}"
+                    },
+                    "on_message_edit": {
+                        "message_edited": "{author_name} отредактировал сообщение в {channel_name} на сервере {server_name}. До: {before} После: {after}"
+                    },
+                    "on_raw_reaction_add": {
+                        "reaction_added": "{user} добавил реакцию {emoji} к сообщению {message_id}."
+                    },
+                    "on_raw_reaction_remove": {
+                        "reaction_removed": "{user} удалил реакцию {emoji} из сообщения {message_id}."
+                    },
+                    "on_reaction_add": {
+                        "reaction_added": "{user} добавил реакцию {emoji} в {channel}."
+                    },
+                    "on_reaction_clear": {
+                        "reactions_cleared": "Реакции сообщения {message} удалены."
+                    },
+                    "on_reaction_remove": {
+                        "reaction_removed": "{user} удалил реакцию {emoji} в {channel}."
+                    },
+                    "on_typing": {
+                        "typing_detected": "{user} печатает в {channel}."
+                    }
+                },
+                "other": {
+                    "on_application_command_error": {
+                        "command_error": "Произошла ошибка в команде приложения {command}: {error}"
+                    },
+                    "on_command": {
+                        "command_executed": "{author} выполнил команду {command} в {channel}."
+                    },
+                    "on_command_error": {
+                        "command_error": "Произошла ошибка в команде {command}: {error}",
+                        "missing_permissions": "У тебя недостаточно прав для выполнения этой команды.",
+                        "logged_error": "Ошибка в команде '{command}': {error}"
+                    },
+                    "on_ready": {
+                        "bot_connected": "Бот подключён как {bot}.",
+                        "connecting_lavalink": "Соединение с Lavalink установлено успешно."
+                    },
+                    "on_connect": {
+                        "discord_connected": "Соединение с Discord установлено."
+                    },
+                    "on_disconnect": {
+                        "discord_disconnected": "Соединение с Discord потеряно."
+                    },
+                    "on_resumed": {
+                        "discord_resumed": "Сессия Discord успешно возобновлена."
+                    },
+                    "on_voice_state_update": {
+                        "voice_state_updated": "{member_name} {action} в {channel_name} на сервере {server_name}.",
+                        "voice_state_moved": "{member_name} переместился из {before_channel_name} в {after_channel_name} на сервере {server_name}.",
+                        "join": "вошёл",
+                        "leave": "вышел",
+                        "move": "переместился",
+                        "mute_enabled": "включил микрофон",
+                        "mute_disabled": "выключил микрофон",
+                        "deaf_enabled": "включил оглушение",
+                        "deaf_disabled": "выключил оглушение",
+                        "video_enabled": "включил камеру",
+                        "video_disabled": "выключил камеру",
+                        "stream_enabled": "начал демонстрацию экрана",
+                        "stream_disabled": "прекратил демонстрацию экрана",
+                        "none": "Нет"
+                    },
+                    "on_webhook_update": {
+                        "webhook_updated": "Вебхуки канала {channel} обновлены."
+                    },
+                    "on_wavelink_track_start": {
+                        "track_started": "Началось воспроизведение {track_title} на сервере {server_name}."
+                    },
+                    "on_wavelink_track_end": {
+                        "track_ended": "Воспроизведение {track_title} на сервере {server_name} завершено."
+                    }
+                }
+            },
+            "embeds": {
+                "guild": {
+                    "channel_created": {
+                        "title": "Канал создан",
+                        "description": "Создан канал **{channel}**."
+                    },
+                    "channel_deleted": {
+                        "title": "Канал удалён",
+                        "description": "Удалён канал **{channel}**."
+                    },
+                    "channel_updated": {
+                        "title": "Канал обновлён",
+                        "description": "Канал **{before}** изменён на **{after}**."
+                    },
+                    "emojis_updated": {
+                        "title": "Эмодзи обновлены",
+                        "description": "Эмодзи сервера обновлены."
+                    },
+                    "guild_added": {
+                        "title": "Сервер добавлен",
+                        "description": "Бот был добавлен на сервер **{guild_name}**."
+                    },
+                    "guild_removed": {
+                        "title": "Сервер удалён",
+                        "description": "Бот покинул сервер **{guild_name}**."
+                    },
+                    "role_created": {
+                        "title": "Роль создана",
+                        "description": "Создана роль **{role}**."
+                    },
+                    "role_deleted": {
+                        "title": "Роль удалена",
+                        "description": "Удалена роль **{role}**."
+                    },
+                    "role_updated": {
+                        "title": "Роль обновлена",
+                        "description": "Роль **{before}** изменена на **{after}**."
+                    },
+                    "stickers_updated": {
+                        "title": "Стикеры обновлены",
+                        "description": "Стикеры сервера обновлены."
+                    }
+                },
+                "member": {
+                    "member_added": {
+                        "title": "Участник добавлен",
+                        "description": "Участник **{name}** присоединился к серверу."
+                    },
+                    "member_deleted": {
+                        "title": "Участник удалён",
+                        "description": "Участник **{name}** покинул сервер."
+                    },
+                    "member_updated": {
+                        "title": "Участник обновлён",
+                        "description": "Информация об участнике **{name}** обновлена."
+                    },
+                    "user_updated": {
+                        "title": "Пользователь обновлён",
+                        "description": "Информация о пользователе **{name}** обновлена."
+                    }
+                },
+                "message": {
+                    "message_deleted": {
+                        "title": "Сообщение удалено",
+                        "description": "Удалено сообщение пользователя **{author}** в {channel}."
+                    },
+                    "message_edited": {
+                        "title": "Сообщение отредактировано",
+                        "description": "Отредактировано сообщение пользователя **{author}** в {channel}."
+                    },
+                    "reaction_added": {
+                        "title": "Реакция добавлена",
+                        "description": "{user} добавил реакцию {emoji}."
+                    },
+                    "reaction_removed": {
+                        "title": "Реакция удалена",
+                        "description": "{user} удалил реакцию {emoji}."
+                    },
+                    "reactions_cleared": {
+                        "title": "Реакции удалены",
+                        "description": "Реакции сообщения были удалены."
+                    }
+                },
+                "other": {
+                    "command_error": {
+                        "title": "Команда не найдена",
+                        "description": "Команда **{command}** не существует."
+                    },
+                    "missing_permissions": {
+                        "title": "Недостаточно прав",
+                        "description": "У тебя недостаточно прав для выполнения этой команды."
+                    },
+                    "track_started": {
+                        "title": "Воспроизведение началось",
+                        "description": "Началось воспроизведение **{track_title}**."
+                    },
+                    "track_ended": {
+                        "title": "Воспроизведение завершено",
+                        "description": "Воспроизведение **{track_title}** завершено."
+                    },
+                    "voice_channel_required": {
+                        "title": "Требуется голосовой канал",
+                        "description": "Вы должны находиться в голосовом канале, чтобы использовать эту команду. Войдите в голосовой канал и попробуйте снова."
+                    }
+                }
+            }
+        },
+        "tasks": {
+            "logs": {
+                "database_sync": {
+                    "started": "Синхронизация базы данных начата.",
+                    "sync_completed": "Синхронизация базы данных завершена.",
+                    "sync_failed": "Произошла ошибка во время синхронизации базы данных: {error}."
+                }
+            },
+            "embeds": {
+                "database_sync": {
+                    "completed": {
+                        "title": "База данных синхронизирована",
+                        "description": "Синхронизация базы данных успешно завершена."
+                    },
+                    "failed": {
+                        "title": "Ошибка синхронизации",
+                        "description": "Произошла ошибка во время синхронизации базы данных."
+                    }
+                }
+            }
+        }
+    },
+    "core": {
+        "logs": {
+            "loader": {
+                "commands": "Команды",
+                "events": "События",
+                "tasks": "Задачи",
+                "loaded": "{label} | {category} | успешно загружено ({loaded})",
+                "load_error": "{label} | {category} | Ошибка загрузки {filename} | {error_type}: {error}"
+            }
+        }
+    },
+    "database": {
+        "models": {
+            "guild": {
+                "created": "Создана запись сервера [{guild_id}] {guild_name}.",
+                "updated": "Обновлена запись сервера [{guild_id}] {guild_name}.",
+                "deleted": "Удалена запись сервера [{guild_id}] {guild_name}."
+            },
+            "member": {
+                "created": "Создана запись участника [{member_id}] {member_name} на сервере [{guild_id}].",
+                "updated": "Обновлена запись участника [{member_id}] {member_name} на сервере [{guild_id}].",
+                "deleted": "Удалена запись участника [{member_id}] {member_name} с сервера [{guild_id}]."
+            }
+        },
+        "repositories": {
+            "guild": {
+                "created": "Репозиторий guild: запись создана [{id}] {name}{source}.",
+                "updated": "Репозиторий guild: запись обновлена [{id}] {name} | {changes}{source}.",
+                "deleted": "Репозиторий guild: запись удалена [{id}] {name}{source}.",
+                "not_found": "Репозиторий guild: сервер не найден [{id}].",
+                "error": "Репозиторий guild: ошибка при выполнении операции для [{id}]: {error}."
+            },
+            "member": {
+                "created": "Репозиторий member: запись создана [{id}] {name} | guild=[{guild_id}]{source}.",
+                "updated": "Репозиторий member: запись обновлена [{id}] {name} | {changes} | guild=[{guild_id}]{source}.",
+                "deleted": "Репозиторий member: запись удалена [{id}] {name} | guild=[{guild_id}]{source}.",
+                "not_found": "Репозиторий member: участник не найден [{id}] в guild=[{guild_id}].",
+                "error": "Репозиторий member: ошибка при выполнении операции для [{id}] в guild=[{guild_id}]: {error}."
+            }
+        },
+        "logs": {
+            "connection": {
+                "started": "DATABASE | Соединение установлено",
+                "closed": "DATABASE | Соединение закрыто"
+            },
+            "errors": {
+                "missing_environment": "Отсутствуют переменные окружения PostgreSQL.",
+                "create_tables": "Ошибка при создании таблиц базы данных: {error}"
+            },
+            "insert": {
+                "guild": "INSERT | guild | [{id}] {name}{source}",
+                "member": "INSERT | member | [{id}] {name} | guild=[{guild_id}]{source}"
+            },
+            "update": {
+                "guild": "UPDATE | guild | [{id}] {name} | {changes}{source}",
+                "member": "UPDATE | member | [{id}] {name} | {changes} | guild=[{guild_id}]{source}"
+            },
+            "delete": {
+                "guild": "DELETE | guild | [{id}] {name}{source}",
+                "member": "DELETE | member | [{id}] {name} | guild=[{guild_id}]{source}"
+            }
+        }
+    },
+    "helpers": {
+        "logs": {
+            "translation": {
+                "missing": "Перевод для ключа {key} не найден.",
+                "invalid": "Полученный перевод для {key} имеет недопустимый формат."
+            },
+            "embed": {
+                "created": "Создан embed типа {type} для ключа {key}.",
+                "error": "Ошибка при создании embed для ключа {key}: {error}."
+            }
+        }
+    }
 }

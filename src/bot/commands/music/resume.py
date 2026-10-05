@@ -2,12 +2,15 @@ from discord.ext import commands
 import wavelink
 
 from src.helpers.embeds import create_embed
+from src.helpers.permissions import has_voice_channel
+
 
 
 class Resume(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
+    @has_voice_channel()
     @commands.command(name="resume")
     async def resume(self, ctx):
         if ctx.voice_client is None:

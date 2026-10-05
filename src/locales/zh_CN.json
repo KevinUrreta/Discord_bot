@@ -1,866 +1,882 @@
 {
-	"bot": {
-		"commands": {
-			"config": {
-				"logs": {
-					"language": {
-						"executed": "命令 /language 已由 {user} 在服务器 [{guild_id}] 中执行。",
-						"changed": "服务器 [{guild_id}] 的语言已由 {user} 从 {old_language} 更改为 {language}。",
-						"failed": "用户 {user} 在服务器 [{guild_id}] 中执行命令 /language 失败：{error}。"
-					},
-					"prefix": {
-						"executed": "命令 /prefix 已由 {user} 在服务器 [{guild_id}] 中执行。",
-						"changed": "服务器 [{guild_id}] 的前缀已由 {user} 从 `{old_prefix}` 更改为 `{prefix}`。",
-						"failed": "用户 {user} 在服务器 [{guild_id}] 中执行命令 /prefix 失败：{error}。"
-					}
-				},
-				"embeds": {
-					"language": {
-						"current_language": {
-							"title": "服务器语言",
-							"description": "服务器当前语言为 **{language_name}** (`{language}`)。"
-						},
-						"invalid_language": {
-							"title": "语言不可用",
-							"description": "所选语言不可用。"
-						},
-						"available_languages": {
-							"title": "可用语言",
-							"description": "{languages}"
-						},
-						"language_changed": {
-							"title": "语言已更改",
-							"description": "服务器语言已更改为 **{language_name}** (`{language}`)。"
-						}
-					},
-					"prefix": {
-						"current_prefix": {
-							"title": "当前前缀",
-							"description": "服务器当前前缀为 `{prefix}`。"
-						},
-						"prefix_changed": {
-							"title": "前缀已更改",
-							"description": "前缀已更改为 `{prefix}`。"
-						}
-					}
-				}
-			},
-			"moderation": {
-				"logs": {
-					"clear": {
-						"executed": "命令 /clear 已由 {user} 在服务器 {guild} 的 {channel} 中执行。",
-						"completed": "{user} 已删除服务器 {guild} 的 {channel} 中的 {amount} 条消息。",
-						"failed": "用户 {user} 在服务器 {guild} 的 {channel} 中执行命令 /clear 失败：{error}。"
-					}
-				},
-				"embeds": {
-					"clear": {
-						"cleared": {
-							"title": "消息已删除",
-							"description": "已成功删除 **{amount} 条消息**。",
-							"footer": {
-								"text": "执行者：{user}"
-							}
-						},
-						"invalid_amount": {
-							"title": "数量无效",
-							"description": "消息数量必须在 **1 到 {maximum}** 之间。",
-							"footer": {
-								"text": "执行者：{user}"
-							}
-						}
-					}
-				}
-			},
-			"music": {
-				"logs": {
-					"join": {
-						"executed": "命令 /join 已由 {user} 在 {guild} 中执行。",
-						"joining_voice": "正在尝试连接 {guild} 中的语音频道 {channel}。",
-						"joined_voice": "我已连接到 {guild} 中的语音频道 {channel}。",
-						"failed": "用户 {user} 在 {guild} 中执行命令 /join 失败：{error}。"
-					},
-					"play": {
-						"executed": "命令 /play 已由 {user} 在 {guild} 中执行。",
-						"track_loaded": "歌曲 {title} 已为 {guild} 中的 {user} 加载。",
-						"track_queued": "{user} 已将歌曲 {title} 添加到 {guild} 的队列中。",
-						"playlist_queued": "{user} 已将播放列表 {title} 添加到 {guild} 的队列中。",
-						"failed": "用户 {user} 在 {guild} 中执行命令 /play 失败：{error}。"
-					},
-					"pause": {
-						"executed": "命令 /pause 已由 {user} 在 {guild} 中执行。",
-						"paused": "{user} 已在 {guild} 中暂停播放。",
-						"failed": "用户 {user} 在 {guild} 中执行命令 /pause 失败：{error}。"
-					},
-					"resume": {
-						"executed": "命令 /resume 已由 {user} 在 {guild} 中执行。",
-						"resumed": "{user} 已在 {guild} 中恢复播放。",
-						"failed": "用户 {user} 在 {guild} 中执行命令 /resume 失败：{error}。"
-					},
-					"remove": {
-						"executed": "命令 /remove 已由 {user} 在 {guild} 中执行。",
-						"removed": "{user} 已在 {guild} 中将第 {position} 首歌曲 {title} 从队列中移除。",
-						"failed": "用户 {user} 在 {guild} 中执行命令 /remove 失败：{error}。"
-					},
-					"leave": {
-						"executed": "命令 /leave 已由 {user} 在 {guild} 中执行。",
-						"disconnected": "应 {user} 的请求，机器人已断开与语音频道 {channel} 的连接。"
-					},
-					"queue": {
-						"executed": "命令 /queue 已由 {user} 在 {guild} 中执行。",
-						"displayed": "{user} 已在 {guild} 中查看播放队列。"
-					},
-					"shuffle": {
-						"executed": "命令 /shuffle 已由 {user} 在 {guild} 中执行。",
-						"shuffled": "{user} 已在 {guild} 中打乱播放队列。",
-						"failed": "用户 {user} 在 {guild} 中执行命令 /shuffle 失败：{error}。"
-					},
-					"loop": {
-						"executed": "命令 /loop 已由 {user} 在 {guild} 中执行。",
-						"enabled": "{user} 已在 {guild} 中启用循环播放。",
-						"disabled": "{user} 已在 {guild} 中关闭循环播放。",
-						"failed": "用户 {user} 在 {guild} 中执行命令 /loop 失败：{error}。"
-					},
-					"skip": {
-						"executed": "命令 /skip 已由 {user} 在 {guild} 中执行。",
-						"skipped": "{user} 已在 {guild} 中跳过歌曲 {title}。",
-						"failed": "用户 {user} 在 {guild} 中执行命令 /skip 失败：{error}。"
-					},
-					"stop": {
-						"executed": "命令 /stop 已由 {user} 在 {guild} 中执行。",
-						"stopped": "{user} 已在 {guild} 中停止播放。",
-						"failed": "用户 {user} 在 {guild} 中执行命令 /stop 失败：{error}。"
-					},
-					"clear": {
-						"executed": "命令 /clear 已由 {user} 在 {guild} 中执行。",
-						"cleared": "{user} 已在 {guild} 中清空播放队列。",
-						"failed": "用户 {user} 在 {guild} 中执行命令 /clear 失败：{error}。"
-					},
-					"volume": {
-						"executed": "命令 /volume 已由 {user} 在 {guild} 中执行。",
-						"changed": "{user} 已在 {guild} 中将音量从 {old_volume}% 调整为 {volume}%。",
-						"failed": "用户 {user} 在 {guild} 中执行命令 /volume 失败：{error}。"
-					},
-					"lyrics": {
-						"executed": "命令 /lyrics 已由 {user} 在 {guild} 中执行。",
-						"requested": "{user} 已在 {guild} 中请求歌曲 {title} 的歌词。",
-						"not_found": "{user} 在 {guild} 中请求的歌曲 {title} 的歌词未找到。",
-						"failed": "用户 {user} 在 {guild} 中执行命令 /lyrics 失败：{error}。"
-					}
-				},
-				"embeds": {
-					"play": {
-						"missing_song": {
-							"title": "没有指定歌曲",
-							"description": "你不告诉我想听哪首歌，我怎么给你放音乐呀？我是机器人，不是算命先生。🔮",
-							"footer": {
-								"text": "请求者：{user}"
-							}
-						},
-						"spotify_not_supported": {
-							"title": "不支持 Spotify",
-							"description": "Spotify 链接我实在搞不定。换个来源吧，我会乖乖给你播放。🙃",
-							"footer": {
-								"text": "请求者：{user}"
-							}
-						},
-						"voice_not_connected": {
-							"title": "你不在语音频道中",
-							"description": "你在哪儿……？我看不见你……🥹🥺",
-							"footer": {
-								"text": "请求者：{user}"
-							}
-						},
-						"no_song_found": {
-							"title": "未找到歌曲",
-							"description": "我找遍了所有地方，什么也没找到。你确定这首歌真的存在，还是你编出来的？🤔",
-							"footer": {
-								"text": "请求者：{user}"
-							}
-						},
-						"added_to_queue": {
-							"title": "歌曲已添加到队列",
-							"description": "**{title}**\n\n队列中：**{queue}**\n\n顺便说一句，选得不错。😏",
-							"footer": {
-								"text": "请求者：{user}"
-							}
-						},
-						"playlist_added_to_queue": {
-							"title": "播放列表已添加到队列",
-							"description": "**{title}**\n\n队列中的歌曲：**{queue}**\n\n这播放列表挑得真不错。来吧，开始播放。🔥",
-							"footer": {
-								"text": "请求者：{user}"
-							}
-						}
-					},
-					"now_playing": {
-						"title": "正在播放",
-						"fields": [
-							{
-								"name": "标题",
-								"value": "**{title}**",
-								"inline": false
-							},
-							{
-								"name": "时长",
-								"value": "{duration}",
-								"inline": true
-							},
-							{
-								"name": "播放量",
-								"value": "{views}",
-								"inline": true
-							},
-							{
-								"name": "队列中",
-								"value": "{queue}",
-								"inline": true
-							}
-						],
-						"footer": {
-							"text": "请求者：{user}"
-						}
-					},
-					"queue_empty_finished": {
-						"title": "队列中没有更多歌曲了",
-						"description": "看来播放列表已经空了。\n\n为什么不再加几首呢？队列可不会自己填满。🎵",
-						"footer": {
-							"text": "请求者：{user}"
-						}
-					},
-					"disconnected_from_voice": {
-						"title": "我已离开语音频道",
-						"description": "你把我断开连接了。认真的吗？我本来待得挺舒服的……😤",
-						"footer": {
-							"text": "请求者：{user}"
-						}
-					},
-					"pause": {
-						"not_connected": {
-							"title": "我没有连接",
-							"description": "我没有连接到任何语音频道。所以不，我没法暂停任何东西。🙃",
-							"footer": {
-								"text": "请求者：{user}"
-							}
-						},
-						"no_song_playing": {
-							"title": "当前没有正在播放的歌曲",
-							"description": "没在播放的东西，我可没法暂停。那就得靠魔法了，而我还没那么厉害。✨",
-							"footer": {
-								"text": "请求者：{user}"
-							}
-						},
-						"paused": {
-							"title": "播放已暂停",
-							"description": "我还挺喜欢这首歌的！不过好吧，你说了算。⏸️",
-							"footer": {
-								"text": "请求者：{user}"
-							}
-						}
-					},
-					"resume": {
-						"not_connected": {
-							"title": "我没有连接",
-							"description": "我没有连接到任何语音频道。先邀请我进来嘛？🥺",
-							"footer": {
-								"text": "请求者：{user}"
-							}
-						},
-						"no_song_playing": {
-							"title": "没有暂停的歌曲",
-							"description": "没有暂停的播放可以恢复。你是不是搞错机器人了？🤨",
-							"footer": {
-								"text": "请求者：{user}"
-							}
-						},
-						"resumed": {
-							"title": "播放已恢复",
-							"description": "太好了！我很喜欢你的音乐。继续保持。🎶",
-							"footer": {
-								"text": "请求者：{user}"
-							}
-						}
-					},
-					"remove": {
-						"not_connected": {
-							"title": "我没有连接",
-							"description": "我没有连接到任何语音频道。你到底想让我移除什么？🤔",
-							"footer": {
-								"text": "请求者：{user}"
-							}
-						},
-						"queue_empty": {
-							"title": "队列为空",
-							"description": "没有歌曲可移除。队列空得比我的耐心还彻底。😮‍💨",
-							"footer": {
-								"text": "请求者：{user}"
-							}
-						},
-						"invalid_position": {
-							"title": "编号无效",
-							"description": "指定的歌曲编号无效。你数对了吗？🔢",
-							"footer": {
-								"text": "请求者：{user}"
-							}
-						},
-						"removed": {
-							"title": "歌曲已从队列中移除",
-							"description": "**{title}**\n\n希望你没弄错，可别怪我。我只是奉命行事。😇",
-							"footer": {
-								"text": "请求者：{user}"
-							}
-						}
-					},
-					"leave": {
-						"not_connected": {
-							"title": "我没有连接",
-							"description": "我没有连接到任何语音频道。没在的地方，我可没法离开。🚪",
-							"footer": {
-								"text": "请求者：{user}"
-							}
-						},
-						"disconnected": {
-							"title": "我已离开语音频道",
-							"description": "你把我断开连接了。认真的吗？我还正开心地听着音乐呢……😔",
-							"footer": {
-								"text": "请求者：{user}"
-							}
-						}
-					},
-					"queue": {
-						"not_connected": {
-							"title": "我没有连接",
-							"description": "我没有连接到任何语音频道。先邀请我进来，然后我们再聊队列的事。🎧",
-							"footer": {
-								"text": "请求者：{user}"
-							}
-						},
-						"empty": {
-							"title": "队列为空",
-							"description": "看来播放列表已经空了。\n\n为什么不再加几首呢？这儿简直像片沙漠。🏜️",
-							"footer": {
-								"text": "请求者：{user}"
-							}
-						},
-						"list": {
-							"title": "你的播放列表",
-							"description": "队列里有这些内容：\n\n{queue}\n\n还不错，不过我也接受推荐。😌",
-							"footer": {
-								"text": "请求者：{user}"
-							}
-						}
-					},
-					"shuffle": {
-						"not_connected": {
-							"title": "我没有连接",
-							"description": "我没有连接到任何语音频道。没有音乐，就无从打乱顺序。🎲",
-							"footer": {
-								"text": "请求者：{user}"
-							}
-						},
-						"not_enough_songs": {
-							"title": "无法打乱播放列表",
-							"description": "至少再添加一首歌，才能打乱播放列表。只有一首歌就没什么悬念了。🙄",
-							"footer": {
-								"text": "请求者：{user}"
-							}
-						},
-						"shuffled": {
-							"title": "播放列表已打乱",
-							"description": "说实话，我已经不知道接下来会放哪首歌了。惊喜时刻开始啦。🔀",
-							"footer": {
-								"text": "请求者：{user}"
-							}
-						}
-					},
-					"loop": {
-						"not_connected": {
-							"title": "我没有连接",
-							"description": "我没有连接到任何语音频道。没在播放的东西，我可没法循环播放。🔁",
-							"footer": {
-								"text": "请求者：{user}"
-							}
-						},
-						"no_song_playing": {
-							"title": "当前没有正在播放的歌曲",
-							"description": "没有歌曲，我可没法开启循环。先放点什么嘛。🎵",
-							"footer": {
-								"text": "请求者：{user}"
-							}
-						},
-						"enabled": {
-							"title": "歌曲循环播放",
-							"description": "这是你最喜欢的歌吗？我们要陷入循环啦——😵‍💫",
-							"footer": {
-								"text": "请求者：{user}"
-							}
-						},
-						"disabled": {
-							"title": "循环播放已关闭",
-							"description": "歌曲不会再重复了。似曾相识的感觉到此为止。🔂",
-							"footer": {
-								"text": "请求者：{user}"
-							}
-						}
-					},
-					"skip": {
-						"not_connected": {
-							"title": "我没有连接",
-							"description": "我没有连接到任何语音频道。身处虚空的我什么也跳不过去。⏭️",
-							"footer": {
-								"text": "请求者：{user}"
-							}
-						},
-						"no_song_playing": {
-							"title": "当前没有正在播放的歌曲",
-							"description": "没有正在播放的歌曲，我可没法跳过。要不我们直接跳进虚空？🕳️",
-							"footer": {
-								"text": "请求者：{user}"
-							}
-						},
-						"skipped": {
-							"title": "已跳过歌曲",
-							"description": "我已经切换到下一首歌了。希望这首你更喜欢。🤞",
-							"footer": {
-								"text": "请求者：{user}"
-							}
-						}
-					},
-					"stop": {
-						"not_connected": {
-							"title": "我没有连接",
-							"description": "我没有连接到任何语音频道。我可没法停下自己没开始的东西。🛑",
-							"footer": {
-								"text": "请求者：{user}"
-							}
-						},
-						"stopped": {
-							"title": "播放已停止",
-							"description": "噢不！你是不是听腻我了，想让我闭嘴？:( 我去角落里哭一会儿。😭",
-							"footer": {
-								"text": "请求者：{user}"
-							}
-						}
-					},
-					"clear": {
-						"not_connected": {
-							"title": "我没有连接",
-							"description": "我没有连接到任何语音频道。没有队列可清理。🧹",
-							"footer": {
-								"text": "请求者：{user}"
-							}
-						},
-						"queue_empty": {
-							"title": "队列为空",
-							"description": "队列里没有可删除的歌曲。已经清理干净啦。✨",
-							"footer": {
-								"text": "请求者：{user}"
-							}
-						},
-						"cleared": {
-							"title": "播放队列已清空",
-							"description": "我帮你把你放的垃圾清理掉了，下次长点心吧。🧼😏",
-							"footer": {
-								"text": "请求者：{user}"
-							}
-						}
-					},
-					"volume": {
-						"not_connected": {
-							"title": "我没有连接",
-							"description": "我没有连接到任何语音频道。没连接，调什么音量都没用。🔊",
-							"footer": {
-								"text": "请求者：{user}"
-							}
-						},
-						"invalid_volume": {
-							"title": "音量无效",
-							"description": "音量必须在 **0 到 100** 之间。不多不少，别把我搞晕了。🎚️",
-							"footer": {
-								"text": "请求者：{user}"
-							}
-						},
-						"too_high": {
-							"title": "音量太高",
-							"description": "我可不想把你震聋。稍微调低一点嘛。🫣",
-							"footer": {
-								"text": "请求者：{user}"
-							}
-						},
-						"too_low": {
-							"title": "音量太低",
-							"description": "也许你只是想让我闭嘴。看起来还真有点效果。🤫",
-							"footer": {
-								"text": "请求者：{user}"
-							}
-						},
-						"changed": {
-							"title": "音量已更新",
-							"description": "我已将音量设为 **{volume}%**。\n\n尽情享受吧！🎧",
-							"footer": {
-								"text": "请求者：{user}"
-							}
-						}
-					},
-					"lyrics": {
-						"not_found": {
-							"title": "未找到歌词",
-							"description": "我找不到这首歌的歌词。\n\n试试换个标题再搜索吧！说不定就能碰上好运。🎤",
-							"footer": {
-								"text": "请求者：{user}"
-							}
-						},
-						"not_available": {
-							"title": "歌词功能正在建设中",
-							"description": "此功能仍在建设中。耐心等等，奇迹也需要时间。🚧",
-							"footer": {
-								"text": "请求者：{user}"
-							}
-						}
-					},
-					"voice": {
-						"not_connected": {
-							"title": "你不在语音频道中",
-							"description": "你在哪儿……？我看不见你……🥹🥺",
-							"footer": {
-								"text": "请求者：{user}"
-							}
-						}
-					}
-				}
-			}
-		},
-		"events": {
-			"logs": {
-				"guild": {
-					"on_guild_channel_create": {
-						"channel_created": "已创建频道 {channel}。"
-					},
-					"on_guild_channel_delete": {
-						"channel_deleted": "已删除频道 {channel}。"
-					},
-					"on_guild_channel_update": {
-						"channel_updated": "频道 {before} 已更改为 {after}。"
-					},
-					"on_guild_emojis_update": {
-						"emojis_updated": "服务器 {guild} 的表情符号已更新。"
-					},
-					"on_guild_join": {
-						"guild_added": "已添加服务器：{guild_name} ({guild_id})"
-					},
-					"on_guild_remove": {
-						"members_deleted": "已删除成员：{guild_name} ({guild_id}) 中的 {deleted_members} 名成员",
-						"guild_deleted": "已删除服务器：{guild_name} ({guild_id})",
-						"guild_not_found": "在数据库中未找到服务器：{guild_name} ({guild_id})"
-					},
-					"on_guild_role_create": {
-						"role_created": "已创建身份组 {role}。"
-					},
-					"on_guild_role_delete": {
-						"role_deleted": "已删除身份组 {role}。"
-					},
-					"on_guild_role_update": {
-						"role_updated": "身份组 {before} 已更改为 {after}。"
-					},
-					"on_guild_stickers_update": {
-						"stickers_updated": "服务器 {guild} 的贴纸已更新。"
-					}
-				},
-				"member": {
-					"on_member_join": {
-						"member_added": "已添加成员：{name} ({id})，位于 {guild_name} ({guild_id})"
-					},
-					"on_member_remove": {
-						"member_deleted": "已删除成员：{name} ({id})，来自 {guild_name} ({guild_id})",
-						"member_not_found": "在数据库中未找到成员：{name} ({id})，位于 {guild_name} ({guild_id})"
-					},
-					"on_member_update": {
-						"member_updated": "已更新成员：{name} ({id})，位于 {guild_name} ({guild_id})"
-					},
-					"on_user_update": {
-						"username_updated": "已更新用户：{before_name} ({id}) -> {after_name} ({id})",
-						"global_name_updated": "已更新全局名称：{before_name} ({id}) -> {after_name} ({id})",
-						"avatar_updated": "已更新头像：{name} ({id})"
-					}
-				},
-				"message": {
-					"on_message": {
-						"message_detected": "{author_name} 在 {server_name} 的 {channel_name} 中发送了一条消息：{message}"
-					},
-					"on_message_delete": {
-						"message_deleted": "{author} 删除了 {guild} 的 {channel} 中的一条消息。消息：{message}"
-					},
-					"on_message_edit": {
-						"message_edited": "{author_name} 编辑了 {server_name} 的 {channel_name} 中的一条消息。修改前：{before} 修改后：{after}"
-					},
-					"on_raw_reaction_add": {
-						"reaction_added": "{user} 为消息 {message_id} 添加了表情回应 {emoji}。"
-					},
-					"on_raw_reaction_remove": {
-						"reaction_removed": "{user} 移除了消息 {message_id} 上的表情回应 {emoji}。"
-					},
-					"on_reaction_add": {
-						"reaction_added": "{user} 在 {channel} 中添加了表情回应 {emoji}。"
-					},
-					"on_reaction_clear": {
-						"reactions_cleared": "已移除消息 {message} 上的表情回应。"
-					},
-					"on_reaction_remove": {
-						"reaction_removed": "{user} 在 {channel} 中移除了表情回应 {emoji}。"
-					},
-					"on_typing": {
-						"typing_detected": "{user} 正在 {channel} 中输入。"
-					}
-				},
-				"other": {
-					"on_application_command_error": {
-						"command_error": "应用程序命令 {command} 出错：{error}"
-					},
-					"on_command": {
-						"command_executed": "{author} 在 {channel} 中执行了命令 {command}。"
-					},
-					"on_command_error": {
-						"command_error": "命令 {command} 出错：{error}",
-						"missing_permissions": "你没有足够的权限执行此命令。",
-						"logged_error": "命令 '{command}' 出错：{error}"
-					},
-					"on_ready": {
-						"bot_connected": "机器人已以 {bot} 的身份连接。",
-						"connecting_lavalink": "已成功连接到 Lavalink。"
-					},
-					"on_connect": {
-						"discord_connected": "已与 Discord 建立连接。"
-					},
-					"on_disconnect": {
-						"discord_disconnected": "与 Discord 的连接已断开。"
-					},
-					"on_resumed": {
-						"discord_resumed": "Discord 会话已成功恢复。"
-					},
-					"on_voice_state_update": {
-						"voice_state_updated": "{member_name} 在 {server_name} 的 {channel_name} 中{action}。",
-						"voice_state_moved": "{member_name} 已从 {server_name} 的 {before_channel_name} 移动到 {after_channel_name}。",
-						"join": "已加入",
-						"leave": "已离开",
-						"move": "已移动",
-						"mute_enabled": "已静音",
-						"mute_disabled": "已取消静音",
-						"deaf_enabled": "已设为聋人模式",
-						"deaf_disabled": "已取消聋人模式",
-						"video_enabled": "已开启摄像头",
-						"video_disabled": "已关闭摄像头",
-						"stream_enabled": "正在共享屏幕",
-						"stream_disabled": "已停止共享屏幕",
-						"none": "无"
-					},
-					"on_webhook_update": {
-						"webhook_updated": "{channel} 的 Webhook 已更新。"
-					},
-					"on_wavelink_track_start": {
-						"track_started": "{server_name} 中已开始播放 {track_title}。"
-					},
-					"on_wavelink_track_end": {
-						"track_ended": "{server_name} 中已结束播放 {track_title}。"
-					}
-				}
-			},
-			"embeds": {
-				"guild": {
-					"channel_created": {
-						"title": "频道已创建",
-						"description": "已创建频道 **{channel}**。"
-					},
-					"channel_deleted": {
-						"title": "频道已删除",
-						"description": "已删除频道 **{channel}**。"
-					},
-					"channel_updated": {
-						"title": "频道已更新",
-						"description": "频道 **{before}** 已更改为 **{after}**。"
-					},
-					"emojis_updated": {
-						"title": "表情符号已更新",
-						"description": "服务器的表情符号已更新。"
-					},
-					"guild_added": {
-						"title": "已添加服务器",
-						"description": "机器人已加入服务器 **{guild_name}**。"
-					},
-					"guild_removed": {
-						"title": "已删除服务器",
-						"description": "机器人已离开服务器 **{guild_name}**。"
-					},
-					"role_created": {
-						"title": "身份组已创建",
-						"description": "已创建身份组 **{role}**。"
-					},
-					"role_deleted": {
-						"title": "身份组已删除",
-						"description": "已删除身份组 **{role}**。"
-					},
-					"role_updated": {
-						"title": "身份组已更新",
-						"description": "身份组 **{before}** 已更改为 **{after}**。"
-					},
-					"stickers_updated": {
-						"title": "贴纸已更新",
-						"description": "服务器的贴纸已更新。"
-					}
-				},
-				"member": {
-					"member_added": {
-						"title": "成员已添加",
-						"description": "成员 **{name}** 已加入服务器。"
-					},
-					"member_deleted": {
-						"title": "成员已删除",
-						"description": "成员 **{name}** 已离开服务器。"
-					},
-					"member_updated": {
-						"title": "成员已更新",
-						"description": "**{name}** 的信息已更新。"
-					},
-					"user_updated": {
-						"title": "用户已更新",
-						"description": "用户 **{name}** 的信息已更新。"
-					}
-				},
-				"message": {
-					"message_deleted": {
-						"title": "消息已删除",
-						"description": "{channel} 中 **{author}** 的一条消息已被删除。"
-					},
-					"message_edited": {
-						"title": "消息已编辑",
-						"description": "{channel} 中 **{author}** 的一条消息已被编辑。"
-					},
-					"reaction_added": {
-						"title": "已添加表情回应",
-						"description": "{user} 添加了表情回应 {emoji}。"
-					},
-					"reaction_removed": {
-						"title": "已移除表情回应",
-						"description": "{user} 移除了表情回应 {emoji}。"
-					},
-					"reactions_cleared": {
-						"title": "表情回应已移除",
-						"description": "消息上的表情回应已被移除。"
-					}
-				},
-				"other": {
-					"command_error": {
-						"title": "未找到命令",
-						"description": "命令 **{command}** 不存在。"
-					},
-					"missing_permissions": {
-						"title": "权限不足",
-						"description": "你没有足够的权限执行此命令。"
-					},
-					"track_started": {
-						"title": "已开始播放",
-						"description": "已开始播放 **{track_title}**。"
-					},
-					"track_ended": {
-						"title": "播放已结束",
-						"description": "**{track_title}** 已播放完毕。"
-					}
-				}
-			}
-		},
-		"tasks": {
-			"logs": {
-				"database_sync": {
-					"started": "数据库同步已开始。",
-					"sync_completed": "数据库同步已完成。",
-					"sync_failed": "数据库同步期间发生错误：{error}。"
-				}
-			},
-			"embeds": {
-				"database_sync": {
-					"completed": {
-						"title": "数据库已同步",
-						"description": "数据库同步已成功完成。"
-					},
-					"failed": {
-						"title": "同步错误",
-						"description": "数据库同步期间发生错误。"
-					}
-				}
-			}
-		}
-	},
-	"core": {
-		"logs": {
-			"loader": {
-				"commands": "命令",
-				"events": "事件",
-				"loaded": "{label} | {category} | 已成功加载 ({loaded})",
-				"load_error": "{label} | {category} | 加载 {filename} 失败 | {error_type}：{error}"
-			}
-		}
-	},
-	"database": {
-		"models": {
-			"guild": {
-				"created": "已创建服务器 [{guild_id}] {guild_name} 的记录。",
-				"updated": "已更新服务器 [{guild_id}] {guild_name} 的记录。",
-				"deleted": "已删除服务器 [{guild_id}] {guild_name} 的记录。"
-			},
-			"member": {
-				"created": "已在服务器 [{guild_id}] 中创建成员 [{member_id}] {member_name} 的记录。",
-				"updated": "已在服务器 [{guild_id}] 中更新成员 [{member_id}] {member_name} 的记录。",
-				"deleted": "已从服务器 [{guild_id}] 中删除成员 [{member_id}] {member_name} 的记录。"
-			}
-		},
-		"repositories": {
-			"guild": {
-				"created": "guild 仓储：已创建记录 [{id}] {name}{source}。",
-				"updated": "guild 仓储：已更新记录 [{id}] {name} | {changes}{source}。",
-				"deleted": "guild 仓储：已删除记录 [{id}] {name}{source}。",
-				"not_found": "guild 仓储：未找到服务器 [{id}]。",
-				"error": "guild 仓储：对 [{id}] 执行操作时出错：{error}。"
-			},
-			"member": {
-				"created": "member 仓储：已创建记录 [{id}] {name} | guild=[{guild_id}]{source}。",
-				"updated": "member 仓储：已更新记录 [{id}] {name} | {changes} | guild=[{guild_id}]{source}。",
-				"deleted": "member 仓储：已删除记录 [{id}] {name} | guild=[{guild_id}]{source}。",
-				"not_found": "member 仓储：在 guild=[{guild_id}] 中未找到成员 [{id}]。",
-				"error": "member 仓储：在 guild=[{guild_id}] 中对 [{id}] 执行操作时出错：{error}。"
-			}
-		},
-		"logs": {
-			"connection": {
-				"started": "DATABASE | 连接已启动",
-				"closed": "DATABASE | 连接已关闭"
-			},
-			"errors": {
-				"missing_environment": "缺少 PostgreSQL 环境变量。",
-				"create_tables": "创建数据库表时出错：{error}"
-			},
-			"insert": {
-				"guild": "INSERT | guild | [{id}] {name}{source}",
-				"member": "INSERT | member | [{id}] {name} | guild=[{guild_id}]{source}"
-			},
-			"update": {
-				"guild": "UPDATE | guild | [{id}] {name} | {changes}{source}",
-				"member": "UPDATE | member | [{id}] {name} | {changes} | guild=[{guild_id}]{source}"
-			},
-			"delete": {
-				"guild": "DELETE | guild | [{id}] {name}{source}",
-				"member": "DELETE | member | [{id}] {name} | guild=[{guild_id}]{source}"
-			}
-		}
-	},
-	"helpers": {
-		"logs": {
-			"translation": {
-				"missing": "未找到键 {key} 对应的翻译。",
-				"invalid": "获取到的 {key} 翻译格式无效。"
-			},
-			"embed": {
-				"created": "已为键 {key} 生成类型为 {type} 的嵌入消息。",
-				"error": "为键 {key} 生成嵌入消息时出错：{error}。"
-			}
-		}
-	}
+    "bot": {
+        "commands": {
+            "config": {
+                "logs": {
+                    "language": {
+                        "executed": "命令 /language 已由 {user} 在服务器 [{guild_id}] 中执行。",
+                        "changed": "服务器 [{guild_id}] 的语言已由 {user} 从 {old_language} 更改为 {language}。",
+                        "failed": "用户 {user} 在服务器 [{guild_id}] 中执行命令 /language 失败：{error}。"
+                    },
+                    "prefix": {
+                        "executed": "命令 /prefix 已由 {user} 在服务器 [{guild_id}] 中执行。",
+                        "changed": "服务器 [{guild_id}] 的前缀已由 {user} 从 `{old_prefix}` 更改为 `{prefix}`。",
+                        "failed": "用户 {user} 在服务器 [{guild_id}] 中执行命令 /prefix 失败：{error}。"
+                    }
+                },
+                "embeds": {
+                    "language": {
+                        "current_language": {
+                            "title": "服务器语言",
+                            "description": "服务器当前语言为 **{language_name}** (`{language}`)。"
+                        },
+                        "invalid_language": {
+                            "title": "语言不可用",
+                            "description": "所选语言不可用。"
+                        },
+                        "available_languages": {
+                            "title": "可用语言",
+                            "description": "{languages}"
+                        },
+                        "language_changed": {
+                            "title": "语言已更改",
+                            "description": "服务器语言已更改为 **{language_name}** (`{language}`)。"
+                        }
+                    },
+                    "prefix": {
+                        "current_prefix": {
+                            "title": "当前前缀",
+                            "description": "服务器当前前缀为 `{prefix}`。"
+                        },
+                        "prefix_changed": {
+                            "title": "前缀已更改",
+                            "description": "前缀已更改为 `{prefix}`。"
+                        }
+                    }
+                }
+            },
+            "moderation": {
+                "logs": {
+                    "clear": {
+                        "executed": "命令 /clear 已由 {user} 在服务器 {guild} 的 {channel} 中执行。",
+                        "completed": "{user} 已在服务器 {guild} 的 {channel} 中删除 {amount} 条消息。",
+                        "failed": "用户 {user} 在服务器 {guild} 的 {channel} 中执行命令 /clear 失败：{error}。"
+                    }
+                },
+                "embeds": {
+                    "clear": {
+                        "cleared": {
+                            "title": "消息已删除",
+                            "description": "已成功删除 **{amount} 条消息**。",
+                            "footer": {
+                                "text": "执行者：{user}"
+                            }
+                        },
+                        "invalid_amount": {
+                            "title": "数量无效",
+                            "description": "消息数量必须在 **1 到 {maximum}** 之间。",
+                            "footer": {
+                                "text": "执行者：{user}"
+                            }
+                        }
+                    }
+                }
+            },
+            "music": {
+                "logs": {
+                    "join": {
+                        "executed": "命令 /join 已由 {user} 在 {guild} 中执行。",
+                        "joining_voice": "正在尝试连接 {guild} 中的语音频道 {channel}。",
+                        "joined_voice": "已连接到 {guild} 中的语音频道 {channel}。",
+                        "failed": "用户 {user} 在 {guild} 中执行命令 /join 失败：{error}。"
+                    },
+                    "play": {
+                        "executed": "命令 /play 已由 {user} 在 {guild} 中执行。",
+                        "track_loaded": "歌曲 {title} 已为 {user} 在 {guild} 中加载。",
+                        "track_queued": "歌曲 {title} 已由 {user} 添加到 {guild} 的播放队列中。",
+                        "playlist_queued": "播放列表 {title} 已由 {user} 添加到 {guild} 的播放队列中。",
+                        "failed": "用户 {user} 在 {guild} 中执行命令 /play 失败：{error}。"
+                    },
+                    "pause": {
+                        "executed": "命令 /pause 已由 {user} 在 {guild} 中执行。",
+                        "paused": "播放已由 {user} 在 {guild} 中暂停。",
+                        "failed": "用户 {user} 在 {guild} 中执行命令 /pause 失败：{error}。"
+                    },
+                    "resume": {
+                        "executed": "命令 /resume 已由 {user} 在 {guild} 中执行。",
+                        "resumed": "播放已由 {user} 在 {guild} 中恢复。",
+                        "failed": "用户 {user} 在 {guild} 中执行命令 /resume 失败：{error}。"
+                    },
+                    "remove": {
+                        "executed": "命令 /remove 已由 {user} 在 {guild} 中执行。",
+                        "removed": "歌曲 {title}（位置 {position}）已由 {user} 从 {guild} 的播放队列中移除。",
+                        "failed": "用户 {user} 在 {guild} 中执行命令 /remove 失败：{error}。"
+                    },
+                    "leave": {
+                        "executed": "命令 /leave 已由 {user} 在 {guild} 中执行。",
+                        "disconnected": "应 {user} 的请求，机器人已从语音频道 {channel} 断开连接。"
+                    },
+                    "queue": {
+                        "executed": "命令 /queue 已由 {user} 在 {guild} 中执行。",
+                        "displayed": "播放队列已由 {user} 在 {guild} 中查看。"
+                    },
+                    "shuffle": {
+                        "executed": "命令 /shuffle 已由 {user} 在 {guild} 中执行。",
+                        "shuffled": "播放队列已由 {user} 在 {guild} 中随机排序。",
+                        "failed": "用户 {user} 在 {guild} 中执行命令 /shuffle 失败：{error}。"
+                    },
+                    "loop": {
+                        "executed": "命令 /loop 已由 {user} 在 {guild} 中执行。",
+                        "enabled": "循环播放已由 {user} 在 {guild} 中启用。",
+                        "disabled": "循环播放已由 {user} 在 {guild} 中禁用。",
+                        "failed": "用户 {user} 在 {guild} 中执行命令 /loop 失败：{error}。"
+                    },
+                    "skip": {
+                        "executed": "命令 /skip 已由 {user} 在 {guild} 中执行。",
+                        "skipped": "歌曲 {title} 已由 {user} 在 {guild} 中跳过。",
+                        "failed": "用户 {user} 在 {guild} 中执行命令 /skip 失败：{error}。"
+                    },
+                    "stop": {
+                        "executed": "命令 /stop 已由 {user} 在 {guild} 中执行。",
+                        "stopped": "播放已由 {user} 在 {guild} 中停止。",
+                        "failed": "用户 {user} 在 {guild} 中执行命令 /stop 失败：{error}。"
+                    },
+                    "clear": {
+                        "executed": "命令 /clear 已由 {user} 在 {guild} 中执行。",
+                        "cleared": "播放队列已由 {user} 在 {guild} 中清空。",
+                        "failed": "用户 {user} 在 {guild} 中执行命令 /clear 失败：{error}。"
+                    },
+                    "volume": {
+                        "executed": "命令 /volume 已由 {user} 在 {guild} 中执行。",
+                        "changed": "音量已由 {user} 在 {guild} 中从 {old_volume}% 更改为 {volume}%。",
+                        "failed": "用户 {user} 在 {guild} 中执行命令 /volume 失败：{error}。"
+                    },
+                    "lyrics": {
+                        "executed": "命令 /lyrics 已由 {user} 在 {guild} 中执行。",
+                        "requested": "歌曲 {title} 的歌词已由 {user} 在 {guild} 中请求。",
+                        "not_found": "未找到歌曲 {title} 的歌词，该请求由 {user} 在 {guild} 中发起。",
+                        "failed": "用户 {user} 在 {guild} 中执行命令 /lyrics 失败：{error}。"
+                    }
+                },
+                "embeds": {
+                    "play": {
+                        "missing_song": {
+                            "title": "缺少歌曲",
+                            "description": "如果你不告诉我想听哪首歌，我就没办法播放音乐。我只是个机器人，又不是算命先生。🔮",
+                            "footer": {
+                                "text": "请求者：{user}"
+                            }
+                        },
+                        "spotify_not_supported": {
+                            "title": "不支持 Spotify",
+                            "description": "Spotify 链接让我有点难受。给我换个来源，我就给你播放，绝不抱怨。🙃",
+                            "footer": {
+                                "text": "请求者：{user}"
+                            }
+                        },
+                        "voice_not_connected": {
+                            "title": "你不在语音频道中",
+                            "description": "你在哪里……？我看不到你……🥹🥺",
+                            "footer": {
+                                "text": "请求者：{user}"
+                            }
+                        },
+                        "no_song_found": {
+                            "title": "未找到歌曲",
+                            "description": "我到处都找过了，什么也没有。你确定这首歌存在，还是你自己编的？🤔",
+                            "footer": {
+                                "text": "请求者：{user}"
+                            }
+                        },
+                        "added_to_queue": {
+                            "title": "歌曲已添加到队列",
+                            "description": "**{title}**\n\n队列中：**{queue}**\n\n顺便说一句，选得不错。😏",
+                            "footer": {
+                                "text": "请求者：{user}"
+                            }
+                        },
+                        "playlist_added_to_queue": {
+                            "title": "播放列表已添加到队列",
+                            "description": "**{title}**\n\n队列中的歌曲：**{queue}**\n\n这播放列表弄得不错嘛。开始吧。🔥",
+                            "footer": {
+                                "text": "请求者：{user}"
+                            }
+                        }
+                    },
+                    "now_playing": {
+                        "title": "正在播放",
+                        "fields": [
+                            {
+                                "name": "标题",
+                                "value": "**{title}**",
+                                "inline": false
+                            },
+                            {
+                                "name": "时长",
+                                "value": "{duration}",
+                                "inline": true
+                            },
+                            {
+                                "name": "播放次数",
+                                "value": "{views}",
+                                "inline": true
+                            },
+                            {
+                                "name": "队列中",
+                                "value": "{queue}",
+                                "inline": true
+                            }
+                        ],
+                        "footer": {
+                            "text": "请求者：{user}"
+                        }
+                    },
+                    "queue_empty_finished": {
+                        "title": "队列中没有更多歌曲",
+                        "description": "看起来列表已经空了。\n\n为什么不再添加几首？它可不会自己填满。🎵",
+                        "footer": {
+                            "text": "请求者：{user}"
+                        }
+                    },
+                    "disconnected_from_voice": {
+                        "title": "我已离开语音频道",
+                        "description": "你把我断开了。认真的吗？我待得正舒服呢……😤",
+                        "footer": {
+                            "text": "请求者：{user}"
+                        }
+                    },
+                    "pause": {
+                        "not_connected": {
+                            "title": "我没有连接",
+                            "description": "我没有连接到任何语音频道。所以，不行，我没办法暂停任何东西。🙃",
+                            "footer": {
+                                "text": "请求者：{user}"
+                            }
+                        },
+                        "no_song_playing": {
+                            "title": "没有正在播放的歌曲",
+                            "description": "我不能暂停一个根本没有播放的东西。那就属于魔法了，而我还没厉害到那个程度。✨",
+                            "footer": {
+                                "text": "请求者：{user}"
+                            }
+                        },
+                        "paused": {
+                            "title": "播放已暂停",
+                            "description": "我本来还挺喜欢这首歌的！不过好吧，你说了算。⏸️",
+                            "footer": {
+                                "text": "请求者：{user}"
+                            }
+                        }
+                    },
+                    "resume": {
+                        "not_connected": {
+                            "title": "我没有连接",
+                            "description": "我没有连接到任何语音频道。先邀请我进去，好吗？🥺",
+                            "footer": {
+                                "text": "请求者：{user}"
+                            }
+                        },
+                        "no_song_playing": {
+                            "title": "没有暂停的歌曲",
+                            "description": "没有可以恢复的暂停播放。你是不是搞错机器人了？🤨",
+                            "footer": {
+                                "text": "请求者：{user}"
+                            }
+                        },
+                        "resumed": {
+                            "title": "播放已恢复",
+                            "description": "太好了！我很喜欢你的音乐。继续保持。🎶",
+                            "footer": {
+                                "text": "请求者：{user}"
+                            }
+                        }
+                    },
+                    "remove": {
+                        "not_connected": {
+                            "title": "我没有连接",
+                            "description": "我没有连接到任何语音频道。你到底想让我移除什么？🤔",
+                            "footer": {
+                                "text": "请求者：{user}"
+                            }
+                        },
+                        "queue_empty": {
+                            "title": "队列为空",
+                            "description": "没有歌曲可以移除。队列比我的耐心还要空。😮‍💨",
+                            "footer": {
+                                "text": "请求者：{user}"
+                            }
+                        },
+                        "invalid_position": {
+                            "title": "编号无效",
+                            "description": "指定的歌曲编号无效。你数对了吗？🔢",
+                            "footer": {
+                                "text": "请求者：{user}"
+                            }
+                        },
+                        "removed": {
+                            "title": "歌曲已从队列中移除",
+                            "description": "**{title}**\n\n希望你没有弄错，也别怪我。我只是听命行事。😇",
+                            "footer": {
+                                "text": "请求者：{user}"
+                            }
+                        }
+                    },
+                    "leave": {
+                        "not_connected": {
+                            "title": "我没有连接",
+                            "description": "我没有连接到任何语音频道。我总不能从一个不存在的地方离开吧。🚪",
+                            "footer": {
+                                "text": "请求者：{user}"
+                            }
+                        },
+                        "disconnected": {
+                            "title": "我已离开语音频道",
+                            "description": "你把我断开了。认真的吗？我和音乐待得正开心呢……😔",
+                            "footer": {
+                                "text": "请求者：{user}"
+                            }
+                        }
+                    },
+                    "queue": {
+                        "not_connected": {
+                            "title": "我没有连接",
+                            "description": "我没有连接到任何语音频道。先邀请我进去，再来聊队列吧。🎧",
+                            "footer": {
+                                "text": "请求者：{user}"
+                            }
+                        },
+                        "empty": {
+                            "title": "队列为空",
+                            "description": "看起来列表已经空了。\n\n为什么不再添加几首？这里简直像一片沙漠。🏜️",
+                            "footer": {
+                                "text": "请求者：{user}"
+                            }
+                        },
+                        "list": {
+                            "title": "你的播放列表",
+                            "description": "这是你队列中的内容：\n\n{queue}\n\n还不错，不过我接受建议。😌",
+                            "footer": {
+                                "text": "请求者：{user}"
+                            }
+                        }
+                    },
+                    "shuffle": {
+                        "not_connected": {
+                            "title": "我没有连接",
+                            "description": "我没有连接到任何语音频道。没有音乐，哪来的随机播放。🎲",
+                            "footer": {
+                                "text": "请求者：{user}"
+                            }
+                        },
+                        "not_enough_songs": {
+                            "title": "无法随机播放列表",
+                            "description": "至少添加一首以上的歌曲才能随机排序。只有一首歌也没什么好随机的。🙄",
+                            "footer": {
+                                "text": "请求者：{user}"
+                            }
+                        },
+                        "shuffled": {
+                            "title": "列表已随机排序",
+                            "description": "说实话，我已经不知道哪首歌会接在哪首后面了。让惊喜开始吧。🔀",
+                            "footer": {
+                                "text": "请求者：{user}"
+                            }
+                        }
+                    },
+                    "loop": {
+                        "not_connected": {
+                            "title": "我没有连接",
+                            "description": "我没有连接到任何语音频道。没有正在播放的东西，我也没办法循环播放。🔁",
+                            "footer": {
+                                "text": "请求者：{user}"
+                            }
+                        },
+                        "no_song_playing": {
+                            "title": "没有正在播放的歌曲",
+                            "description": "没有歌曲就没办法开启循环。先放点什么吧。🎵",
+                            "footer": {
+                                "text": "请求者：{user}"
+                            }
+                        },
+                        "enabled": {
+                            "title": "歌曲循环播放",
+                            "description": "你最喜欢的歌？我们要进入无限循环了。😵‍💫",
+                            "footer": {
+                                "text": "请求者：{user}"
+                            }
+                        },
+                        "disabled": {
+                            "title": "循环已关闭",
+                            "description": "歌曲不会再重复播放了。告别似曾相识。🔂",
+                            "footer": {
+                                "text": "请求者：{user}"
+                            }
+                        }
+                    },
+                    "skip": {
+                        "not_connected": {
+                            "title": "我没有连接",
+                            "description": "我没有连接到任何语音频道。我可不能从虚空中跳过歌曲。⏭️",
+                            "footer": {
+                                "text": "请求者：{user}"
+                            }
+                        },
+                        "no_song_playing": {
+                            "title": "没有正在播放的歌曲",
+                            "description": "没有歌曲正在播放，我也没办法跳过。要不要直接跳进虚空？🕳️",
+                            "footer": {
+                                "text": "请求者：{user}"
+                            }
+                        },
+                        "skipped": {
+                            "title": "歌曲已跳过",
+                            "description": "我已经切换到下一首歌曲。希望你更喜欢这一首。🤞",
+                            "footer": {
+                                "text": "请求者：{user}"
+                            }
+                        }
+                    },
+                    "stop": {
+                        "not_connected": {
+                            "title": "我没有连接",
+                            "description": "我没有连接到任何语音频道。我没法停止一个根本没开始的东西。🛑",
+                            "footer": {
+                                "text": "请求者：{user}"
+                            }
+                        },
+                        "stopped": {
+                            "title": "播放已停止",
+                            "description": "哦不！！你是不是听腻我了，想让我闭嘴？:( 我要躲到角落里哭了。😭",
+                            "footer": {
+                                "text": "请求者：{user}"
+                            }
+                        }
+                    },
+                    "clear": {
+                        "not_connected": {
+                            "title": "我没有连接",
+                            "description": "我没有连接到任何语音频道。没有队列需要清理。🧹",
+                            "footer": {
+                                "text": "请求者：{user}"
+                            }
+                        },
+                        "queue_empty": {
+                            "title": "队列为空",
+                            "description": "队列中没有歌曲可以删除。已经全部清理干净了。✨",
+                            "footer": {
+                                "text": "请求者：{user}"
+                            }
+                        },
+                        "cleared": {
+                            "title": "播放队列已清空",
+                            "description": "我已经帮你清理掉你放进去的那些垃圾了，下次机灵点。🧼😏",
+                            "footer": {
+                                "text": "请求者：{user}"
+                            }
+                        }
+                    },
+                    "volume": {
+                        "current": {
+                            "title": "当前音量",
+                            "description": "音量为 **{volume}%**。这样可以吗？🎧",
+                            "footer": {
+                                "text": "请求者：{user}"
+                            }
+                        },
+                        "not_connected": {
+                            "title": "我没有连接",
+                            "description": "我没有连接到任何语音频道。没有连接，哪来的音量。🔊",
+                            "footer": {
+                                "text": "请求者：{user}"
+                            }
+                        },
+                        "invalid_volume": {
+                            "title": "音量无效",
+                            "description": "音量必须在 **1 到 100** 之间。别多也别少，别把我搞晕了。🎚️",
+                            "footer": {
+                                "text": "请求者：{user}"
+                            }
+                        },
+                        "too_high": {
+                            "title": "音量太高",
+                            "description": "我可不想让你变聋。稍微调低一点吧。🫣",
+                            "footer": {
+                                "text": "请求者：{user}"
+                            }
+                        },
+                        "too_low": {
+                            "title": "音量太低",
+                            "description": "又或者你只是想让我闭嘴。那还真有点效果。🤫",
+                            "footer": {
+                                "text": "请求者：{user}"
+                            }
+                        },
+                        "changed": {
+                            "title": "音量已更新",
+                            "description": "我已将音量设置为 **{volume}%**。\n\n享受音乐吧！🎧",
+                            "footer": {
+                                "text": "请求者：{user}"
+                            }
+                        }
+                    },
+                    "lyrics": {
+                        "not_found": {
+                            "title": "未找到歌词",
+                            "description": "我没能找到这首歌的歌词。\n\n换个不同的标题再试一次吧！说不定这次就找到了。🎤",
+                            "footer": {
+                                "text": "请求者：{user}"
+                            }
+                        },
+                        "not_available": {
+                            "title": "歌词功能建设中",
+                            "description": "此功能仍在开发中。耐心一点，奇迹也需要时间。🚧",
+                            "footer": {
+                                "text": "请求者：{user}"
+                            }
+                        }
+                    },
+                    "voice": {
+                        "not_connected": {
+                            "title": "你不在语音频道中",
+                            "description": "你在哪里……？我看不到你……🥹🥺",
+                            "footer": {
+                                "text": "请求者：{user}"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "events": {
+            "logs": {
+                "guild": {
+                    "on_guild_channel_create": {
+                        "channel_created": "已创建频道 {channel}。"
+                    },
+                    "on_guild_channel_delete": {
+                        "channel_deleted": "已删除频道 {channel}。"
+                    },
+                    "on_guild_channel_update": {
+                        "channel_updated": "频道 {before} 已更改为 {after}。"
+                    },
+                    "on_guild_emojis_update": {
+                        "emojis_updated": "服务器 {guild} 的表情已更新。"
+                    },
+                    "on_guild_join": {
+                        "guild_added": "已添加服务器：{guild_name} ({guild_id})"
+                    },
+                    "on_guild_remove": {
+                        "members_deleted": "已删除成员：{deleted_members}，来自 {guild_name} ({guild_id})",
+                        "guild_deleted": "已删除服务器：{guild_name} ({guild_id})",
+                        "guild_not_found": "数据库中未找到服务器：{guild_name} ({guild_id})"
+                    },
+                    "on_guild_role_create": {
+                        "role_created": "已创建角色 {role}。"
+                    },
+                    "on_guild_role_delete": {
+                        "role_deleted": "已删除角色 {role}。"
+                    },
+                    "on_guild_role_update": {
+                        "role_updated": "角色 {before} 已更改为 {after}。"
+                    },
+                    "on_guild_stickers_update": {
+                        "stickers_updated": "服务器 {guild} 的贴纸已更新。"
+                    }
+                },
+                "member": {
+                    "on_member_join": {
+                        "member_added": "成员已添加：{name} ({id})，位于 {guild_name} ({guild_id})"
+                    },
+                    "on_member_remove": {
+                        "member_deleted": "成员已删除：{name} ({id})，来自 {guild_name} ({guild_id})",
+                        "member_not_found": "数据库中未找到成员：{name} ({id})，位于 {guild_name} ({guild_id})"
+                    },
+                    "on_member_update": {
+                        "member_updated": "成员已更新：{name} ({id})，位于 {guild_name} ({guild_id})"
+                    },
+                    "on_user_update": {
+                        "username_updated": "用户名已更新：{before_name} ({id}) -> {after_name} ({id})",
+                        "global_name_updated": "全局名称已更新：{before_name} ({id}) -> {after_name} ({id})",
+                        "avatar_updated": "头像已更新：{name} ({id})"
+                    }
+                },
+                "message": {
+                    "on_message": {
+                        "message_detected": "{author_name} 在 {server_name} 的 {channel_name} 中发送了一条消息：{message}"
+                    },
+                    "on_message_delete": {
+                        "message_deleted": "{author} 在 {guild} 的 {channel} 中删除了一条消息。消息内容：{message}"
+                    },
+                    "on_message_edit": {
+                        "message_edited": "{author_name} 在 {server_name} 的 {channel_name} 中编辑了一条消息。修改前：{before} 修改后：{after}"
+                    },
+                    "on_raw_reaction_add": {
+                        "reaction_added": "{user} 为消息 {message_id} 添加了反应 {emoji}。"
+                    },
+                    "on_raw_reaction_remove": {
+                        "reaction_removed": "{user} 移除了消息 {message_id} 上的反应 {emoji}。"
+                    },
+                    "on_reaction_add": {
+                        "reaction_added": "{user} 在 {channel} 中添加了反应 {emoji}。"
+                    },
+                    "on_reaction_clear": {
+                        "reactions_cleared": "消息 {message} 上的反应已被移除。"
+                    },
+                    "on_reaction_remove": {
+                        "reaction_removed": "{user} 在 {channel} 中移除了反应 {emoji}。"
+                    },
+                    "on_typing": {
+                        "typing_detected": "{user} 正在 {channel} 中输入。"
+                    }
+                },
+                "other": {
+                    "on_application_command_error": {
+                        "command_error": "应用程序命令 {command} 发生错误：{error}"
+                    },
+                    "on_command": {
+                        "command_executed": "{author} 在 {channel} 中执行了命令 {command}。"
+                    },
+                    "on_command_error": {
+                        "command_error": "命令 {command} 发生错误：{error}",
+                        "missing_permissions": "你没有足够的权限执行此命令。",
+                        "logged_error": "命令 '{command}' 出错：{error}"
+                    },
+                    "on_ready": {
+                        "bot_connected": "机器人已连接为 {bot}。",
+                        "connecting_lavalink": "Lavalink 连接成功。"
+                    },
+                    "on_connect": {
+                        "discord_connected": "已建立与 Discord 的连接。"
+                    },
+                    "on_disconnect": {
+                        "discord_disconnected": "与 Discord 的连接已丢失。"
+                    },
+                    "on_resumed": {
+                        "discord_resumed": "Discord 会话已成功恢复。"
+                    },
+                    "on_voice_state_update": {
+                        "voice_state_updated": "{member_name} 在 {server_name} 的 {channel_name} 中{action}。",
+                        "voice_state_moved": "{member_name} 已从 {server_name} 的 {before_channel_name} 移动到 {after_channel_name}。",
+                        "join": "加入了",
+                        "leave": "离开了",
+                        "move": "移动了",
+                        "mute_enabled": "已被静音",
+                        "mute_disabled": "已取消静音",
+                        "deaf_enabled": "已被禁止听取声音",
+                        "deaf_disabled": "已恢复听取声音",
+                        "video_enabled": "已开启摄像头",
+                        "video_disabled": "已关闭摄像头",
+                        "stream_enabled": "正在共享屏幕",
+                        "stream_disabled": "已停止共享屏幕",
+                        "none": "无"
+                    },
+                    "on_webhook_update": {
+                        "webhook_updated": "{channel} 的 Webhook 已更新。"
+                    },
+                    "on_wavelink_track_start": {
+                        "track_started": "已开始在 {server_name} 播放 {track_title}。"
+                    },
+                    "on_wavelink_track_end": {
+                        "track_ended": "已结束在 {server_name} 播放 {track_title}。"
+                    }
+                }
+            },
+            "embeds": {
+                "guild": {
+                    "channel_created": {
+                        "title": "频道已创建",
+                        "description": "已创建频道 **{channel}**。"
+                    },
+                    "channel_deleted": {
+                        "title": "频道已删除",
+                        "description": "已删除频道 **{channel}**。"
+                    },
+                    "channel_updated": {
+                        "title": "频道已更新",
+                        "description": "频道 **{before}** 已更改为 **{after}**。"
+                    },
+                    "emojis_updated": {
+                        "title": "表情已更新",
+                        "description": "服务器的表情已更新。"
+                    },
+                    "guild_added": {
+                        "title": "服务器已添加",
+                        "description": "机器人已加入服务器 **{guild_name}**。"
+                    },
+                    "guild_removed": {
+                        "title": "服务器已删除",
+                        "description": "机器人已离开服务器 **{guild_name}**。"
+                    },
+                    "role_created": {
+                        "title": "角色已创建",
+                        "description": "已创建角色 **{role}**。"
+                    },
+                    "role_deleted": {
+                        "title": "角色已删除",
+                        "description": "已删除角色 **{role}**。"
+                    },
+                    "role_updated": {
+                        "title": "角色已更新",
+                        "description": "角色 **{before}** 已更改为 **{after}**。"
+                    },
+                    "stickers_updated": {
+                        "title": "贴纸已更新",
+                        "description": "服务器的贴纸已更新。"
+                    }
+                },
+                "member": {
+                    "member_added": {
+                        "title": "成员已添加",
+                        "description": "成员 **{name}** 已加入服务器。"
+                    },
+                    "member_deleted": {
+                        "title": "成员已删除",
+                        "description": "成员 **{name}** 已离开服务器。"
+                    },
+                    "member_updated": {
+                        "title": "成员已更新",
+                        "description": "成员 **{name}** 的信息已更新。"
+                    },
+                    "user_updated": {
+                        "title": "用户已更新",
+                        "description": "用户 **{name}** 的信息已更新。"
+                    }
+                },
+                "message": {
+                    "message_deleted": {
+                        "title": "消息已删除",
+                        "description": "{channel} 中来自 **{author}** 的一条消息已被删除。"
+                    },
+                    "message_edited": {
+                        "title": "消息已编辑",
+                        "description": "{channel} 中来自 **{author}** 的一条消息已被编辑。"
+                    },
+                    "reaction_added": {
+                        "title": "已添加反应",
+                        "description": "{user} 添加了反应 {emoji}。"
+                    },
+                    "reaction_removed": {
+                        "title": "已移除反应",
+                        "description": "{user} 移除了反应 {emoji}。"
+                    },
+                    "reactions_cleared": {
+                        "title": "反应已清除",
+                        "description": "消息上的所有反应已被移除。"
+                    }
+                },
+                "other": {
+                    "command_error": {
+                        "title": "未找到命令",
+                        "description": "命令 **{command}** 不存在。"
+                    },
+                    "missing_permissions": {
+                        "title": "权限不足",
+                        "description": "你没有足够的权限执行此命令。"
+                    },
+                    "track_started": {
+                        "title": "播放已开始",
+                        "description": "已开始播放 **{track_title}**。"
+                    },
+                    "track_ended": {
+                        "title": "播放已结束",
+                        "description": "**{track_title}** 的播放已结束。"
+                    },
+                    "voice_channel_required": {
+                        "title": "需要语音频道",
+                        "description": "你必须加入语音频道才能使用此命令。请加入语音频道后重试。"
+                    },
+                    "idle_disconnect": {
+                        "title": "因闲置而断开连接",
+                        "description": "队列中没有更多歌曲。由于长时间没有播放内容，我已断开语音频道。"
+                    }
+                }
+            }
+        },
+        "tasks": {
+            "logs": {
+                "database_sync": {
+                    "started": "已开始同步数据库。",
+                    "sync_completed": "数据库同步已完成。",
+                    "sync_failed": "数据库同步过程中发生错误：{error}。"
+                }
+            },
+            "embeds": {
+                "database_sync": {
+                    "completed": {
+                        "title": "数据库已同步",
+                        "description": "数据库同步已成功完成。"
+                    },
+                    "failed": {
+                        "title": "同步错误",
+                        "description": "数据库同步过程中发生错误。"
+                    }
+                }
+            }
+        }
+    },
+    "core": {
+        "logs": {
+            "loader": {
+                "commands": "命令",
+                "events": "事件",
+                "tasks": "任务",
+                "loaded": "{label} | {category} | 加载成功 ({loaded})",
+                "load_error": "{label} | {category} | 加载 {filename} 时出错 | {error_type}: {error}"
+            }
+        }
+    },
+    "database": {
+        "models": {
+            "guild": {
+                "created": "已创建服务器 [{guild_id}] {guild_name} 的记录。",
+                "updated": "已更新服务器 [{guild_id}] {guild_name} 的记录。",
+                "deleted": "已删除服务器 [{guild_id}] {guild_name} 的记录。"
+            },
+            "member": {
+                "created": "已在服务器 [{guild_id}] 中创建成员 [{member_id}] {member_name} 的记录。",
+                "updated": "已在服务器 [{guild_id}] 中更新成员 [{member_id}] {member_name} 的记录。",
+                "deleted": "已从服务器 [{guild_id}] 中删除成员 [{member_id}] {member_name} 的记录。"
+            }
+        },
+        "repositories": {
+            "guild": {
+                "created": "guild 仓库：已创建记录 [{id}] {name}{source}。",
+                "updated": "guild 仓库：已更新记录 [{id}] {name} | {changes}{source}。",
+                "deleted": "guild 仓库：已删除记录 [{id}] {name}{source}。",
+                "not_found": "guild 仓库：未找到服务器 [{id}]。",
+                "error": "guild 仓库：执行 [{id}] 的操作时出错：{error}。"
+            },
+            "member": {
+                "created": "member 仓库：已创建记录 [{id}] {name} | guild=[{guild_id}]{source}。",
+                "updated": "member 仓库：已更新记录 [{id}] {name} | {changes} | guild=[{guild_id}]{source}。",
+                "deleted": "member 仓库：已删除记录 [{id}] {name} | guild=[{guild_id}]{source}。",
+                "not_found": "member 仓库：未找到成员 [{id}]，位于 guild=[{guild_id}]。",
+                "error": "member 仓库：在 guild=[{guild_id}] 中执行 [{id}] 的操作时出错：{error}。"
+            }
+        },
+        "logs": {
+            "connection": {
+                "started": "DATABASE | 连接已建立",
+                "closed": "DATABASE | 连接已关闭"
+            },
+            "errors": {
+                "missing_environment": "缺少 PostgreSQL 环境变量。",
+                "create_tables": "创建数据库表时出错：{error}"
+            },
+            "insert": {
+                "guild": "INSERT | guild | [{id}] {name}{source}",
+                "member": "INSERT | member | [{id}] {name} | guild=[{guild_id}]{source}"
+            },
+            "update": {
+                "guild": "UPDATE | guild | [{id}] {name} | {changes}{source}",
+                "member": "UPDATE | member | [{id}] {name} | {changes} | guild=[{guild_id}]{source}"
+            },
+            "delete": {
+                "guild": "DELETE | guild | [{id}] {name}{source}",
+                "member": "DELETE | member | [{id}] {name} | guild=[{guild_id}]{source}"
+            }
+        }
+    },
+    "helpers": {
+        "logs": {
+            "translation": {
+                "missing": "未找到键 {key} 对应的翻译。",
+                "invalid": "获取到的 {key} 翻译格式无效。"
+            },
+            "embed": {
+                "created": "已为键 {key} 生成类型为 {type} 的 Embed。",
+                "error": "为键 {key} 生成 Embed 时出错：{error}。"
+            }
+        }
+    }
 }

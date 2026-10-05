@@ -4,6 +4,7 @@ import wavelink
 from discord.ext import commands
 
 from src.core.player_state import get_music_state
+from src.helpers.permissions import has_voice_channel
 from src.helpers.embeds import create_embed
 from src.helpers.music_utils import (
     format_duration,
@@ -16,6 +17,7 @@ class Play(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
+    @has_voice_channel()
     @commands.command(name="play", aliases=["p"])
     async def play(self, ctx, *, query):
         if ctx.voice_client is None:

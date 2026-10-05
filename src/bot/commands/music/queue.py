@@ -4,6 +4,7 @@ import wavelink
 from discord.ext import commands
 
 from src.helpers.embeds import create_embed
+from src.helpers.permissions import has_voice_channel
 from src.helpers.music_utils import get_original_info
 
 
@@ -11,6 +12,7 @@ class Queue(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
+    @has_voice_channel()
     @commands.command(name="queue", aliases=["q"])
     async def queue(self, ctx):
         if ctx.voice_client is None:
