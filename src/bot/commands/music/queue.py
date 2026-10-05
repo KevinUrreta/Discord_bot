@@ -9,7 +9,12 @@ from src.helpers.music_utils import get_original_info
 
 
 class Queue(commands.Cog):
-    def __init__(self, bot):
+    def __init__(self, bot, lavalink_password):
+        """
+        Inicializa el evento.
+
+        :param bot: Instancia principal del bot de Discord.
+        """
         self.bot = bot
 
     @has_voice_channel()

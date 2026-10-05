@@ -12,7 +12,12 @@ from src.helpers.music_utils import (
 
 
 class Nowplaying(commands.Cog):
-    def __init__(self, bot):
+    def __init__(self, bot, lavalink_password):
+        """
+        Inicializa el evento.
+
+        :param bot: Instancia principal del bot de Discord.
+        """
         self.bot = bot
 
     @commands.command(name="nowplaying")

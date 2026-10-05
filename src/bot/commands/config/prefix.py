@@ -6,7 +6,12 @@ from src.database.repositories.guild import GuildRepository
 
 
 class Prefix(commands.Cog):
-    def __init__(self, bot):
+    def __init__(self, bot, lavalink_password):
+        """
+        Inicializa el evento.
+
+        :param bot: Instancia principal del bot de Discord.
+        """
         self.bot = bot
         self.guild_repository = GuildRepository(self.bot.database)
 

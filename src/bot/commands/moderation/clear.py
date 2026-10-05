@@ -4,7 +4,12 @@ from src.helpers.permissions import has_manage_messages
 
 
 class Cls(commands.Cog):
-    def __init__(self, bot):
+    def __init__(self, bot, lavalink_password):
+        """
+        Inicializa el evento.
+
+        :param bot: Instancia principal del bot de Discord.
+        """
         self.bot = bot
 
     @commands.command()
