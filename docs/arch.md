@@ -1,7 +1,9 @@
 ```
 (.venv) PS D:\Carpeta\Nueva carpeta> docker exec -it discord_bot sh
 # tree -I "venv|__pycache__|postgres_data"
-.                                                    
+.
+|-- LICENSE
+|-- README.md
 |-- docker
 |   |-- docker-compose.yml
 |   `-- dockerfile
@@ -23,6 +25,7 @@
 |-- pytest.ini
 |-- requirements.txt
 |-- scripts
+|   |-- docs.py
 |   |-- generate_events.py
 |   |-- generate_music_tests.py
 |   `-- generate_tests.py
@@ -96,7 +99,8 @@
 |   |   |-- loader.py
 |   |   |-- logging.py
 |   |   |-- player_state.py
-|   |   `-- player_utils.py
+|   |   |-- player_utils.py
+|   |   `-- prefix.py
 |   |-- database
 |   |   |-- __init__.py
 |   |   |-- connection.py
@@ -109,6 +113,7 @@
 |   |-- helpers
 |   |   |-- __init__.py
 |   |   |-- embeds.py
+|   |   |-- formatting.py
 |   |   |-- music_utils.py
 |   |   `-- permissions.py
 |   `-- locales
@@ -117,11 +122,10 @@
 |       |-- es_ES.json
 |       |-- fr_FR.json
 |       |-- i18n.py
-|       |-- it_IT.json
 |       |-- ja_JP.json
-|       |-- nl_NL.json
-|       |-- pl_PL.json
-|       `-- pt_PT.json
+|       |-- pt_BR.json
+|       |-- ru_RU.json
+|       `-- zh_CN.json
 `-- tests
     |-- conftest.py
     `-- src
@@ -212,5 +216,5 @@
         `-- locales
             `-- test_locales_i18n.py
 
-44 directories, 167 files
+44 directories, 170 files
 ```
