@@ -274,7 +274,7 @@ docker compose -f docker/docker-compose.yml logs -f
 Para consultar únicamente el bot:
 
 ```bash
-docker compose -f docker/docker-compose.yml logs -f bot
+docker compose -f docker/docker-compose.yml logs -f app
 ```
 
 Para consultar Lavalink:
@@ -376,7 +376,7 @@ docker compose -f docker/docker-compose.yml ps
 Y consulta los logs del bot:
 
 ```bash
-docker compose -f docker/docker-compose.yml logs -f bot
+docker compose -f docker/docker-compose.yml logs -f app
 ```
 
 Durante el arranque, el bot debe:
@@ -626,7 +626,7 @@ pytest tests/src/core/test_core_loader.py
 Para ejecutar únicamente las pruebas de los comandos de música:
 
 ```bash
-pytest tests/src/bot/commands/music/
+pytest tests/src/app/commands/music/
 ```
 
 ---
@@ -773,7 +773,7 @@ docker compose -f docker/docker-compose.yml ps
 Consulta los logs:
 
 ```bash
-docker compose -f docker/docker-compose.yml logs bot
+docker compose -f docker/docker-compose.yml logs app
 ```
 
 Comprueba también que las variables del archivo `.env` sean correctas.
@@ -882,7 +882,7 @@ docker compose -f docker/docker-compose.yml ps
 Consulta los logs del bot:
 
 ```bash
-docker compose -f docker/docker-compose.yml logs -f bot
+docker compose -f docker/docker-compose.yml logs -f app
 ```
 
 Una vez iniciado, invita el bot a tu servidor de Discord y utiliza el prefijo configurado para ejecutar los comandos.

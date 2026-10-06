@@ -3,7 +3,7 @@ import importlib
 from pathlib import Path
 
 
-SOURCE = Path(r"D:\Carpeta\Nueva carpeta\src\database\__init__.py")
+SOURCE = Path(r"/infrastructure/database\__init__.py")
 
 
 def test_source_has_valid_python_syntax():

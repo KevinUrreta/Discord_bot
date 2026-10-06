@@ -3,7 +3,7 @@ import importlib
 from pathlib import Path
 
 
-SOURCE = Path(r"D:\Carpeta\Nueva carpeta\src\bot\events\member\on_member_remove.py")
+SOURCE = Path(r"/app\events\member\on_member_remove.py")
 
 
 def test_source_has_valid_python_syntax():
@@ -16,7 +16,7 @@ def test_source_has_valid_python_syntax():
 
 def test_module_can_be_imported():
     module = importlib.import_module(
-        "src.bot.events.member.on_member_remove"
+        "src.app.events.member.on_member_remove"
     )
 
     assert module is not None

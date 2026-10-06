@@ -2,7 +2,7 @@ from unittest.mock import AsyncMock, MagicMock, patch
 
 import pytest
 
-from src.bot.commands.music.shuffle import Shuffle
+from src.app.commands.music.shuffle import Shuffle
 
 
 @pytest.mark.asyncio
@@ -15,7 +15,7 @@ async def test_shuffle_without_voice_client():
     ctx.send = AsyncMock()
 
     with patch(
-        "src.bot.commands.music.shuffle.create_embed",
+            "src.app.commands.music.shuffle.create_embed",
         return_value="embed",
     ):
 
@@ -40,7 +40,7 @@ async def test_shuffle_with_not_enough_songs():
     ctx.send = AsyncMock()
 
     with patch(
-        "src.bot.commands.music.shuffle.create_embed",
+            "src.app.commands.music.shuffle.create_embed",
         return_value="embed",
     ):
 
@@ -65,7 +65,7 @@ async def test_shuffle_shuffles_queue():
     ctx.send = AsyncMock()
 
     with patch(
-        "src.bot.commands.music.shuffle.create_embed",
+            "src.app.commands.music.shuffle.create_embed",
         return_value="embed",
     ):
 

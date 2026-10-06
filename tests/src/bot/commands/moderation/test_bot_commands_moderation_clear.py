@@ -2,7 +2,7 @@ from unittest.mock import AsyncMock, MagicMock
 
 import pytest
 
-from src.bot.commands.moderation.clear import Cls
+from src.app.commands.moderation.clear import Cls
 
 
 @pytest.mark.asyncio

@@ -1,20 +1,18 @@
 import importlib
-import inspect
 from collections import defaultdict
 from pathlib import Path
 
 from discord.ext import commands
 
 from src.core.logging import logger
-from src.locales.i18n import translate
+from src.i18n.translator import translate
 
 
-async def load_cogs(bot, lavalink_password):
+async def load_cogs(bot):
     """
-    Recorre, busca y carga automáticamente los comandos, eventos y tareas del bot.
+    Recorre, busca y carga automáticamente los comandos, eventos y tareas del app.
 
     :param bot: Instancia del Bot.
-    :param lavalink_password: Contraseña para conectar lavalink.
     :return: None
     """
     base_path = Path(__file__).parent.parent
@@ -24,7 +22,7 @@ async def load_cogs(bot, lavalink_password):
     )
 
     for cog_type in ("commands", "events", "tasks"):
-        cog_path = base_path / "bot" / cog_type
+        cog_path = base_path / "app" / cog_type
 
         for file in cog_path.rglob("*.py"):
             if file.name == "__init__.py":
@@ -55,12 +53,7 @@ async def load_cogs(bot, lavalink_password):
                     if attribute.__module__ != module.__name__:
                         continue
 
-                    parameters = inspect.signature(attribute).parameters
-
-                    if "lavalink_password" in parameters:
-                        cog = attribute(bot, lavalink_password)
-                    else:
-                        cog = attribute(bot)
+                    cog = attribute(bot)
 
                     await bot.add_cog(cog)
 
@@ -74,8 +67,7 @@ async def load_cogs(bot, lavalink_password):
 
         if data["failed"]:
             for filename, error in data["failed"]:
-                logger.error(
-                    translate(
+                logger.error(translate(
                         None,
                         "core.logs.loader.load_error",
                         label=label,
@@ -83,17 +75,14 @@ async def load_cogs(bot, lavalink_password):
                         filename=filename,
                         error_type=type(error).__name__,
                         error=error,
-                    )
-                )
+                    ))
 
             continue
 
-        logger.info(
-            translate(
+        logger.info(translate(
                 None,
                 "core.logs.loader.loaded",
                 label=label,
                 category=category,
                 loaded=data["loaded"],
-            )
-        )
+            ))

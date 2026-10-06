@@ -2,7 +2,7 @@ from unittest.mock import AsyncMock, MagicMock, patch
 
 import pytest
 
-from src.bot.tasks.database_sync import DatabaseSync
+from src.app.tasks.database_sync import DatabaseSync
 
 
 def create_bot():
@@ -22,11 +22,11 @@ async def test_database_sync_creates_repositories():
     bot = create_bot()
 
     with patch(
-        "src.bot.tasks.database_sync.GuildRepository"
+            "src.app.tasks.database_sync.GuildRepository"
     ) as guild_repository, patch(
-        "src.bot.tasks.database_sync.MemberRepository"
+        "src.app.tasks.database_sync.MemberRepository"
     ) as member_repository, patch(
-        "src.bot.tasks.database_sync.set_guild_languages"
+        "src.app.tasks.database_sync.set_guild_languages"
     ) as set_languages, patch(
         "discord.ext.tasks.Loop.start"
     ) as start:
@@ -54,11 +54,11 @@ def test_cog_unload_cancels_task():
     bot = create_bot()
 
     with patch(
-        "src.bot.tasks.database_sync.GuildRepository"
+            "src.app.tasks.database_sync.GuildRepository"
     ), patch(
-        "src.bot.tasks.database_sync.MemberRepository"
+        "src.app.tasks.database_sync.MemberRepository"
     ), patch(
-        "src.bot.tasks.database_sync.set_guild_languages"
+        "src.app.tasks.database_sync.set_guild_languages"
     ), patch(
         "discord.ext.tasks.Loop.start"
     ), patch(

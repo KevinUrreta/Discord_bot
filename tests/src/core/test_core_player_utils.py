@@ -2,7 +2,7 @@ from unittest.mock import AsyncMock, MagicMock
 
 import pytest
 
-from src.core.player_utils import restore_volume
+from helpers.player_utils import restore_volume
 
 
 @pytest.mark.asyncio

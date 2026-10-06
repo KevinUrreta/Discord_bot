@@ -1,26 +1,14 @@
 import asyncio
-import os
 
 import discord
 from discord.ext import commands
-from dotenv import load_dotenv
 
-from src.core.prefix import get_prefix
+from src.core.config import settings
 from src.core.loader import load_cogs
-from src.database.connection import Database
-from src.database.repositories.guild import GuildRepository
-
-
-load_dotenv()
-
-TOKEN = str(os.getenv("DISCORD_TOKEN"))
-LAVALINK_PASSWORD = str(os.getenv("LAVALINK_PASSWORD"))
-
-if TOKEN is None:
-    raise RuntimeError("DISCORD_TOKEN no está configurado.")
-
-if LAVALINK_PASSWORD is None:
-    raise RuntimeError("LAVALINK_PASSWORD no está configurado.")
+from src.core.prefix import get_prefix
+from src.infrastructure.lavalink.connection import connect_lavalink
+from src.infrastructure.database.connection import Database
+from src.infrastructure.database.repositories.guild import GuildRepository
 
 
 class App(commands.Bot):
@@ -32,7 +20,8 @@ class App(commands.Bot):
         super().__init__(command_prefix=get_prefix, intents=discord.Intents.all())
 
     async def setup_hook(self) -> None:
-        await load_cogs(self, lavalink_password=LAVALINK_PASSWORD)
+        await connect_lavalink(self)
+        await load_cogs(self)
 
 
 async def main() -> None:
@@ -40,7 +29,9 @@ async def main() -> None:
 
     try:
         await database.create_tables()
-        async with App(database) as bot: await bot.start(TOKEN)
+
+        async with App(database) as bot: await bot.start(settings.discord_token)
+
 
     finally:
         await database.close()

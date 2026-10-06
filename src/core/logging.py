@@ -23,7 +23,7 @@ errors_logger.addHandler(errors_file_handler)
 errors_logger.addHandler(stream)
 
 bot_file_handler = logging.FileHandler(
-    "logs/bot.log",
+    "logs/app.log",
     encoding="utf-8",
 )
 bot_file_handler.setLevel(logging.INFO)

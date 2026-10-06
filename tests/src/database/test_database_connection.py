@@ -1,6 +1,6 @@
 import pytest
 
-from src.database.connection import Database
+from src.infrastructure.database.connection.connection import Database
 
 
 def test_database_raises_when_environment_is_missing(

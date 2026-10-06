@@ -5,7 +5,7 @@ from unittest.mock import MagicMock
 from discord.ext import commands
 
 
-MODULE_NAME = "src.bot.commands.music.clear"
+MODULE_NAME = "src.app.commands.music.clear"
 
 
 def _find_cog_class(module):

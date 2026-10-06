@@ -1,6 +1,6 @@
 from unittest.mock import MagicMock
 
-from src.locales import i18n
+from src.i18n import translator
 
 
 TEST_NAME = "Nombre"
@@ -20,15 +20,15 @@ def test_supported_languages_contains_expected_languages():
     }
 
     assert expected.issubset(
-        i18n.SUPPORTED_LANGUAGES.keys()
+        translator.SUPPORTED_LANGUAGES.keys()
     )
 
 
 def test_locale_files_match_supported_languages():
     assert set(
-        i18n.SUPPORTED_LANGUAGES
+        translator.SUPPORTED_LANGUAGES
     ) == set(
-        i18n.LOCALE_FILES
+        translator.LOCALE_FILES
     )
 
 
@@ -37,46 +37,46 @@ def test_set_guild_languages():
         123: "en",
     }
 
-    i18n.set_guild_languages(
+    translator.set_guild_languages(
         languages,
     )
 
-    assert i18n.GUILD_LANGUAGES is languages
+    assert translator.GUILD_LANGUAGES is languages
 
 
 def test_get_language_with_none_guild():
-    assert i18n.get_language(None) == i18n.LOG_LANGUAGE
+    assert translator.get_language(None) == translator.LOG_LANGUAGE
 
 
 def test_get_language_for_unknown_guild():
     guild = MagicMock()
     guild.id = 999
 
-    i18n.set_guild_languages({})
+    translator.set_guild_languages({})
 
-    assert i18n.get_language(guild) == "es"
+    assert translator.get_language(guild) == "es"
 
 
 def test_get_language_for_known_guild():
     guild = MagicMock()
     guild.id = 123
 
-    i18n.set_guild_languages(
+    translator.set_guild_languages(
         {123: "en"},
     )
 
-    assert i18n.get_language(guild) == "en"
+    assert translator.get_language(guild) == "en"
 
 
 def test_get_locale():
     guild = MagicMock()
     guild.id = 123
 
-    i18n.set_guild_languages(
+    translator.set_guild_languages(
         {123: "en"},
     )
 
-    assert i18n.get_locale(guild) == "en_US.json"
+    assert translator.get_locale(guild) == "en_US.json"
 
 
 def test_get_nested_translation():
@@ -88,9 +88,9 @@ def test_get_nested_translation():
         },
     }
 
-    result = i18n.get_nested_translation(
+    result = translator.get_nested_translation(
         translations,
-        "bot.commands.music.embeds.play.title",
+        "app.commands.music.embeds.play.title",
     )
 
     assert result == "Play"
@@ -101,18 +101,18 @@ def test_get_nested_translation_missing_key():
         "music": {},
     }
 
-    result = i18n.get_nested_translation(
+    result = translator.get_nested_translation(
         translations,
-        "bot.commands.music.embeds.play.title",
+        "app.commands.music.embeds.play.title",
     )
 
     assert result == {}
 
 
 def test_translate_existing_key():
-    result = i18n.translate(
+    result = translator.translate(
         None,
-        "bot.commands.music.embeds.play.voice_not_connected",
+        "app.commands.music.embeds.play.voice_not_connected",
         user=TEST_NAME,
     )
 
@@ -124,7 +124,7 @@ def test_translate_existing_key():
 
 
 def test_translate_missing_key():
-    result = i18n.translate(
+    result = translator.translate(
         None,
         "this.key.does.not.exist",
     )

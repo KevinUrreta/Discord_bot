@@ -1,6 +1,6 @@
 import discord
 
-from src.locales.i18n import get_nested_translation, get_translations
+from src.i18n.translator import get_nested_translation, get_translations
 
 
 def create_embed(

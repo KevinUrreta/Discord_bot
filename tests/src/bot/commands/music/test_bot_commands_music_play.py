@@ -2,7 +2,7 @@ from unittest.mock import AsyncMock, MagicMock, patch
 
 import pytest
 
-from src.bot.commands.music.play import Play
+from src.app.commands.music.play import Play
 
 
 TEST_GUILD_ID = 123
@@ -37,7 +37,7 @@ async def test_play_requires_voice_channel():
     ctx = create_ctx()
 
     with patch(
-        "src.bot.commands.music.play.create_embed",
+            "src.app.commands.music.play.create_embed",
         return_value="embed",
     ) as create_embed:
 
@@ -64,10 +64,10 @@ async def test_play_sends_no_song_found():
     ctx.author.voice.channel.connect = AsyncMock(return_value=player)
 
     with patch(
-        "src.bot.commands.music.play.wavelink.Playable.search",
+            "src.app.commands.music.play.wavelink.Playable.search",
         new=AsyncMock(return_value=[]),
     ), patch(
-        "src.bot.commands.music.play.create_embed",
+        "src.app.commands.music.play.create_embed",
         return_value="embed",
     ) as create_embed:
 

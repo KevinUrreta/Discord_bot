@@ -1,6 +1,6 @@
 import pytest_asyncio
 
-from src.database.connection import Database
+from src.infrastructure.database.connection.connection import Database
 
 
 @pytest_asyncio.fixture

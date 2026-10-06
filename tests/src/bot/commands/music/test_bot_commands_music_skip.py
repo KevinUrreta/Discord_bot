@@ -2,7 +2,7 @@ from unittest.mock import AsyncMock, MagicMock, patch
 
 import pytest
 
-from src.bot.commands.music.skip import Skip
+from src.app.commands.music.skip import Skip
 
 
 @pytest.mark.asyncio
@@ -18,7 +18,7 @@ async def test_skip_without_current_track():
     ctx.send = AsyncMock()
 
     with patch(
-        "src.bot.commands.music.skip.create_embed",
+            "src.app.commands.music.skip.create_embed",
         return_value="embed",
     ):
 

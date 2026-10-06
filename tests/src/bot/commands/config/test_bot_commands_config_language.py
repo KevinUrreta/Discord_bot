@@ -3,7 +3,7 @@ import importlib
 from pathlib import Path
 
 
-SOURCE = Path(r"D:\Carpeta\Nueva carpeta\src\bot\commands\config\language.py")
+SOURCE = Path(r"/app\commands\config\language.py")
 
 
 def test_source_has_valid_python_syntax():
@@ -16,7 +16,7 @@ def test_source_has_valid_python_syntax():
 
 def test_module_can_be_imported():
     module = importlib.import_module(
-        "src.bot.commands.config.language"
+        "src.app.commands.config.language"
     )
 
     assert module is not None

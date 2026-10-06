@@ -3,7 +3,7 @@ import importlib
 from pathlib import Path
 
 
-SOURCE = Path(r"D:\Carpeta\Nueva carpeta\src\bot\events\message\on_message_delete.py")
+SOURCE = Path(r"/app\events\message\on_message_delete.py")
 
 
 def test_source_has_valid_python_syntax():
@@ -16,7 +16,7 @@ def test_source_has_valid_python_syntax():
 
 def test_module_can_be_imported():
     module = importlib.import_module(
-        "src.bot.events.message.on_message_delete"
+        "src.app.events.message.on_message_delete"
     )
 
     assert module is not None

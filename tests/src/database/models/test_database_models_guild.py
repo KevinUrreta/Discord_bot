@@ -3,7 +3,7 @@ import importlib
 from pathlib import Path
 
 
-SOURCE = Path(r"D:\Carpeta\Nueva carpeta\src\database\models\guild.py")
+SOURCE = Path(r"/infrastructure/database\models\guild.py")
 
 
 def test_source_has_valid_python_syntax():
