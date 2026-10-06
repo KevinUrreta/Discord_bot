@@ -1,0 +1,31 @@
+# Git
+.git/
+.github/
+
+# Entorno
+.env
+.env.*
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Tests
+tests/
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Logs y datos locales
+logs/
+postgres_data/
+
+# Docker
+docker/
+
+# Documentación y archivos de desarrollo
+docs/
+scripts/
+README.md
