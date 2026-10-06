@@ -1,6 +1,5 @@
-from discord.ext import commands
-
 import wavelink
+from discord.ext import commands
 
 from src.helpers.embeds import create_embed
 
@@ -9,6 +8,7 @@ class Shuffle(commands.Cog):
     """
     Gestiona el comando para aleatorizar la cola de reproducción.
     """
+
     def __init__(self, bot):
         """
         Inicializa el evento.
@@ -27,27 +27,27 @@ class Shuffle(commands.Cog):
         """
         if ctx.voice_client is None:
             return await ctx.send(embed=create_embed(
-                    ctx.guild,
-                    "app.commands.music.embeds.shuffle.not_connected",
-                    user=ctx.author.display_name,
-                    footer_icon=ctx.author.display_avatar.url,
-                ))
+                ctx.guild,
+                "app.commands.music.embeds.shuffle.not_connected",
+                user=ctx.author.display_name,
+                footer_icon=ctx.author.display_avatar.url,
+            ))
 
         player: wavelink.Player = ctx.voice_client
 
         if player.queue.count < 2:
             return await ctx.send(embed=create_embed(
-                    ctx.guild,
-                    "app.commands.music.embeds.shuffle.not_enough_songs",
-                    user=ctx.author.display_name,
-                    footer_icon=ctx.author.display_avatar.url,
-                ))
+                ctx.guild,
+                "app.commands.music.embeds.shuffle.not_enough_songs",
+                user=ctx.author.display_name,
+                footer_icon=ctx.author.display_avatar.url,
+            ))
 
         player.queue.shuffle()
 
         await ctx.send(embed=create_embed(
-                ctx.guild,
-                "app.commands.music.embeds.shuffle.shuffled",
-                user=ctx.author.display_name,
-                footer_icon=ctx.author.display_avatar.url,
-            ))
+            ctx.guild,
+            "app.commands.music.embeds.shuffle.shuffled",
+            user=ctx.author.display_name,
+            footer_icon=ctx.author.display_avatar.url,
+        ))

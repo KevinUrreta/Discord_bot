@@ -9,6 +9,7 @@ class Prefix(commands.Cog):
     """
     Gestiona el comando para consultar o cambiar el prefijo del server.
     """
+
     def __init__(self, bot):
         """
         Inicializa el evento.
@@ -40,10 +41,10 @@ class Prefix(commands.Cog):
                 return
 
             await ctx.send(embed=create_embed(
-                    ctx.guild,
-                    "app.commands.config.embeds.prefix.current_prefix",
-                    prefix=guild.prefix,
-                ))
+                ctx.guild,
+                "app.commands.config.embeds.prefix.current_prefix",
+                prefix=guild.prefix,
+            ))
             return
 
         if len(prefix) != 1:
@@ -55,7 +56,7 @@ class Prefix(commands.Cog):
             return
 
         await ctx.send(embed=create_embed(
-                ctx.guild,
-                "app.commands.config.embeds.prefix.prefix_changed",
-                prefix=prefix,
-            ))
+            ctx.guild,
+            "app.commands.config.embeds.prefix.prefix_changed",
+            prefix=prefix,
+        ))

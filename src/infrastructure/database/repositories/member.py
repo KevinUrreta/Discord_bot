@@ -4,9 +4,9 @@ from typing import cast
 from sqlalchemy import select
 
 from src.core.logging import database_logger
+from src.i18n.translator import translate
 from src.infrastructure.database.connection import Database
 from src.infrastructure.database.models.member import Member
-from src.i18n.translator import translate
 
 
 class MemberRepository:
@@ -138,6 +138,7 @@ class MemberRepository:
             )
 
             return member
+
     async def get(self, member_id: int, guild_id: int) -> Member | None:
         """
         Busca un miembro por su identificador y el servidor al que pertenece.

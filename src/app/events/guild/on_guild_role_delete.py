@@ -8,6 +8,7 @@ class GuildRoleDelete(commands.Cog):
     """
     Gestiona la eliminación de un rol del server.
     """
+
     def __init__(self, bot):
         """
         Inicializa el evento.

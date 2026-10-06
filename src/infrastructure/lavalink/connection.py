@@ -16,9 +16,9 @@ async def connect_lavalink(bot):
         return
 
     logger.info(translate(
-            None,
-            "app.events.logs.other.on_ready.connecting_lavalink",
-        ))
+        None,
+        "app.events.logs.other.on_ready.connecting_lavalink",
+    ))
 
     await wavelink.Pool.connect(
         nodes=[

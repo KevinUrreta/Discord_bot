@@ -2,15 +2,16 @@ import discord
 from discord.ext import commands
 
 from src.core.logging import logger
+from src.i18n.translator import translate
 from src.infrastructure.database.repositories.guild import GuildRepository
 from src.infrastructure.database.repositories.member import MemberRepository
-from src.i18n.translator import translate
 
 
 class On_guild_join(commands.Cog):
     """
     Gestiona la entrada a un server.
     """
+
     def __init__(self, bot):
         """
         Inicializa la entrada a un server.

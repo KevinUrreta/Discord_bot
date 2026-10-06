@@ -4,14 +4,15 @@ import wavelink
 from discord.ext import commands
 
 from src.helpers.embeds import create_embed
-from src.helpers.permissions import has_voice_channel
 from src.helpers.music_utils import get_original_info
+from src.helpers.permissions import has_voice_channel
 
 
 class Queue(commands.Cog):
     """
     Gestiona el comando para consultar la información de la cola de reproducción.
     """
+
     def __init__(self, bot):
         """
         Inicializa el evento.
@@ -31,27 +32,27 @@ class Queue(commands.Cog):
         """
         if ctx.voice_client is None:
             return await ctx.send(embed=create_embed(
-                    ctx.guild,
-                    "app.commands.music.embeds.queue.not_connected",
-                    user=ctx.author.display_name,
-                    footer_icon=ctx.author.display_avatar.url,
-                ))
+                ctx.guild,
+                "app.commands.music.embeds.queue.not_connected",
+                user=ctx.author.display_name,
+                footer_icon=ctx.author.display_avatar.url,
+            ))
 
         player: wavelink.Player = ctx.voice_client
 
         if player.queue.is_empty:
             return await ctx.send(embed=create_embed(
-                    ctx.guild,
-                    "app.commands.music.embeds.queue.empty",
-                    user=ctx.author.display_name,
-                    footer_icon=ctx.author.display_avatar.url,
-                ))
+                ctx.guild,
+                "app.commands.music.embeds.queue.empty",
+                user=ctx.author.display_name,
+                footer_icon=ctx.author.display_avatar.url,
+            ))
 
         tracks = list(player.queue)
         infos = await asyncio.gather(*(
-                asyncio.to_thread(get_original_info, track.uri)
-                for track in tracks
-            ))
+            asyncio.to_thread(get_original_info, track.uri)
+            for track in tracks
+        ))
 
         titles = [info["title"] for info in infos]
         message = "\n".join(
@@ -60,9 +61,9 @@ class Queue(commands.Cog):
         )
 
         await ctx.send(embed=create_embed(
-                ctx.guild,
-                "app.commands.music.embeds.queue.list",
-                queue=message,
-                user=ctx.author.display_name,
-                footer_icon=ctx.author.display_avatar.url,
-            ))
+            ctx.guild,
+            "app.commands.music.embeds.queue.list",
+            queue=message,
+            user=ctx.author.display_name,
+            footer_icon=ctx.author.display_avatar.url,
+        ))

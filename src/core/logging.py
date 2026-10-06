@@ -1,5 +1,6 @@
-import logging
 import os
+
+import logging
 
 os.makedirs("logs", exist_ok=True)
 

@@ -10,6 +10,7 @@ class On_command_error(commands.Cog):
     """
     Gestiona cuando hay un error al usar un comando.
     """
+
     def __init__(self, bot):
         """
         Inicializa el evento.

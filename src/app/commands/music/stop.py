@@ -1,6 +1,5 @@
-from discord.ext import commands
-
 import wavelink
+from discord.ext import commands
 
 from src.helpers.embeds import create_embed
 
@@ -9,6 +8,7 @@ class Stop(commands.Cog):
     """
     Gestiona el comando para detener la reproducción.
     """
+
     def __init__(self, bot):
         """
         Inicializa el evento.
@@ -27,11 +27,11 @@ class Stop(commands.Cog):
         """
         if ctx.voice_client is None:
             return await ctx.send(embed=create_embed(
-                    ctx.guild,
-                    "app.commands.music.embeds.stop.not_connected",
-                    user=ctx.author.display_name,
-                    footer_icon=ctx.author.display_avatar.url,
-                ))
+                ctx.guild,
+                "app.commands.music.embeds.stop.not_connected",
+                user=ctx.author.display_name,
+                footer_icon=ctx.author.display_avatar.url,
+            ))
 
         player: wavelink.Player = ctx.voice_client
 
@@ -39,8 +39,8 @@ class Stop(commands.Cog):
         await player.stop()
 
         await ctx.send(embed=create_embed(
-                ctx.guild,
-                "app.commands.music.embeds.stop.stopped",
-                user=ctx.author.display_name,
-                footer_icon=ctx.author.display_avatar.url,
-            ))
+            ctx.guild,
+            "app.commands.music.embeds.stop.stopped",
+            user=ctx.author.display_name,
+            footer_icon=ctx.author.display_avatar.url,
+        ))

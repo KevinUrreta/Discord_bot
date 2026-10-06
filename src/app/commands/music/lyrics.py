@@ -7,6 +7,7 @@ class Lyrics(commands.Cog):
     """
     Gestiona el comando de letras de la reproducción actual.
     """
+
     def __init__(self, bot):
         """
         Inicializa el evento.
@@ -24,8 +25,8 @@ class Lyrics(commands.Cog):
         :return: None
         """
         await ctx.send(embed=create_embed(
-                ctx.guild,
-                "app.commands.music.embeds.lyrics.not_available",
-                user=ctx.author.display_name,
-                footer_icon=ctx.author.display_avatar.url,
-            ))
+            ctx.guild,
+            "app.commands.music.embeds.lyrics.not_available",
+            user=ctx.author.display_name,
+            footer_icon=ctx.author.display_avatar.url,
+        ))

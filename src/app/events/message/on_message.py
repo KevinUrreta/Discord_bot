@@ -9,6 +9,7 @@ class On_message(commands.Cog):
     """
     Gestiona el evento al recibir un mensaje.
     """
+
     def __init__(self, bot):
         """
         Inicializa el evento.

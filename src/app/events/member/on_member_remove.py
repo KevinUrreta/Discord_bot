@@ -2,14 +2,15 @@ import discord
 from discord.ext import commands
 
 from src.core.logging import logger
-from src.infrastructure.database.repositories.member import MemberRepository
 from src.i18n.translator import translate
+from src.infrastructure.database.repositories.member import MemberRepository
 
 
 class On_member_remove(commands.Cog):
     """
     Gestiona la eliminación de un miembro de un server.
     """
+
     def __init__(self, bot):
         """
         Inicializa el evento.

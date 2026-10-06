@@ -8,6 +8,7 @@ class RawReactionRemove(commands.Cog):
     """
     Gestiona la eliminación de reacciones mediante el evento raw.
     """
+
     def __init__(self, bot):
         """
         Inicializa el evento.

@@ -8,6 +8,7 @@ class MessageDelete(commands.Cog):
     """
     Gestiona la eliminación de mensajes de los servers.
     """
+
     def __init__(self, bot):
         """
         Inicializa el evento.

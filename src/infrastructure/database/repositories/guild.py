@@ -3,9 +3,9 @@ from typing import cast
 from sqlalchemy import select
 
 from src.core.logging import database_logger
+from src.i18n.translator import translate
 from src.infrastructure.database.connection import Database
 from src.infrastructure.database.models.guild import Guild
-from src.i18n.translator import translate
 
 
 class GuildRepository:

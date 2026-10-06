@@ -1,7 +1,7 @@
 import json
 from pathlib import Path
-from src.core.config import settings
 
+from src.core.config import settings
 
 LOCALES_PATH = Path(__file__).parent / "locales"
 

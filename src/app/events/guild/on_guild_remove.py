@@ -2,15 +2,16 @@ import discord
 from discord.ext import commands
 
 from src.core.logging import logger
+from src.i18n.translator import translate
 from src.infrastructure.database.repositories.guild import GuildRepository
 from src.infrastructure.database.repositories.member import MemberRepository
-from src.i18n.translator import translate
 
 
 class On_guild_remove(commands.Cog):
     """
     Gestiona la eliminación de un server.
     """
+
     def __init__(self, bot):
         """
         Inicializa el evento.

@@ -6,7 +6,6 @@ from discord.ext import commands
 from src.core.player_state import get_music_state
 from src.helpers.embeds import create_embed
 
-
 IDLE_DISCONNECT_DELAY = 60
 
 
@@ -14,6 +13,7 @@ class On_wavelink_track_end(commands.Cog):
     """
     Gestiona cuando una reproducción acaba.
     """
+
     def __init__(self, bot):
         """
         Inicializa el evento.
@@ -39,8 +39,8 @@ class On_wavelink_track_end(commands.Cog):
             return
 
         if (
-            player.queue.is_empty
-            and player.queue.mode == wavelink.QueueMode.normal
+                player.queue.is_empty
+                and player.queue.mode == wavelink.QueueMode.normal
         ):
             state = get_music_state(player)
             text_channel = state.text_channel

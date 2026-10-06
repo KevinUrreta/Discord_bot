@@ -4,14 +4,14 @@ from src.i18n.translator import get_nested_translation, get_translations
 
 
 def create_embed(
-    guild,
-    key: str,
-    *,
-    color: discord.Color = discord.Color.purple(),
-    timestamp: bool = True,
-    thumbnail: str | None = None,
-    footer_icon: str | None = None,
-    **kwargs,
+        guild,
+        key: str,
+        *,
+        color: discord.Color = discord.Color.purple(),
+        timestamp: bool = True,
+        thumbnail: str | None = None,
+        footer_icon: str | None = None,
+        **kwargs,
 ) -> discord.Embed:
     """
     Crea un `Embed` y lo devuelve con los valores proporcionados.

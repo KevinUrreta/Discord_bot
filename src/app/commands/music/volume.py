@@ -1,15 +1,15 @@
+import wavelink
 from discord.ext import commands
 
-import wavelink
-
-from src.infrastructure.database.repositories.guild import GuildRepository
 from src.helpers.embeds import create_embed
+from src.infrastructure.database.repositories.guild import GuildRepository
 
 
 class Volume(commands.Cog):
     """
     Gestiona el comando para consultar o cambiar el volumen del server.
     """
+
     def __init__(self, bot):
         """
         Inicializa el evento.
@@ -35,28 +35,28 @@ class Volume(commands.Cog):
                 return
 
             return await ctx.send(embed=create_embed(
-                    ctx.guild,
-                    "app.commands.music.embeds.volume.current",
-                    volume=guild.volume,
-                    user=ctx.author.display_name,
-                    footer_icon=ctx.author.display_avatar.url,
-                ))
+                ctx.guild,
+                "app.commands.music.embeds.volume.current",
+                volume=guild.volume,
+                user=ctx.author.display_name,
+                footer_icon=ctx.author.display_avatar.url,
+            ))
 
         if ctx.voice_client is None:
             return await ctx.send(embed=create_embed(
-                    ctx.guild,
-                    "app.commands.music.embeds.volume.not_connected",
-                    user=ctx.author.display_name,
-                    footer_icon=ctx.author.display_avatar.url,
-                ))
+                ctx.guild,
+                "app.commands.music.embeds.volume.not_connected",
+                user=ctx.author.display_name,
+                footer_icon=ctx.author.display_avatar.url,
+            ))
 
         if volume < 1 or volume > 100:
             return await ctx.send(embed=create_embed(
-                    ctx.guild,
-                    "app.commands.music.embeds.volume.invalid_volume",
-                    user=ctx.author.display_name,
-                    footer_icon=ctx.author.display_avatar.url,
-                ))
+                ctx.guild,
+                "app.commands.music.embeds.volume.invalid_volume",
+                user=ctx.author.display_name,
+                footer_icon=ctx.author.display_avatar.url,
+            ))
 
         player: wavelink.Player = ctx.voice_client
 
@@ -64,9 +64,9 @@ class Volume(commands.Cog):
         await self.guild_repository.update(guild_id=ctx.guild.id, volume=volume)
 
         await ctx.send(embed=create_embed(
-                ctx.guild,
-                "app.commands.music.embeds.volume.changed",
-                volume=volume,
-                user=ctx.author.display_name,
-                footer_icon=ctx.author.display_avatar.url,
-            ))
+            ctx.guild,
+            "app.commands.music.embeds.volume.changed",
+            volume=volume,
+            user=ctx.author.display_name,
+            footer_icon=ctx.author.display_avatar.url,
+        ))

@@ -8,6 +8,7 @@ class MessageEdit(commands.Cog):
     """
     Gestiona los mensajes editados.
     """
+
     def __init__(self, bot):
         """
         Inicializa el evento.

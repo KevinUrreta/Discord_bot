@@ -8,6 +8,7 @@ class Resumed(commands.Cog):
     """
     Gestiona la reconexión.
     """
+
     def __init__(self, bot):
         """
         Inicializa el evento.

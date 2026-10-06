@@ -7,6 +7,7 @@ class Cls(commands.Cog):
     """
     Gestiona el comando para eliminar mensajes del canal.
     """
+
     def __init__(self, bot):
         """
         Inicializa el evento.

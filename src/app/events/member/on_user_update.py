@@ -9,6 +9,7 @@ class On_user_update(commands.Cog):
     """
     Gestiona las modificaciones de un usuario.
     """
+
     def __init__(self, bot):
         """
         Inicializa el evento.

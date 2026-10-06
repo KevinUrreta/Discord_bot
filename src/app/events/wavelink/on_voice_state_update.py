@@ -8,6 +8,7 @@ class VoiceStateUpdate(commands.Cog):
     """
     Gestiona el estado de audio de los usuarios.
     """
+
     def __init__(self, bot):
         """
         Inicializa el evento.
@@ -62,9 +63,9 @@ class VoiceStateUpdate(commands.Cog):
             )
 
         elif (
-            before_channel is not None
-            and after_channel is not None
-            and before_channel != after_channel
+                before_channel is not None
+                and after_channel is not None
+                and before_channel != after_channel
         ):
             message = translate(
                 None,

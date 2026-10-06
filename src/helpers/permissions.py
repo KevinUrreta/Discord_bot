@@ -2,13 +2,13 @@ import discord
 from discord.ext import commands
 
 
-
 def has_manage_messages():
     """
     Comprueba que el usuario tenga permiso para gestionar mensajes.
 
     :return: Check que valida el permiso del usuario.
     """
+
     async def predicate(ctx: commands.Context) -> bool:
         if ctx.guild is None:
             return False
@@ -27,6 +27,7 @@ def has_manage_guild():
 
     :return: Check que valida el permiso del usuario.
     """
+
     async def predicate(ctx: commands.Context) -> bool:
         if ctx.guild is None:
             return False
@@ -55,6 +56,7 @@ def has_voice_channel():
     Comprueba que el usuario esté conectado al canal de voz adecuado.
     :return: Check que valida la conexión al canal de voz.
     """
+
     async def predicate(ctx: commands.Context) -> bool:
         if ctx.guild is None:
             raise VoiceChannelRequired

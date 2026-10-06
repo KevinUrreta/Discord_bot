@@ -7,14 +7,15 @@ from sqlalchemy.ext.asyncio import (
 
 from src.core.config import settings
 from src.core.logging import database_logger, errors_logger
-from src.infrastructure.database import Base
 from src.i18n.translator import translate
+from src.infrastructure.database import Base
 
 
 class Database:
     """
     Gestiona la conexión asíncrona con la base de datos.
     """
+
     def __init__(self, database_url: str | None = None):
         """
         Inicializa la conexión con la base de datos.
@@ -42,9 +43,9 @@ class Database:
         )
 
         database_logger.info(translate(
-                None,
-                "database.logs.connection.started",
-            ))
+            None,
+            "database.logs.connection.started",
+        ))
 
     async def create_tables(self):
         """
@@ -76,6 +77,6 @@ class Database:
         await self.engine.dispose()
 
         database_logger.info(translate(
-                None,
-                "database.logs.connection.closed",
-            ))
+            None,
+            "database.logs.connection.closed",
+        ))

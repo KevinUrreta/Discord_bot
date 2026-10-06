@@ -7,6 +7,7 @@ class Leave(commands.Cog):
     """
     Gestiona el comando para abandonar el canal de audio.
     """
+
     def __init__(self, bot):
         """
         Inicializa el evento.

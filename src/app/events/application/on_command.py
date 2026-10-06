@@ -8,6 +8,7 @@ class On_command(commands.Cog):
     """
     Gestiona el uso de un comando.
     """
+
     def __init__(self, bot):
         """
         Inicializa el evento.

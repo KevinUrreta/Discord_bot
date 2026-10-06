@@ -1,9 +1,9 @@
 from discord.ext import commands, tasks
 
-from src.infrastructure.database.repositories.guild import GuildRepository
-from src.infrastructure.database.repositories.member import MemberRepository
 from src.core.logging import logger
 from src.i18n.translator import translate, set_guild_languages
+from src.infrastructure.database.repositories.guild import GuildRepository
+from src.infrastructure.database.repositories.member import MemberRepository
 
 
 class DatabaseSync(commands.Cog):
@@ -11,6 +11,7 @@ class DatabaseSync(commands.Cog):
     Sincroniza periódicamente los servidores y miembros de Discord
     con la base de datos.
     """
+
     def __init__(self, bot):
         """
         Inicializa el task de sincronización de la base de datos.

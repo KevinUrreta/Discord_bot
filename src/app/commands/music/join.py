@@ -1,12 +1,12 @@
-from discord.ext import commands
-
 import wavelink
+from discord.ext import commands
 
 
 class Join(commands.Cog):
     """
     Gestiona el comando para unir el app al canal de voz.
     """
+
     def __init__(self, bot):
         """
         Inicializa el evento.

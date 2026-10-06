@@ -4,21 +4,21 @@ import wavelink
 from discord.ext import commands
 
 from src.core.player_state import get_music_state
-from helpers.player_utils import restore_volume
-from src.infrastructure.database.repositories.guild import GuildRepository
 from src.helpers.embeds import create_embed
+from src.helpers.formatting import format_duration
 from src.helpers.music_utils import (
-    format_duration,
     get_original_info,
     get_thumbnail
 )
-
+from src.helpers.music_utils import restore_volume
+from src.infrastructure.database.repositories.guild import GuildRepository
 
 
 class On_wavelink_track_start(commands.Cog):
     """
     Gestiona el inicio de una reproducción.
     """
+
     def __init__(self, bot):
         """
         Inicializa el evento.

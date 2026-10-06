@@ -31,4 +31,3 @@ class On_ready(commands.Cog):
                 bot=self.bot.user,
             )
         )
-

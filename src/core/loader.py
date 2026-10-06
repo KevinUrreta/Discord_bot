@@ -68,21 +68,21 @@ async def load_cogs(bot):
         if data["failed"]:
             for filename, error in data["failed"]:
                 logger.error(translate(
-                        None,
-                        "core.logs.loader.load_error",
-                        label=label,
-                        category=category,
-                        filename=filename,
-                        error_type=type(error).__name__,
-                        error=error,
-                    ))
+                    None,
+                    "core.logs.loader.load_error",
+                    label=label,
+                    category=category,
+                    filename=filename,
+                    error_type=type(error).__name__,
+                    error=error,
+                ))
 
             continue
 
         logger.info(translate(
-                None,
-                "core.logs.loader.loaded",
-                label=label,
-                category=category,
-                loaded=data["loaded"],
-            ))
+            None,
+            "core.logs.loader.loaded",
+            label=label,
+            category=category,
+            loaded=data["loaded"],
+        ))
