@@ -1,6 +1,5 @@
-from typing import cast
-
 from sqlalchemy import select
+from sqlalchemy.ext.asyncio import AsyncSession
 
 from src.core.logging import database_logger
 from src.i18n.translator import translate
@@ -34,7 +33,7 @@ class GuildRepository:
             guild = await self._get(session, guild_id)
 
             if guild is not None:
-                current_name = cast(str, guild.name)
+                current_name = guild.name
 
                 if current_name != name:
                     setattr(guild, "name", name)
@@ -97,7 +96,7 @@ class GuildRepository:
             if guild is None:
                 return None
 
-            guild_name = cast(str, guild.name)
+            guild_name = guild.name
             changes = []
 
             for key, value in values.items():
@@ -140,7 +139,7 @@ class GuildRepository:
             if guild is None:
                 return False
 
-            guild_name = cast(str, guild.name)
+            guild_name = guild.name
 
             await session.delete(guild)
             await session.commit()
@@ -157,7 +156,8 @@ class GuildRepository:
 
             return True
 
-    async def _get(self, session, guild_id: int) -> Guild | None:
+    @staticmethod
+    async def _get(session: AsyncSession, guild_id: int) -> Guild | None:
         """
         Busca un servidor utilizando una sesión existente.
 
